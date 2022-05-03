@@ -1,12 +1,16 @@
 \documentclass{article}
 \usepackage[a4paper, margin=0.5in]{geometry}
 \usepackage{amsmath}
-
+\usepackage{array}
+\usepackage{tabularx}
 \usepackage{amsfonts}
 \usepackage{graphicx}
 \usepackage{tikz}
 
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{2}
 \title{Trigonometry}
+
 \begin{document}
 \maketitle
 \section{Basic Identities}
@@ -19,18 +23,19 @@
 
 \maketitle
 \section{Trigonometric table}
-\begin{tabular}{|c|c|c|c|c|c|c|c|c|}
-\hline Degree & $0^{0}$ & $30^{\circ}$ & $45^{\circ}$ & $60^{\circ}$ & $90^{\circ}$ & $180^{\circ}$ & $270^{\circ}$ & $360^{\circ}$ \\
-\hline Radian & 0 & $\frac{\pi}{6}$ & $\frac{\pi}{4}$ & $\frac{\pi}{3}$ & $\frac{\pi}{2}$ & $\pi$ & $\frac{3 \pi}{2}$ & $\mathbf{2} \pi$ \\
-\hline sin & 0 & $\frac{1}{2}$ & $\frac{1}{\sqrt{2}}$ & $\frac{\sqrt{3}}{2}$ & 1 & 0 & $-1$ & 0 \\
-\hline Cos & 1 & $\frac{\sqrt{3}}{2}$ & $\frac{1}{\sqrt{2}}$ & $\frac{1}{2}$ & 0 & $-1$ & 0 & 1 \\
-\hline tan & 0 & $\frac{1}{\sqrt{3}}$ & 1 & $\sqrt{3}$ & Not defined & 0 & Not defined & 0 \\
-\hline Cosec & Not defined & 2 & $\sqrt{2}$ & $\frac{2}{\sqrt{3}}$ & 1 & Not defined & $-1$ & Not defined \\
-\hline sec & 1 & $\frac{2}{\sqrt{3}}$ & $\sqrt{2}$ & 2 & Not defined & $-1$ & Not defined & 1 \\
-\hline cot & $\sqrt{3}$ & 1 & $\frac{1}{\sqrt{3}}$ & 0 & Not defined & 0 & Not defined \\
+\begin{tabularx}{1\textwidth} { 
+  | *9{>{\centering\arraybackslash}X|}
+}
+\hline Degree & $0^\circ$   & $30^\circ$            & $45^\circ$            & $60^\circ$            & $90^\circ$       & $180^\circ$ & $270^\circ$        & $360^\circ$ \\
+\hline Radian & 0           & $\dfrac{\pi}{6}$      & $\dfrac{\pi}{4}$      & $\dfrac{\pi}{3}$      & $\dfrac{\pi}{2}$ & $\pi$       & $\dfrac{3\pi}{2}$  & $2\pi$ \\[0.2cm]
+\hline sin    & 0           & $\dfrac{1}{2}$        & $\dfrac{1}{\sqrt{2}}$ & $\dfrac{\sqrt{3}}{2}$ & 1                & 0           & $-1$               & 0 \\[0.2cm]
+\hline cos    & 1           & $\dfrac{\sqrt{3}}{2}$ & $\dfrac{1}{\sqrt{2}}$ & $\dfrac{1}{2}$        & 0                & $-1$        & 0                  & 1 \\[0.2cm]
+\hline tan    & 0           & $\dfrac{1}{\sqrt{3}}$ & 1                     & $\sqrt{3}$            & Not defined      & 0           & Not defined        & 0 \\[0.2cm]
+\hline cosec  & Not defined & 2                     & $\sqrt{2}$            & $\dfrac{2}{\sqrt{3}}$ & 1                & Not defined & $-1$               & Not defined \\[0.2cm]
+\hline sec    & 1           & $\dfrac{2}{\sqrt{3}}$ & $\sqrt{2}$            & 2                     & Not defined      & $-1$        & Not defined        & 1 \\[0.2cm]
+\hline cot    & Not defined & $\sqrt{3}$            & 1                     & $\dfrac{1}{\sqrt{3}}$ & 0                & Not defined & 0                  & Not defined \\[0.2cm]
 \hline
-\end{tabular}
-
+\end{tabularx}
 \maketitle
 \section{Pythagorian Relations}
 \begin{itemize}
