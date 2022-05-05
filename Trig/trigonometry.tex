@@ -4,13 +4,21 @@
 \usepackage{amsfonts}
 \usepackage{tabularx}
 \usepackage{tikz}
-
+\usepackage{xcolor}
 \setlength{\tabcolsep}{10pt}
 \renewcommand{\arraystretch}{2}
 \title{That Weird Trigonometry}
 \author{A list of some weird but seemingly useful trigonometric identities \& charts}
 \date{\today}
 \begin{document}
+
+\maketitle
+\section{Angle conversions}
+\begin{itemize}
+	\item Degree to radian: $x^\circ = \dfrac{\pi x}{180}$ rad
+	\item Radian to degree: $x$ rad $ = \left(\dfrac{180x}{\pi}\right)^\circ$
+\end{itemize}
+
 \maketitle
 \section{Basic Identities}
 \begin{itemize}
@@ -82,15 +90,43 @@
   \item $\cos(2\pi - \theta) = \cos(\theta)$
 \end{enumerate}
 \end{itemize}
-
+\vspace{-15.3cm}
+\hspace{10cm}
+$
+\renewcommand{\arraystretch}{1.6}
+\color{teal}
+ \begin{array}{|l|}
+ \hline
+ c(x+y) = cc-ss \\
+ c(x-y) = cc+ss \\
+ s(x+y) = sc+cs \\
+ s(x-y) = sc-cs \\
+ \hline
+ \end{array}^\textbf{*}
+$
+\vspace{12cm}
 \maketitle
 \section {Product formula}
 \begin{itemize}
   \item $\sin(x + y) + \sin(x - y) = 2\sin(x)\cos(y)$
-  \item $\sin(x + y) - \sin(x - y) = 2\cos(x)\cos(y)$
+  \item $\sin(x + y) - \sin(x - y) = 2\cos(x)\sin(y)$
   \item $\cos(x + y) + \cos(x - y) = 2\cos(x)\cos(y)$
   \item $\cos(x + y) - \cos(x - y) = -2\sin(x)\sin(y)$
 \end{itemize}
+\vspace{-3cm}
+\hspace{10cm}
+$
+\color{teal}
+ \renewcommand{\arraystretch}{1.6}
+  \begin{array}{|l|}
+  \hline
+  s+s = 2sc \\
+  s-s = 2cs \\
+  c+c = 2cc \\
+  c-c = -2ss \\
+  \hline
+ \end{array}^\textbf{*}
+$
 
 \maketitle
 \section {Sum formula}
@@ -100,7 +136,20 @@
   \item $\cos(a) + \cos(b) = 2\cos\left(\dfrac{a + b}{2}\right)\cos\left(\dfrac{a - b}{2}\right)$
   \item $\cos(a) - \cos(b) = -2\sin\left(\dfrac{a + b}{2}\right)\sin\left(\dfrac{a - b}{2}\right)$
 \end{itemize}
-
+\vspace{-5cm}
+\hspace{10cm}
+$
+ \renewcommand{\arraystretch}{2.7}
+ \color{teal}
+ \begin{array}{|l|}
+ \hline
+  s+s = 2sc \\
+  s-s = 2cs \\
+  c+c = 2cc \\
+  c-c = -2ss \\
+ \hline
+ \end{array}^\textbf{*}
+$
 \maketitle
 \section {Expansion for multiple angles}
 
@@ -196,5 +245,10 @@ $$\hspace{-10cm} \dfrac{\cos(A)}{a} = \dfrac{\cos(B)}{b} = \dfrac{\cos(C)}{c} = 
 \item $\tan\left(\dfrac{\pi}{4} \pm x\right) = \dfrac{1 \pm \tan(x)}{1 \mp \tan(x)}$
 \end{itemize}
 
-
+\vspace{18cm}
+\hline
+\color{teal}
+\begin{itemize}
+	\item *: Table in teal shows some mnemonics to remember the formulae easily
+\end{itemize}
 \end{document}
