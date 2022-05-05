@@ -21,40 +21,39 @@
   \dfrac{\lim\limits_{x \to a}f(x)}{\lim\limits_{x \to a}g(x)}$
 \end{itemize}
 
-\maketitle
 \subsection{Basics}
 \begin{itemize} 
   \item $\lim\limits_{x \to a}\dfrac{x^n - a^n}{x - a} = na^{n-1}$
   \item $\lim\limits_{x \to a}\dfrac{x^m - a^m}{x^n - a^n} = \left(\dfrac{m}{n}\right)a^{m-n}$
-  \item $\lim\limits_{x \to 0}\dfrac{{(x+1)}^{n}-1}{x} = n$
   \item $\lim\limits_{x \to 0}\dfrac{{(x+a)}^{n} - a^n}{x} = na^{n-1}$
 \end{itemize} 
 
-\maketitle
 \subsection{Trigonometric limits}
 \begin{itemize}
   \item $\lim\limits_{x \to 0}\tan(x) =
-  \lim\limits_{x \to 0}\frac{x}{\cos(x)} = 0$
-  \item $\lim\limits_{x \to 0}\frac{\tan(x)}{x} =
-  \lim\limits_{x \to 0}\frac{\sin(x)}{x} = 1$
-  \item $\lim\limits_{x \to 0}\frac{x}{\sin(x)} = 
-  \lim\limits_{x \to 0}\frac{x}{\tan(x)} = 1$
-  \item $\lim\limits_{x \to 0}\frac{\sin(ax)}{x} =
-  \lim\limits_{x \to 0}\frac{\tan(ax)}{x} = a$
-  \item $\lim\limits_{x \to 0}\frac{x}{\sin(ax)} =
-  \lim\limits_{x \to 0}\frac{x}{\tan(ax)} = \frac{1}{a}$
-  \item $\lim\limits_{x \to 0}\frac{\sin(ax)}{\sin(bx)} = \frac{a}{b}$
-  \item $\lim\limits_{x \to 0}\frac{1 - \cos(mx)}{x} = 0$
-  \item $\lim\limits_{x \to 0}\frac{1 - \cos(mx)}{x^2} = \frac{m^2}{2}$
+  \lim\limits_{x \to 0}\dfrac{x}{\cos(x)} = 0$
+  \item $\lim\limits_{x \to 0}\dfrac{\tan(x)}{x} =
+  \lim\limits_{x \to 0}\dfrac{\sin(x)}{x} = 1$
+  \item $\lim\limits_{x \to 0}\dfrac{x}{\sin(x)} = 
+  \lim\limits_{x \to 0}\dfrac{x}{\tan(x)} = 1$
+  \item $\lim\limits_{x \to 0}\dfrac{\sin(ax)}{x} =
+  \lim\limits_{x \to 0}\dfrac{\tan(ax)}{x} = a$
+  \item $\lim\limits_{x \to 0}\dfrac{x}{\sin(ax)} =
+  \lim\limits_{x \to 0}\dfrac{x}{\tan(ax)} = \dfrac{1}{a}$
+  \item $\lim\limits_{x \to 0}\dfrac{\sin(ax)}{\sin(bx)} = \dfrac{a}{b}$
+  \item $\lim\limits_{x \to 0}\dfrac{1 - \cos(mx)}{x} = 0$
+  \item $\lim\limits_{x \to 0}\dfrac{1 - \cos(mx)}{x^2} = \dfrac{m^2}{2}$
 \end{itemize}
 
-\maketitle
 \subsection{Exponential \& logarithmic limits}
 \begin{itemize}
-  \item $\lim\limits_{x \to 0}\frac{e^x - 1}{x} = 1$
-  \item $\lim\limits_{x \to 0}\frac{\ln(1+x)}{x} = 1 \hspace{2cm} \Bigl[\ln(x) = \log_e(x)\Bigr] $
-  \item $\lim\limits_{x \to 0}\frac{\ln(1 + ax)}{x} = a$
+  \item $\lim\limits_{x \to 0}\dfrac{e^{ax} - 1}{x} = a$
+  \item $\lim\limits_{x \to 0}\dfrac{\ln(1 + ax)}{x} = a \hspace{2cm} \Bigl[\ln(x) = \log_e(x)\Bigr] $
 \end{itemize}
+
+\subsection{Left \& Right limit}
+\par \hspace{.3cm} $\lim\limits_{x \to a}f(x) = l$\hspace{.3cm} if and only if \hspace{.2cm} $\lim\limits_{x \to a^-} = \lim\limits_{x \to a^+} = l$
+\par In other words, the limit of a function at a point $a$ has a definite value if and only if both limits from left and right side are equal.
 
 \maketitle
 \section{Derivatives}
@@ -105,8 +104,18 @@
   \item $\dfrac{d}{dx}\left[\dfrac{x}{x+1}\right] = \dfrac{1}{(x+1)^2}$
   \item $\dfrac{d}{dx}\left[\dfrac{x+1}{x-1}\right] = -\dfrac{2}{(x-1)^2}$
   \item $\dfrac{d}{dx}\left[\dfrac{\sin(x)}{x}\right] = \dfrac{x\cos(x) - \sin(x)}{x^2}$
-
-
 \end{itemize}
-$\begin{aligned} \lim _{x \rightarrow a} \frac{x^{n}-a^{n}}{x-a} & \lim _{x \rightarrow a} \frac{x^{n}-a^{n}}{x-a}=n a^{x}+\\=& \lim _{h \rightarrow 0} \frac{(a+h)^{n}-0^{n}}{a+h-a} \\=& \lim _{h \rightarrow 0} \frac{\left(a^{n}+{ }^{n} c_{1} a^{n-1} h+{ }^{n} C_{2} a^{n-2} h^{2}+\cdots+h^{0}\right)-a^{n}}{h} \\=& \lim _{h \rightarrow 0} \frac{n a^{n-1} h+{ }^{n} C_{2} a^{n-2} h^{2}+\cdots \cdot+h^{n}}{h}=n a^{n-1} \\=& \lim _{h \rightarrow 0} \frac{x\left(n a^{n-1}+{ }^{n} C_{2} a^{n-1} h+\cdots+h^{n-1}\right)}{h}=\end{aligned}$
+
+\subsection{Some needless proofs..}
+
+\begin{math}
+\begin{aligned}
+\lim\limits_{x \to a} \frac{x^{n}-a^{n}}{x-a}
+=& \lim\limits_{h \to 0} \frac{(a + h)^n - a^n}{a+h-a} \\
+=& \lim\limits_{h \to 0} \frac{\left(a^n\ +\ {}^{n}C_1 a^{n-1} h\ +\ { }^{n}C_2 a^{n-2} h^2\ +\ \ldots + h^0\right)-a^{n}}{h} \\
+=& \lim\limits_{h \to 0} \frac{n a^{n-1} h\ +\ {}^{n}C_2 a^{n-2} h^2\ +\ \ldots\ +\ h^{n}}{h} \\
+=& \lim\limits_{h \to 0} \frac{h\left(na^{n-1}\ +\ {}^{n}C_2 a^{n-1} h\ +\ \ldots\ +\ h^{n-1}\right)}{h} \\
+=& na^{n-1}\\
+\end{aligned}
+\end{math}
 \end{document}
