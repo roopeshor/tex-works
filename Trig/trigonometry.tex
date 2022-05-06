@@ -5,6 +5,11 @@
 \usepackage{tabularx}
 \usepackage{tikz}
 \usepackage{xcolor}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+
 \setlength{\tabcolsep}{10pt}
 \renewcommand{\arraystretch}{2}
 \title{That Weird Trigonometry}
@@ -17,7 +22,7 @@
 \begin{itemize}
 	\item $1^\circ = 60'$ (minute) $= 3600''$ (seconds)
 	\item Degree to radian: $x^\circ = \dfrac{\pi x}{180}$ rad
-	\item Radian to degree: $x$ rad $ = \left(\dfrac{180x}{\pi}\right)^\circ$
+	\item Radian to degree: $x$ rad $ = \left(\dfrac{180x}{\pi}\right)^{\circ}$
 \end{itemize}
 
 \maketitle
@@ -52,6 +57,33 @@
 \item $\sec^2(\theta)-\tan^2(\theta) = 1$
 \item $\csc^2(\theta)-\cot^2(\theta) = 1$
 \end{itemize}
+
+\maketitle
+\section{Sign of trigonometric functions in different quadrants}
+\definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+\definecolor{ffwwqq}{rgb}{0.9,0.3,0}
+\definecolor{ttffqq}{rgb}{0.3,0.8,0}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(-8.438569195377003,-6.012897239844719) rectangle (9.069126514928985,5.0036945778673925);
+\draw [->,line width=2pt] (0,0) -- (0,3.5);
+\draw [->,line width=2pt] (0,0) -- (0,-3.5);
+\draw [->,line width=2pt] (0,0) -- (-3.5,0);
+\draw [->,line width=2pt] (0,0) -- (3.5,0);
+\draw [color=ttffqq](-2.210309298433945,2.306686622493888) node[anchor=north west] {sin+};
+\draw [color=ttffqq](1.3552266425683186,1.9181346289231291) node[anchor=north west] {cos+};
+\draw [color=ttffqq](1.4009386418119374,1.4267306370542279) node[anchor=north west] {tan+};
+\draw [color=ffwwqq](-2.210309298433945,-0.7788733264503753) node[anchor=north west] {sin-};
+\draw [color=ffwwqq](-2.22173729824485,1.8381386302467964) node[anchor=north west] {cos-};
+\draw [color=ffwwqq](-2.187453298812136,1.3581626381887997) node[anchor=north west] {tan-};
+\draw [color=ttffqq](1.3895106420010328,2.4209666206029348) node[anchor=north west] {sin+};
+\draw [color=ffwwqq](1.4352226412446514,-0.8702973249376128) node[anchor=north west] {sin-};
+\draw [color=ffwwqq](-2.187453298812136,-1.2474213186974672) node[anchor=north west] {cos-};
+\draw [color=ttffqq](-2.141741299568517,-1.7616813101881779) node[anchor=north west] {tan+};
+\draw [color=ffwwqq](1.4466506410555562,-1.8759613082972246) node[anchor=north west] {tan-};
+\draw [color=ttffqq](1.4352226412446514,-1.3502733169956094) node[anchor=north west] {cos+};
+\draw (3.0008586153385943,0.5) node[anchor=north west] {$x$};
+\draw (0.20099866166694474,3.4837706030170703) node[anchor=north west] {$y$};
+\end{tikzpicture}
 
 \maketitle
 \section{Sign of trigonometric functions for negative angles}
