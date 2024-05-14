@@ -2,7 +2,9 @@
 */*.fls
 */*.log
 */*.out
-*/*.pdf
+*/*.ps
+*/*.maf
+*/*.mtc*
 */*.synctex.gz
 */*.fdb_latexmk
 */svg-inkscape
