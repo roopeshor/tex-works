@@ -1,0 +1,287 @@
+\documentclass{article}
+\usepackage[a4paper, margin=0.5in]{geometry}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{tabularx}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.15}
+\usepackage{mathrsfs}
+\usetikzlibrary{arrows}
+
+\setlength{\tabcolsep}{10pt}
+\renewcommand{\arraystretch}{2}
+\title{That Weird Trigonometry}
+\author{A list of some weird but seemingly useful trigonometric identities \& charts}
+\date{\today}
+\begin{document}
+
+\maketitle
+\section{Angle conversions}
+\begin{itemize}
+	\item $1^\circ = 60'$ (minute) $= 3600''$ (seconds)
+	\item Degree to radian: $x^\circ = \dfrac{\pi x}{180}$ rad
+	\item Radian to degree: $x$ rad $ = \left(\dfrac{180x}{\pi}\right)^{\circ}$
+\end{itemize}
+
+\maketitle
+\section{Basic Identities}
+\begin{itemize}
+\item $\tan(\theta)=\dfrac{\sin(\theta)}{\cos(\theta)}=\dfrac{1}{\cot(\theta)}$
+\item $\cot(\theta)=\dfrac{\cos(\theta)}{\sin(\theta)}=\dfrac{1}{\tan(\theta)}$
+\item $\sec(\theta)=\dfrac{1}{\cos(\theta)}$
+\item cosec$(\theta) = \csc(\theta)=\dfrac{1}{\sin(\theta)}$
+
+\end{itemize}
+
+\maketitle
+\section{Trigonometric table}
+\begin{tabularx}{1\textwidth} { 
+  | *9{>{\centering\arraybackslash}X|}
+}
+\hline Degree & $0^\circ$   & $30^\circ$            & $45^\circ$            & $60^\circ$            & $90^\circ$       & $180^\circ$ & $270^\circ$        & $360^\circ$ \\
+\hline Radian & 0           & $\dfrac{\pi}{6}$      & $\dfrac{\pi}{4}$      & $\dfrac{\pi}{3}$      & $\dfrac{\pi}{2}$ & $\pi$       & $\dfrac{3\pi}{2}$  & $2\pi$ \\[0.2cm]
+\hline sin    & 0           & $\dfrac{1}{2}$        & $\dfrac{1}{\sqrt{2}}$ & $\dfrac{\sqrt{3}}{2}$ & 1                & 0           & $-1$               & 0 \\[0.2cm]
+\hline cos    & 1           & $\dfrac{\sqrt{3}}{2}$ & $\dfrac{1}{\sqrt{2}}$ & $\dfrac{1}{2}$        & 0                & $-1$        & 0                  & 1 \\[0.2cm]
+\hline tan    & 0           & $\dfrac{1}{\sqrt{3}}$ & 1                     & $\sqrt{3}$            & Not defined      & 0           & Not defined        & 0 \\[0.2cm]
+\hline cosec  & Not defined & 2                     & $\sqrt{2}$            & $\dfrac{2}{\sqrt{3}}$ & 1                & Not defined & $-1$               & Not defined \\[0.2cm]
+\hline sec    & 1           & $\dfrac{2}{\sqrt{3}}$ & $\sqrt{2}$            & 2                     & Not defined      & $-1$        & Not defined        & 1 \\[0.2cm]
+\hline cot    & Not defined & $\sqrt{3}$            & 1                     & $\dfrac{1}{\sqrt{3}}$ & 0                & Not defined & 0                  & Not defined \\[0.2cm]
+\hline
+\end{tabularx}
+\maketitle
+\section{Pythagorian Relations}
+\begin{itemize}
+\item $\sin^2(\theta)+\cos^2(\theta) = 1$
+\item $\sec^2(\theta)-\tan^2(\theta) = 1$
+\item $\csc^2(\theta)-\cot^2(\theta) = 1$
+\end{itemize}
+
+\maketitle
+\section{Sign of trigonometric functions in different quadrants}
+\definecolor{uuuuuu}{rgb}{0.26666666666666666,0.26666666666666666,0.26666666666666666}
+\definecolor{ffwwqq}{rgb}{0.9,0.3,0}
+\definecolor{ttffqq}{rgb}{0.3,0.8,0}
+\begin{tikzpicture}[line cap=round,line join=round,>=triangle 45,x=1cm,y=1cm]
+\clip(-8.438569195377003,-6.012897239844719) rectangle (9.069126514928985,5.0036945778673925);
+\draw [->,line width=2pt] (0,0) -- (0,3.5);
+\draw [->,line width=2pt] (0,0) -- (0,-3.5);
+\draw [->,line width=2pt] (0,0) -- (-3.5,0);
+\draw [->,line width=2pt] (0,0) -- (3.5,0);
+\draw [color=ttffqq](-2.210309298433945,2.306686622493888) node[anchor=north west] {sin+};
+\draw [color=ttffqq](1.3552266425683186,1.9181346289231291) node[anchor=north west] {cos+};
+\draw [color=ttffqq](1.4009386418119374,1.4267306370542279) node[anchor=north west] {tan+};
+\draw [color=ffwwqq](-2.210309298433945,-0.7788733264503753) node[anchor=north west] {sin-};
+\draw [color=ffwwqq](-2.22173729824485,1.8381386302467964) node[anchor=north west] {cos-};
+\draw [color=ffwwqq](-2.187453298812136,1.3581626381887997) node[anchor=north west] {tan-};
+\draw [color=ttffqq](1.3895106420010328,2.4209666206029348) node[anchor=north west] {sin+};
+\draw [color=ffwwqq](1.4352226412446514,-0.8702973249376128) node[anchor=north west] {sin-};
+\draw [color=ffwwqq](-2.187453298812136,-1.2474213186974672) node[anchor=north west] {cos-};
+\draw [color=ttffqq](-2.141741299568517,-1.7616813101881779) node[anchor=north west] {tan+};
+\draw [color=ffwwqq](1.4466506410555562,-1.8759613082972246) node[anchor=north west] {tan-};
+\draw [color=ttffqq](1.4352226412446514,-1.3502733169956094) node[anchor=north west] {cos+};
+\draw (3.0008586153385943,0.5) node[anchor=north west] {$x$};
+\draw (0.20099866166694474,3.4837706030170703) node[anchor=north west] {$y$};
+\end{tikzpicture}
+
+\maketitle
+\section{Sign of trigonometric functions for negative angles}
+
+\begin{itemize}
+\item $\sin(-x) = -\sin(x)$
+\item $\cos(-x) = \cos(x)$
+\item $\tan(-x) = -\tan(x)$
+\item $\csc(-x) = -\csc(x)$
+\item $\sec(-x) = \sec(x)$
+\item $\cot(-x) = -\cot(x)$
+\end{itemize}
+
+\maketitle
+\section{Expansion for trigonometric functions with two angles}
+
+\begin{itemize}
+\item $\cos(x+y)=\cos(x)\cos(y)-\sin(x)\sin(y)$
+\item $\cos(x-y)=\cos(x)\cos(y)+\sin(x)\sin(y)$
+\item $\sin(x+y)=\sin(x)\cos(y)+\cos(x)\sin(y)$
+\item $\sin(x-y)=\sin(x)\cos(y)-\cos(x)\sin(y)$
+\item $\tan(x+y)=\dfrac{\tan(x)+\tan(y)}{1-\tan(x)\tan(y)}$
+\item $\tan(x-y)=\dfrac{\tan(x)-\tan(y)}{1+\tan(x)\tan(y)}$
+\item $\cot(x+y)=\dfrac{\cot(x)\cot(y)-1}{\cot(x)+\cot(y)}$
+\item $\cot(x-y)=\dfrac{\cot(x)\cot(y)+1}{\cot(y)-\cot(x)}$
+\item \subsection*{With {\huge $\pi$}}
+\begin{enumerate}
+  \item $\sin\left(\dfrac{\pi}{2} + \theta\right) = \cos(\theta)$
+  \item $\sin\left(\dfrac{\pi}{2} - \theta\right) = \cos(\theta)$
+  \item $\sin(\pi - \theta) = \sin(\theta)$
+  \item $\sin(\pi + \theta) = -\sin(\theta)$
+  \item $\sin(2\pi - \theta) = -\sin(\theta)$
+  \item $\cos\left(\dfrac{\pi}{2} + \theta\right) = -\sin(\theta)$
+  \item $\cos\left(\dfrac{\pi}{2} - \theta\right) = \sin(\theta)$
+  \item $\cos(\pi - \theta) = -\cos(\theta)$
+  \item $\cos(\pi + \theta) = -\cos(\theta)$
+  \item $\cos(2\pi - \theta) = \cos(\theta)$
+\end{enumerate}
+\end{itemize}
+\vspace{-15.3cm}
+\hspace{10cm}
+$
+\renewcommand{\arraystretch}{1.6}
+\color{teal}
+ \begin{array}{|l|}
+ \hline
+ c(x+y) = cc-ss \\
+ c(x-y) = cc+ss \\
+ s(x+y) = sc+cs \\
+ s(x-y) = sc-cs \\
+ \hline
+ \end{array}^\textbf{*}
+$
+\vspace{12cm}
+\maketitle
+\section {Product formula}
+\begin{itemize}
+  \item $\sin(x + y) + \sin(x - y) = 2\sin(x)\cos(y)$
+  \item $\sin(x + y) - \sin(x - y) = 2\cos(x)\sin(y)$
+  \item $\cos(x + y) + \cos(x - y) = 2\cos(x)\cos(y)$
+  \item $\cos(x + y) - \cos(x - y) = -2\sin(x)\sin(y)$
+\end{itemize}
+\vspace{-3cm}
+\hspace{10cm}
+$
+\color{teal}
+ \renewcommand{\arraystretch}{1.6}
+  \begin{array}{|l|}
+  \hline
+  s+s = 2sc \\
+  s-s = 2cs \\
+  c+c = 2cc \\
+  c-c = -2ss \\
+  \hline
+ \end{array}^\textbf{*}
+$
+
+\maketitle
+\section {Sum formula}
+\begin{itemize}
+  \item $\sin(a) + \sin(b) = 2\sin\left(\dfrac{a + b}{2}\right)\cos\left(\dfrac{a - b}{2}\right)$
+  \item $\sin(a) - \sin(b) = 2\cos\left(\dfrac{a + b}{2}\right)\sin\left(\dfrac{a - b}{2}\right)$
+  \item $\cos(a) + \cos(b) = 2\cos\left(\dfrac{a + b}{2}\right)\cos\left(\dfrac{a - b}{2}\right)$
+  \item $\cos(a) - \cos(b) = -2\sin\left(\dfrac{a + b}{2}\right)\sin\left(\dfrac{a - b}{2}\right)$
+\end{itemize}
+\vspace{-5cm}
+\hspace{10cm}
+$
+ \renewcommand{\arraystretch}{2.7}
+ \color{teal}
+ \begin{array}{|l|}
+ \hline
+  s+s = 2sc \\
+  s-s = 2cs \\
+  c+c = 2cc \\
+  c-c = -2ss \\
+ \hline
+ \end{array}^\textbf{*}
+$
+\maketitle
+\section {Expansion for multiple angles}
+
+\begin{itemize}
+  \item $\sin(2x)\ =\ 2\sin(x)\cos(x)\ =\ \dfrac{2\tan(x)}{1 + tan^2(x)}$
+  \item $\sin(3x) = 3\sin(x) - 4\sin^3(x)$
+  \item $\cos(2x)\ =\ \cos^2(x) - \sin^2(x)\ =\ 2\cos^2(x)-1\ =\ 1-2\sin^2(x)\ =\ \dfrac{1 - \tan^2(x)}{1 + \tan^2(x)}$
+  \item $\cos(3x) = 4\cos^3(x) - 3\cos(x)$
+  \item $\tan(2x) = \dfrac{2\tan(x)}{1 - \tan^2(x)}$
+  \item $\tan(3x) = \dfrac{3\tan(x) - \tan^3(x)}{1 - 3\tan^2(x)}$
+  \item $\sin^2(x) = \dfrac{1 - \cos(2x)}{2}$
+  \item $\cos^2(x) = \dfrac{1 + \sin(2x)}{2}$  
+\end{itemize}
+
+\maketitle
+\section {Law of sines}
+\hspace*{12cm}
+\vspace*{1cm}
+\begin{tikzpicture}
+  \draw (0,0) node[anchor=north east] {B} -- (3, 0) node[anchor=north] {a} -- (6,0)node[anchor=west] {C} -- (4.5,1.5) node[anchor=south west] {b} -- (3,3)node[anchor=south] {A} -- (1.5,1.5)node[anchor=south] {c} -- cycle;
+\end{tikzpicture}
+\vspace*{-5cm}
+\par In any triangle, sides are proportional to to the sins of the angles\\
+\begin{align}
+  \hspace{-7cm}
+\dfrac{\sin(A)}{a} = \dfrac{\sin(B)}{b} = \dfrac{\sin(C)}{c}
+\hspace{1cm}or\hspace{1cm}
+\dfrac{a}{\sin(A)} = \dfrac{b}{\sin(B)} = \dfrac{c}{\sin(C)}
+\end{align}
+\par From above equations we also get:
+\par \begin{itemize}
+	\item $\dfrac{a - b}{c} = \dfrac{\sin\left(\dfrac{A-B}{2}\right)}{\cos\left(\dfrac{C}{2}\right)}$
+	\item $\sin\left(\dfrac{B-C}{2}\right) = \dfrac{b-c}{c}\cos\left(\dfrac{A}{2}\right)$
+	\item $\tan\left(\dfrac{A-B}{2}\right) = \dfrac{a-b}{a+b}\cot\left(\dfrac{C}{2}\right)$
+\end{itemize}
+\vspace*{1cm}
+
+\maketitle
+\section {Law of cosines}
+\hspace*{12cm}
+\vspace*{1cm}
+\begin{tikzpicture}
+  \draw (0,0) node[anchor=north east] {B} -- (2.5, 0) node[anchor=north] {a} -- (4,0)node[anchor=west] {C} -- (3.25,1.25) node[anchor=south west] {b} -- (2.5,2.5)node[anchor=south] {A} -- (1.25,1.25)node[anchor=south] {c} -- cycle;
+\end{tikzpicture}
+\vspace*{-4cm}
+\par
+For any $\Delta$ABC \\
+$$\hspace{-10cm} a^2 = b^2 + c^2 -bc\cos(A)$$
+$$\hspace{-10cm} b^2 = a^2 + c^2 -ac\cos(B)$$
+$$\hspace{-10cm} c^2 = a^2 + b^2 -ab\cos(C)$$ 
+\vspace{.1cm}
+\par also \\
+$$\hspace{-10cm} \cos(A) = \dfrac{b^2 + c^2 - a^2}{2bc}$$
+$$\hspace{-10cm} \cos(B) = \dfrac{a^2 + c^2 - b^2}{2ac}$$
+$$\hspace{-10cm} \cos(C) = \dfrac{a^2 + b^2 - c^2}{2ab}$$
+\par From above equations, we also get:
+\vspace*{0.5cm}
+$$\hspace{-10cm} \dfrac{\cos(A)}{a} = \dfrac{\cos(B)}{b} = \dfrac{\cos(C)}{c} = \dfrac{a^2 + b^2 + c^2}{2abc}$$
+
+\maketitle
+\section{Solutions of some trigonometric equations}
+\begin{itemize}
+  \item $\sin(x) = 0 \implies x = n\pi,\ n \in \mathbb{Z}$
+  \item $\cos(x) = 0 \implies x = (2n + 1)\dfrac{\pi}{2},\ n \in \mathbb{Z}$
+  \item $\sin(x) = \sin(y) \implies x = n\pi + (-1)^n y,\ n \in \mathbb{Z}$
+  \item $\cos(x) = \cos(y) \implies x = n\pi \pm y,\ n \in \mathbb{Z}$
+  \item $\tan(x) = \tan(y) \implies x = n\pi + y,\ n \in \mathbb{Z}$
+  \item $\tan(x) = 0 \implies x = n\pi,\ n \in \mathbb{Z}$
+\end{itemize}
+\maketitle
+\section{Other useful stuffs...}
+\par These are results obtained from equations above.
+\begin{itemize}
+	\item $\cos(2n\pi+x) = \cos(x),\hspace{0.2cm}n \in \mathbb{Z}$
+	\item $\sin(2n\pi+x) = \sin(x),\hspace{0.2cm}n \in \mathbb{Z}$
+  \item $\tan\left(\dfrac{\pi}{4} - x\right) = \dfrac{1 - \tan(x)}{1 + \tan(x)}$
+  \item $\tan\left(\dfrac{\pi}{4} + x\right) = \dfrac{1 + \tan(x)}{1 - \tan(x)}$
+  \item $\dfrac{\tan\left(\dfrac{\pi}{4} + x\right)}{\tan\left(\dfrac{\pi}{4} - x\right)} = \left[\dfrac{1 + \tan(x)}{1 - \tan(x)}\right]^2$
+  \item $\sin(x + y)\sin(x - y) = \sin^2(x) - \sin^2(y)$
+  \item $\cos(x + y)\cos(x - y) = \cos^2(x) - \sin^2(y)$
+  \item $\tan(3x)\tan(2x)\tan(x) = \tan(3x) - \tan(2x) - \tan(x)$
+  \item $\tan(4x) = \dfrac{4\tan(x)(1-\tan^2(x)}{1-6\tan^2(x)+\tan^4(x)}$
+  
+\end{itemize}
+
+\maketitle
+\section{Some \textit{Condensed} trigonometric identities}
+\begin{itemize}
+\item $\sin(x \pm y)=\sin(x)\cos(y)\pm\cos(x)\sin(y)$
+\item $\cos(x \pm y)=\cos(x)\cos(y)\mp\sin(x)\sin(y)$
+\item $\tan(x\pm y)=\dfrac{\tan(x)\pm\tan(y)}{1\mp\tan(x)\tan(y)}$
+\item $\cot(x\pm y)=\dfrac{\cot(x)\cot(y)\mp 1}{\cot(x)\pm\cot(y)}$
+\item $\tan\left(\dfrac{\pi}{4} \pm x\right) = \dfrac{1 \pm \tan(x)}{1 \mp \tan(x)}$
+\end{itemize}
+
+\vspace{18cm}
+\hline
+\color{teal}
+\begin{itemize}
+	\item *: Table in teal shows some mnemonics to remember the formulae easily
+\end{itemize}
+\end{document}

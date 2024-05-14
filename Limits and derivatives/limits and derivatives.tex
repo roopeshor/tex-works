@@ -1,0 +1,121 @@
+\documentclass{article}
+\usepackage[a4paper, margin=0.5in]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\title{Limits \& Derivatives}
+\begin{document}
+
+\maketitle
+\section{Limits}
+\subsection{Some algebra}
+\begin{itemize}
+  \item $\lim\limits_{x \to a}\bigl[f(x) + g(x)\bigr] =
+  \lim\limits_{x \to a}f(x) + \lim\limits_{x \to a}g(x)$
+  \item $\lim\limits_{x \to a}\bigl[f(x) - g(x)\bigr] =
+  \lim\limits_{x \to a}f(x) - \lim\limits_{x \to a}g(x)$
+  \item $\lim\limits_{x \to a}\bigl[f(x) \cdot g(x)\bigr] =
+  \left(\lim\limits_{x \to a}f(x)\right)\left(\lim\limits_{x \to a}g(x)\right)$
+  \item $\lim\limits_{x \to a}\dfrac{f(x)}{g(x)} =
+  \dfrac{\lim\limits_{x \to a}f(x)}{\lim\limits_{x \to a}g(x)}$
+\end{itemize}
+
+\subsection{Basics}
+\begin{itemize} 
+  \item $\lim\limits_{x \to a}\dfrac{x^n - a^n}{x - a} = na^{n-1}$
+  \item $\lim\limits_{x \to a}\dfrac{x^m - a^m}{x^n - a^n} = \left(\dfrac{m}{n}\right)a^{m-n}$
+  \item $\lim\limits_{x \to 0}\dfrac{{(x+a)}^{n} - a^n}{x} = na^{n-1}$
+\end{itemize} 
+
+\subsection{Trigonometric limits}
+\begin{itemize}
+  \item $\lim\limits_{x \to 0}\tan(x) =
+  \lim\limits_{x \to 0}\dfrac{x}{\cos(x)} = 0$
+  \item $\lim\limits_{x \to 0}\dfrac{\tan(x)}{x} =
+  \lim\limits_{x \to 0}\dfrac{\sin(x)}{x} = 1$
+  \item $\lim\limits_{x \to 0}\dfrac{x}{\sin(x)} = 
+  \lim\limits_{x \to 0}\dfrac{x}{\tan(x)} = 1$
+  \item $\lim\limits_{x \to 0}\dfrac{\sin(ax)}{x} =
+  \lim\limits_{x \to 0}\dfrac{\tan(ax)}{x} = a$
+  \item $\lim\limits_{x \to 0}\dfrac{x}{\sin(ax)} =
+  \lim\limits_{x \to 0}\dfrac{x}{\tan(ax)} = \dfrac{1}{a}$
+  \item $\lim\limits_{x \to 0}\dfrac{\sin(ax)}{\sin(bx)} = \dfrac{a}{b}$
+  \item $\lim\limits_{x \to 0}\dfrac{1 - \cos(mx)}{x} = 0$
+  \item $\lim\limits_{x \to 0}\dfrac{1 - \cos(mx)}{x^2} = \dfrac{m^2}{2}$
+\end{itemize}
+
+\subsection{Exponential \& logarithmic limits}
+\begin{itemize}
+  \item $\lim\limits_{x \to 0}\dfrac{e^{ax} - 1}{x} = a$
+  \item $\lim\limits_{x \to 0}\dfrac{\ln(1 + ax)}{x} = a \hspace{2cm} \Bigl[\ln(x) = \log_e(x)\Bigr] $
+\end{itemize}
+
+\subsection{Left \& Right limit}
+\par \hspace{.3cm} $\lim\limits_{x \to a}f(x) = l$\hspace{.3cm} if and only if \hspace{.2cm} $\lim\limits_{x \to a^-} = \lim\limits_{x \to a^+} = l$
+\par In other words, the limit of a function at a point $a$ has a definite value if and only if both limits from left and right side are equal.
+
+\maketitle
+\section{Derivatives}
+\subsection{Differentiation from first principle}
+
+\par \hspace{.4cm}\textit{A Method of finding derivative from the definition}.\\
+\par Consider a function $f(x)$. We say $f(x)$ is differentiable at $x=a$, if
+\hspace{.15cm} $\lim\limits_{h \to 0}\frac{f(a + h) - f(a)}{h}$
+\hspace{.15cm} exists.
+\par And we write it as $f'(a)$ or $\dfrac{df}{dx}$\\
+\[f'(x) = \lim\limits_{h \to 0}\frac{f(x + h) - f(x)}{h}\]
+
+\subsection{Algebra of derivatives}
+\begin{itemize}
+  \item $\dfrac{d}{dx}(f(x) + g(x)) = \dfrac{d}{dx}f(x) + \dfrac{d}{dx}g(x)$
+  \item $\dfrac{d}{dx}(f(x) - g(x)) = \dfrac{d}{dx}f(x) - \dfrac{d}{dx}g(x)$
+  \item $\dfrac{d}{dx}(f\cdot g) = f\cdot\dfrac{d}{dx}g\ +\ g\cdot\dfrac{d}{dx}f {\hspace{3.75cm}\Bigl[Product\ rule\Bigr]}$
+  \item $\dfrac{d}{dx}(f\cdot g\cdot h) = gf\cdot\dfrac{d}{dx}h\ +\ gh\cdot\dfrac{d}{dx}f\ +fh\cdot\dfrac{d}{dx}g {\hspace{1cm}\Bigl[Product\ rule\Bigr]}$
+  \item $\dfrac{d}{dx}\left[\dfrac{f}{g}\right] = \dfrac{g\cdot\dfrac{d}{dx}f\ -\ f\cdot\dfrac{d}{dx}g}{{g}^2} {\hspace{3.8cm}\Bigl[Quotient\ rule\Bigr]}$
+  
+\end{itemize}
+
+
+\subsection{Derivative of some simple functions}
+\begin{itemize}
+  \item $\dfrac{d}{dx}x = 1$
+  \item $\dfrac{d}{dx}kx = k$
+  \item $\dfrac{d}{dx}x^n = nx^{n-1}$
+\end{itemize}
+
+\subsection{Derivative of Trigonometric functions}
+\begin{itemize}
+  \item $\dfrac{d}{dx}\sin(x) = \cos(x)$
+  \item $\dfrac{d}{dx}\cos(x) = -\sin(x)$
+  \item $\dfrac{d}{dx}\tan(x) = \sec^2(x)$
+  \item $\dfrac{d}{dx}\cot(x) = -$cosec($x$)
+  \item $\dfrac{d}{dx}\sec(x) = \sec(x)\tan(x)$
+  \item $\dfrac{d}{dx}$cosec($x) = -$cosec$(x)\cot(x)$
+\end{itemize}
+
+\subsection{Some other results}
+\par These are some results obtained by various methods. Results given below are only for reference
+\begin{itemize}
+  \item $\lim\limits_{x \to 0}\left[\dfrac{ax + b}{cx + d}\right] = \dfrac{b}{d}$
+  \item $\dfrac{d}{dx}\sin(ax) = a\cos(ax)$
+  \item $\dfrac{d}{dx}\cos(ax) = -a\sin(ax)$
+  \item $\dfrac{d}{dx}\sin^2(x) = \sin(2x)$
+  \item $\dfrac{d}{dx}\left[\dfrac{x}{x+1}\right] = \dfrac{1}{(x+1)^2}$
+  \item $\dfrac{d}{dx}\left[\dfrac{x+1}{x-1}\right] = -\dfrac{2}{(x-1)^2}$
+  \item $\dfrac{d}{dx}\left[\dfrac{\sin(x)}{x}\right] = \dfrac{x\cos(x) - \sin(x)}{x^2}$
+\end{itemize}
+
+\subsection{Some needless proofs..}
+
+\begin{math}
+\begin{aligned}
+\lim\limits_{x \to a} \frac{x^{n}-a^{n}}{x-a}
+=& \lim\limits_{h \to 0} \frac{(a + h)^n - a^n}{a+h-a} \\
+=& \lim\limits_{h \to 0} \frac{\left(a^n\ +\ {}^{n}C_1 a^{n-1} h\ +\ { }^{n}C_2 a^{n-2} h^2\ +\ \ldots + h^0\right)-a^{n}}{h} \\
+=& \lim\limits_{h \to 0} \frac{n a^{n-1} h\ +\ {}^{n}C_2 a^{n-2} h^2\ +\ \ldots\ +\ h^{n}}{h} \\
+=& \lim\limits_{h \to 0} \frac{h\left(na^{n-1}\ +\ {}^{n}C_2 a^{n-1} h\ +\ \ldots\ +\ h^{n-1}\right)}{h} \\
+=& na^{n-1}\\
+\end{aligned}
+\end{math}
+\end{document}
