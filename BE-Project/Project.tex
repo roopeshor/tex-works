@@ -1,0 +1,194 @@
+\documentclass[10pt]{article}
+\usepackage{geometry}
+\usepackage[latin1]{inputenc}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{MnSymbol}
+\usepackage[cal=boondox,scr=boondoxo]{mathalfa}
+\usepackage{float}
+\usepackage{subfig}
+\usepackage{fancybox,graphicx}
+\usepackage{subfig}
+\usepackage{caption}
+\usepackage{color}
+\usepackage{authblk}
+\usepackage[colorlinks]{hyperref}
+\usepackage{accents}
+\usepackage[titletoc,title]{appendix}
+\usepackage{cite}
+\usepackage{svg}
+
+%floor and ceiling functions
+\usepackage{mathtools}
+\DeclarePairedDelimiter\ceil{\lceil}{\rceil}
+\DeclarePairedDelimiter\floor{\lfloor}{\rfloor}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\newcommand{\helv}{
+	\fontfamily{phv}\fontseries{b}\fontsize{9}{11}\selectfont
+	}
+\fancyhead[R]{Page \thepage}
+\addtolength{\headwidth}{\marginparsep}
+\addtolength{\headwidth}{\marginparwidth}
+\renewcommand{\headrulewidth}{0pt}
+
+
+\begin{document}
+\begin{titlepage}
+
+	\newgeometry{top=2in, bottom=1in, left=1in, right=1in}
+	\centering
+	{\Huge\bfseries Visualisation of Audio using Dot Matrix Display \par}
+	\vspace{1.7cm}
+	{\LARGE \textbf{Submitted by} \par}
+	\vspace{1cm}
+	{\Large \textsc{Roopesh O R}\par}
+	{\Large \textsc{Prabhath C S}\par}
+	{\Large \textsc{Pranav Praveen}\par}
+	\vspace{2cm}
+
+	\includesvg[inkscapearea=drawing, width=150pt]{cusat.svg}\par
+	\vspace{.3cm}
+	{\Large \bfseries Division of Electronics Engineering \par}
+	{\Large \bfseries School of Engineering \par}
+	{\Large \bfseries Cochin University of Science and Technology \par}
+	{\Large \bfseries Kochi - 682022 \par}
+	\vspace{.5cm}
+	{\Large \bfseries June 2024 \par}
+
+	\vfill
+
+\end{titlepage}
+
+\newgeometry{top=3cm, bottom=3cm, left=2cm, right=2cm}
+
+\newcommand{\usection}[1]{
+	\section*{\center #1}
+	\addcontentsline{toc}{section}{\protect\numberline{}#1}
+}
+
+\usection{Abstract}
+
+Manuscripts submitted to TECCIENCIA may use these instructions and this template format.
+The template simplifies manuscript preparation.
+Authors using this universal template will still need to adhere to article-length restrictions based on the final,
+published format.
+
+\pagebreak
+
+\usection{Introduction}
+You can use bibtex for references. Single reference is cited as follows, and set of references as follows . Please include the DOI of each reference if it is available.
+
+
+\section{Mathematical and scientific notation}
+
+\subsection{Displayed equations} Displayed equations should be centered.
+Equation numbers should appear at the right-hand margin, in
+parentheses:
+\begin{equation}
+	J(\rho) =
+	\frac{\gamma^2}{2} \; \sum_{k({\rm even}) = -\infty}^{\infty}
+	\frac{(1 + k \tau)}{ \left[ (1 + k \tau)^2 + (\gamma  \rho)^2  \right]^{3/2} }.
+	\label{niceEq}
+\end{equation}
+
+All equations should be numbered in the order in which they appear
+and should be referenced  from within the main text as Eq. (\ref{niceEq}),
+Eq. (\ref{LaplaceElectrostaticEquation}). We suggest to use align command for set of equations.
+
+The mathematical problem requires to solve a Laplace's equation for the scalar electric potential $\Phi(\boldsymbol{r})$ given by
+\begin{align}
+	\nabla^2 \Phi(\boldsymbol{r}) = & 0, &  & \boldsymbol{r} \in \mathfrak{D}=\left\{\boldsymbol{r} \in \mathbb{R}^3 : z > 0 \right\}, \label{LaplaceElectrostaticEquation}
+\end{align}{}
+subjected to the following Dirichlet and Neumann boundary conditions:
+\begin{align}
+	\Phi(\boldsymbol{r})                             & = V_o  \hspace{0.5cm} &  & \mbox{\textbf{if}} \hspace{0.5cm} \boldsymbol{r} \in \mathcal{A}_{in} \subset \left\{\boldsymbol{r} \in \mathbb{R}^2 : z = 0 \right\},\label{DirichletBoundaryConditionsEq1} \\
+	\Phi(\boldsymbol{r})                             & = 0 \hspace{0.5cm}    &  & \mbox{\textbf{if}} \hspace{0.5cm} \boldsymbol{r} \in \left\{\boldsymbol{r} \in \mathbb{R}^2 : z = 0 \right\}\setminus\mathcal{A}_{in}\cup\mathcal{G},
+	\label{DirichletBoundaryConditionsEq2}                                                                                                                                                                                                                     \\
+	\frac{\partial \Phi(\boldsymbol{r})}{\partial z} & =0                    &  & \mbox{\textbf{if}} \hspace{0.5cm} \boldsymbol{r} \in \mathcal{G}.
+	\label{NeumannBoundaryConditionsEq}
+\end{align}
+
+\section{Figures and Tables}
+All figures must cited in the manuscript as follows Fig.~\ref{theSystemFig}.
+
+
+\begin{figure}[H]
+	\centering %system.pdf
+	\includesvg[inkscapearea=drawing ,width=150pt]{cusat.svg}
+	\caption[The system.]{Figure caption. }
+	\label{theSystemFig}
+\end{figure}
+
+This is a sample of Table.~\ref{analogiesTableEq}. All tables in the document must be cited.
+
+\begin{table}[h]
+	\begin{minipage}{.95\textwidth}
+		\begin{center}\small
+			\begin{tabular}{ | p{7cm} | p{7cm} | }
+				\hline
+				\textbf{Electrostatics}                                                                                                                                                                                                                     & \textbf{Magnetostatics}                                                                                                                                                                                                   \\ \hline
+				Electric Field                                                                                                                                                                                                                              & Magnetic field (Biot-Savart law)                                                                                                                                                                                          \\
+				$\boldsymbol{E}(\boldsymbol{r}) = \frac{V_o}{2\pi} \mbox{sgn}(z) \int_{\mathscr{G}}  \frac{\boldsymbol{\mathscr{W}}_{\nu}(\boldsymbol{r}')d^2 \boldsymbol{r}' \times (\boldsymbol{r}-\boldsymbol{r}')}{|\boldsymbol{r}-\boldsymbol{r}'|^3}$ & $\boldsymbol{B}(\boldsymbol{r}) = \frac{\mu_o}{4\pi} \int_{\mathscr{G}}  \frac{\boldsymbol{\mathscr{K}}(\boldsymbol{r}')d^2 \boldsymbol{r}' \times (\boldsymbol{r}-\boldsymbol{r}')}{|\boldsymbol{r}-\boldsymbol{r}'|^3}$ \\ \hline
+				Weight vector                                                                                                                                                                                                                               & Surface current density                                                                                                                                                                                                   \\
+				$\boldsymbol{\mathscr{W}}_{\nu}(\boldsymbol{r})$
+				                                                                                                                                                                                                                                            & $\boldsymbol{\mathscr{K}}(\boldsymbol{r})$                                                                                                                                                                                \\ \hline
+				Continuity                                                                                                                                                                                                                                  & Continuity (charge conservation)                                                                                                                                                                                          \\
+				$\nabla \cdot \boldsymbol{\mathscr{W}}_{\nu}(\boldsymbol{r}) = 0 $
+				                                                                                                                                                                                                                                            & $\nabla \cdot \boldsymbol{\mathscr{K}}(\boldsymbol{r}) = 0$                                                                                                                                                               \\\hline
+				Gauss' law                                                                                                                                                                                                                                  & Gauss' law                                                                                                                                                                                                                \\
+				$\boldsymbol{\nabla}\cdot\boldsymbol{E} = \frac{1}{\epsilon_o}\sigma(\boldsymbol{r})\delta(z)$
+				                                                                                                                                                                                                                                            & $\boldsymbol{\nabla}\cdot\boldsymbol{B}=0$                                                                                                                                                                                \\
+				\hline
+			\end{tabular}
+			\caption {The analogy between the gaped SE and magnetostatics.}
+			\label{analogiesTableEq}
+		\end{center}
+	\end{minipage}%
+\end{table}
+
+
+We use minipage to include several plots in a single figure (see Fig.~\ref{potentialZConstGapedCircularSEFig}).
+
+\begin{figure}[h]
+
+	\begin{minipage}[b]{0.24\linewidth}
+
+		\includesvg[inkscapearea=drawing ,width=90pt]{cusat.svg}
+		\caption*{(a) first}
+
+	\end{minipage}
+	\begin{minipage}[b]{0.24\linewidth}
+
+		\includesvg[inkscapearea=drawing ,width=90pt]{cusat.svg}
+		\caption*{(b) second}
+
+	\end{minipage}
+	\begin{minipage}[b]{0.24\linewidth}
+		\includesvg[inkscapearea=drawing ,width=90pt]{cusat.svg}
+		\caption*{(z) third}
+
+	\end{minipage}
+	\begin{minipage}[b]{0.24\linewidth}
+		\includesvg[inkscapearea=drawing ,width=90pt]{cusat.svg}
+		\caption*{(d) fourth}
+
+	\end{minipage}
+
+
+	\caption[Potential.]{Figure caption. }
+
+	\label{potentialZConstGapedCircularSEFig}
+
+\end{figure}
+
+
+\usection{Conclusions}
+sampe tesr
+
+\usection{Acknowledgments}
+Acknowledgments should be included at the end of the document. The section title should not follow the numbering scheme of the body of the paper. Additional information crediting individuals who contributed to the work being reported, clarifying who received funding from a particular source, or other information that does not fit the criteria for the funding block may also be included; for example, ``K. Flockhart thanks the National Science Foundation for help identifying collaborators for this work.''
+\end{document}
