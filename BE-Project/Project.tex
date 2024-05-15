@@ -1,6 +1,6 @@
 \documentclass[12pt, a4paper]{article}
 \usepackage{geometry}
-\usepackage[latin1]{inputenc}
+\usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{mathrsfs}
@@ -18,8 +18,9 @@
 
 
 \pagestyle{fancy}
-\fancyhead[R]{Page \thepage}
-\fancyfoot[C]{}
+\fancyhead[C]{}
+\fancyfoot[C]{} % quick fix
+\fancyfoot[R]{\thepage}
 \addtolength{\headwidth}{\marginparsep}
 \addtolength{\headwidth}{\marginparwidth}
 \renewcommand{\headrulewidth}{0pt}
@@ -58,127 +59,50 @@
 	\section*{\center \Huge #1}
 	\addcontentsline{toc}{section}{\protect\numberline{}#1}
 }
+\newcommand{\usubsection}[1]{
+	\section*{\LARGE #1}
+	\addcontentsline{toc}{subsection}{\protect\numberline{}#1}
+}
 
 \vspace*{2cm}
 \usection{Abstract}
+\vspace{.5cm}
+From simple music player to concerts, audio visualization
+enhances the overall experience of the enjoyer. In this
+project we try to visualize a audio signal by plotting
+its composite frequency and its amplitude in a 8*4 dot matrix display.
+This is achived by taking fourier transform of small chunks of 
+audio signal using Fast Fourier Transform. The resulting frequency and
+amplitude are scaled down and applied to some functions that changes the overall waveform and is displayed in dot matrix display.
 
-Manuscripts submitted to TECCIENCIA may use these instructions and this template format.
-The template simplifies manuscript preparation.
-Authors using this universal template will still need to adhere to article-length restrictions based on the final,
-published format.
+
 
 \pagebreak
 
-\usection{Introduction}
-You can use bibtex for references. Single reference is cited as follows, and set of references as follows . Please include the DOI of each reference if it is available.
+\usection{Implementation}
+\par
+\vspace*{1cm}
+\usubsection{Introduction}
+dfdsfsas
 
+\vspace*{1cm}
+\usubsection{Block Diagram}
+dggds
 
-\section{Mathematical and scientific notation}
+\vspace*{1cm}
+\usubsection{Arduino UNO}
+ffaks
 
-\subsection{Displayed equations} Displayed equations should be centered.
-Equation numbers should appear at the right-hand margin, in
-parentheses:
-\begin{equation}
-	J(\rho) =
-	\frac{\gamma^2}{2} \; \sum_{k({\rm even}) = -\infty}^{\infty}
-	\frac{(1 + k \tau)}{ \left[ (1 + k \tau)^2 + (\gamma  \rho)^2  \right]^{3/2} }.
-	\label{niceEq}
-\end{equation}
+\vspace*{1cm}
+\usubsection{Hardware}
+dfaskfas
 
-All equations should be numbered in the order in which they appear
-and should be referenced  from within the main text as Eq. (\ref{niceEq}),
-Eq. (\ref{LaplaceElectrostaticEquation}). We suggest to use align command for set of equations.
+\vspace*{1cm}
+\usubsection{Program}
+fakkfasd
 
-The mathematical problem requires to solve a Laplace's equation for the scalar electric potential $\Phi(\boldsymbol{r})$ given by
-\begin{align}
-	\nabla^2 \Phi(\boldsymbol{r}) = & 0, &  & \boldsymbol{r} \in \mathfrak{D}=\left\{\boldsymbol{r} \in \mathbb{R}^3 : z > 0 \right\}, \label{LaplaceElectrostaticEquation}
-\end{align}{}
-subjected to the following Dirichlet and Neumann boundary conditions:
-\begin{align}
-	\Phi(\boldsymbol{r})                             & = V_o  \hspace{0.5cm} &  & \mbox{\textbf{if}} \hspace{0.5cm} \boldsymbol{r} \in \mathcal{A}_{in} \subset \left\{\boldsymbol{r} \in \mathbb{R}^2 : z = 0 \right\},\label{DirichletBoundaryConditionsEq1} \\
-	\Phi(\boldsymbol{r})                             & = 0 \hspace{0.5cm}    &  & \mbox{\textbf{if}} \hspace{0.5cm} \boldsymbol{r} \in \left\{\boldsymbol{r} \in \mathbb{R}^2 : z = 0 \right\}\setminus\mathcal{A}_{in}\cup\mathcal{G},
-	\label{DirichletBoundaryConditionsEq2}                                                                                                                                                                                                                     \\
-	\frac{\partial \Phi(\boldsymbol{r})}{\partial z} & =0                    &  & \mbox{\textbf{if}} \hspace{0.5cm} \boldsymbol{r} \in \mathcal{G}.
-	\label{NeumannBoundaryConditionsEq}
-\end{align}
+\vspace*{1cm}
+\usubsection{Conclusion}
+dfakf
 
-\section{Figures and Tables}
-All figures must cited in the manuscript as follows Fig.~\ref{theSystemFig}.
-
-
-\begin{figure}[H]
-	\centering %system.pdf
-	\includesvg[inkscapearea=drawing ,width=150pt]{cusat.svg}
-	\caption[The system.]{Figure caption. }
-	\label{theSystemFig}
-\end{figure}
-
-This is a sample of Table.~\ref{analogiesTableEq}. All tables in the document must be cited.
-
-\begin{table}[h]
-	\begin{minipage}{.95\textwidth}
-		\begin{center}\small
-			\begin{tabular}{ | p{7cm} | p{7cm} | }
-				\hline
-				\textbf{Electrostatics}                                                                                                                                                                                                                     & \textbf{Magnetostatics}                                                                                                                                                                                                   \\ \hline
-				Electric Field                                                                                                                                                                                                                              & Magnetic field (Biot-Savart law)                                                                                                                                                                                          \\
-				$\boldsymbol{E}(\boldsymbol{r}) = \frac{V_o}{2\pi} \mbox{sgn}(z) \int_{\mathscr{G}}  \frac{\boldsymbol{\mathscr{W}}_{\nu}(\boldsymbol{r}')d^2 \boldsymbol{r}' \times (\boldsymbol{r}-\boldsymbol{r}')}{|\boldsymbol{r}-\boldsymbol{r}'|^3}$ & $\boldsymbol{B}(\boldsymbol{r}) = \frac{\mu_o}{4\pi} \int_{\mathscr{G}}  \frac{\boldsymbol{\mathscr{K}}(\boldsymbol{r}')d^2 \boldsymbol{r}' \times (\boldsymbol{r}-\boldsymbol{r}')}{|\boldsymbol{r}-\boldsymbol{r}'|^3}$ \\ \hline
-				Weight vector                                                                                                                                                                                                                               & Surface current density                                                                                                                                                                                                   \\
-				$\boldsymbol{\mathscr{W}}_{\nu}(\boldsymbol{r})$
-				                                                                                                                                                                                                                                            & $\boldsymbol{\mathscr{K}}(\boldsymbol{r})$                                                                                                                                                                                \\ \hline
-				Continuity                                                                                                                                                                                                                                  & Continuity (charge conservation)                                                                                                                                                                                          \\
-				$\nabla \cdot \boldsymbol{\mathscr{W}}_{\nu}(\boldsymbol{r}) = 0 $
-				                                                                                                                                                                                                                                            & $\nabla \cdot \boldsymbol{\mathscr{K}}(\boldsymbol{r}) = 0$                                                                                                                                                               \\\hline
-				Gauss' law                                                                                                                                                                                                                                  & Gauss' law                                                                                                                                                                                                                \\
-				$\boldsymbol{\nabla}\cdot\boldsymbol{E} = \frac{1}{\epsilon_o}\sigma(\boldsymbol{r})\delta(z)$
-				                                                                                                                                                                                                                                            & $\boldsymbol{\nabla}\cdot\boldsymbol{B}=0$                                                                                                                                                                                \\
-				\hline
-			\end{tabular}
-			\caption {The analogy between the gaped SE and magnetostatics.}
-			\label{analogiesTableEq}
-		\end{center}
-	\end{minipage}%
-\end{table}
-
-
-We use minipage to include several plots in a single figure (see Fig.~\ref{potentialZConstGapedCircularSEFig}).
-
-\begin{figure}[h]
-
-	\begin{minipage}[b]{0.24\linewidth}
-
-		\includesvg[inkscapearea=drawing ,width=90pt]{cusat.svg}
-		\caption*{(a) first}
-
-	\end{minipage}
-	\begin{minipage}[b]{0.24\linewidth}
-
-		\includesvg[inkscapearea=drawing ,width=90pt]{cusat.svg}
-		\caption*{(b) second}
-
-	\end{minipage}
-	\begin{minipage}[b]{0.24\linewidth}
-		\includesvg[inkscapearea=drawing ,width=90pt]{cusat.svg}
-		\caption*{(z) third}
-
-	\end{minipage}
-	\begin{minipage}[b]{0.24\linewidth}
-		\includesvg[inkscapearea=drawing ,width=90pt]{cusat.svg}
-		\caption*{(d) fourth}
-
-	\end{minipage}
-
-
-	\caption[Potential.]{Figure caption. }
-
-	\label{potentialZConstGapedCircularSEFig}
-
-\end{figure}
-
-
-\usection{Conclusions}
-sampe tesr
-
-\usection{Acknowledgments}
-Acknowledgments should be included at the end of the document. The section title should not follow the numbering scheme of the body of the paper. Additional information crediting individuals who contributed to the work being reported, clarifying who received funding from a particular source, or other information that does not fit the criteria for the funding block may also be included; for example, ``K. Flockhart thanks the National Science Foundation for help identifying collaborators for this work.''
 \end{document}

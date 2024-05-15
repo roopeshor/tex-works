@@ -4,7 +4,8 @@
 */*.out
 */*.ps
 */*.maf
-*/*.mtc*
+*/*.mtc
+*/*.mtc0
 */*.synctex.gz
 */*.fdb_latexmk
 */svg-inkscape
