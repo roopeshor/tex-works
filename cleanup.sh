@@ -9,4 +9,5 @@ rm **/*.aux \
  **/*.mtc \
  **/*.mtc0 \
  **/*.synctex.gz \
- **/*.fdb_latexmk
+ **/*.fdb_latexmk \
+ **/_minted-* -r
