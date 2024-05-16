@@ -25,25 +25,35 @@
 
 \begin{document}
 \begin{titlepage}
-	\newgeometry{top=1.7in, bottom=1in, left=1in, right=1in}
+	\newgeometry{top=2.5in, bottom=1in, left=1in, right=1in}
 	\centering
-	{\Huge\bfseries Visualisation of Audio using Dot Matrix Display \par}
-	\vspace{1.7cm}
-	{\Large \textbf{Submitted by} \par}
-	\vspace{1cm}
-	{\large Roopesh O R\par}
-	{\large Prabhath C S\par}
-	{\large Pranav Praveen\par}
-	\vspace{2cm}
 
-	\includesvg[inkscapearea=drawing, width=150pt]{cusat.svg}\par
-	\vspace{.3cm}
-	{\large \bfseries Division of Electronics Engineering \par}
-	{\large \bfseries School of Engineering \par}
-	{\large \bfseries Cochin University of Science and Technology \par}
-	{\large \bfseries Kochi - 682022 \par}
+	{\huge \textbf{Visualisation of Audio using\\ Dot Matrix Display} \par}
+
+	\vspace{1.3cm}
+
+	{\large Submitted by \par}
+
 	\vspace{.5cm}
-	{\large \bfseries June 2024 \par}
+
+	{\large \textbf{Roopesh O R}\par}
+	{\large \textbf{Prabhath C S}\par}
+	{\large \textbf{Pranav Praveen}\par}
+
+	\vspace{3cm}
+
+	\includesvg[inkscapearea=drawing, width=1.5in]{cusat.svg}\par
+
+	\vspace{.1cm}
+
+	{\textbf{Division of Electronics Engineering} \par}
+	{\textbf{School of Engineering} \par}
+	{\textbf{Cochin University of Science and Technology} \par}
+	{\textbf{Kochi - 682022} \par}
+
+	\vspace{.5cm}
+
+	{\textbf{June 2024} \par}
 
 	\vfill
 
@@ -60,20 +70,22 @@
 	\addcontentsline{toc}{subsection}{\protect\numberline{}#1}
 }
 
-\vspace*{2cm}
+\vspace*{4cm}
 \usection{Abstract}
 \vspace{.5cm}
-From simple music player applications to concerts, audio visualization
-enhances the ambience and overall experience of the enjoyer. In this
-project we try to replicate a simpler version of such systems using
-Arduino UNO development board, 32*8 led dot matrix display, and few small
-components. After some preprocessing, an audio signal of our interest is
-fed to one of the analogue pin of arduino. This signal is processed 
-using "ArduinoFFT" library which splits audio into discrete chunks and
-performs FFT on it. Resulting frequency spectrum is then again processed
-and scaled down to match the width and height of led display and is
-diaplayed on it. In the end, we try to add more customizations such as
-different "display modes", etc.
+From simple music player applications to concerts, audio
+visualization enhances the ambience and overall experience
+of the enjoyer. In this project, we replicate a simpler
+version of such systems using an Arduino UNO development
+board, 32*8 LED dot matrix display, and a few small components.
+An audio signal of our interest is preprocessed and fed
+to one of the analogue pins of Arduino. This signal is then
+processed using the "ArduinoFFT" library, which splits the
+audio into discrete chunks and performs FFT on it. The
+resulting frequency spectrum is then again processed and
+scaled down to match the width and height of the LED display.
+Finally, the resulting waveform is displayed. In the end,
+we try to add more customizations such as different "display modes" and effects.
 
 
 \pagebreak
@@ -93,9 +105,9 @@ dggds
 \vspace{1cm}
 \begin{center}
 	\includesvg[
-	inkscapearea=drawing,
-	width=5in,
-	angle=-90]{arduino-uno.svg}\par
+		inkscapearea=drawing,
+		width=5in,
+		angle=-90]{arduino-uno.svg}\par
 \end{center}
 
 
