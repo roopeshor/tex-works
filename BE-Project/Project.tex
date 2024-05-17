@@ -12,6 +12,9 @@
 \usepackage{svg}
 \usepackage{fancyhdr}
 \usepackage{minted}
+\usepackage{circuitikz}
+\usepackage{standalone}
+
 
 \pagestyle{fancy}
 \fancyhead[C]{}
@@ -94,13 +97,43 @@ we try to add more customizations such as different "display modes" and effects.
 \par
 \vspace*{1cm}
 \usubsection{Introduction}
-dfdsfsas
+
+
+
 
 \vspace*{1cm}
 \usubsection{Block Diagram}
-dggds
+\begin{circuitikz} [american voltages]
 
-\newpage
+	\draw
+	(-1, 0)
+	to [short, *-] (6, 0)
+	to [battery1, l_=$+2V$] (6, 2)
+	to [R, l_=$R_s$] (6, 3.5)
+	to [-] (6, 4)
+	to [short, i_={$i_s=2A$}] (4, 4)
+
+	(4.5, 0)
+	to [short] (4.5, 1.2)
+	to [L, l=$L$] (4.5, 2.3)
+	to [short, -*, i={\small $i=3A$}] (4.5, 4)
+
+	(2, 4)
+	to [L, l=$L$] (4, 4)
+
+	(2, 4)
+	to [R, l_=$R_v$] (.5, 4)
+	to [short, -*] (-1, 4)
+
+	(-1, 0) to [open, v^>=$s$] (-1, 4)
+
+
+	;\end{circuitikz}
+
+
+
+
+\pagebreak
 \usubsection{Arduino UNO}
 \vspace{1cm}
 \begin{center}
@@ -110,18 +143,16 @@ dggds
 		angle=-90]{arduino-uno.svg}\par
 \end{center}
 
-
-\vspace*{1cm}
+\pagebreak
 \usubsection{Hardware}
-
-
+	\includestandalone[width=5in]{hardware/hardware}
 
 \vspace*{1cm}
 \usubsection{Program}
 
-\begin{minted}[]{c}
+\begin{minted}[linenos,tabsize=4]{c}
 void setup () {
-    pinMode(12, LOW);
+	pinMode(12, LOW);
 }
 
 void loop () {
@@ -131,6 +162,6 @@ void loop () {
 
 \vspace*{1cm}
 \usubsection{Conclusion}
-dfakf
+
 
 \end{document}

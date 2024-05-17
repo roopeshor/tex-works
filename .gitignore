@@ -1,12 +1,15 @@
-*/*.aux
-*/*.fls
-*/*.log
-*/*.out
-*/*.ps
-*/*.maf
-*/*.mtc
-*/*.mtc0
-*/*.synctex.gz
-*/*.fdb_latexmk
-*/svg-inkscape
-*/_minted-*
+**/*.aux
+**/*.fls
+**/*.log
+**/*.out
+**/*.ps
+**/*.maf
+**/*.mtc
+**/*.mtc0
+**/*.synctex.gz
+**/*.fdb_latexmk
+**/svg-inkscape
+**/_minted-*
+
+# remove subfig compiles
+*/*/*.pdf
