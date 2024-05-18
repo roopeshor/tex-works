@@ -1,205 +1,172 @@
 \documentclass{standalone}
-\usepackage{tikz}
+\usepackage{standalone}
 \usepackage{circuitikz}
 
+
 \begin{document}
-\pgfdeclareshape{arduno}
-{
-	\anchor{center}{\pgfpointorigin} % within the node, (0,0) is the center
-	\anchor{text} % this is used to center the text in the node
-	{\pgfpoint{-.5\wd\pgfnodeparttextbox}{-.5\ht\pgfnodeparttextbox}}
 
+\newcommand{\pinasgn}[3]{%
+	\anchor{#1}{\pgfpoint{#2}{#3}}%
+}%
+\newcommand{\linepoint}[4]{%
+	\pgfpathmoveto{\pgfpoint{#1}{#2}}%
+	\pgfpathlineto{\pgfpoint{#3}{#4}}%
+}%
+\newcommand{\pinlabel}[3]{
+	\ifdim #1 < 0cm
+		\pgftext[left,at={\pgfpoint{#1-.15cm}{#2}}]{\fontsize{8.6}{8.6} \texttt{#3}}
+	\else
+		\pgftext[right,at={\pgfpoint{#1}{#2}}]{\fontsize{8.6}{8.6} \texttt{#3}}
+	\fi
+}%
+% xstrt, xend, start, step, count
+\newcommand{\pinarray}[5]{
+	\pgfmathsetmacro{\next}{(#3) + (#4)}
+	\pgfmathsetmacro{\last}{(#3) + (#4) * (#5)}
+	\foreach \y in {#3, \next, ..., \last}{
+			\linepoint{#1}{\y cm}{#2}{\y cm}
+		}
+}%
+\newcommand{\ardwidth}{5cm}%
+\newcommand{\ardheight}{4.4cm}%
+\newcommand{\pinstartx}{\dimexpr\ardwidth/2\relax}%
+\newcommand{\pinendx}{\dimexpr\pinstartx + .4cm\relax}%
+\newcommand{\textmargin}{\dimexpr\pinstartx - .15cm\relax}%
+\newcommand{\pinhintpad}{\dimexpr\textmargin - .65cm\relax}%
+
+\pgfdeclareshape{arduino}{%
+	\anchor{center}{\pgfpointorigin}% within the node, (0,0) is the center
+	\anchor{text}{
+		\pgfpoint{-.5\wd\pgfnodeparttextbox}
+		{-.5\ht\pgfnodeparttextbox}
+	}%
 	% Pin Assignments
-	\savedanchor\ardunoa{\pgfpoint{-2.4cm}{-3.5cm}} % Pin A5
-	\anchor{A5}{\ardunoa}
-	\savedanchor\ardunob{\pgfpoint{-2.4cm}{-3cm}} % Pin A4
-	\anchor{A4}{\ardunob}
-	\savedanchor\ardunoc{\pgfpoint{-2.4cm}{-2.5cm}} % Pin A3
-	\anchor{A3}{\ardunoc}
-	\savedanchor\ardunod{\pgfpoint{-2.4cm}{-2cm}} % Pin A2
-	\anchor{A2}{\ardunod}
-	\savedanchor\ardunoe{\pgfpoint{-2.4cm}{-1.5cm}} % Pin A1
-	\anchor{A1}{\ardunoe}
-	\savedanchor\ardunof{\pgfpoint{-2.4cm}{-1cm}} % Pin A0
-	\anchor{A0}{\ardunof}
+	
+	\pinasgn{IOREF}{-\pinendx}{3cm}%
+	\pinasgn{RESET}{-\pinendx}{2.5cm}%
+	\pinasgn{3V3}{-\pinendx}{2cm}%
+	\pinasgn{5V}{-\pinendx}{1.5cm}%
+	\pinasgn{GND_2}{-\pinendx}{1cm}%
+	\pinasgn{GND_1}{-\pinendx}{.5cm}%
+	\pinasgn{VIN}{-\pinendx}{-.5cm}%
 
-	\savedanchor\ardunog{\pgfpoint{2.4cm}{-3.5cm}} % Pin D0
-	\anchor{D0}{\ardunog}
-	\savedanchor\ardunoh{\pgfpoint{2.4cm}{-3cm}} % Pin D1
-	\anchor{D1}{\ardunoh}
-	\savedanchor\ardunoi{\pgfpoint{2.4cm}{-2.5cm}} % Pin D2
-	\anchor{D2}{\ardunoi}
-	\savedanchor\ardunoj{\pgfpoint{2.4cm}{-2cm}} % Pin D3
-	\anchor{D3}{\ardunoj}
-	\savedanchor\ardunok{\pgfpoint{2.4cm}{-1.5cm}} % Pin D4
-	\anchor{D4}{\ardunok}
-	\savedanchor\ardunol{\pgfpoint{2.4cm}{-1cm}} % Pin D5
-	\anchor{D5}{\ardunol}
-	\savedanchor\ardunom{\pgfpoint{2.4cm}{-0.5cm}} % Pin D6
-	\anchor{D6}{\ardunom}
-	\savedanchor\ardunon{\pgfpoint{2.4cm}{0cm}} % Pin D7
-	\anchor{D7}{\ardunon}
-	\savedanchor\ardunoo{\pgfpoint{2.4cm}{0.5cm}} % Pin D8
-	\anchor{D8}{\ardunoo}
-	\savedanchor\ardunop{\pgfpoint{2.4cm}{1cm}} % Pin D9
-	\anchor{D9}{\ardunop}
-	\savedanchor\ardunoq{\pgfpoint{2.4cm}{1.5cm}} % Pin D10
-	\anchor{D10}{\ardunoq}
-	\savedanchor\ardunor{\pgfpoint{2.4cm}{2cm}} % Pin D11
-	\anchor{D11}{\ardunor}
-	\savedanchor\ardunos{\pgfpoint{2.4cm}{2.5cm}} % Pin D12
-	\anchor{D12}{\ardunos}
-	\savedanchor\ardunot{\pgfpoint{2.4cm}{3cm}} % Pin D13
-	\anchor{D13}{\ardunot}
+	\pinasgn{A0}{-\pinendx}{-1cm}%
+	\pinasgn{A1}{-\pinendx}{-1.5cm}%
+	\pinasgn{A2}{-\pinendx}{-2cm}%
+	\pinasgn{A3}{-\pinendx}{-2.5cm}%
+	\pinasgn{A4}{-\pinendx}{-3cm}%
+	\pinasgn{A5}{-\pinendx}{-3.5cm}%
 
-	\savedanchor\ardunou{\pgfpoint{-2.4cm}{2.5cm}} % Pin AREF
-	\anchor{AREF}{\ardunou}
-	\savedanchor\ardunov{\pgfpoint{-2.4cm}{3cm}} % Pin RST
-	\anchor{RST}{\ardunov}
+	\pinasgn{AREF}{\pinendx}{4cm}%
+	\pinasgn{GND_D}{\pinendx}{3.5cm}%
+	\pinasgn{D13}{\pinendx}{3cm}%
+	\pinasgn{D12}{\pinendx}{2.5cm}%
+	\pinasgn{D11}{\pinendx}{2cm}%
+	\pinasgn{D10}{\pinendx}{1.5cm}%
+	\pinasgn{D9}{\pinendx}{1cm}%
+	\pinasgn{D8}{\pinendx}{0.5cm}%
+	\pinasgn{D7}{\pinendx}{0cm}%
+	\pinasgn{D6}{\pinendx}{-0.5cm}%
+	\pinasgn{D5}{\pinendx}{-1cm}%
+	\pinasgn{D4}{\pinendx}{-1.5cm}%
+	\pinasgn{D3}{\pinendx}{-2cm}%
+	\pinasgn{D2}{\pinendx}{-2.5cm}%
+	\pinasgn{D1}{\pinendx}{-3cm}%
+	\pinasgn{D0}{\pinendx}{-3.5cm}%
 
-	\savedanchor\ardunow{\pgfpoint{0.1cm}{-4.4cm}} % Pin GND
-	\anchor{GND}{\ardunow}
-	\savedanchor\ardunox{\pgfpoint{-1cm}{4.4cm}} % Pin 3V
-	\savedanchor\ardunoy{\pgfpoint{-0.5cm}{4.4cm}} % Pin 5V
-	\anchor{5V}{\ardunoy}
-	\savedanchor\ardunoz{\pgfpoint{1cm}{4.4cm}} % Pin Vin
-	\anchor{VIN}{\ardunoz}
-
-	\foregroundpath{ % Border and Pin Names are drawn here
-
-		% Container
+	% Border and Pin Names are drawn here
+	\foregroundpath{
+		%%% Container
 		\pgfsetlinewidth{0.5pt}
-		\pgfpathrectanglecorners{\pgfpoint{2cm}{4cm}}{\pgfpoint{-2cm}{-4cm}}
+		\pgfpathrectanglecorners
+		{\pgfpoint{\ardwidth/2}{\ardheight+.2cm}}
+		{\pgfpoint{-\ardwidth/2}{-\ardheight+.2cm}}
 		\pgfusepath{draw}
+
+
+		%%% pin array
+
+		% left
+		\pgfsetlinewidth{0.9pt}
+		\pinarray{-\pinstartx}{-\pinendx}{0}{.5}{6}
 
 		% Analog Input Pins
-		\pgfsetlinewidth{0.9pt}
-		\pgfpathmoveto{\pgfpoint{-2cm}{-3.5cm}}
-		\pgfpathlineto{\pgfpoint{-2.4cm}{-3.5cm}}
-		\pgfpathmoveto{\pgfpoint{-2cm}{-3cm}}
-		\pgfpathlineto{\pgfpoint{-2.4cm}{-3cm}}
-		\pgfpathmoveto{\pgfpoint{-2cm}{-2.5cm}}
-		\pgfpathlineto{\pgfpoint{-2.4cm}{-2.5cm}}
-		\pgfpathmoveto{\pgfpoint{-2cm}{-2cm}}
-		\pgfpathlineto{\pgfpoint{-2.4cm}{-2cm}}
-		\pgfpathmoveto{\pgfpoint{-2cm}{-1.5cm}}
-		\pgfpathlineto{\pgfpoint{-2.4cm}{-1.5cm}}
-		\pgfpathmoveto{\pgfpoint{-2cm}{-1cm}}
-		\pgfpathlineto{\pgfpoint{-2.4cm}{-1cm}}
-		\pgfusepath{draw}
+		\pinarray{-\pinstartx}{-\pinendx}{-3.5}{.5}{5}
+
+		% right
 
 		% Digital Input/Output Pins
-		\pgfpathmoveto{\pgfpoint{2cm}{-3.5cm}}
-		\pgfpathlineto{\pgfpoint{2.4cm}{-3.5cm}}
-		\pgfpathmoveto{\pgfpoint{2cm}{-3cm}}
-		\pgfpathlineto{\pgfpoint{2.4cm}{-3cm}}
-		\pgfpathmoveto{\pgfpoint{2cm}{-2.5cm}}
-		\pgfpathlineto{\pgfpoint{2.4cm}{-2.5cm}}
-		\pgfpathmoveto{\pgfpoint{2cm}{-2cm}}
-		\pgfpathlineto{\pgfpoint{2.4cm}{-2cm}}
-		\pgfpathmoveto{\pgfpoint{2cm}{-1.5cm}}
-		\pgfpathlineto{\pgfpoint{2.4cm}{-1.5cm}}
-		\pgfpathmoveto{\pgfpoint{2cm}{-1cm}}
-		\pgfpathlineto{\pgfpoint{2.4cm}{-1cm}}
-		\pgfpathmoveto{\pgfpoint{2cm}{-0.5cm}}
-		\pgfpathlineto{\pgfpoint{2.4cm}{-0.5cm}}
-		\pgfpathmoveto{\pgfpoint{2cm}{0cm}}
-		\pgfpathlineto{\pgfpoint{2.4cm}{0cm}}
-		\pgfpathmoveto{\pgfpoint{2cm}{0.5cm}}
-		\pgfpathlineto{\pgfpoint{2.4cm}{0.5cm}}
-		\pgfpathmoveto{\pgfpoint{2cm}{1cm}}
-		\pgfpathlineto{\pgfpoint{2.4cm}{1cm}}
-		\pgfpathmoveto{\pgfpoint{2cm}{1.5cm}}
-		\pgfpathlineto{\pgfpoint{2.4cm}{1.5cm}}
-		\pgfpathmoveto{\pgfpoint{2cm}{2cm}}
-		\pgfpathlineto{\pgfpoint{2.4cm}{2cm}}
-		\pgfpathmoveto{\pgfpoint{2cm}{2.5cm}}
-		\pgfpathlineto{\pgfpoint{2.4cm}{2.5cm}}
-		\pgfpathmoveto{\pgfpoint{2cm}{3cm}}
-		\pgfpathlineto{\pgfpoint{2.4cm}{3cm}}
+		\pinarray{\pinstartx}{\pinendx}{-3.5}{.5}{15}
 		\pgfusepath{draw}
+		
+		% hint lines & text
+		% \color{darkgray}
+		% \linepoint{-\pinhintpad+.2cm}{-.9cm}{-\pinhintpad+.2cm}{-3.6cm}
+		% \linepoint{-\pinhintpad+.2cm}{2.2cm}{-\pinhintpad+.2cm}{-.1cm}
+		% \linepoint{\pinhintpad-.2cm}{3.6cm}{\pinhintpad-.2cm}{-3.6cm}
+		% \pgfusepath{draw}
+		% \pgftext[
+		% 	right,
+		% 	rotate=270,
+		% 	at={\pgfpoint{3.7cm}{-\pinhintpad}}
+		% ]{\fontsize{8}{8} \textcolor{darkgray}{\texttt{ Analog Input }}}
+		% \pgftext[
+		% 	right,
+		% 	rotate=-90,
+		% 	at={\pgfpoint{.25cm}{-\pinhintpad + .05cm}}
+		% ]{\fontsize{8}{8} \textcolor{darkgray}{\texttt{ Power }}}
+		% \pgftext[
+		% 	left,
+		% 	rotate=90,
+		% 	at={\pgfpoint{-3.85cm}{-\pinhintpad}}
+		% ]{\fontsize{8}{8} \textcolor{darkgray}{\texttt{ Digital Input/Output }}}
+		% 	\color{black}
 
-		% AREF, RST Pins
-		\pgfpathmoveto{\pgfpoint{-2cm}{2.5cm}}
-		\pgfpathlineto{\pgfpoint{-2.4cm}{2.5cm}}
-		\pgfpathmoveto{\pgfpoint{-2cm}{3cm}}
-		\pgfpathlineto{\pgfpoint{-2.4cm}{3cm}}
-		\pgfusepath{draw}
+		% Board Name & additional labels
+		\pgftext[bottom,at={\pgfpoint{0cm}{0.5cm}}]{\fontsize{14}{14} \texttt{Arduino}}
+		\pgftext[bottom,at={\pgfpoint{0}{0cm}}]{\fontsize{14}{14} \texttt{UNO}}
+		
 
-		% GND Pin
-		\pgfpathmoveto{\pgfpoint{0.1cm}{-4cm}}
-		\pgfpathlineto{\pgfpoint{0.1cm}{-4.4cm}}
-		\pgfusepath{draw}
 
-		% Power Pins
-		\pgfpathmoveto{\pgfpoint{-1cm}{4cm}}
-		\pgfpathlineto{\pgfpoint{-1cm}{4.4cm}}
-		\pgfpathmoveto{\pgfpoint{-0.5cm}{4cm}}
-		\pgfpathlineto{\pgfpoint{-0.5cm}{4.4cm}}
-		\pgfpathmoveto{\pgfpoint{1cm}{4cm}}
-		\pgfpathlineto{\pgfpoint{1cm}{4.4cm}}
-		\pgfusepath{draw}
+		% power, io ref, reset
+		\pinlabel{-\textmargin}{3cm}{IOREF}
+		\pinlabel{-\textmargin}{2.5cm}{RESET}
+		\pinlabel{-\textmargin}{2cm}{3V3}
+		\pinlabel{-\textmargin}{1.5cm}{5V}
+		\pinlabel{-\textmargin}{1cm}{GND}
+		\pinlabel{-\textmargin}{.5cm}{GND}
+		\pinlabel{-\textmargin}{0cm}{VIN}
 
-		% Arduino UNO Board Name
-		\pgftext[bottom,at={\pgfpoint{0cm}{1.6cm}}]{\normalsize Arduino}
-		\pgftext[bottom,at={\pgfpoint{-0.25cm}{1.15cm}}]{\normalsize UNO}
+		% Analoge IO Pin Names
+		\foreach \i [evaluate=\i as \y using -1 - 0.5*\i] in {0,...,5} {
+				\pinlabel{-\textmargin}{\y cm}{A\i}
+			}
 
-		% Analog Input Pin Names
-		\pgftext[bottom,rotate=-90,at={\pgfpoint{2.3cm}{-1.3cm}}]{\footnotesize Analog Input}
-		\pgftext[center,at={\pgfpoint{-1.6cm}{-3.5cm}}]{\footnotesize A5}
-		\pgftext[center,at={\pgfpoint{-1.6cm}{-3cm}}]{\footnotesize A4}
-		\pgftext[center,at={\pgfpoint{-1.6cm}{-2.5cm}}]{\footnotesize A3}
-		\pgftext[center,at={\pgfpoint{-1.6cm}{-2cm}}]{\footnotesize A2}
-		\pgftext[center,at={\pgfpoint{-1.6cm}{-1.5cm}}]{\footnotesize A1}
-		\pgftext[center,at={\pgfpoint{-1.6cm}{-1cm}}]{\footnotesize A0}
+		% Digital IO Pin Names
+		\foreach \i [evaluate=\i as \y using -3.5 + 0.5*\i] in {0,...,13} {
+				\pinlabel{\textmargin}{\y cm}{D\i}
+			}
 
-		% Digital Input/Output Pin Names
-		\pgftext[bottom,rotate=90,at={\pgfpoint{-0.3cm}{-1.3cm}}]{\footnotesize Digital Input/Output}
-		\pgftext[center,at={\pgfpoint{1.6cm}{-3.5cm}}]{\footnotesize D0}
-		\pgftext[center,at={\pgfpoint{1.6cm}{-3cm}}]{\footnotesize D1}
-		\pgftext[center,at={\pgfpoint{1.6cm}{-2.5cm}}]{\footnotesize D2}
-		\pgftext[center,at={\pgfpoint{1.6cm}{-2cm}}]{\footnotesize D3}
-		\pgftext[center,at={\pgfpoint{1.6cm}{-1.5cm}}]{\footnotesize D4}
-		\pgftext[center,at={\pgfpoint{1.6cm}{-1cm}}]{\footnotesize D5}
-		\pgftext[center,at={\pgfpoint{1.6cm}{-0.5cm}}]{\footnotesize D6}
-		\pgftext[center,at={\pgfpoint{1.6cm}{0cm}}]{\footnotesize D7}
-		\pgftext[center,at={\pgfpoint{1.6cm}{0.5cm}}]{\footnotesize D8}
-		\pgftext[center,at={\pgfpoint{1.6cm}{1cm}}]{\footnotesize D9}
-		\pgftext[center,at={\pgfpoint{1.6cm}{1.5cm}}]{\footnotesize D10}
-		\pgftext[center,at={\pgfpoint{1.6cm}{2cm}}]{\footnotesize D11}
-		\pgftext[center,at={\pgfpoint{1.6cm}{2.5cm}}]{\footnotesize D12}
-		\pgftext[center,at={\pgfpoint{1.6cm}{3cm}}]{\footnotesize D13}
+		\pinlabel{\textmargin}{4cm}{AREF}
+		\pinlabel{\textmargin}{3.5cm}{GND}
+	}%
 
-		% RST, AREF Pin Names
-		\pgftext[center,at={\pgfpoint{-1.5cm}{2.5cm}}]{\footnotesize AREF}
-		\pgftext[center,at={\pgfpoint{-1.6cm}{3cm}}]{\footnotesize RST}
-
-		% GND Pin Name
-		\pgftext[top,at={\pgfpoint{0.1cm}{-3.6cm}}]{\footnotesize GND}
-
-		% Power Pin Names
-		\pgftext[top,at={\pgfpoint{0.1cm}{3.5cm}}]{\small Power}
-		\pgftext[top,at={\pgfpoint{-1cm}{3.8cm}}]{\footnotesize 3V}
-		\pgftext[top,at={\pgfpoint{-0.5cm}{3.8cm}}]{\footnotesize 5V}
-		\pgftext[top,at={\pgfpoint{1cm}{3.8cm}}]{\footnotesize Vin}
-
-	}
-}
-
+}%
 
 \begin{circuitikz}
-
 	\draw
-	(0,0) node[arduno] (arduno1) {}
+	node[arduino] (arduino1) at (0, 0){}
+	(arduino1.D13)
+	to(4,3)
+	to [R](4,-1)
+	to [leDo](4,-4.9)
+	to (-4,-4.9)
+	to (-4,0.5)
+	to (arduino1.GND_1)
 
-	(arduno1.D13) to(4,3) to [R](4,-1) to [leDo](4,-4.9)
-	(arduno1.GND) to(0.1,-4.9) to (4,-4.9)
-	
 	;
-	\node[align=left] at (5,1) {220 $\Omega$ \\ Resistor};
+	\node[align=left] at (5,1) {220 $\Omega$};
 	\node[align=left] at (5.2,-3) {LED};
 
-
 \end{circuitikz}
-
 \end{document}
