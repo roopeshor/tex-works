@@ -4,7 +4,7 @@
 \usepackage{circuitikz}
 \usepackage[semibold,tt=false]{libertine}
 \usepackage{libertinust1math}
-
+\usepackage{bold-extra}
 \begin{document}
 
 %%%% Arduino drawer %%%%
@@ -13,14 +13,15 @@
 	\pgfpathmoveto{\pgfpoint{#1}{#2}}%
 	\pgfpathlineto{\pgfpoint{#3}{#4}}%
 }%
+\newcommand{\textttbf}[1]{\texttt{\textbf {#1}}}%
 \newcommand{\pinlabel}[3]{
 	\ifdim #1 < 0cm
-		\pgftext[left,at={\pgfpoint{#1}{#2}}]{\fontsize{8.6}{8.6} \texttt{#3}}
+		\pgftext[left,at={\pgfpoint{#1}{#2}}]{\fontsize{8.6}{8.6} \textttbf{#3}}
 	\else
 		\ifdim #1 > 0cm
-			\pgftext[right,at={\pgfpoint{#1-.15cm}{#2}}]{\fontsize{8.6}{8.6} \texttt{#3}}
+			\pgftext[right,at={\pgfpoint{#1-.15cm}{#2}}]{\fontsize{8.6}{8.6} \textttbf{#3}}
 		\else
-			\pgftext[center,at={\pgfpoint{#1}{#2}}]{\fontsize{8.6}{8.6} \texttt{#3}}
+			\pgftext[center,at={\pgfpoint{#1}{#2}}]{\fontsize{8.6}{8.6} \textttbf{#3}}
 		\fi
 	\fi
 }%
@@ -32,19 +33,22 @@
 			\linepoint{#1}{\y cm}{#2}{\y cm}
 		}
 }%
-\newcommand{\ardwidth}{5cm}%
+
+\newcommand{\fixedsm}{\fontsize{9}{9}}
+\newcommand{\ardwidth}{4cm}%
 \newcommand{\ardheight}{8.8cm}%
 \newcommand{\pinstartx}{\dimexpr\ardwidth/2\relax}%
 \newcommand{\pinendx}{\dimexpr\pinstartx + .4cm\relax}%
 \newcommand{\textmargin}{\dimexpr\pinstartx\relax}%
+\newcommand{\ardabovemin}{\ardheight/2+.4cm}%
 
 \newcommand{\mxwidth}{4cm}%
 \newcommand{\mxheight}{2cm}%
-\newcommand{\mxpinstartx}{\dimexpr\mxwidth / 2\relax}%
 \newcommand{\mxpinendx}{\dimexpr\mxpinstartx + 0.5cm\relax}%
+\newcommand{\mxpinstartx}{\dimexpr\mxwidth / 2\relax}%
 \newcommand{\mxmidheight}{\dimexpr\mxheight/4\relax}%
-\newcommand{\boxsw}{1.5pt}
-\newcommand{\linesw}{1.3pt}
+\newcommand{\boxsw}{1.5pt}%
+\newcommand{\linesw}{1.3pt}%
 
 \pgfdeclareshape{max7219}{%
 	\anchor{center}{\pgfpointorigin}% within the node, (0,0) is the center
@@ -66,28 +70,28 @@
 		{\pgfpoint{\mxpinstartx}{\mxheight/2}}
 		{\pgfpoint{-\mxpinstartx}{-\mxheight/2}}
 		\pgfusepath{draw}
-		
+
 		%%% pins
-		
+
 		\pgfsetlinewidth{\linesw}
 		\linepoint{-\mxpinstartx}{\mxmidheight}{-\mxpinendx}{\mxmidheight}
 		\linepoint{-\mxpinstartx}{0cm}{-\mxpinendx}{0cm}
 		\linepoint{-\mxpinstartx}{-\mxmidheight}{-\mxpinendx}{-\mxmidheight}
-		
+
 		\linepoint{\mxpinstartx}{\mxmidheight}{\mxpinendx}{\mxmidheight}
 		\linepoint{\mxpinstartx}{-\mxmidheight}{\mxpinendx}{-\mxmidheight}
 		\pgfusepath{draw}
-		
+
 
 		\pinlabel{-\mxpinstartx}{\mxmidheight}{CLK}%
 		\pinlabel{-\mxpinstartx}{0cm}{Data}%
 		\pinlabel{-\mxpinstartx}{-\mxmidheight}{CS}%
 		\pinlabel{\mxpinstartx}{\mxmidheight}{5V}%
 		\pinlabel{\mxpinstartx}{-\mxmidheight}{GND}%
-		
-		\pgftext[at={\pgfpoint{0cm}{0.18cm}}]{\fontsize{10}{10}\texttt{MAX}}
-		\pgftext[at={\pgfpoint{0cm}{-0.18cm}}]{\fontsize{10}{10}\texttt{7219}}
-		}%
+
+		\pgftext[at={\pgfpoint{0cm}{0.18cm}}]{\fontsize{10}{10}\textttbf{MAX}}
+		\pgftext[at={\pgfpoint{0cm}{-0.18cm}}]{\fontsize{10}{10}\textttbf{7219}}
+	}%
 }%
 
 \pgfdeclareshape{arduino}{%
@@ -156,8 +160,8 @@
 		\pgfusepath{draw}
 
 		% Board Name
-		\pgftext[at={\pgfpoint{0cm}{0.5cm}}]{\fontsize{14}{14} \texttt{Arduino}}
-		\pgftext[at={\pgfpoint{0}{0cm}}]{\fontsize{14}{14} \texttt{UNO}}
+		\pgftext[at={\pgfpoint{0cm}{0.5cm}}]{\fontsize{14}{14} \textttbf{Arduino}}
+		\pgftext[at={\pgfpoint{0}{0cm}}]{\fontsize{14}{14} \textttbf{UNO}}
 
 		% power, io ref, reset pin labels
 		\pinlabel{-\textmargin}{3cm}{IOREF}
@@ -178,26 +182,40 @@
 		\pinlabel{\textmargin}{3.5cm}{AREF}
 		\pinlabel{\textmargin}{3cm}{D13}
 		\pinlabel{\textmargin}{2.5cm}{D12}
-		\pinlabel{\textmargin}{2cm}{$\sim$D11}
-		\pinlabel{\textmargin}{1.5cm}{$\sim$D10}
-		\pinlabel{\textmargin}{1cm}{$\sim$D9}
+		\pinlabel{\textmargin}{2cm}{\fixedsm $\sim$D11}
+		\pinlabel{\textmargin}{1.5cm}{\fixedsm $\sim$D10}
+		\pinlabel{\textmargin}{1cm}{\fixedsm $\sim$D9}
 		\pinlabel{\textmargin}{.5cm}{D8}
 		\pinlabel{\textmargin}{0cm}{D7}
-		\pinlabel{\textmargin}{-.5cm}{$\sim$D6}
-		\pinlabel{\textmargin}{-1cm}{$\sim$D5}
+		\pinlabel{\textmargin}{-.5cm}{\fixedsm $\sim$D6}
+		\pinlabel{\textmargin}{-1cm}{\fixedsm $\sim$D5}
 		\pinlabel{\textmargin}{-1.5cm}{D4}
-		\pinlabel{\textmargin}{-2cm}{$\sim$D3}
+		\pinlabel{\textmargin}{-2cm}{\fixedsm $\sim$D3}
 		\pinlabel{\textmargin}{-2.5cm}{D2}
-		\pinlabel{\textmargin}{-3cm}{$\blacktriangleright$\thinspace D1}
-		\pinlabel{\textmargin}{-3.5cm}{$\blacktriangleleft$\thinspace D0}
+		\pinlabel{\textmargin}{-3cm}{\fixedsm $\blacktriangleright$\thinspace D1}
+		\pinlabel{\textmargin}{-3.5cm}{\fixedsm $\blacktriangleleft$\thinspace D0}
 	}%
 }%
+\usetikzlibrary{calc}%
+\usetikzlibrary{intersections}%
 \ctikzset{
 	resistors/scale=0.6,
 	capacitors/scale=0.6,
 	diodes/scale=0.6,
 	bipoles/thickness=1.2
 }%
+
+\tikzset{
+	connect/.style args={(#1) to (#2) over (#3) by #4}{
+			insert path={
+					let \p1=($(#1)-(#3)$), \n1={veclen(\x1,\y1)},
+					\n2={atan2(\y1,\x1)}, \n3={abs(#4)}, \n4={#4>0 ?180:-180}  in
+					(#1) -- ($(#1)!\n1-\n3!(#3)$)
+					arc (\n2:\n2+\n4:\n3) -- (#2)
+				}
+		},
+}
+\newcommand{\ptrad}{1mm}%
 \begin{circuitikz}[line width=\linesw]
 	\draw
 	node[arduino] (ard) at (0, 0){}
@@ -213,18 +231,14 @@
 	to [short, -*] ++(0,0) coordinate (itsc2)
 	to [R, l_={100k$\Omega$}] ++(0,-3.5)
 	to [R, l_={100k$\Omega$}] ++(0,-1.5)
-	to ++(0,-1.7)
-	to [short, -*] (ard.GND_D)
+	|- (ard.GND_D);
+
+	\draw [name path=toAREF](itsc2)
+	to ++(0, \ardheight/2-1cm)
+	-| (ard.AREF)
 	;
 
-	\draw (itsc2)
-	to ++(0, 3.5cm)
-	to ++(\ardwidth+4cm, 0)
-	to ++(0, -2cm)
-	to (ard.AREF)
-	;
-
-	\draw (ard.D6)
+	\draw [name path=d6to5v] (ard.D6)
 	to [short, -*] ++(.8cm, 0) coordinate (a)
 	to [nopb] ++(2cm, 0)
 	to ++(3.8cm, 0)
@@ -235,29 +249,40 @@
 	to [R, l={10k$\Omega$}] ++(0,-3)
 	to ++(0, -1.2cm)
 	to [short, -*] ++(0, 0)
-	to (ard.GND_D)
 	;
 
 	\draw
 	node[max7219] (mx) at (6cm, 2cm){}
-	(mx.CLK) -- (ard.D13)
+	(mx.CLK)  -| ($(mx.CLK)! .5 !(ard.D13)$) |- (ard.D13)
 	(ard.D11) -- (mx.Data)
 	(ard.D10) -- (mx.CS)
 	;
-	
-	\draw
-	(mx.5V)
-	to ++(1cm, 0cm)
-	to ++(0, 3.5cm)
-	to ++(-\ardwidth-\mxwidth-3.9cm, 0)
-	to ++(0, -4.5cm)
-	to (ard.5V)
-	;
 
-	\draw
-	(mx.GND)
-	to ++(0, -6.2cm)
-	to (ard.GND_D)
-	;
+	\draw (ard.5V)
+	let \p1 = (ard.5V) in
+	to ++(-.5, 0)
+	to ($(-.5cm, \ardabovemin) + (\x1, 0)$) coordinate (A);
+
+	\path [name path=toMX5V]
+	let
+	\p1 = ($(mx.5V) + (.5cm, 0)$),
+	\p2 = (A)
+	in (A) -- (\x1, \y2) coordinate (B);
+
+	\path [name path=MXGtoArG]
+	let
+	\p1 = (mx.GND),
+	\p2 = (ard.GND_D)
+	in (\p1) -- (\x1, \y2) coordinate (C);
+
+	\path [name intersections={of=toAREF and toMX5V,by=interTop}];
+	\path [name intersections={of=d6to5v and MXGtoArG,by=interRight}];
+	\draw [connect=(A) to (B) over (interTop) by -4pt]
+	-- ($(mx.5V) + (.5cm, 0)$) -- (mx.5V);
+	\draw [connect=(mx.GND) to (C) over (interRight) by 4pt]
+	-- (ard.GND_D);
+
+	\fill (ard.GND_D) circle [radius=\ptrad];
+	\draw (0, 8);
 \end{circuitikz}
 \end{document}
