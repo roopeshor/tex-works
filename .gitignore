@@ -8,6 +8,7 @@
 **/*.mtc0
 **/*.synctex.gz
 **/*.fdb_latexmk
+**/*.xdv
 **/svg-inkscape
 **/_minted-*
 
