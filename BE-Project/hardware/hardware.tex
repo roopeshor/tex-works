@@ -34,7 +34,7 @@
 		}
 }%
 
-\newcommand{\fixedsm}{\fontsize{9}{9}}
+\newcommand{\fixedsm}{\fontsize{9}{9}}%
 \newcommand{\ardwidth}{4cm}%
 \newcommand{\ardheight}{8.8cm}%
 \newcommand{\pinstartx}{\dimexpr\ardwidth/2\relax}%
@@ -182,15 +182,15 @@
 		\pinlabel{\textmargin}{3.5cm}{AREF}
 		\pinlabel{\textmargin}{3cm}{D13}
 		\pinlabel{\textmargin}{2.5cm}{D12}
-		\pinlabel{\textmargin}{2cm}{\fixedsm $\sim$D11}
-		\pinlabel{\textmargin}{1.5cm}{\fixedsm $\sim$D10}
-		\pinlabel{\textmargin}{1cm}{\fixedsm $\sim$D9}
+		\pinlabel{\textmargin}{2cm}{\textasciitilde D11}
+		\pinlabel{\textmargin}{1.5cm}{\textasciitilde D10}
+		\pinlabel{\textmargin}{1cm}{\textasciitilde D9}
 		\pinlabel{\textmargin}{.5cm}{D8}
 		\pinlabel{\textmargin}{0cm}{D7}
-		\pinlabel{\textmargin}{-.5cm}{\fixedsm $\sim$D6}
-		\pinlabel{\textmargin}{-1cm}{\fixedsm $\sim$D5}
+		\pinlabel{\textmargin}{-.5cm}{\textasciitilde D6}
+		\pinlabel{\textmargin}{-1cm}{\textasciitilde D5}
 		\pinlabel{\textmargin}{-1.5cm}{D4}
-		\pinlabel{\textmargin}{-2cm}{\fixedsm $\sim$D3}
+		\pinlabel{\textmargin}{-2cm}{\textasciitilde D3}
 		\pinlabel{\textmargin}{-2.5cm}{D2}
 		\pinlabel{\textmargin}{-3cm}{\fixedsm $\blacktriangleright$\thinspace D1}
 		\pinlabel{\textmargin}{-3.5cm}{\fixedsm $\blacktriangleleft$\thinspace D0}
@@ -214,23 +214,23 @@
 					arc (\n2:\n2+\n4:\n3) -- (#2)
 				}
 		},
-}
+}%
 \newcommand{\ptrad}{1mm}%
 \begin{circuitikz}[line width=\linesw]
 	\draw
 	node[arduino] (ard) at (0, 0){}
 	(ard.A0)
 	to [short, -*] ++(-3,0)
-	to [R, l=5k$\Omega$] ++(-3,0)
+	to [R, l=5kΩ] ++(-3,0)
 	to [C, l=100nF] ++(-.3,0)
 	to [short, -o] ++(-.8,0)
 	;
 
 	\draw (ard.3V3)
-	to [R, l=5k$\Omega$] ++(-3,0)
+	to [R, l=5kΩ] ++(-3,0)
 	to [short, -*] ++(0,0) coordinate (itsc2)
-	to [R, l_={100k$\Omega$}] ++(0,-3.5)
-	to [R, l_={100k$\Omega$}] ++(0,-1.5)
+	to [R, l_={100kΩ}] ++(0,-3.5)
+	to [R, l_={100kΩ}] ++(0,-1.5)
 	|- (ard.GND_D);
 
 	\draw [name path=toAREF](itsc2)
@@ -246,7 +246,7 @@
 	;
 
 	\draw (a)
-	to [R, l={10k$\Omega$}] ++(0,-3)
+	to [R, l={10kΩ}] ++(0,-3)
 	to ++(0, -1.2cm)
 	to [short, -*] ++(0, 0)
 	;
