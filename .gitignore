@@ -14,4 +14,4 @@
 
 # avoid subfig compiles & temps
 */*/*.pdf
-*/-*
+*/**/-*
