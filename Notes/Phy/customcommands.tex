@@ -1,0 +1,125 @@
+\usepackage[utf8]{inputenc}
+\usepackage[a4paper, top=2cm, bottom=3cm, left=2cm, right=2cm]{geometry}
+\usepackage[export]{adjustbox}
+\usepackage{graphicx}
+\graphicspath{ {./images/} }
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage[fallback]{xeCJK}
+\usepackage{polyglossia}
+\usepackage{fontspec}
+\usepackage{ucharclasses}
+\usepackage{fancyhdr}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usepackage{relsize}
+\usepackage{framed}
+\usepackage{changepage}
+\usepackage{tabularray}
+\setCJKmainfont{Noto Serif CJK TC}
+
+\setmainlanguage{english}
+\setotherlanguages{norwegian, arabic}
+\newfontfamily\arabicfont{Noto Naskh Arabic}
+% \newfontfamily\lgcfont{CMU Serif}
+
+\pagestyle{fancy}
+\fancyhead[C]{}
+\fancyfoot[C]{\medskip\thepage}
+\renewcommand{\footrulewidth}{.4pt}
+\renewcommand{\headrulewidth}{0pt}
+
+\setlength{\headheight}{14.49998pt}
+\addtolength{\topmargin}{-2.49998pt}
+
+\newcommand{\figwidth}{8cm}
+\newcommand{\floatfigwidth}{5cm}
+\newcommand{\uprimary}[1]{
+	\section*{\center \Huge \underline{#1}}
+	\addcontentsline{toc}{section}{\protect\numberline{}#1}
+}
+\newcommand{\usecondary}[1]{
+	\section*{\center \LARGE \underline{#1}}
+	\addcontentsline{toc}{section}{\protect\numberline{}#1}
+}
+\newcommand{\usection}[1]{
+	\section*{\LARGE #1}
+	\addcontentsline{toc}{subsection}{\protect\numberline{}#1}
+}
+\newcommand{\usubsection}[1]{
+	\section*{\Large #1}
+	\addcontentsline{toc}{subsection}{\protect\numberline{}#1}
+}
+\newcommand{\ussubsection}[1]{
+	\section*{\large #1}
+	\addcontentsline{toc}{subsection}{\protect\numberline{}#1}
+}
+\newcommand{\ans}{\bigskip\underline{\textbf{Answer}}}
+\newcommand{\rfloatingimg}[1]{
+	\begin{wrapfigure}{r}{\floatfigwidth}
+		\includegraphics[max width=\floatfigwidth]{#1}
+	\end{wrapfigure}
+}
+\newcommand\longUparrow{\mathrel{\scalebox{1}[2]{$\uparrow$}}}
+
+\newcommand{\doparindent}{\setlength\parindent{.5cm}}
+\newcommand{\noparindent}{\setlength\parindent{0pt}}
+\newcommand{\ques}[1]{\noparindent\textbf{#1}\doparindent}
+
+\newcommand{\indentbox}[2]{
+	\begin{adjustwidth}{#1}{0pt}
+		#2
+	\end{adjustwidth}
+
+}
+\newcommand{\qa}[3]{
+	\noparindent
+	\textbf{#1 #2}
+	\indentbox{.76cm}{
+		\ans
+		
+		#3
+	}
+	\bigskip
+}
+\newcommand{\noskipqa}[2]{
+	\noparindent
+	\textbf{#1}
+	\indentbox{.76cm}{
+		\ans
+		#2
+	}
+}
+
+\newcommand{\eqnleft}[1]{
+	\begin{flalign*}
+		 & #1 &  &
+	\end{flalign*}
+}
+\DeclareRobustCommand{\rchi}{{\mathpalette\irchi\relax}}
+\newcommand{\irchi}[2]{\raisebox{\depth}{$#1\chi$}}
+\newcommand{\term}[1]{\underline{\textbf{#1}}}
+\newcommand{\amstr}{\mathring{\textrm{A}}}
+\newcommand{\h}{6.626 \times 10^{-39}}
+\newcommand{\lc}{3 \times 10^{8}}
+\newcommand{\unit}[1]{\mathrm{~#1}}
+\newcommand{\fullwidthimg}[1]{
+	\begin{center}
+		\includegraphics[max width=\textwidth]{#1}
+	\end{center}
+}
+\newcommand{\uheading}[2]{
+	\uprimary{Module - #1}
+	\vspace{-.7cm}
+	\usecondary{#2}
+}
+
+\DefTblrTemplate{caption-tag}{default}{}
+\DefTblrTemplate{caption-sep}{default}{}
+\DefTblrTemplate{caption-text}{default}{}
+\DefTblrTemplate{contfoot-text}{default}{}
+\DefTblrTemplate{conthead-text}{default}{}
