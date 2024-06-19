@@ -1,0 +1,20 @@
+
+\input{../constructs/objects}
+\newcommand{\millerDiagramQuad}[6]{
+	\begin{tikzpicture}[
+			scale=#6,
+			x={(-.45cm, -.4cm)},
+			y={(1cm, 0cm)},
+			z={(0cm, 1cm)}
+		]
+		\axes[#5]
+		\shadedPlane{#1}{#2}{#3}{#4}
+
+		\wirecube{#5}[0pt]
+
+	\end{tikzpicture}
+}
+
+\newcommand{\millerDiagram}[5]{
+	\millerDiagramQuad{#1}{#2}{#3}{#3}{#4}{#5}
+}

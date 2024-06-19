@@ -1,8 +1,101 @@
 \documentclass[12pt, a4paper]{article}
+\usepackage{tikz}
+\usepackage{ifthen}
 
 \input{customcommands}
+\input{../constructs/higherConstructs}
 \begin{document}
+
 \uheading{2}{Crystallography}
+
+\begin{itemize}
+	\item \term{Space lattice}: array of points in space such that the environment about each point is the same.
+	\item \term{Basis}: A unit assembly of atoms or molecules that are identical in composition
+\end{itemize}
+Space lattice can be constructed with two vectors: $\vec{a}, \vec{b}$ (also known as translational vectors)
+And it defines space lattice as:
+
+$$
+	T=n_1 \vec{a}+n_2 \vec{b}
+$$
+\multiskip{1}
+\newcommand{\molecule}[2]{
+	\draw (#1-.1, #2-.1) circle(5pt);
+	\fill[black] (#1 + .1, #2 + .1) circle(3pt);
+}
+
+\begin{tikzpicture}[
+		scale=.9
+	]
+	\def\sy{.4} % alpha angle
+	\def\sx{1.3}
+
+	\foreach \i in {0,...,3}
+	\foreach \j in {0,...,3}{
+			\fill[black] (\i*\sx+\j*\sy, \j) circle(2pt);
+		}
+
+	\coordinate (O) at (1 * \sx + 1 * \sy, 1);
+	\coordinate (A) at (1 * \sx + 2 * \sy, 2);
+	\coordinate (B) at (2 * \sx + 1 * \sy, 1);
+
+	\draw[thick, color=gray, ->] (O) -- (A);
+	\draw[thick, color=gray, ->] (O) -- (B);
+
+	\node at ($(O)!0.5!(B)$) [below, scale=.8] {$\vec{a}$};
+	\node at ($(O)!0.5!(A)$) [left, scale=.8] {$\vec{b}$};
+
+
+	\path[black] (2,-1) node{Space Lattice} (8,-1) node{Basis} (14,-1) node{Crystal};
+	\path[black] (6.5, 1.5) node{+};
+	\molecule{8}{1.5}
+
+	\draw[thick, ->] (0 + 9.5, 1.5) -- (1.5 + 9.5,1.5);
+
+	\foreach \i in {9,...,12}
+	\foreach \j in {0,...,3}{
+			\molecule{\i*\sx+\j*\sy + .2}{\j}
+		}
+\end{tikzpicture}
+
+\multiskip{3}
+
+\begin{minipage}[t][][b]{.6\textwidth}
+	\ussubsection{Unit cell}
+	It is the smallest repeatable unit of a crystal. A unit cell is characterised by 6 parameters:
+	\begin{itemize}
+		\item lattice coefficients: $a, b, c$
+		\item interfacial angles: $\alpha, \beta, \gamma$
+	\end{itemize}
+\end{minipage}
+\hfill
+\begin{minipage}[t][][b]{.35\textwidth}
+	\begin{tikzpicture}[
+			scale=1,
+			z={(-.45cm, -.4cm)},
+			x={(1cm, 0cm)},
+			y={(0cm, 1cm)}
+		]
+
+		\axes[2.6][1.3]
+		\wirecubewithlabels{2.5}{0pt}
+
+	\end{tikzpicture}
+\end{minipage}
+
+\usubsection{Miller Indices}
+
+\millerDiagram{1,0,0}{0,1,0}{0,0,1}{1}{3.5}
+\millerDiagram{2,0,0}{0,1,0}{0,0,2}{2}{1.8}
+
+\millerDiagramQuad{1,0,0}{0,1,0}{0,1,1}{1,0,1}{1}{3.5}
+\millerDiagramQuad{0,0,1}{0,1,1}{1,1,0}{1,0,0}{1}{3.5}
+
+\millerDiagramQuad{0,0,1}{1,0,1}{1,1,0}{0,1,0}{1}{3.5}
+\millerDiagramQuad{1,0,0}{1,0,1}{1,1,1}{1,1,0}{1}{3.5}
+
+\millerDiagramQuad{1,1,0}{0,1,0}{0,1,1}{1,1,1}{1}{3.5}
+\millerDiagramQuad{1,1,1}{0,1,1}{0,0,1}{1,0,1}{1}{3.5}
 
 
 \usection{Bragg's X-ray spectrometer}
@@ -25,53 +118,54 @@
 	\item S$_3$ is another slit to limit the width of diffracted beam.
 \end{enumerate}
 
-To begin with, the glancing angle $\theta$ for the incident beam is kept very small, the ionisation chamber is adjusted to recieve the reflected beam till the rate of deflection is maximum. The glancing angle and intensity of diffracted beam are detected. The glancing angle is increased in equal steps by rotating the crystal table. The ionization current is noted for different glancing angles. The graph of ionisation current against glancing angle obtained is called X-ray spectrum. The prominent peaks, A$_1$, A$_2$ \& A$_3$ refer to X-rays of wavelength $\lambda$. The glancing angles $\theta_1, \theta_2, \theta_3$ Corresponding to peaks A$_1$, A$_2$ \& A$_3$ which are obtained from the graph. It is found that $\sin \left(\theta_1\right): \sin \left(\theta_2\right): \sin \left(\theta_2\right)$ is $1: 2: 3$ that is A$_1$, A$_2$ \& A$_3$ refer to first, second \& third order reflections of same wavelength, similarly B$_1$, B$_2$ \& B$_3$ are such peaks for 1$^{st}$, 2$^{nd}$ and 3$^{rd}$ order for other wavelength. So Bragg experimentally verified 
+To begin with, the glancing angle $\theta$ for the incident beam is kept very small, the ionisation chamber is adjusted to recieve the reflected beam till the rate of deflection is maximum. The glancing angle and intensity of diffracted beam are detected. The glancing angle is increased in equal steps by rotating the crystal table. The ionization current is noted for different glancing angles. The graph of ionisation current against glancing angle obtained is called X-ray spectrum. The prominent peaks, A$_1$, A$_2$ \& A$_3$ refer to X-rays of wavelength $\lambda$. The glancing angles $\theta_1, \theta_2, \theta_3$ Corresponding to peaks A$_1$, A$_2$ \& A$_3$ which are obtained from the graph. It is found that $\sin \left(\theta_1\right): \sin \left(\theta_2\right): \sin \left(\theta_2\right)$ is $1: 2: 3$ that is A$_1$, A$_2$ \& A$_3$ refer to first, second \& third order reflections of same wavelength, similarly B$_1$, B$_2$ \& B$_3$ are such peaks for 1$^{st}$, 2$^{nd}$ and 3$^{rd}$ order for other wavelength. So Bragg experimentally verified
 $$2 d \sin (\theta) = n \lambda$$
 
 
 \noparindent
-\ques{2. Monochromatic X-rays of wavelength 1.5$\amstr$, are incident on a crystal having interplar ar spacing 1.6$\amstr$. Find highest order for which bragg's reflection maximum can be seen.}
-
-\ans
+\qa{2}{Monochromatic X-rays of wavelength 1.5$\amstr$, are incident on a crystal having interplar ar spacing 1.6$\amstr$. Find highest order for which bragg's reflection maximum can be seen.}
+{
 \begin{flalign*}
-	& n\lambda = 2d\sin(\theta) &&\\
-	& \therefore n= 2\frac{d}{\lambda}\sin(\theta) = 2 \times \frac{1.6}{1.5} \sin (\theta) &&\\
-	& \text {For $n_{max}$}, \theta=90^{\circ} &&\\
-	& \therefore n_{\text {max }} = 2 \times \frac{1.6}{1.5} = 2.13 &&
+	 & n\lambda = 2d\sin(\theta)                                                             &  & \\
+	 & \therefore n= 2\frac{d}{\lambda}\sin(\theta) = 2 \times \frac{1.6}{1.5} \sin (\theta) &  & \\
+	 & \text {For $n_{max}$}, \theta=90^{\circ}                                              &  & \\
+	 & \therefore n_{\text {max }} = 2 \times \frac{1.6}{1.5} = 2.13                         &  &
 \end{flalign*}
-
 For integer values (n = 2), $\theta=69^{\circ}$
+}
 
 
-\ques{3. A beam of X-rays of wavelength 0.071n m is diffracted by (110) plane with lattice constant, 0.28 nm. Find glancing angle for $2^{\text {nd }}$ order diffraction}
+\qa{3}{A beam of X-rays of wavelength 0.071n m is diffracted by (110) plane with lattice constant, 0.28 nm. Find glancing angle for $2^{\text {nd }}$ order diffraction}
+{
+	\begin{flalign*}
+		 & 2 \lambda = 2 d \sin (\theta), d=0.28 / \sqrt{3}=0.198 \mathrm{nm} &  & \\
+		 & \theta = \sin^{-1}(\lambda / d)=\sin^{-1}(0.071 / 0.198)           &  & \\
+		 & \theta = 21.01^\circ
+	\end{flalign*}
+}
 
-\ans
-\begin{flalign*}
-& 2 \lambda = 2 d \sin (\theta), d=0.28 / \sqrt{3}=0.198 \mathrm{nm} &&\\
-& \theta = \sin^{-1}(\lambda / d)=\sin^{-1}(0.071 / 0.198) &&\\
-& \theta = 21.01^\circ
-\end{flalign*}
 
-\ques{4. Calculate glancing angle at (110) plane of a cubic crystal having axial length 0.26 nm corresponding to $2^{\text {nd }}$ order diffraction maxima, for x-ray of wavelength 0.065 nm}
+\qa{4}{Calculate glancing angle at (110) plane of a cubic crystal having axial length 0.26 nm corresponding to $2^{\text {nd }}$ order diffraction maxima, for x-ray of wavelength 0.065 nm}
+{
 
-\ans
+	Axial length = $a$
+	\begin{flalign*}
+		2 \lambda & =2d\cdot\sin(\theta)                                   &  & \\
+		\theta    & =\sin^{-1}\left(\frac{0.065}{0.185}\right)=20.69^\circ &  &
+	\end{flalign*}
+}
 
-Axial length = $a$
-\begin{flalign*}
-2 \lambda &=2d\cdot\sin(\theta) &&\\
-\theta &=\sin^{-1}\left(\frac{0.065}{0.185}\right)=20.69^\circ &&
-\end{flalign*}
+\qa{5}{Bragg's angle for reflection from (111) plane in FCC crystal is $19.2^\circ$ for an X-ray of wavelength 1.54 $\amstr$}
+{
 
-\ques{5. Bragg's angle for reflection from (111) plane in FCC crystal is $19.2^\circ$ for an X-ray of wavelength 1.54 $\amstr$}
+	(Assume that $n=1$, if its not given in the question)
+	\begin{flalign*}
+		n\cdot\lambda & =2d\sin(\theta)                  &  & \\
+		1.54 \amstr   & =2d\sin\left(19.2^{\circ}\right) &  & \\
+		              & \Rightarrow d=2.341              &  &
+	\end{flalign*}
 
-\ans
-(Assume that $n=1$, if its not given in the question)
-\begin{flalign*}
-n\cdot\lambda &=2d\sin(\theta) &&\\
-1.54 \amstr &=2d\sin\left(19.2^{\circ}\right) &&\\
-&\Rightarrow d=2.341&&
-\end{flalign*}
-
-$\therefore$ Cube length a=$2.391\sqrt{3}=4.05 \amstr$
+	$\therefore$ Cube length a=$2.391\sqrt{3}=4.05 \amstr$
+}
 
 \end{document}

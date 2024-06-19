@@ -20,6 +20,9 @@
 \usepackage{framed}
 \usepackage{changepage}
 \usepackage{tabularray}
+\usepackage{etoolbox}
+\usepackage{xstring}
+
 \setCJKmainfont{Noto Serif CJK TC}
 
 \setmainlanguage{english}
@@ -38,6 +41,9 @@
 
 \newcommand{\figwidth}{8cm}
 \newcommand{\floatfigwidth}{5cm}
+
+
+
 \newcommand{\uprimary}[1]{
 	\section*{\center \Huge \underline{#1}}
 	\addcontentsline{toc}{section}{\protect\numberline{}#1}
@@ -74,14 +80,12 @@
 	\begin{adjustwidth}{#1}{0pt}
 		#2
 	\end{adjustwidth}
-
 }
 \newcommand{\qa}[3]{
 	\noparindent
 	\textbf{#1 #2}
 	\indentbox{.76cm}{
 		\ans
-		
 		#3
 	}
 	\bigskip
@@ -104,7 +108,8 @@
 \newcommand{\irchi}[2]{\raisebox{\depth}{$#1\chi$}}
 \newcommand{\term}[1]{\underline{\textbf{#1}}}
 \newcommand{\amstr}{\mathring{\textrm{A}}}
-\newcommand{\h}{6.626 \times 10^{-39}}
+\newcommand{\h}{6.626 \times 10^{-34}}
+\newcommand{\kB}{1.38 \times 10^{-23}}
 \newcommand{\lc}{3 \times 10^{8}}
 \newcommand{\unit}[1]{\mathrm{~#1}}
 \newcommand{\fullwidthimg}[1]{
@@ -116,6 +121,30 @@
 	\uprimary{Module - #1}
 	\vspace{-.7cm}
 	\usecondary{#2}
+}
+
+\newcommand{\note}[1]{
+	\begin{framed}
+		\textbf{Note:}
+		\medskip
+		\indentbox{.6cm}{
+			#1
+		}
+	\end{framed}
+}
+
+
+% Define the new command with looping functionality
+\NewDocumentCommand{\multiskip}{m}{%
+	\begingroup
+	\newcount\i  % Define a new counter \i
+	\i=0         % Initialize the counter
+	\loop
+	\ifnum\i<#1
+	\bigskip  % Add \bigskip
+	\advance\i by 1  % Increment the counter
+	\repeat
+	\endgroup
 }
 
 \DefTblrTemplate{caption-tag}{default}{}
