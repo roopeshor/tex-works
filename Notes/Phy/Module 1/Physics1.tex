@@ -1,7 +1,9 @@
 \documentclass[12pt, a4paper]{article}
-
 \input{../customcommands}
+\usepackage{tikz}
+
 \graphicspath{ {../images/} }
+
 \begin{document}
 \uheading{1}{Lasers \& Fibre optics}
 \usection{Laser}
@@ -42,9 +44,12 @@ $\sim$ Light amplification by stimulated emission of radiation
 	}
 \end{framed}
 
-
+\newpage
 \usubsection{Spontaneous \& stimulated emission}
-\fullwidthimg{laser-1}
+
+\bigskip
+
+\input{../images/sp-st-transition}
 
 \ussubsection{Spontaneous emission}
 Atom initially at excited state makes transition voluntarily on its own, without aid of any external agency, to ground state, and emits photon of energy $$h \nu_{12}=E_2-E_1$$
@@ -56,7 +61,7 @@ Here photon having energy $h\nu_{12}(=E_2-E_1)$ impinges on (or passes in the vi
 \note{
 	$\star$ At thermal equilibrium, all energy transitions are equally probable
 }
-\pagebreak
+\break
 \begin{longtblr}{
 		colspec = {XX},
 		hlines,
@@ -95,7 +100,11 @@ $A_{21}=$ probability that atom will spontaneously jump to $E_1$ (ground state).
 $N_2 =$ number of atoms per unit volume
 $B_{21}=$ probability that atom will transition from $E_2$ to $E_1$ via stimulated emission per unit time
 
+\bigskip
+
 \term{Finding $\rvv$}
+
+\bigskip
 
 At equilibrium condition:
 \begin{flalign*}
@@ -191,10 +200,10 @@ At equilibrium condition:
 	\item At Room temperature: $\Delta E = E_2-E_1 \approxeq 0.025 \unit{eV}$ (Corresponding to IR radiation of $6 \times 10^{12} \unit{Hz}$)
 \end{itemize}
 
-
-\fullwidthimg{pi}
+\input{../images/population-inversion.tex}
 
 At thermal equilibrium: $N\left(E_2\right) / N\left(E_1\right)=e ^ {-\left(E_2-E_1\right) / (kT)}$
+\medskip
 
 \term{pumping}: Supplying energy to excite atoms to upper levels.
 
@@ -285,9 +294,10 @@ For laser:
 }
 
 \usubsection{Fabrication of laser}
-\begin{center}
-	\includegraphics[max width=\textwidth]{2024_06_16_30d750483617f1939202g-02}
-\end{center}
+\bigskip
+
+\input{../images/laser-fabrication.tex}
+\bigskip
 
 \term{Active medium}: material in which popalation inversion takes place. (eg. ruby, Ga-In, He-Ne)
 
@@ -376,7 +386,7 @@ Neon atoms in terminal level $E_{3}$ decay very rapialy to $E_{2}$ metastable st
 \end{itemize}
 
 \begin{center}
-	\includegraphics[max width=\textwidth]{2024_06_16_30d750483617f1939202g-03(1)}
+	\includegraphics[max width=\textwidth]{ruby-laser}
 \end{center}
 
 $\star$ Population inversion is achieved between E$_m$ \& E,

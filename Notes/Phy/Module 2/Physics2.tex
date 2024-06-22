@@ -1,9 +1,9 @@
 \documentclass[12pt, a4paper]{article}
 \usepackage{tikz}
 \usepackage{ifthen}
-
 \input{../customcommands}
 \input{../../constructs/higherConstructs}
+
 \graphicspath{ {../images/} }
 
 \begin{document}
@@ -14,6 +14,7 @@
 	\item \term{Space lattice}: array of points in space such that the environment about each point is the same.
 	\item \term{Basis}: A unit assembly of atoms or molecules that are identical in composition
 \end{itemize}
+
 Space lattice can be constructed with two vectors: $\vec{a}, \vec{b}$ (also known as translational vectors)
 And it defines space lattice as:
 
@@ -21,44 +22,8 @@ $$
 	T=n_1 \vec{a}+n_2 \vec{b}
 $$
 \multiskip{1}
-\newcommand{\molecule}[2]{
-	\draw (#1-.1, #2-.1) circle(5pt);
-	\fill[black] (#1 + .1, #2 + .1) circle(3pt);
-}
 
-\begin{tikzpicture}[
-		scale=.9
-	]
-	\def\sy{.4} % alpha angle
-	\def\sx{1.3}
-
-	\foreach \i in {0,...,3}
-	\foreach \j in {0,...,3}{
-			\fill[black] (\i*\sx+\j*\sy, \j) circle(2pt);
-		}
-
-	\coordinate (O) at (1 * \sx + 1 * \sy, 1);
-	\coordinate (A) at (1 * \sx + 2 * \sy, 2);
-	\coordinate (B) at (2 * \sx + 1 * \sy, 1);
-
-	\draw[thick, color=gray, ->] (O) -- (A);
-	\draw[thick, color=gray, ->] (O) -- (B);
-
-	\node at ($(O)!0.5!(B)$) [below, scale=.8] {$\vec{a}$};
-	\node at ($(O)!0.5!(A)$) [left, scale=.8] {$\vec{b}$};
-
-
-	\path[black] (2,-1) node{Space Lattice} (8,-1) node{Basis} (14,-1) node{Crystal};
-	\path[black] (6.5, 1.5) node{+};
-	\molecule{8}{1.5}
-
-	\draw[thick, ->] (0 + 9.5, 1.5) -- (1.5 + 9.5,1.5);
-
-	\foreach \i in {9,...,12}
-	\foreach \j in {0,...,3}{
-			\molecule{\i*\sx+\j*\sy + .2}{\j}
-		}
-\end{tikzpicture}
+\input{../images/lattice-basis-crystal.tex}
 
 \multiskip{3}
 

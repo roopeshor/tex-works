@@ -1,0 +1,57 @@
+\begin{center}
+	\begin{tikzpicture}
+
+		\coordinate (E1) at (0, 0);
+		\coordinate [above=3 of E1] (E2);
+
+		\coordinate [right=.4 of E1] (E1t);
+		\coordinate [right=.4 of E2] (E2t);
+
+		\draw[thick] (E1t) --++ (0:5) coordinate (Ee1);
+		\draw[thick] (E2t) --++ (0:5) coordinate (Ee2);
+
+		\node at (E1) {$\textrm{E}_1$};
+		\node at (E2) {$\textrm{E}_2$};
+
+		\foreach \i in {0,...,7} {
+		\fill[black] ($(E1t)+(\i/2.25 + .3,0)$) coordinate(x1) circle(3.3pt);
+		\draw[-{Latex[length=2mm]}] ($(x1) + (0, .2)$) -- ($(x1)+(0,2.9)$);
+		}
+		\foreach \i in {1,...,2} {
+		\fill[black] ($(Ee2)-(\i/2.25, 0)$) coordinate(x1) circle(3.3pt);
+		\draw[-{Latex[length=2mm]}] ($(x1) - (0, .2)$) -- ($(x1)-(0, 2.9)$);
+		}
+
+		\node at (2.6, -1) {$N(E_1) >> N(E_2)$};
+		\node at (2.6, -1.8) {$\Rightarrow R_{12} > R_{21}$};
+
+		\draw[thick, ->] ($($(E1t)!.5!(E2t)$) + (5.5,0)$) --++ (1, 0) node [above,align=center,xshift=1cm] {Population \\ Inversion} -- ++(3,0);
+
+		\begin{scope}[xshift=11cm]
+			\coordinate (E1) at (0, 0);
+			\coordinate [above=3 of E1] (E2);
+
+			\coordinate [right=.4 of E1] (E1t);
+			\coordinate [right=.4 of E2] (E2t);
+
+			\draw[thick] (E1t) --++ (0:5) coordinate (Ee1);
+			\draw[thick] (E2t) --++ (0:5) coordinate (Ee2);
+
+			\node at (E1) {$\textrm{E}_1$};
+			\node at (E2) {$\textrm{E}_2$};
+
+			\foreach \i in {0,...,7} {
+			\fill[black] ($(E1t)+(\i/2.25 + .3,3)$) coordinate(x1) circle(3.3pt);
+			\draw[-{Latex[length=2mm]}] ($(x1) - (0, .2)$) -- ($(x1)-(0,2.9)$);
+			}
+			\foreach \i in {1,...,2} {
+			\fill[black] ($(Ee1)-(\i/2.25, 0)$) coordinate(x1) circle(3.3pt);
+			\draw[-{Latex[length=2mm]}] ($(x1) + (0, .2)$) -- ($(x1)+(0, 2.9)$);
+			}
+
+			\node at (2.6, -1) {$N(E_1) << N(E_2)$};
+			\node at (2.6, -1.8) {$\Rightarrow R_{12} < R_{21}$};
+
+		\end{scope}
+	\end{tikzpicture}
+\end{center}

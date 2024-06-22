@@ -43,7 +43,7 @@
 	\draw[thick] (B) -- (F);
 	\draw[thick] (C) -- (G);
 	\draw[thick] (D) -- (H);
-	
+
 	% Add points to illustrate vertices
 	\foreach \i in {(A), (B), (C), (D), (E), (F), (G), (H)} {
 			\filldraw[black] \i circle (#2);
@@ -54,7 +54,7 @@
 	\wirecube{#1}[#2]
 
 	% Label the side lengths
-	
+
 	\coordinate (A) at (0,0,0);
 	\coordinate (B) at (#1,0,0);
 	\coordinate (D) at (0,#1,0);
@@ -69,7 +69,7 @@
 	\pic [blue,draw,angle radius=0.25cm] {angle=B--A--E};
 	\pic [green,draw,angle radius=0.25cm] {angle=D--A--B};
 	\pic [red,draw,angle radius=0.25cm] {angle=D--A--E};
-	
+
 	\node[color=blue, scale=.8] at (.4,0.4,0) {$\gamma$};
 	\node[color=green, scale=.8] at (.7,0,.7) {$\beta$};
 	\node[color=red, scale=.8] at (-0.3,0.3,0.3) {$\alpha$};
