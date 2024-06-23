@@ -1,5 +1,6 @@
 \documentclass[12pt, a4paper]{article}
 \input{../customcommands}
+\input{../../constructs/objects.tex}
 \usepackage{tikz}
 
 \graphicspath{ {../images/} }
@@ -7,34 +8,36 @@
 \begin{document}
 \uheading{1}{Lasers \& Fibre optics}
 \usection{Laser}
-$\sim$ Light amplification by stimulated emission of radiation
-- (others: Maser, Eraser).
+LASER stands for Light Amplification by Stimulated Emission of Radiation. Differing from conventional sources, lasers produce highly
+directional, monochromatic, coherent and stimulated radiation. Lasing been extended from microwave(Maser) to $\gamma$-rays (Graser)
 
 \usubsection {Characteristics}
 
 \begin{enumerate}
-	\item \term{Monuchromaticity}\\
-	      Has extremely narrow bandwidth. $\Delta \lambda=5 \times 10^{-14} \unit{m}$ (conventional light source: 1000 $\amstr$)\\
-	      Degree of monochromaticly: $\varepsilon=\frac{\Delta\lambda}{\lambda}$ \ \ ($\Delta\lambda \Rightarrow$ spead of light)
-	\item \term{Directionality}\\
-	      Can travel large distances with minimal deviation.\\
-	      Divergence $\Delta \theta=\frac{r_2-r_1}{D_2-D}$ or $D^2 / \lambda$ (Reliegh's range) \\
-	      For laser: $10 \mu\unit{rad}$\\
-	      for search light $0.5rad$
+	\item \textbf{Monuchromaticity}: The line width of laser beams are extremely narrow. (1 in $10^{15}$, in conventional light source, it is 1 in $10^6$). Degree of non-monochromaticly: $\xi=\Delta\lambda/\lambda$ = $\Delta\nu/\nu$($\Delta\lambda or \Delta\nu$  variation in wavelength or frequency of light)
+	\item \textbf{Directionality}: Laser can travel very long distances without divergence.
+	      \eqnleft{\text{Divergence: } \Delta \theta=\frac{r_2-r_1}{D_2-D_1}\text{ or }\frac{D^2}{\lambda}\text{ (Reliegh's range)}}
+	      For laser: 0.01 milliradian\\
+	      for search light 0.5 radian
 	      $>\Rightarrow$ divergence
-	\item \term{Coherence}\\
-	      \textbf{Spatial coherence}:when a when wave maintains constant phase difference at two points on the wave over a time ($t$).
+	\item \textbf{Coherence}\\
+	      \textbf{Spatial coherence}: If a wave maintains a constant phase difference or in phase at two different points on
+	      the wave over a time $t$, then the wave is said to have spatial coherence.
 
-	      \textbf{Temporal coherence}: when there is no phase change at a point on the wave over a time. (these reference points are taken on electric field)
-	\item \term{Brightness/intensity}\\
-	      Laser produce highly intense beams, because more light energy is concentrated in a small region. Also laser light is coherent, so at a time many photons are in phase. They superimpose to produce a wave of larger amplitude. Hence resultant intensity  $\propto$amplitude$^2$) is very high.
+	      \textbf{Temporal coherence}: If there is no change in phase over a time $t$ at a point on the wave, then it is said to be coherent temporally
+	      during that time. (these reference points are taken on electric field)
+	\item \textbf{Brightness/intensity}\\
+	      Laser produce highly intense beams, because more light energy is concentrated in a small region. Also laser light is coherent, so at a time many photons are in phase. They superimpose to produce a wave of larger amplitude. Hence resultant intensity ($\propto$amplitude$^2$) is very high.
 \end{enumerate}
 
 \noparindent
 \begin{framed}
 	\indentbox{0.75cm}{
-	\term{Coherence length ($L_c$)}:Propagation distance over which a coherent wave maintains a specified degree of coherence or phase difference \\
+	\term{Coherence length ($L_c$)}:Propagation distance over which a coherent wave maintains a specified degree of coherence or phase difference
+
 	for He-Ne: 600km
+	\eqnleft{\text{Non-chromaticity } \propto \frac{1}{L_c}}
+
 
 
 	\term{Coherence time($\tau_c$)}: time over which a propagating wave remains coherent or the maximum time interval for which the wave have definite phase relation. \\
@@ -79,111 +82,106 @@ Here photon having energy $h\nu_{12}(=E_2-E_1)$ impinges on (or passes in the vi
 
 \usubsection{Einstein's coefficients}
 \newcommand{\rvv}{\rho_{v}}
-For a system containing atoms and radiation, ratio of atoms in ground state($N_1$) to atoms in excited state($N_2$) is:
+For a system in steady state containing atoms and radiation, ratio of atoms in ground state($E_1$) to atoms in excited state($E_2$) is:
 $$
-	\frac{N_2}{n_1}=e^{-\frac{E_2-E_1}{k_B T}} = e^{-\frac{h \nu}{k_B T}}
+	\frac{n_2}{n_1}=\exp\left(-\frac{E_2-E_1}{k_B T}\right) = \exp\left(-\frac{h \nu}{k_B T}\right)
 $$
 \begin{itemize}
 	\item When atom in ground state gets excited to higher state, rate or absorption of radiation is : $B_{12} n_1 \rvv$ ($\rvv=$ energy density of radiation incident on ground state)
-	\item Rate of spontaneous emission: $R_{21}=N_2 A_{21}$
-	\item Rate of absorption : $R_{12}=N_1 \rvv B_{12}$
-	\item Rate of stimulated emission: $R_{21}=N_2 \rvv B_{21}$
+	\item Rate of spontaneous emission: $R_{21}=n_2 A_{21}$
+	\item Rate of absorption : $R_{ab}=n_1 \rvv B_{12}$
+	\item Rate of stimulated emission: $R_{12}=n_2 \rvv B_{21}$
 \end{itemize}
 Where
-
-$N_1=$ number of availoble atoms per unit volume
-
-$B_{12}=$ probability of absorpion per unit time
-
-$A_{21}=$ probability that atom will spontaneously jump to $E_1$ (ground state). per unit time.
-
-$N_2 =$ number of atoms per unit volume
-$B_{21}=$ probability that atom will transition from $E_2$ to $E_1$ via stimulated emission per unit time
+\begin{table}[ht]
+	\begin{tabular}{l c p{0.85\linewidth}}
+		$n_1$            & = & number of availoble atoms per unit volume                                                                                                      \\
+		$n_2$            & = & number of atoms per unit volume                                                                                                                \\
+		$\nu$            & = & frequency of radiation                                                                                                                         \\
+		$T$              & = & absolute temperature of the atoms                                                                                                              \\
+		$k_{\mathrm{B}}$ & = & Boltzmann constant                                                                                                                             \\
+		$A_{21}$         & = & probability that atom will spontaneously jump to $E_1$ (ground state) per unit time (spontaneous emission proportionality constant)            \\
+		$B_{12}$         & = & probability of absorpion per unit time (absorption proportionality constant)                                                                   \\
+		$B_{21}$         & = & probability that atom will transition from $E_2$ to $E_1$ via stimulated emission per unit time (stimulated emission proportionality constant) \\
+	\end{tabular}
+\end{table}
 
 \bigskip
 
 \term{Finding $\rvv$}
-
 \bigskip
 
-At equilibrium condition:
-\begin{flalign*}
-	R_{12}          & = R_{s p}+R_{s t}            &  & \\
-	B_{12} N_1 \rvv & = A_{21} N_2+B_{21} N_2+\rvv &  & \\
-\end{flalign*}
-\begin{flalign*}
-	\Rightarrow B_{12} N_1 \rvv - B_{21} N_2 \rvv      & = A_{21} N_2 &  & \\
-	\Rightarrow\left(B_{12} N_1-B_{21} N_2\right) \rvv & = A_{21} N_2 &  & \\
-	\boxed{\rvv=\frac{A_{21} N_2}{B_{12} N_1-B_{21} N_2}}
-\end{flalign*}
-% divide it by $N_2 B_{12}$
-% $$
-% 	\mathrm{ (2) } \quad \rvv=\frac{A_{21}}{\left[B_{12} \frac{N_1}{N_2}-B_{21}\right]}
-% $$
+Inside the container, radiation is present so, the number of photons per unit volume having frequencies around $\nu$ in unit range (i.e., radiation density) ,represented as $\rvv$ is given by Planck's black body radiation law as:
+$$
+	\rvv=\frac{8 \pi h \nu^3}{c^3\left[\exp \left(\frac{h \nu}{k_{\mathrm{B}} T}\right)-1\right]}
+$$
 
-% $\Rightarrow$ According to Boltzmann
-% $$
-% N=e^{-E / k T}
-% $$
-% $N \Rightarrow$ Nurober of moles in any line
-% $E \Rightarrow$ enugy
-% $K \Rightarrow$ Boltzmann's court
-% $T \Rightarrow$ Temp -absolute temp 8 the atoms
-% $$
-% \begin{aligned}
-% & N_1=e^{-E_1 / k T} \\
-% & N_2=e^{-E_2 / k T} \\
-% & \frac{N_1}{N_2}=\frac{e^{-E_1 / k T}}{e^{-E_2 / k T}} \\
-% & \frac{N_1}{N_2}=e^{\left[\epsilon_2-\epsilon_1\right] / k T} \\
-% & E_2-\epsilon_1=\kappa \alpha \\
-% & \frac{N_1}{N_2}=e^{[\omega / k T}
-% \end{aligned}
-% $$
+In steady state:
+\begin{flalign*}
+	R_{ab}                                 & = R_{12} + R_{21}           &  & \\
+	B_{12} n_1 \rvv                        & =A_{21} n_2+B_{21} n_2 \rvv &  & \\
+	\text{(or)}                            &                             &  & \\
+	\rvv\left[B_{12} n_1-B_{21} n_2\right] & =A_{21} n_2                 &  &
+\end{flalign*}
 
-% Substituting in $0 \leq 2$ (1).
-% $$
-% \begin{aligned}
-% & \mathrm{ Substituting in } 0 \leq 20 \mathrm{. } \\
-% & f_V=\frac{A_{21}}{B_{12}\left[e^{2 / k T}-\frac{B_{21}}{B_{12}}\right]}{ }^{\mathrm{equips }}=
-% \end{aligned}
-% $$
+$$
+	\begin{aligned}
+		\rvv=\frac{A_{21} n_2}{B_{12} n_1-B_{21} n_2} & =\frac{A_{21} n_2}{n_2 B_{21}\left[\frac{B_{12} n_1}{B_{21} n_2}-1\right]} \\
+		                                              & =\frac{A_{21} / B_{21}}{\frac{B_{12}}{B_{21}} \frac{n_1}{n_2}-1}
+	\end{aligned}
+$$
+
+Substituting Equation (6.1) in (6.8) for $n_1 / n_2$, we have:
+$$
+	\rvv=\frac{A_{21} / B_{21}}{\frac{B_{12}}{B_{21}} \exp \frac{b f}{K_{\mathrm{B}} T}-1}
+$$
+
+In thermal equilibrium state, Equations (6.2) and (6.9) are equal.
+so,
+$$
+	\frac{8 \pi b f^3}{c^3\left[\exp \left(\frac{b f}{K_{\mathrm{B}} T}\right)-1\right]}=\frac{A_{21} / B_{21}}{\frac{B_{12}}{B_{21}} \exp \left(\frac{b f}{K_{\mathrm{B}} T}\right)-1}
+$$
+
+Under stimulated emission, the probability of upward transitions and probability of downward transitions are equal, so:
+$$
+	B_{12}=B_{21}=B \text { and } A_{21}=A \text { (say). }
+$$
+
+Then, Equation (6.10) becomes:
+$$
+	\frac{A_{21}}{B_{21}}=\frac{A}{B}=\frac{8 \pi b f^3}{c^3}
+$$
+
+The proportionality constants $A_{21}, B_{12}$ and $B_{21}$ are called Einstein's $A$ and $B$ coefficients. From Equations (6.5) and (6.6), the ratio of spontaneous emission rate to stimulated emission rate is:
+$$
+	\frac{A_{21} n_2}{B_{21} n_2 \rvv}=\frac{A_{21}}{B_{21} \rvv}=\frac{A / B}{\rvv}
+$$
+
+Substituting Equations (6.2) and (6.11) in (6.12) gives:
+$$
+	=\frac{8 \pi b f^3}{c^3} / \frac{8 \pi b f^3}{c^3\left[\exp \left(\frac{b f}{K_{\mathrm{B}} T}\right)-1\right]}=\exp \left(\frac{b f}{K_{\mathrm{B}} T}\right)-1
+$$
+$\qquad$
+This ratio works out to be $10^{10}$, thus at optical frequencies, the emission is predominantly spontaneous. So, the conventional light sources emit incoherent radiation.
+6.5 Population inversion
+
+Usually in a system the number of atoms $\left(N_1\right)$ present in the ground state $\left(E_1\right)$ is larger than the number of atoms $\left(N_2\right)$ present in the higher energy state. The process of making $N_2>N_1$ is called population inversion. Population inversion can be explained with three energy levels $E_1, E_2$ and $E_3$ of a system. Let $E_1, E_2$ and $E_3$ be ground state, metastable state and excited states of energies of the system respectively such that $E_1<E_2<E_3$. In a system, the population of atoms $(N)$ in an energy level $E$, at absolute temperature $T$ has been expressed in terms of the population $\left(N_1\right)$ in the ground state using Boltzmann's distribution law
+$$
+	N=N_1 \exp \left(-E / K_R T\right) \quad \text { where } K_B=\text { Boltzmann's constant }
+$$
+
+Graphically this has been shown in Fig. 6.2(b). As shown in Fig. 6.2(a), let the atoms in the system be excited from $E_1$ state to $E_3$ state by supplying energy equal to $E_3-E_1(=b \nu)$ from an external source. The atoms in $E_3$ state are unstable, they make downward transition in a time approximately $10^{-8}$ seconds to $E_2$ state. In $E_2$ state, the atoms stay over a very long duration of the order of milliseconds. So, the population of $E_2$ state increases steadily. As atoms in $E_1$ state are continuously excited to $E_3$ so, the population in $E_1$ energy level goes on decreasing. A stage will reach at which the population in $E_2$ state exceeds as that present in $E_1$ state (i.e., $N_2>N_1$ ). This situation is known as population inversion. Graphically the population inversion has been shown in Fig. 6.2(c).
+Conditions for population inversion are:
+(a) The system should possess at least a pair of energy levels $\left(E_2>E_1\right)$, separated by an energy equal to the energy of a photon ( $b v$ ).
+(b) There should be a continuous supply of energy to the system such that the atoms must be raised continuously to the excited state.
 
 \begin{framed}
-
-	\lefteqn{\rho_v=\frac{8 \pi h \nu^3}{c^3} \times \frac{1}{e^{h\nu/(kT)}-1}}
-
-	Consider a 2 level energy system $E_1 \& E_2$ with only spontaneous emission.
-
-	At thermal equilibrium, rate of absorption = rate of emission.
-	\bigskip
-
-	\lefteqn{\rvv B_{12} N_1=A_{21} N_2 \Rightarrow \rho_{V_{11}}=\frac{A_{21} N_2}{B_{12} N_1}=\frac{A_{21}}{B_{12}} e^{-\frac{E_2 - E_1}{kT}}}
-
-	\bigskip
-
-	But it's not in accordance with $\rho_v$.
-
-	For this, Einstein proposed Stimulated emission:
-
-	At Thermal Equilibrium. rate of absorption = rate of emission:
-
-	\lefteqn{B_{12} \rvv N_1 = A_{21} N_2 + B_{21} \rho_{v_{21}} N_2}
-
-	% \begin{flalign*}
-	% 	\Rightarrow \rvv & =\frac{A_{21} N_2}{B_{12} N_1 - B_{21} N_2}                                                                                                                              &  & \\
-	% 	                          & =\frac{A_{11}}{B_{12} e^{h\nu/(kT)} - B_{21}}                                                                                                                                 \\
-	% 	                          & =\frac{A_{21}}{B_{21}} \cdot \frac{1}{\frac{B_{12}}{B_{21}} \left(e^{h\nu/(kT)} - 1\right)}                                                                              &  & \\
-	% 	                          & \Rightarrow B_{12} \approx B_{21}, \quad \frac{A_{21}}{B_{21}}=\frac{S_p \cdot E_m}{51 \cdot G_m}=8 \pi                                                                  &&   \\
-	% \end{flalign*}
 	\begin{flalign*}
-		\frac{A_{21}}{B_{21}}  =\frac{\text{probability of spontaneous emission}}{\text{probability of stimulated emission}} & =\frac{8 \pi h \nu^3}{c^3}           &  & \\
-		                                                                                                                     & =\frac{8 \pi h c^3 / \lambda^3}{c^3} &  & \\
-		                                                                                                                     & =\frac{8 \pi h}{\lambda^3}           &  &
+		\frac{A_{21}}{B_{21}} & =\frac{8 \pi h \nu^3}{c^3}           &  & \\
+		                      & =\frac{8 \pi h c^3 / \lambda^3}{c^3} &  & \\
+		                      & =\frac{8 \pi h}{\lambda^3}           &  & \\
+		\frac{R_{21}}{R_{21}} & =e^{h\nu/(kT)}-1                     &  &
 	\end{flalign*}
-	\begin{flalign*}
-		\frac{R_{21}}{R_{21}} & =\frac{\text{Rate of spontaneous emission}}{\text{Rate of stimulated emission}} =e^{h\nu/(kT)}-1 &
-	\end{flalign*}
-
 \end{framed}
 
 \ussubsection{\small{Note:}}
@@ -360,7 +358,7 @@ Two arrangements of mirrors are used to reflect light:
 \ussubsection{Working}
 Due to electric dischange in gas, energetic electron interacts with ground state helium atoms. The impact of $e^{-}$ results in exchange of some of its energy to the atom. As a result. Helium atoms gets excited to higher energy levels: $F_{1} \& F_{2}$. These two energy levals are close to $E_{4} \& E_{6}$ levels of Neon atoms and collision of second kind takes place between them, hence we goes to excited state. $E_{5}$ of $E_{3}$. $E_2$ level of we forms metastable state.
 
-3 trpes of tronsition are possible :
+3 types of transition are possible :
 
 \begin{itemize}
 	\item $E_{4} \rightarrow E_{3}$, emitting infrared light of $\lambda=1.15 \mu \mathrm{m}$
@@ -369,11 +367,11 @@ Due to electric dischange in gas, energetic electron interacts with ground state
 \end{itemize}
 
 IR light emitted is absorped by the mirrors. Neon atoms in terminal level $E_{3}$ decay very rapialy to $E_{2}$ metastable state, much faster than spontaneously decaying from $E_{6} \rightarrow E_{3}$ level. Thus lower level $E_3$ is kept empty and population inversion is achieved between $E_{6} \& E_{3}$. Intensity of light produced is inversely proportional to diameter of quartz tube.
+\bigskip
 
-\begin{center}
-	\includegraphics[max width=\textwidth]{2024_06_16_30d750483617f1939202g-04}
-\end{center}
-
+\resizebox{1\textwidth}{!}{
+	\input{../images/he-ne.tex}
+}
 
 \usubsection{Ruby Laser}
 
@@ -415,8 +413,8 @@ Cr$^{3+}$ ions absorb pumping light and go to excited states E$_2$ \& E$_3$. Fro
 {
 	\begin{flalign*}
 		\textrm{Energy of each photon } = h\nu & = \frac{hc}{\lambda}                       &  & \\
-		                                     & = \frac{\h \times \lc}{632.8\time 10^{-9}} &  & \\
-		                                     & = 3.14 \times 10^{-19} \unit{~J}           &  &
+		                                       & = \frac{\h \times \lc}{632.8\time 10^{-9}} &  & \\
+		                                       & = 3.14 \times 10^{-19} \unit{~J}           &  &
 	\end{flalign*}
 	\begin{flalign*}
 		\therefore \textrm{ Energy emitted in 1 minute } & = 3.14 \unit{~mW} \times 60 = 0.1884\unit{J}        &  & \\

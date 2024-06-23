@@ -1,0 +1,59 @@
+\begin{tikzpicture}
+		\coordinate (F0) at (0, 0);
+		\coordinate (F1) at ($(F0) + (0, 4)$);
+		\coordinate (F2) at ($(F0) + (0, 6)$);
+		\draw (F0) -- ++(5,0);
+		\draw (F1) -- ++(5,0) coordinate (Fe1);
+		\draw (F2) -- ++(5,0) coordinate (Fe2);
+
+		\draw[-{Latex[length=3mm]}] ($(F0) + (.4, 0)$) -- ++(0, 6);
+		\draw[-{Latex[length=3mm]}] ($(F0) + (2, 0)$) -- ++(0, 4);
+		\node at ($(F2)-(.8, 0)$) {$F_2\ (2^1s)$};
+		\node at ($(F1)-(.8, 0)$) {$F_1\ (2^3s)$};
+		\node at ($(F0)-(.8, 0)$) {$F_0\ $};
+
+		\node[font=\large] at (2.5, -1) {Helium};
+
+		\draw[thick, -{Latex[length=3mm]}] ($(Fe1) + (.5, 0)$) -- node[above,font=\footnotesize] {Collision} ++(2.5, 0);
+		\draw[thick, -{Latex[length=3mm]}] ($(Fe2) + (.5, 0)$) -- node[above,font=\footnotesize] {Collision} ++(2.5, 0);
+
+		\begin{scope}[xshift=8.5cm,decoration=snake]
+			\coordinate (E1) at (0, 0);
+			\coordinate (E2) at ($(E1) + (1, 4/3)$);
+			\coordinate (E3) at ($(E1) + (1, 8/3)$);
+			\coordinate (E4) at ($(E1) + (0, 4)$);
+			\coordinate (E5) at ($(E4) + (1, 1)$);
+			\coordinate (E6) at ($(E1) + (0, 6)$);
+			\draw (E1) -- ++(6,0) coordinate (Ee1);
+			\draw (E2) -- ++(5,0) coordinate (Ee2);
+			\draw (E3) -- ++(5,0) coordinate (Ee3);
+			\draw (E4) -- ++(6,0) coordinate (Ee4);
+			\draw (E5) -- ++(5,0) coordinate (Ee5);
+			\draw (E6) -- ++(6,0) coordinate (Ee6);
+
+			\draw[double, thick, -{Latex[length=2mm]}] ($(Ee6) - (3.6, 0)$) -- ++(.3, -1);
+			\draw[decorate,gray,->] ($(Ee5) + (-2.6, .5)$) -- ++(1, 0) node [right,align=left,font=\footnotesize] {3.39$\mu$m};
+
+			\draw[double, thick,red, -{Latex[length=2mm]}] ($(Ee6) - (4, 0)$) -- ++(.3*10/3, -2-4/3);
+
+			\draw[decorate,red,->] ($(Ee4) + (-2.7, .6)$) -- ++(1, 0);
+			\draw[decorate,red,->] ($(Ee4) + (-2.7, .4)$) -- ++(1, 0) node [right,align=left,yshift=2mm,font=\footnotesize] {6328 $\amstr$};
+
+			\draw[double, thick, -{Latex[length=2mm]}] ($(Ee4) - (3, 0)$) -- ++(.3*4/3, -4/3);
+			\draw[decorate,gray,->] ($(Ee3) + (-2.4, .5)$) -- ++(1, 0) node [right,align=left,font=\footnotesize] {1.15$\mu$m};
+
+			\draw[-{Latex[length=2mm]}] ($(Ee3) - (2.4, 0)$) -- ++(0, -4/3);
+			\draw[-{Latex[length=2mm]}] ($(Ee2) - (3.3, 0)$) -- ++(0, -4/3);
+			\draw[-{Latex[length=2mm]}] ($(E5) + (.8, 0)$) -- ++(0, -1-8/3);
+
+			\node at ($(Ee6)+(.8, 0)$) {$E_6\ (3s)$};
+			\node at ($(Ee5)+(.8, 0)$) {$E_5\ (3p)$};
+			\node at ($(Ee4)+(.8, 0)$) {$E_4\ (2s)$};
+			\node at ($(Ee3)+(.8, 0)$) {$E_3\ (2p)$};
+			\node at ($(Ee2)+(.8, 0)$) {$E_2\ (1s)$};
+			\node at ($(Ee1)+(.8, 0)$) {$E_1$};
+
+			\node[font=\large] at (2.5, -1) {Neon};
+
+		\end{scope}
+	\end{tikzpicture}
