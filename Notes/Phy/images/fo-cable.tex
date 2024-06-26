@@ -1,0 +1,22 @@
+
+\resizebox{\textwidth}{!}{
+	\begin{tikzpicture}
+		\def\outerHeight{5}
+		\def\outerRadius{1.2}
+		\def\innerHeight{5}
+		\def\innerRadius{.35}
+
+		% Draw outer cylinder
+		\doubleCylinder{.5}{.19}{6}
+		\draw [dashed, gray] (-1,0) coordinate (b) -- ++(7, 0);
+
+		\draw (-1,-1) coordinate (a) -- (0, 0) coordinate (O) -- ++(.7, .38) -- ++(1.4, -.76) -- ++(1.4, .76) -- ++(1.4, -.76) -- ++(1, .6);
+
+		\node[font=\footnotesize] at (2, .2) {Core};
+		\node[font=\footnotesize] at (4, .8) {Cladding};
+
+		\pic [draw, -, red,
+			angle radius=10mm] {angle = b--O--a};
+		\node[align=center, red, font=\scriptsize] at (-1.7, -.4) {Grazing \\ angle};
+	\end{tikzpicture}
+}

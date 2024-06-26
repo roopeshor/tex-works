@@ -18,3 +18,13 @@
 \newcommand{\millerDiagram}[5]{
 	\millerDiagramQuad{#1}{#2}{#3}{#3}{#4}{#5}
 }
+
+\newcommand{\doubleCylinder}[3]{
+	\draw (0,0) ellipse (#1 and #1*2);
+	\draw (0,#1*2) -- ++(#3, 0);
+	\draw (0,-#1*2) -- ++(#3, 0);
+
+	\draw (0,0) ellipse (#2 and #2*2);
+	\draw (0,#2*2) -- ++(#3, 0);
+	\draw (0,-#2*2) -- ++(#3, 0);
+}
