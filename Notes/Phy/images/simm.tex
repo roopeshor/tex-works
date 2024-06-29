@@ -23,12 +23,10 @@
 			\node at (0, -2.65) {$n_2=1.47$};
 
 			\begin{scope}[xshift=3.5cm]
+				\draw[color=blue] (-1.2,-.6) -- node {\midarrow{1pt}{0.01}} (0, 0) -- ++(1.7, .6) -- node {\midarrow{1pt}{.1}} ++(2.8, -1.2) -- ++(1.5, .65);
+				\draw[color=blue] (-1,-1) -- node {\midarrow{1pt}{.5}} (0, 0) -- ++(1, .6) -- node {\midarrow{1pt}{.1}} ++(2, -1.2) -- node {\midarrow{1pt}{.1}} ++(2, 1.2) -- ++(1, -.4);
+				\draw[color=blue] (-.8,-1.5) -- node {\midarrow{1pt}{.5}} (0, 0) -- ++(.5, .6) -- node {\midarrow{1pt}{.1}} ++(1.6, -1.2) -- node {\midarrow{1pt}{.1}} ++(1.6, 1.2) -- ++(1.6, -1.2) -- ++(.7, .5);
 				\doubleCylinder{.7}{.3}{6}
-				\draw (-1.2,-.6) -- node {\midarrow{1pt}{0.01}} (0, 0) -- ++(1.7, .6) -- node {\midarrow{1pt}{.1}} ++(2.8, -1.2) -- ++(1.5, .65);
-
-				\draw (-1,-1) -- node {\midarrow{1pt}{.5}} (0, 0) -- ++(1, .6) -- node {\midarrow{1pt}{.1}} ++(2, -1.2) -- node {\midarrow{1pt}{.1}} ++(2, 1.2) -- ++(1, -.4);
-
-				\draw (-.8,-1.5) -- node {\midarrow{1pt}{.5}} (0, 0) -- ++(.5, .6) -- node {\midarrow{1pt}{.1}} ++(1.6, -1.2) -- node {\midarrow{1pt}{.1}} ++(1.6, 1.2) -- ++(1.6, -1.2) -- ++(.8, .6);
 			\end{scope}
 		\end{scope}
 	\end{tikzpicture}

@@ -4,7 +4,6 @@
 
 \input{../../constructs/higherConstructs.tex}
 \usepackage{tikz}
-
 \graphicspath{ {../images/} }
 
 \begin{document}
@@ -43,8 +42,8 @@ directional, monochromatic, coherent and stimulated radiation. Lasing been exten
 
 
 		\term{Coherence time($\tau_c$)}: time over which a propagating wave remains coherent or the maximum time interval for which the wave have definite phase relation. \\
-		For He-Ne: $\tau_c=2 \times 10^{-3} \unit{s}$\\
-		Sodium lamp: $10^{-10} \unit{s}$
+		For He-Ne: $\tau_c=2 \times 10^{-3} \uunit{s}$\\
+		Sodium lamp: $10^{-10} \uunit{s}$
 	}
 \end{framed}
 
@@ -197,7 +196,7 @@ Conditions for population inversion are:
 \begin{itemize}
 	\item When photon of Energy $\Delta E$ (equal to difference in energy level) enters atom\\
 	      probability of absorption = probability of spontaneous emission
-	\item At Room temperature: $\Delta E = E_2-E_1 \approxeq 0.025 \unit{eV}$ (Corresponding to IR radiation of $6 \times 10^{12} \unit{Hz}$)
+	\item At Room temperature: $\Delta E = E_2-E_1 \approxeq 0.025 \uunit{eV}$ (Corresponding to IR radiation of $6 \times 10^{12} \uunit{Hz}$)
 \end{itemize}
 
 \input{../images/population-inversion.tex}
@@ -242,7 +241,7 @@ For He-Ne laser $\Delta \lambda = 0.0005 0.12\amstr$
 
 \bigskip
 
-\qa{1}{For a source of monochromatic radiation with wavelength 5000$\amstr$, and frequency $6 \times 10^{14} \unit{Hz}$, what will be the sharpress for conventional light with $\Delta \nu=10^{10} \unit{Hz}$ and les with $\Delta \nu=500\unit{Hz}$ ?}
+\qa{1}{For a source of monochromatic radiation with wavelength 5000$\amstr$, and frequency $6 \times 10^{14} \uunit{Hz}$, what will be the sharpress for conventional light with $\Delta \nu=10^{10} \uunit{Hz}$ and les with $\Delta \nu=500\uunit{Hz}$ ?}
 {
 
 For conventional radiation:
@@ -256,15 +255,15 @@ For laser:
 {
 
 	Beam divergence
-	\lefteqn{=\frac{R_2-R_1}{D_2-D_1}=\frac{.5\unit{mm}}{1 \unit{m}}=\frac{1}{2} 10^{-3} \unit{rad}}
+	\lefteqn{=\frac{R_2-R_1}{D_2-D_1}=\frac{.5\uunit{mm}}{1 \uunit{m}}=\frac{1}{2} 10^{-3} \uunit{rad}}
 }
 
-\qa{3}{For ordinary source of light, $\tau_c=10^{-10} \unit{s}$. Obtain its sharpness if wavelength is 5400$\amstr$}
+\qa{3}{For ordinary source of light, $\tau_c=10^{-10} \uunit{s}$. Obtain its sharpness if wavelength is 5400$\amstr$}
 {
 \begin{flalign*}
 	Q                               & =\frac{\Delta \nu}{\nu}                                                  &  & \\
-	\nu                             & =\frac{c}{\lambda}=5.56 \times 10^{14} \unit{Hz}                         &  & \\
-	\tau_c                          & =\frac{1}{\Delta\nu} \Rightarrow \Delta \nu=1 / \tau_c=10^{10} \unit{Hz} &  & \\
+	\nu                             & =\frac{c}{\lambda}=5.56 \times 10^{14} \uunit{Hz}                         &  & \\
+	\tau_c                          & =\frac{1}{\Delta\nu} \Rightarrow \Delta \nu=1 / \tau_c=10^{10} \uunit{Hz} &  & \\
 	\therefore \mathrm{ Sharpness } & =\frac{10^{10}}{5.56 \times 10^{14}}=1.8 \times 10^{-5}
 \end{flalign*}
 }
@@ -273,8 +272,8 @@ For laser:
 {
 	\begin{flalign*}
 		 & \tau_c=\frac{1}{\Delta v}=10^{-9} s                                                               &  & \\
-		 & L_c=\tau_c c=30 \unit{cm}                                                                         &  & \\
-		 & \nu=\frac{c}{\lambda}=5.49 \times 10^{44} \unit{Hz}                                               &  & \\
+		 & L_c=\tau_c c=30 \uunit{cm}                                                                         &  & \\
+		 & \nu=\frac{c}{\lambda}=5.49 \times 10^{44} \uunit{Hz}                                               &  & \\
 		 & \mathrm{ Sharpress }=\frac{\Delta \tau}{\nu}=\frac{10^9}{5.49 \times 10^{14}}=1.82 \times 10^{-6} &  &
 	\end{flalign*}
 }
@@ -392,10 +391,8 @@ IR light emitted is absorped by the mirrors. Neon atoms in terminal level $E_{3}
 \end{center}
 
 $\star$ Population inversion is achieved between E$_m$ \& E,
-\begin{figure*}
-	\includegraphics[max width=.5\linewidth]{2024_06_16_30d750483617f1939202g-03}
-	\caption*{Intensity us time graph}
-\end{figure*}
+
+\input{../images/pulsed-graph.tex}
 
 \ussubsection{Working}
 Cr$^{3+}$ ions absorb pumping light and go to excited states E$_2$ \& E$_3$. From these a rapid non-radiation transition to the metastable level E$_m$ takes place. Decay from E$_m$ is very slow that with sufficient excitation, populations inversion between E$_m$ \& E$_1$ can occur. Those photons are allowed to pass many times in the active medium with the help of mirrors. When threshold conditions are. satisfied, an intense pulse of light of wavelength 6934$\amstr$ is emitted. Continuous operation is not possible due to excessive heating of active medium.
@@ -405,10 +402,10 @@ Cr$^{3+}$ ions absorb pumping light and go to excited states E$_2$ \& E$_3$. Fro
 \qa{1}{For semiconductor, band gap is 0.9eV, what is wavelength of light emitted from it?}
 {
 	\begin{flalign*}
-		h\nu               & = 0.9 \unit{eV} = 1.442 \times 10^{-19}\unit{~J}                     &  & \\
+		h\nu               & = 0.9 \uunit{eV} = 1.442 \times 10^{-19}\uunit{~J}                     &  & \\
 		\therefore \nu     & = \frac{1.442 \times 10^{-19}}{h}                                    &  & \\
-		                   & = \frac{1.442 \times 10^{-19}}{\h} = 2.176 \times 10^{14} \unit{~Hz} &  & \\
-		\therefore \lambda & = c / \nu         = 1.38\unit{~\mu m}                                &  & \\
+		                   & = \frac{1.442 \times 10^{-19}}{\h} = 2.176 \times 10^{14} \uunit{~Hz} &  & \\
+		\therefore \lambda & = c / \nu         = 1.38\uunit{~\mu m}                                &  & \\
 	\end{flalign*}
 }
 \qa{2}{For a He-Ne laser with wavelength 632.8 nm and output power 3.14 mW how many photons are emitted in each minute in operation?}
@@ -416,10 +413,10 @@ Cr$^{3+}$ ions absorb pumping light and go to excited states E$_2$ \& E$_3$. Fro
 	\begin{flalign*}
 		\textrm{Energy of each photon } = h\nu & = \frac{hc}{\lambda}                       &  & \\
 		                                       & = \frac{\h \times \lc}{632.8\time 10^{-9}} &  & \\
-		                                       & = 3.14 \times 10^{-19} \unit{~J}           &  &
+		                                       & = 3.14 \times 10^{-19} \uunit{~J}           &  &
 	\end{flalign*}
 	\begin{flalign*}
-		\therefore \textrm{ Energy emitted in 1 minute } & = 3.14 \unit{~mW} \times 60 = 0.1884\unit{J}        &  & \\
+		\therefore \textrm{ Energy emitted in 1 minute } & = 3.14 \uunit{~mW} \times 60 = 0.1884\uunit{J}        &  & \\
 		\therefore \textrm{ Number of photons emitted }  & =\frac{0.1884}{3.14 \times 10^{-19}}=6\times10^{17} &  & \\
 	\end{flalign*}
 }
@@ -429,7 +426,7 @@ Cr$^{3+}$ ions absorb pumping light and go to excited states E$_2$ \& E$_3$. Fro
 	Transition temperature (T) = 18$^{\circ}$C = 291K
 	\medskip
 
-	frequency of light emitted $\nu$ = c/$\lambda$ = $\cfrac{\lc}{6928\times 10^{-10}} = 4.3302 \times 10^{14} \unit{Hz}$
+	frequency of light emitted $\nu$ = c/$\lambda$ = $\cfrac{\lc}{6928\times 10^{-10}} = 4.3302 \times 10^{14} \uunit{Hz}$
 	\begin{flalign*}
 		\frac{N_2}{N_1} & = e \caret (-h\nu / (kT))                                        &  & \\
 		                & = e \caret (-\h \times 4.3302 \times 10^{14} / (\kB \times 291)) &  & \\
@@ -475,6 +472,8 @@ Fibre optics deals with transmission of information using light (which has minim
 
 \usubsection{Structure of Fiber Optic Cable}
 
+\includegraphics[max width=\textwidth]{2024_06_16_30d750483617f1939202g-05(2).jpg}
+
 \begin{itemize}
 	\item Polyurethane: for mecharical crushing
 	\item Butfor jacket : to prevent moistume
@@ -494,7 +493,7 @@ Fibre optics deals with transmission of information using light (which has minim
 
 \begin{itemize}
 	\item Allows only one path for light
-	\item Bandwidth distance product: $>3 \unit{GHzkm}$
+	\item Bandwidth distance product: $>3 \uunit{GHzkm}$
 	\item Splicing is difficut.
 \end{itemize}
 
@@ -504,19 +503,17 @@ Fibre optics deals with transmission of information using light (which has minim
 
 \begin{itemize}
 	\item Allows multiple path for light
-	\item easior to splice
-	\item Bandwidth distance product (BwDP) $\sim 300 \unit{MHz km}$
+	\item Easier to splice
+	\item Bandwidth distance product (BwDP) $\sim 300 \uunit{MHz km}$
 \end{itemize}
 
 \ussubsection{Graded Index Multi Mode}
 
-\begin{center}
-	\includegraphics[max width=\textwidth]{2024_06_16_30d750483617f1939202g-06(3)}
-\end{center}
+\input{../images/gimm.tex}
 
 \begin{itemize}
 	\item Gradual decrease in refractive index.
-	\item BWDP $\approx 3 \unit{GHz km}$
+	\item BWDP $\approx 3 \uunit{GHz km}$
 \end{itemize}
 
 \ussubsection{Comparison between different Cables}
