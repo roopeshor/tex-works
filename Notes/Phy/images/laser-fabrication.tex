@@ -1,13 +1,13 @@
 \begin{center}
-\begin{tikzpicture}
-	\draw[thick] (0, 0) -- (0,3.3);
-	\draw[thick,color=gray] (7.5, 0) -- (7.5,3.3);
+\begin{tikzpicture}[thick]
+	\draw (0, 0) -- (0,3.3);
+	\draw[color=gray] (7.5, 0) -- (7.5,3.3);
 	\foreach \i in {0,...,15} {
-			\draw[thick] (0, \i/15*3.3) --++(-.4, -.3);
+			\draw (0, \i/15*3.3) --++(-.4, -.3);
 			\draw[color=gray] (7.5, \i/15*3.3) --++(.4, -.3);
 		}
 
-	\draw[thick] (1.75,.5) rectangle (5.75,2.75);
+	\draw (1.75,.5) rectangle (5.75,2.75);
 	\node[align=center] at (1.75+2,.5+1.125) {Active \\ Medium};
 	
 	\node at (7.5/2, 4.5) {Pumping process};

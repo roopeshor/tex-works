@@ -1,4 +1,4 @@
-\begin{tikzpicture}
+\begin{tikzpicture}[thick]
 		\coordinate (F0) at (0, 0);
 		\coordinate (F1) at ($(F0) + (0, 4)$);
 		\coordinate (F2) at ($(F0) + (0, 6)$);
@@ -14,8 +14,8 @@
 
 		\node[font=\large] at (2.5, -1) {Helium};
 
-		\draw[thick, -{Latex[length=3mm]}] ($(Fe1) + (.5, 0)$) -- node[above,font=\footnotesize] {Collision} ++(2.5, 0);
-		\draw[thick, -{Latex[length=3mm]}] ($(Fe2) + (.5, 0)$) -- node[above,font=\footnotesize] {Collision} ++(2.5, 0);
+		\draw[-{Latex[length=3mm]}] ($(Fe1) + (.5, 0)$) -- node[above,font=\footnotesize] {Collision} ++(2.5, 0);
+		\draw[-{Latex[length=3mm]}] ($(Fe2) + (.5, 0)$) -- node[above,font=\footnotesize] {Collision} ++(2.5, 0);
 
 		\begin{scope}[xshift=8.5cm,decoration=snake]
 			\coordinate (E1) at (0, 0);
@@ -31,7 +31,7 @@
 			\draw (E5) -- ++(5,0) coordinate (Ee5);
 			\draw (E6) -- ++(6,0) coordinate (Ee6);
 
-			\draw[double, thick, -{Latex[length=2mm]}] ($(Ee6) - (3.6, 0)$) -- ++(.3, -1);
+			\draw[double, -{Latex[length=2mm]}] ($(Ee6) - (3.6, 0)$) -- ++(.3, -1);
 			\draw[decorate,gray,->] ($(Ee5) + (-2.6, .5)$) -- ++(1, 0) node [right,align=left,font=\footnotesize] {3.39$\mu$m};
 
 			\draw[double, thick,red, -{Latex[length=2mm]}] ($(Ee6) - (4, 0)$) -- ++(.3*10/3, -2-4/3);
@@ -39,7 +39,7 @@
 			\draw[decorate,red,->] ($(Ee4) + (-2.7, .6)$) -- ++(1, 0);
 			\draw[decorate,red,->] ($(Ee4) + (-2.7, .4)$) -- ++(1, 0) node [right,align=left,yshift=2mm,font=\footnotesize] {6328 $\amstr$};
 
-			\draw[double, thick, -{Latex[length=2mm]}] ($(Ee4) - (3, 0)$) -- ++(.3*4/3, -4/3);
+			\draw[double, -{Latex[length=2mm]}] ($(Ee4) - (3, 0)$) -- ++(.3*4/3, -4/3);
 			\draw[decorate,gray,->] ($(Ee3) + (-2.4, .5)$) -- ++(1, 0) node [right,align=left,font=\footnotesize] {1.15$\mu$m};
 
 			\draw[-{Latex[length=2mm]}] ($(Ee3) - (2.4, 0)$) -- ++(0, -4/3);

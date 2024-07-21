@@ -1,5 +1,5 @@
 \begin{center}
-	\begin{tikzpicture}
+	\begin{tikzpicture}[thick]
 
 		\coordinate (E1) at (0, 0);
 		\coordinate [above=3 of E1] (E2);
@@ -7,8 +7,8 @@
 		\coordinate [right=.4 of E1] (E1t);
 		\coordinate [right=.4 of E2] (E2t);
 
-		\draw[thick] (E1t) --++ (0:5) coordinate (Ee1);
-		\draw[thick] (E2t) --++ (0:5) coordinate (Ee2);
+		\draw (E1t) --++ (0:5) coordinate (Ee1);
+		\draw (E2t) --++ (0:5) coordinate (Ee2);
 
 		\node at (E1) {$\textrm{E}_1$};
 		\node at (E2) {$\textrm{E}_2$};
@@ -34,8 +34,8 @@
 			\coordinate [right=.4 of E1] (E1t);
 			\coordinate [right=.4 of E2] (E2t);
 
-			\draw[thick] (E1t) --++ (0:5) coordinate (Ee1);
-			\draw[thick] (E2t) --++ (0:5) coordinate (Ee2);
+			\draw (E1t) --++ (0:5) coordinate (Ee1);
+			\draw (E2t) --++ (0:5) coordinate (Ee2);
 
 			\node at (E1) {$\textrm{E}_1$};
 			\node at (E2) {$\textrm{E}_2$};

@@ -1,20 +1,20 @@
 \begin{center}
-	\begin{tikzpicture} [scale=.9]
+	\begin{tikzpicture} [scale=.9, thick]
 		\coordinate (E1) at (0, 0);
 		\coordinate [above=3 of E1] (E2);
 
 		\coordinate [right=.4 of E1] (E1t);
 		\coordinate [right=.4 of E2] (E2t);
 
-		\draw[thick] (E1t) --++ (0:5) coordinate (Ee1);
-		\draw[thick] (E2t) --++ (0:5) coordinate (Ee2);
+		\draw (E1t) --++ (0:5) coordinate (Ee1);
+		\draw (E2t) --++ (0:5) coordinate (Ee2);
 
 		\path[black] (E1) node{$\textrm{E}_1$};
 		\path[black] (E2) node{$\textrm{E}_2$};
 
 		\fill[black] ($(E2t)!.5!(Ee2)$) circle(3pt);
 
-		\draw[thick, ->] ($($(E1t)!.5!(E2t)$) + (0:6)$) --++(0:1);
+		\draw[->] ($($(E1t)!.5!(E2t)$) + (0:6)$) --++(0:1);
 
 		\begin{scope}[xshift=9cm,decoration={snake}]
 			\coordinate (E1) at (0, 0);
@@ -23,8 +23,8 @@
 			\coordinate [right=.4 of E1] (E1t);
 			\coordinate [right=.4 of E2] (E2t);
 
-			\draw[thick] (E1t) --++ (0:5) coordinate (Ee1);
-			\draw[thick] (E2t) --++ (0:5) coordinate (Ee2);
+			\draw (E1t) --++ (0:5) coordinate (Ee1);
+			\draw (E2t) --++ (0:5) coordinate (Ee2);
 
 			\path[black] (E1) node{$\textrm{E}_1$};
 			\path[black] (E2) node{$\textrm{E}_2$};
@@ -32,7 +32,7 @@
 			\fill[black] ($(E1t)!.5!(Ee1)$) circle(3pt);
 
 			\draw[-{Latex[length=3mm]}] ($(E2t)!.5!(Ee2)$) coordinate (x1) -- ($($(E1t)!.5!(Ee1)$)+(0,.15)$) coordinate (x2);
-			\draw[thick,decorate,red,->] ($($(x1)!.5!(x2)$) + (0:.2)$) coordinate (y1) -- node [above,align=left,yshift=1mm,font=\footnotesize] {$h\nu_{12}$} ($(y1) + (0:1)$);
+			\draw[decorate,red,->] ($($(x1)!.5!(x2)$) + (0:.2)$) coordinate (y1) -- node [above,align=left,yshift=1mm,font=\footnotesize] {$h\nu_{12}$} ($(y1) + (0:1)$);
 
 			\node[align=center] at ($(y1)+(0:4)$) {Spontaneous \\ Emission};
 		\end{scope}
@@ -41,7 +41,7 @@
 
 	\multiskip{4}
 
-	\begin{tikzpicture}[decoration={snake}, scale=.9]
+	\begin{tikzpicture}[decoration={snake}, scale=.9, thick]
 
 		\coordinate (E1) at (0, 0);
 		\coordinate [above=3 of E1] (E2);
@@ -49,16 +49,16 @@
 		\coordinate [right=.4 of E1] (E1t);
 		\coordinate [right=.4 of E2] (E2t);
 
-		\draw[thick] (E1t) --++ (0:5) coordinate (Ee1);
-		\draw[thick] (E2t) --++ (0:5) coordinate (Ee2);
+		\draw (E1t) --++ (0:5) coordinate (Ee1);
+		\draw (E2t) --++ (0:5) coordinate (Ee2);
 
 		\path[black] (E1) node{$\textrm{E}_1$};
 		\path[black] (E2) node{$\textrm{E}_2$};
 
 		\fill[black] ($(E2t)!.5!(Ee2)$) circle(3pt);
 
-		\draw[thick,decorate,red,->] ($($(E1t)!.5!(E2t)$) + (.4, 0)$) coordinate (y1) -- node [above,align=left,yshift=1mm,font=\footnotesize] {$h\nu_{12}$} ($(y1) + (1, 0)$);
-		\draw[thick, ->] ($($(E1t)!.5!(E2t)$) + (0:6)$) --++(0:1);
+		\draw[decorate,red,->] ($($(E1t)!.5!(E2t)$) + (.4, 0)$) coordinate (y1) -- node [above,align=left,yshift=1mm,font=\footnotesize] {$h\nu_{12}$} ($(y1) + (1, 0)$);
+		\draw[->] ($($(E1t)!.5!(E2t)$) + (0:6)$) --++(0:1);
 
 		\begin{scope}[xshift=9cm,decoration={snake}]
 			\coordinate (E1) at (0, 0);
@@ -67,8 +67,8 @@
 			\coordinate [right=.4 of E1] (E1t);
 			\coordinate [right=.4 of E2] (E2t);
 
-			\draw[thick] (E1t) --++ (0:5) coordinate (Ee1);
-			\draw[thick] (E2t) --++ (0:5) coordinate (Ee2);
+			\draw (E1t) --++ (0:5) coordinate (Ee1);
+			\draw (E2t) --++ (0:5) coordinate (Ee2);
 
 			\path[black] (E1) node{$\textrm{E}_1$};
 			\path[black] (E2) node{$\textrm{E}_2$};
@@ -76,8 +76,8 @@
 			\fill[black] ($(E1t)!.5!(Ee1)$) circle(3pt);
 
 			\draw[-{Latex[length=3mm]}] ($(E2t)!.5!(Ee2)$) coordinate (x1) -- ($($(E1t)!.5!(Ee1)$)+(0,.15)$) coordinate (x2);
-			\draw[thick,decorate,red,->] ($($(x1)!.5!(x2)$) + (.3, 0)$) coordinate (y1) -- node [above,align=left,yshift=1mm,font=\footnotesize] {$h\nu_{12}$} ($(y1) + (1,0)$);
-			\draw[thick,decorate,red,->] ($(y1) + (0,-.3)$) coordinate (y1) -- node [below,align=left,font=\footnotesize] {$h\nu_{12}$} ($(y1) + (0:1)$);
+			\draw[decorate,red,->] ($($(x1)!.5!(x2)$) + (.3, 0)$) coordinate (y1) -- node [above,align=left,yshift=1mm,font=\footnotesize] {$h\nu_{12}$} ($(y1) + (1,0)$);
+			\draw[decorate,red,->] ($(y1) + (0,-.3)$) coordinate (y1) -- node [below,align=left,font=\footnotesize] {$h\nu_{12}$} ($(y1) + (0:1)$);
 			\node[align=center] at ($(y1)+(0:4)$) {Stimulated \\ Emission};
 		\end{scope}
 	\end{tikzpicture}
