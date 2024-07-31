@@ -1,0 +1,67 @@
+\begin{itemize}
+	\item Based on Index profile: step-index, graded index
+	\item Based on made : single mode, multi mode.
+\end{itemize}
+
+\ussubsection{Step Index Single Mode}
+
+\input{../images/sism.tex}
+
+\begin{itemize}
+	\item Allows only one path for light
+	\item Bandwidth distance product: $>3 \uunit{GHzkm}$
+	\item Splicing is difficut.
+\end{itemize}
+
+\ussubsection{Step Index Multi Mode}
+
+\input{../images/simm.tex}
+
+\begin{itemize}
+	\item Allows multiple path for light
+	\item Easier to splice
+	\item Bandwidth distance product (BwDP) $\sim 300 \uunit{MHz km}$
+\end{itemize}
+
+\ussubsection{Graded Index Multi Mode}
+
+\input{../images/gimm.tex}
+
+\begin{itemize}
+	\item Gradual decrease in refractive index.
+	\item BWDP $\approx 3 \uunit{GHz km}$
+\end{itemize}
+
+\ussubsection{Comparison between different Cables}
+
+\begin{longtblr}
+	{
+		colspec = {XX},
+		hlines,
+		vlines,
+		rowsep=6pt,
+		colsep=5pt
+	}
+
+	\SetCell{c} \textbf{Step Index}                                   & \SetCell{c} \textbf{Graded Index}                               \\
+	Refractive index changes sharply from core-cladding interface     & Refractive index changes gradually from core-cladding interface \\
+	Refractive index profile looks like steps                         & Refractive index profile looks like parabola                    \\
+	Attenuation is more for multimode and less for single mode        & Attenuation is usually less                                     \\
+	Numerical Aperture is more for multimode and less for single mode & Numerical Aperture is usually less                              \\
+\end{longtblr}
+
+\begin{longtblr}
+	{
+		colspec = {XX},
+		hlines,
+		vlines,
+		rowsep=6pt,
+		colsep=5pt
+	}
+
+	\SetCell{c} \textbf{Single Mode}              & \SetCell{c} \textbf{Multi Mode}                                  \\
+	Only one mode can propagate through fibre     & Allows a large number of modes                                   \\
+	Smaller core diameter                         & Larger core diameter                                             \\
+	Difference in refractive indices is very less & Difference in refractive indices is more compared to single mode \\
+	No multimodal dispersion                      & There is multimodal dispersion
+\end{longtblr}

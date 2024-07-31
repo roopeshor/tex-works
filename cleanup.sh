@@ -1,6 +1,7 @@
 #! /usr/bin/bash
 
  find . -name "*.aux" -delete
+ find . -name "*.auxlock" -delete
  find . -name "*.fls" -delete
  find . -name "*.log" -delete
  find . -name "*.out" -delete

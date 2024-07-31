@@ -1,0 +1,42 @@
+\qa{1}{An optical fibre has core refractive index of 1.55 \& cladding refractive index of 1.50. Calculate Numerical Aperture}{
+
+	\eqnleft{NA=\sqrt{n_1^2-n_2^2}=\sqrt{1.55^2-1.5^2}=0.391}
+}
+\qa{2}{Calculate acceptance angle of given fibre, if core refractive index = 1.563 cladding refractive index =1.498}{
+
+	Assuming refractive index of air ($n_a$) = 1.
+	\medskip
+
+	\begin{flalign*}
+		n_a \cdot \sin \left(\alpha_m\right)           & =\sqrt{1.563^2-1.498^2}                                      &  & \\
+		\therefore \text{acceptance angle}\ (\alpha_m) & =\sin ^{-1}\left(\sqrt{1.563^2-1.498^2}\right)=26.49^{\circ} &  & \\
+	\end{flalign*}
+}
+
+\qa{3}{An optical fibre Numerical Aperture = 0.20, refractive index of cladding = 1.59. Find acceptance angle for fibre in water (n=4/3)}{
+	Here $n_a = 4/3$
+
+	\begin{flalign*}
+		n_a \sin \left(\alpha_m\right) & =0.20                                                        &  & \\
+		\therefore \alpha_m            & =\sin ^{-1}\left(\frac{3}{4} \times 0.20\right)=8.63^{\circ} &  &
+	\end{flalign*}
+}
+
+\qa{4}{For a cable, Numerical Aperture = 0.39, and difference between refractive indices of core and cladding is 0.05. Find refractive index of core}
+{
+
+	\begin{flalign*}
+		NA=\sqrt{n_1^2-n_2^2} & =0.39                                                   &  & \\
+		n_1^2-n_2^2           & \equiv \left(n_1+n_2\right) \left(n_1-n_2\right)=0.1521 &  &
+	\end{flalign*}
+	\begin{flalign*}
+		\Rightarrow n_1+n_2 & = \frac{0.1521}{n_1-n_2} = 3.042 &  &
+	\end{flalign*}
+	\begin{flalign*}
+		\therefore n_1     =n_{\mathrm{core }} & =\frac{\left(n_1+n_2\right)+\left(n_1-n_2\right)}{2} &  & \\
+		                                       & =\frac{3.042+0.05}{2}=1.546                          &  &
+	\end{flalign*}
+}
+\qa{5}{For step index fibre, $n_{\mathrm {core }}=1.52, n_{\mathrm {cladding }}=1.41$. Find $\theta_c$}{
+\eqnleft{\theta_c=\sin ^{-1}\left(\frac{1.41}{1.52}\right)=68.1^{\circ}}
+}

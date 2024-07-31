@@ -22,6 +22,8 @@
 \usepackage{xstring}
 \usepackage{pstricks-add}
 \usepackage{tikz}
+\usepackage{empheq}
+\usepackage{tcolorbox}
 \usetikzlibrary{
 	arrows.meta,
 	positioning,
@@ -37,7 +39,7 @@
 	shapes.geometric,
 	shapes.misc,
 	snakes
-	}
+}
 \hypersetup{colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=cyan,}
 \urlstyle{same}
 
@@ -45,8 +47,8 @@
 \setotherlanguages{norwegian, arabic}
 \newfontfamily\arabicfont{Noto Naskh Arabic}
 % \newfontfamily\lgcfont{CMU Serif}
-\graphicspath{ {../images/} }
 
+%%%%%%%%%% Fancy header %%%%%%%%%
 \pagestyle{fancy}
 \fancyhead[C]{}
 \fancyfoot[C]{\medskip\thepage}
@@ -60,7 +62,7 @@
 \newcommand{\floatfigwidth}{5cm}
 
 
-
+%%%%%%%%%% Formatters & Layout %%%%%%%%%
 \newcommand{\uprimary}[1]{
 	\section*{\center \Huge \underline{#1}}
 	\addcontentsline{toc}{section}{\protect\numberline{}#1}
@@ -82,17 +84,12 @@
 	\addcontentsline{toc}{subsection}{\protect\numberline{}#1}
 }
 \newcommand{\ans}{\bigskip\underline{\textbf{Answer}}}
+\newcommand{\ques}[1]{\noparindent\textbf{#1}\doparindent}
 \newcommand{\rfloatingimg}[1]{
 	\begin{wrapfigure}{r}{\floatfigwidth}
 		\includegraphics[max width=\floatfigwidth]{#1}
 	\end{wrapfigure}
 }
-\newcommand\longUparrow{\mathrel{\scalebox{1}[2]{$\uparrow$}}}
-
-\newcommand{\doparindent}{\setlength\parindent{.5cm}}
-\newcommand{\noparindent}{\setlength\parindent{0pt}}
-\newcommand{\ques}[1]{\noparindent\textbf{#1}\doparindent}
-
 \newcommand{\indentbox}[2]{
 	\begin{adjustwidth}{#1}{0pt}
 		#2
@@ -105,7 +102,7 @@
 		\ans
 		#3
 	}
-	\bigskip
+	\vspace{.75cm}
 }
 \newcommand{\noskipqa}[2]{
 	\noparindent
@@ -115,20 +112,11 @@
 		#2
 	}
 }
-
 \newcommand{\eqnleft}[1]{
 	\begin{flalign*}
 		 & #1 &  &
 	\end{flalign*}
 }
-\DeclareRobustCommand{\rchi}{{\mathpalette\irchi\relax}}
-\newcommand{\irchi}[2]{\raisebox{\depth}{$#1\chi$}}
-\newcommand{\term}[1]{\underline{\textbf{#1}}}
-\newcommand{\amstr}{\mathring{\textrm{A}}}
-\newcommand{\h}{6.626 \times 10^{-34}}
-\newcommand{\kB}{1.38 \times 10^{-23}}
-\newcommand{\lc}{3 \times 10^{8}}
-\newcommand{\uunit}[1]{\mathrm{~#1}}
 \newcommand{\fullwidthimg}[1]{
 	\begin{center}
 		\includegraphics[max width=\textwidth]{#1}
@@ -141,17 +129,27 @@
 }
 
 \newcommand{\note}[1]{
-	\begin{framed}
-		\textbf{Note:}
-		\medskip
-		\indentbox{.6cm}{
-			#1
-		}
-	\end{framed}
+	\begin{tcolorbox}[colframe=green!40!black, colback=green!5!white, title={\textbf{Note}}]
+	#1
+	\end{tcolorbox}
 }
 
 
-% Define the new command with looping functionality
+%%%%%%%%%% general constants/symbols %%%%%%%%%
+\newcommand\longUparrow{\mathrel{\scalebox{1}[2]{$\uparrow$}}}
+\DeclareRobustCommand{\rchi}{{\mathpalette\irchi\relax}}
+\newcommand{\irchi}[2]{\raisebox{\depth}{$#1\chi$}}
+\newcommand{\term}[1]{\underline{\textbf{#1}}}
+\newcommand{\amstr}{\mathring{\textrm{A}}}
+\newcommand{\h}{6.626 \times 10^{-34}}
+\newcommand{\kB}{1.38 \times 10^{-23}}
+\newcommand{\lc}{3 \times 10^{8}}
+\newcommand{\uunit}[1]{\mathrm{~#1}}
+
+%%%%%%%%%% Format constants %%%%%%%%%
+\newcommand{\doparindent}{\setlength\parindent{.5cm}}
+\newcommand{\noparindent}{\setlength\parindent{0pt}}
+\graphicspath{ {../images/} }
 \NewDocumentCommand{\multiskip}{m}{%
 	\begingroup
 	\newcount\i  % Define a new counter \i
@@ -163,6 +161,13 @@
 	\repeat
 	\endgroup
 }
+
+\newcommand{\termlist}[1]{
+	\begin{tcolorbox}[colback=blue!10!white, colframe=blue!50!black, title={Some terms}]
+		#1
+	\end{tcolorbox}
+}
+
 
 \DefTblrTemplate{caption-tag}{default}{}
 \DefTblrTemplate{caption-sep}{default}{}

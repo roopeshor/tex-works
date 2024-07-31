@@ -1,0 +1,110 @@
+\newcommand{\rvv}{\rho_{v}}
+For a system in steady state containing atoms and radiation, ratio of atoms in ground state($E_1$) to atoms in excited state($E_2$) is:
+$$
+	\frac{n_2}{n_1}=\exp\left(-\frac{E_2-E_1}{k_B T}\right) = \exp\left(-\frac{h \nu}{k_B T}\right)
+$$
+\begin{itemize}
+	\item When atom in ground state gets excited to higher state, rate or absorption of radiation is : $B_{12} n_1 \rvv$ ($\rvv=$ energy density of radiation incident on ground state)
+	\item Rate of spontaneous emission: $R_{21}=n_2 A_{21}$
+	\item Rate of absorption : $R_{ab}=n_1 \rvv B_{12}$
+	\item Rate of stimulated emission: $R_{12}=n_2 \rvv B_{21}$
+\end{itemize}
+
+Where
+
+\begin{longtblr}{
+	colspec = {Q[h, .5cm]Q[h,.3cm]Q[h,.8\linewidth]},
+	}
+	$n_1$            & = & number of availoble atoms per unit volume                                                                                                      \\
+	$n_2$            & = & number of atoms per unit volume                                                                                                                \\
+	$\nu$            & = & frequency of radiation                                                                                                                         \\
+	$T$              & = & absolute temperature of the atoms                                                                                                              \\
+	$k_{\mathrm{B}}$ & = & Boltzmann constant                                                                                                                             \\
+	$A_{21}$         & = & probability that atom will spontaneously jump to $E_1$ (ground state) per unit time (spontaneous emission proportionality constant)            \\
+	$B_{12}$         & = & probability of absorpion per unit time (absorption proportionality constant)                                                                   \\
+	$B_{21}$         & = & probability that atom will transition from $E_2$ to $E_1$ via stimulated emission per unit time (stimulated emission proportionality constant)
+\end{longtblr}
+
+\bigskip
+
+\term{Finding $\rvv$}
+\bigskip
+
+Inside the container, radiation is present so, the number of photons per unit volume having frequencies around $\nu$ in unit range (i.e., radiation density) ,represented as $\rvv$ is given by Planck's black body radiation law as:
+$$
+	\rvv=\frac{8 \pi h \nu^3}{c^3\left[\exp \left(\dfrac{h \nu}{k_{\mathrm{B}} T}\right)-1\right]}
+$$
+
+In steady state:
+\begin{flalign*}
+	R_{ab}                                 & = R_{12} + R_{21}           &  & \\
+	B_{12} n_1 \rvv                        & =A_{21} n_2+B_{21} n_2 \rvv &  & \\
+	\text{(or)}                            &                             &  & \\
+	\rvv\left[B_{12} n_1-B_{21} n_2\right] & =A_{21} n_2                 &  &
+\end{flalign*}
+
+$$
+	\begin{aligned}
+		\rvv=\cfrac{A_{21} n_2}{B_{12} n_1-B_{21} n_2} & =\cfrac{A_{21} n_2}{n_2 B_{21}\left[\cfrac{B_{12} n_1}{B_{21} n_2}-1\right]} \\
+		                                               & =\cfrac{A_{21} / B_{21}}{\cfrac{B_{12} n_1}{B_{21} n_2} - 1}
+	\end{aligned}
+$$
+
+Substituting Equation (6.1) in (6.8) for $n_1 / n_2$, we have:
+$$
+	\rvv=\cfrac{A_{21} / B_{21}}{\dfrac{B_{12}}{B_{21}} \exp \left(\dfrac{h \nu}{K_{\mathrm{B}} T}\right)-1}
+$$
+
+In thermal equilibrium state, Equations (6.2) and (6.9) are equal.
+so,
+$$
+	\cfrac{8 \pi h \nu^3}{c^3\left[\exp \left(\cfrac{h \nu}{K_{\mathrm{B}} T}\right)-1\right]}=\cfrac{A_{21} / B_{21}}{\cfrac{B_{12}}{B_{21}} \exp \left(\cfrac{h \nu}{K_{\mathrm{B}} T}\right)-1}
+$$
+
+Under stimulated emission, the probability of upward transitions and probability of downward transitions are equal, so:
+$$
+	B_{12}=B_{21}=B \text { and } A_{21}=A \text { (say). }
+$$
+
+Then, Equation (6.10) becomes:
+$$
+	\frac{A_{21}}{B_{21}}=\frac{A}{B}=\frac{8 \pi h \nu^3}{c^3}
+$$
+
+The proportionality constants $A_{21}, B_{12}$ and $B_{21}$ are called Einstein's $A$ and $B$ coefficients. From Equations (6.5) and (6.6), the ratio of spontaneous emission rate to stimulated emission rate is:
+$$
+	\frac{A_{21} n_2}{B_{21} n_2 \rvv}=\frac{A_{21}}{B_{21} \rvv}
+$$
+
+Substituting Equations (6.2) and (6.11) in (6.12) gives:
+$$
+	=\left. \frac{8 \pi h \nu^3}{c^3} \middle/ \frac{8 \pi h \nu^3}{c^3\left[\exp \left(\frac{h \nu}{K_{\mathrm{B}} T}\right)-1\right]}\right. =\exp \left(\cfrac{h \nu}{K_{\mathrm{B}} T}\right)-1
+$$
+
+% This ratio works out to be $10^{10}$, thus at optical frequencies, the emission is predominantly spontaneous. So, the conventional light sources emit incoherent radiation.
+% 6.5 Population inversion
+
+% Usually in a system the number of atoms $\left(N_1\right)$ present in the ground state $\left(E_1\right)$ is larger than the number of atoms $\left(N_2\right)$ present in the higher energy state. The process of making $N_2>N_1$ is called population inversion. Population inversion can be explained with three energy levels $E_1, E_2$ and $E_3$ of a system. Let $E_1, E_2$ and $E_3$ be ground state, metastable state and excited states of energies of the system respectively such that $E_1<E_2<E_3$. In a system, the population of atoms $(N)$ in an energy level $E$, at absolute temperature $T$ has been expressed in terms of the population $\left(N_1\right)$ in the ground state using Boltzmann's distribution law
+% $$
+% 	N=N_1 \exp \left(-E / K_R T\right) \quad \text { where } K_B=\text { Boltzmann's constant }
+% $$
+
+% Graphically this has been shown in Fig. 6.2(b). As shown in Fig. 6.2(a), let the atoms in the system be excited from $E_1$ state to $E_3$ state by supplying energy equal to $E_3-E_1(=h \nu)$ from an external source. The atoms in $E_3$ state are unstable, they make downward transition in a time approximately $10^{-8}$ seconds to $E_2$ state. In $E_2$ state, the atoms stay over a very long duration of the order of milliseconds. So, the population of $E_2$ state increases steadily. As atoms in $E_1$ state are continuously excited to $E_3$ so, the population in $E_1$ energy level goes on decreasing. A stage will reach at which the population in $E_2$ state exceeds as that present in $E_1$ state (i.e., $N_2>N_1$ ). This situation is known as population inversion. Graphically the population inversion has been shown in Fig. 6.2(c).
+% Conditions for population inversion are:
+% (a) The system should possess at least a pair of energy levels $\left(E_2>E_1\right)$, separated by an energy equal to the energy of a photon ( $b v$ ).
+% (b) There should be a continuous supply of energy to the system such that the atoms must be raised continuously to the excited state.
+
+% \begin{framed}
+% 	\begin{flalign*}
+% 		\frac{A_{21}}{B_{21}} & =\frac{8 \pi h \nu^3}{c^3}           &  & \\
+% 		                      & =\frac{8 \pi h c^3 / \lambda^3}{c^3} &  & \\
+% 		                      & =\frac{8 \pi h}{\lambda^3}           &  & \\
+% 		\frac{R_{21}}{R_{21}} & =e^{h\nu/(kT)}-1                     &  &
+% 	\end{flalign*}
+% \end{framed}
+
+\ussubsection{\small{Note:}}
+\begin{itemize}
+	\item Spontaneous emission produce incoherent light
+	\item Stimulated emission produce coherent light
+\end{itemize}

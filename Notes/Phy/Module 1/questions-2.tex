@@ -1,0 +1,35 @@
+\qa{1}{For semiconductor, band gap is 0.9eV, what is wavelength of light emitted from it?}
+{
+	\begin{flalign*}
+		h\nu               & = 0.9 \uunit{eV} = 1.442 \times 10^{-19}\uunit{~J}                    &  & \\
+		\therefore \nu     & = \frac{1.442 \times 10^{-19}}{h}                                     &  & \\
+		                   & = \frac{1.442 \times 10^{-19}}{\h} = 2.176 \times 10^{14} \uunit{~Hz} &  & \\
+		\therefore \lambda & = c / \nu         = 1.38\uunit{~\mu m}                                &  &
+	\end{flalign*}
+}
+
+\qa{2}{For a He-Ne laser with wavelength 632.8 nm and output power 3.14 mW how many photons are emitted in each minute in operation?}
+{
+	\begin{flalign*}
+		\textrm{Energy of each photon } = h\nu & = \frac{hc}{\lambda}                       &  & \\
+		                                       & = \frac{\h \times \lc}{632.8\time 10^{-9}} &  & \\
+		                                       & = 3.14 \times 10^{-19} \uunit{~J}          &  &
+	\end{flalign*}
+	\begin{flalign*}
+		\therefore \textrm{ Energy emitted in 1 minute } & = 3.14 \uunit{~mW} \times 60 = 0.1884\uunit{J}      &  & \\
+		\therefore \textrm{ Number of photons emitted }  & =\frac{0.1884}{3.14 \times 10^{-19}}=6\times10^{17} &  &
+	\end{flalign*}
+}
+
+\qa{3}{Calculate ratio of population of two states of ruby laser in which transition from one state to another is responsible for emission of photon of wavelength 6928 $\amstr$ (Assuming that the transition temperature is 18$^{\circ}$C)}{
+
+	Transition temperature (T) = 18$^{\circ}$C = 291K
+	\medskip
+
+	frequency of light emitted $\nu$ = c/$\lambda$ = $\cfrac{\lc}{6928\times 10^{-10}} = 4.3302 \times 10^{14} \uunit{Hz}$
+	\begin{flalign*}
+		\frac{N_2}{N_1} & = e \wedge (-h\nu / (kT))                                        &  & \\
+		                & = e \wedge (-\h \times 4.3302 \times 10^{14} / (\kB \times 291)) &  & \\
+		                & = e^{-71.45} = 9.32 \times 10 ^ {-32}                            &  &
+	\end{flalign*}
+}

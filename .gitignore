@@ -1,4 +1,5 @@
 **/*.aux
+**/*.auxlock
 **/*.fls
 **/*.log
 **/*.out

@@ -6,632 +6,66 @@
 \begin{document}
 \uheading{1}{Lasers \& Fibre optics}
 \usection{Laser}
-LASER stands for Light Amplification by Stimulated Emission of Radiation. Differing from conventional sources, lasers produce highly
-directional, monochromatic, coherent and stimulated radiation. Lasing been extended from microwave(Maser) to $\gamma$-rays (Graser)
-
-\usubsection {Characteristics}
-
-\begin{enumerate}
-	\item \textbf{Monuchromaticity}: The line width of laser beams are extremely narrow. (1 in $10^{15}$, in conventional light source, it is 1 in $10^6$). Degree of non-monochromaticly: $\xi=\Delta\lambda/\lambda$ = $\Delta\nu/\nu$($\Delta\lambda or \Delta\nu$  variation in wavelength or frequency of light)
-	\item \textbf{Directionality}: Laser can travel very long distances without divergence.
-	      \eqnleft{\text{Divergence: } \Delta \theta=\frac{r_2-r_1}{D_2-D_1}\text{ or }\frac{D^2}{\lambda}\text{ (Reliegh's range)}}
-	      For laser: 0.01 milliradian\\
-	      for search light 0.5 radian
-	      $>\Rightarrow$ divergence
-	\item \textbf{Coherence}\\
-	      \textbf{Spatial coherence}: If a wave maintains a constant phase difference or in phase at two different points on
-	      the wave over a time $t$, then the wave is said to have spatial coherence.
-
-	      \textbf{Temporal coherence}: If there is no change in phase over a time $t$ at a point on the wave, then it is said to be coherent temporally
-	      during that time. (these reference points are taken on electric field)
-	\item \textbf{Brightness/intensity}\\
-	      Laser produce highly intense beams, because more light energy is concentrated in a small region. Also laser light is coherent, so at a time many photons are in phase. They superimpose to produce a wave of larger amplitude. Hence resultant intensity ($\propto$amplitude$^2$) is very high.
-\end{enumerate}
-
-\noparindent
-\begin{framed}
-	\indentbox{0.75cm}{
-		\term{Coherence length ($L_c$)}:Propagation distance over which a coherent wave maintains a specified degree of coherence or phase difference
-
-		for He-Ne: 600km
-		\eqnleft{\text{Non-chromaticity } \propto \frac{1}{L_c}}
-
-
-
-		\term{Coherence time($\tau_c$)}: time over which a propagating wave remains coherent or the maximum time interval for which the wave have definite phase relation. \\
-		For He-Ne: $\tau_c=2 \times 10^{-3} \uunit{s}$\\
-		Sodium lamp: $10^{-10} \uunit{s}$
-	}
-\end{framed}
+\input{laser.tex}
 
 \usubsection{Spontaneous \& stimulated emission}
-
-\bigskip
-
-\input{../images/sp-st-transition}
-
-\ussubsection{Spontaneous emission}
-Atom initially at excited state makes transition voluntarily on its own, without aid of any external agency, to ground state, and emits photon of energy $$h \nu_{12}=E_2-E_1$$
-Different atoms of medium emits light at different times and different directions. Hence emitted photons are incoherent. The rate of emission is independent of incident energy (as no energy is supplied to the system.)
-
-\ussubsection{Stimulated emission}
-Here photon having energy $h\nu_{12}(=E_2-E_1)$ impinges on (or passes in the vicinity of) an atom present in its excited state and atom is stimulated to make transition to ground state and gives off a photon of energy $h \nu_{12}$. Emitted photon in is in phase with the incident photon. These two travel in same direction and posses same frequency. They're coherent.
-
-\note{
-	$\star$ At thermal equilibrium, all energy transitions are equally probable
-}
-
-\begin{longtblr}{
-		colspec = {XX},
-		hlines,
-		vlines,
-		rowsep=6pt,
-		colsep=5pt
-	}
-	\SetCell{c} \textbf{Spontaneous emission}                          & \SetCell{c} \textbf{Stimulated emission}                                                                          \\
-	Polychromatic radiation                                            & Monochromatic radiation                                                                                           \\
-	Low intensity                                                      & High intensity                                                                                                    \\
-	Low Directionality (so more angular spread during Propagation)     & High Directionality (so less angular spread during Propagation)                                                   \\
-	Spacially and Temporally incoherent radiation                      & Spacially and Temporally coherent radiation                                                                       \\
-	Takes place when atom transition from higher to lower energy level & Takes place when photon of suitable frequency Stimulates an excited atom to make transition to lower energy level \\
-\end{longtblr}
+\input{spontaneous-stimulated-emission.tex}
 
 \usubsection{Einstein's coefficients}
-\newcommand{\rvv}{\rho_{v}}
-For a system in steady state containing atoms and radiation, ratio of atoms in ground state($E_1$) to atoms in excited state($E_2$) is:
-$$
-	\frac{n_2}{n_1}=\exp\left(-\frac{E_2-E_1}{k_B T}\right) = \exp\left(-\frac{h \nu}{k_B T}\right)
-$$
-\begin{itemize}
-	\item When atom in ground state gets excited to higher state, rate or absorption of radiation is : $B_{12} n_1 \rvv$ ($\rvv=$ energy density of radiation incident on ground state)
-	\item Rate of spontaneous emission: $R_{21}=n_2 A_{21}$
-	\item Rate of absorption : $R_{ab}=n_1 \rvv B_{12}$
-	\item Rate of stimulated emission: $R_{12}=n_2 \rvv B_{21}$
-\end{itemize}
-
-Where
-
-\begin{longtblr}{
-	colspec = {Q[h, .5cm]Q[h,.3cm]Q[h,.8\linewidth]},
-	}
-	$n_1$            & = & number of availoble atoms per unit volume                                                                                                      \\
-	$n_2$            & = & number of atoms per unit volume                                                                                                                \\
-	$\nu$            & = & frequency of radiation                                                                                                                         \\
-	$T$              & = & absolute temperature of the atoms                                                                                                              \\
-	$k_{\mathrm{B}}$ & = & Boltzmann constant                                                                                                                             \\
-	$A_{21}$         & = & probability that atom will spontaneously jump to $E_1$ (ground state) per unit time (spontaneous emission proportionality constant)            \\
-	$B_{12}$         & = & probability of absorpion per unit time (absorption proportionality constant)                                                                   \\
-	$B_{21}$         & = & probability that atom will transition from $E_2$ to $E_1$ via stimulated emission per unit time (stimulated emission proportionality constant)
-\end{longtblr}
-
-\bigskip
-
-\term{Finding $\rvv$}
-\bigskip
-
-Inside the container, radiation is present so, the number of photons per unit volume having frequencies around $\nu$ in unit range (i.e., radiation density) ,represented as $\rvv$ is given by Planck's black body radiation law as:
-$$
-	\rvv=\frac{8 \pi h \nu^3}{c^3\left[\exp \left(\dfrac{h \nu}{k_{\mathrm{B}} T}\right)-1\right]}
-$$
-
-In steady state:
-\begin{flalign*}
-	R_{ab}                                 & = R_{12} + R_{21}           &  & \\
-	B_{12} n_1 \rvv                        & =A_{21} n_2+B_{21} n_2 \rvv &  & \\
-	\text{(or)}                            &                             &  & \\
-	\rvv\left[B_{12} n_1-B_{21} n_2\right] & =A_{21} n_2                 &  &
-\end{flalign*}
-
-$$
-	\begin{aligned}
-		\rvv=\cfrac{A_{21} n_2}{B_{12} n_1-B_{21} n_2} & =\cfrac{A_{21} n_2}{n_2 B_{21}\left[\cfrac{B_{12} n_1}{B_{21} n_2}-1\right]} \\
-		                                               & =\cfrac{A_{21} / B_{21}}{\cfrac{B_{12} n_1}{B_{21} n_2} - 1}
-	\end{aligned}
-$$
-
-Substituting Equation (6.1) in (6.8) for $n_1 / n_2$, we have:
-$$
-	\rvv=\cfrac{A_{21} / B_{21}}{\dfrac{B_{12}}{B_{21}} \exp \left(\dfrac{h \nu}{K_{\mathrm{B}} T}\right)-1}
-$$
-
-In thermal equilibrium state, Equations (6.2) and (6.9) are equal.
-so,
-$$
-	\cfrac{8 \pi h \nu^3}{c^3\left[\exp \left(\cfrac{h \nu}{K_{\mathrm{B}} T}\right)-1\right]}=\cfrac{A_{21} / B_{21}}{\cfrac{B_{12}}{B_{21}} \exp \left(\cfrac{h \nu}{K_{\mathrm{B}} T}\right)-1}
-$$
-
-Under stimulated emission, the probability of upward transitions and probability of downward transitions are equal, so:
-$$
-	B_{12}=B_{21}=B \text { and } A_{21}=A \text { (say). }
-$$
-
-Then, Equation (6.10) becomes:
-$$
-	\frac{A_{21}}{B_{21}}=\frac{A}{B}=\frac{8 \pi h \nu^3}{c^3}
-$$
-
-The proportionality constants $A_{21}, B_{12}$ and $B_{21}$ are called Einstein's $A$ and $B$ coefficients. From Equations (6.5) and (6.6), the ratio of spontaneous emission rate to stimulated emission rate is:
-$$
-	\frac{A_{21} n_2}{B_{21} n_2 \rvv}=\frac{A_{21}}{B_{21} \rvv}
-$$
-
-Substituting Equations (6.2) and (6.11) in (6.12) gives:
-$$
-	=\left. \frac{8 \pi h \nu^3}{c^3} \middle/ \frac{8 \pi h \nu^3}{c^3\left[\exp \left(\frac{h \nu}{K_{\mathrm{B}} T}\right)-1\right]}\right. =\exp \left(\cfrac{h \nu}{K_{\mathrm{B}} T}\right)-1
-$$
-
-This ratio works out to be $10^{10}$, thus at optical frequencies, the emission is predominantly spontaneous. So, the conventional light sources emit incoherent radiation.
-6.5 Population inversion
-
-Usually in a system the number of atoms $\left(N_1\right)$ present in the ground state $\left(E_1\right)$ is larger than the number of atoms $\left(N_2\right)$ present in the higher energy state. The process of making $N_2>N_1$ is called population inversion. Population inversion can be explained with three energy levels $E_1, E_2$ and $E_3$ of a system. Let $E_1, E_2$ and $E_3$ be ground state, metastable state and excited states of energies of the system respectively such that $E_1<E_2<E_3$. In a system, the population of atoms $(N)$ in an energy level $E$, at absolute temperature $T$ has been expressed in terms of the population $\left(N_1\right)$ in the ground state using Boltzmann's distribution law
-$$
-	N=N_1 \exp \left(-E / K_R T\right) \quad \text { where } K_B=\text { Boltzmann's constant }
-$$
-
-Graphically this has been shown in Fig. 6.2(b). As shown in Fig. 6.2(a), let the atoms in the system be excited from $E_1$ state to $E_3$ state by supplying energy equal to $E_3-E_1(=h \nu)$ from an external source. The atoms in $E_3$ state are unstable, they make downward transition in a time approximately $10^{-8}$ seconds to $E_2$ state. In $E_2$ state, the atoms stay over a very long duration of the order of milliseconds. So, the population of $E_2$ state increases steadily. As atoms in $E_1$ state are continuously excited to $E_3$ so, the population in $E_1$ energy level goes on decreasing. A stage will reach at which the population in $E_2$ state exceeds as that present in $E_1$ state (i.e., $N_2>N_1$ ). This situation is known as population inversion. Graphically the population inversion has been shown in Fig. 6.2(c).
-Conditions for population inversion are:
-(a) The system should possess at least a pair of energy levels $\left(E_2>E_1\right)$, separated by an energy equal to the energy of a photon ( $b v$ ).
-(b) There should be a continuous supply of energy to the system such that the atoms must be raised continuously to the excited state.
-
-\begin{framed}
-	\begin{flalign*}
-		\frac{A_{21}}{B_{21}} & =\frac{8 \pi h \nu^3}{c^3}           &  & \\
-		                      & =\frac{8 \pi h c^3 / \lambda^3}{c^3} &  & \\
-		                      & =\frac{8 \pi h}{\lambda^3}           &  & \\
-		\frac{R_{21}}{R_{21}} & =e^{h\nu/(kT)}-1                     &  &
-	\end{flalign*}
-\end{framed}
-
-\ussubsection{\small{Note:}}
-\begin{itemize}
-	\item Spontaneous emission produce incoherent light
-	\item Stimulated emission produce coherent light
-\end{itemize}
+\input{einstein-coefficients.tex}
 
 \usubsection{Population Inversion}
-\term{Population inversion}: a state of system in which more members of system are in high energy level than in lower level.
-\begin{itemize}
-	\item When photon of Energy $\Delta E$ (equal to difference in energy level) enters atom\\
-	      probability of absorption = probability of spontaneous emission
-	\item At Room temperature: $\Delta E = E_2-E_1 \approxeq 0.025 \uunit{eV}$ (Corresponding to IR radiation of $6 \times 10^{12} \uunit{Hz}$)
-\end{itemize}
-
-\input{../images/population-inversion.tex}
-
-At thermal equilibrium: $N\left(E_2\right) / N\left(E_1\right)=e ^ {-\left(E_2-E_1\right) / (kT)}$
-\medskip
-
-\term{pumping}: Supplying energy to excite atoms to upper levels.
+\input{population-inversion.tex}
 
 \usubsection{Metastable state}
-
 The atoms excited will undergo spontaneous emission and attain popalation inversion. These atoms reach a intermediate state between the transitioning states which has more life time than higher energy state. This state is known as \textbf{metastable state}. From here, atoms undergo stimulated emission and lasing action takes place. (In two level systems, lasing action doesn't takes place because of lack of metastable state)
 
-
 \usubsection{Representing transitions}
-\begin{itemize}
-	\item Absorption: $A+h\nu \rightarrow A^{*}$
-	\item Spontaneous Emission: $A^{*} \rightarrow A+h\nu$
-	\item Stimulated Emission : $A^{*}+h\nu \rightarrow A+2 h\nu$
-\end{itemize}
-$\star$ Emitted photon is identical to incident one. (have same frea, phase, polarisation)
-
-$\star$ Since excited states are highly unstable (atom will returns to ground state in less than 1ns) an intermedioute energy level (which has life time of $10^{-3}$ to $10^{-4}$s) is required to create stimulated emission. This is achieved by using certain dopants.
-
+\input{representing-transitions.tex}
 
 \usubsection{Purity of spectral line}
+\input{purity-of-spectral-lines.tex}
 
-Finite purity or sharpress $=\frac{\lambda}{\Delta \lambda}$
+\vspace{1.5cm}
 
-$\Delta \nu / \Delta\lambda=$ Spread of frequency.
-
-Fading of amplitude is explained by setting $\Delta\nu$ in time $\tau_c$ by unity:
-$$
-	\begin{aligned}
-		 & \tau_c \Delta \nu=1 \Rightarrow \Delta \lambda=\frac{\lambda^2}{\tau_c c} \\
-		 & L=c \tau_c=\frac{\lambda^2}{\Delta \lambda}= \lambda Q
-	\end{aligned}
-$$
-
-For Sodium line: $\Delta \lambda = 0.12\amstr$
-For He-Ne laser $\Delta \lambda = 0.0005 0.12\amstr$
-
-\bigskip
-
-\qa{1}{For a source of monochromatic radiation with wavelength 5000$\amstr$, and frequency $6 \times 10^{14} \uunit{Hz}$, what will be the sharpress for conventional light with $\Delta \nu=10^{10} \uunit{Hz}$ and les with $\Delta \nu=500\uunit{Hz}$ ?}
-{
-
-For conventional radiation:
-\lefteqn{\frac{\Delta \nu}{\nu}=\frac{10^{10}}{6 \times 10^{14}}=1.67 \times 10^{-5}}
-
-For laser:
-\lefteqn{\frac{\Delta \nu}{\nu}=\frac{500}{6 \times 10^{14}}=6 \times 10^{-12}}
-}
-
-\qa{2}{For a He-Ne laser, Output diameters are 4 nm and 5 nm at distances 1m and 2m. Calculate beam divergence}
-{
-
-	Beam divergence
-	\lefteqn{=\frac{R_2-R_1}{D_2-D_1}=\frac{.5\uunit{mm}}{1 \uunit{m}}=\frac{1}{2} 10^{-3} \uunit{rad}}
-}
-
-\qa{3}{For ordinary source of light, $\tau_c=10^{-10} \uunit{s}$. Obtain its sharpness if wavelength is 5400$\amstr$}
-{
-\begin{flalign*}
-	Q                               & =\frac{\Delta \nu}{\nu}                                                  &  & \\
-	\nu                             & =\frac{c}{\lambda}=5.56 \times 10^{14} \uunit{Hz}                         &  & \\
-	\tau_c                          & =\frac{1}{\Delta\nu} \Rightarrow \Delta \nu=1 / \tau_c=10^{10} \uunit{Hz} &  & \\
-	\therefore \mathrm{ Sharpness } & =\frac{10^{10}}{5.56 \times 10^{14}}=1.8 \times 10^{-5}
-\end{flalign*}
-}
-
-\qa{4}{A monochromatic source emits light of wavelength 5461$\amstr$. Its bandwidth $\Delta \nu=10^9$Hz. Find $\tau_c, L_c$ and frequency stability (sharpness)}
-{
-	\begin{flalign*}
-		 & \tau_c=\frac{1}{\Delta v}=10^{-9} s                                                               &  & \\
-		 & L_c=\tau_c c=30 \uunit{cm}                                                                         &  & \\
-		 & \nu=\frac{c}{\lambda}=5.49 \times 10^{44} \uunit{Hz}                                               &  & \\
-		 & \mathrm{ Sharpress }=\frac{\Delta \tau}{\nu}=\frac{10^9}{5.49 \times 10^{14}}=1.82 \times 10^{-6} &  &
-	\end{flalign*}
-}
-
-\qa{5}{At what temperature is the ratio of spontaneous emission to stimulated emission equal to 1 for a source emitting light of wavelength 5000 $\amstr$ ?}
-{
-	\begin{flalign*}
-		\frac{\text{Spontaneous emission}}{\text{Stimulated emission}} & = e^{h\nu/(kT)} - 1 = 1                        &  & \\
-		                                                               & \Rightarrow T = \frac{h\nu}{\ln(2)k} = 41543 K
-	\end{flalign*}
-}
-\newcommand{\caret}{\wedge}
-\qa{6}{Find relative popalation of 2 states in a ruby laser that produces a light beam of wave 6943 $\amstr$ at 3000 K}{
-	\begin{flalign*}
-		\text{relative population} & = \frac{N_2}{N_1} e^{\frac{E_1-E_2}{kT}}                                                &  & \\
-		                           & = e \caret \left(\cfrac{-2.86 \times 10^{-19}}{1.83 \times 10^{-25} \times 3000}\right) &  & \\ \medskip
-		                           & = 1.0002\times 10 ^ {-3}                                                                &  &
-	\end{flalign*}
-}
+\input{questions-1.tex}
 
 \usubsection{Fabrication of laser}
-\bigskip
-
-\input{../images/laser-fabrication.tex}
-\bigskip
-
-\term{Active medium}: material in which popalation inversion takes place. (eg. ruby, Ga-In, He-Ne)
-
-\term{Active center}: Atoms which can produce more stimulated emission than spontaneous emission: (e.g: Cr in ruby, Ne in He-Ne medium).
-
-\term{Pumping mechanism}: Adding energy to system. This can be done by:
-\begin{itemize}
-	\item Optical pumping (used in ruby laser, xe-flash lamp)
-	\item Direct electron excitation.
-	\item Inelastic atom-atom collisions: electric discharge is employed to cause collision and excitation of atoms. (used in He-Ne)
-	\item Chemical reactions.
-
-\end{itemize}
-
-\ussubsection{Optical resonance \& Resonance cavity}
-
-Two mirrors are used to reflect light back into active medium one will be 100 \% reflective.(Usually made of dielectic material) and other one is partially reflective.
-
-Two arrangements of mirrors are used to reflect light:
-\begin{itemize}
-	\item \textbf{plane-parallel}: needs to be strictly parallel (with deviation less than 1" (1/3600$^{\deg}$)) and must have smooth surface(irregularities <1/100$\lambda$).
-	\item \textbf{confocal}: need to be parallel (with deviation less than 0.025$^{\deg}$)
-\end{itemize}
-
-
-\ussubsection{Types of Laser}
-
-\begin{itemize}
-	\item \textbf{Pulsed mode}: Train of pulses are produced. It can have produce power in the order of 1MW. (e.g: Ruby laser)
-	\item \textbf{Continuous mode}: Light is produced continuously. It has less powerful output (less than 1W) (eg: He-Ne laser)
-\end{itemize}
-
-\ussubsection{Uses of Laser}
-
-\begin{itemize}
-	\item Used in holograms
-	\item To study the internal structure of molecules.
-	\item To detect earthquakes
-	\item For cutting gilling and welding
-	\item Used to perform surgery
-	\item Used to treat cancer, kidncy stone, tumers etc.
-	\item Used to detect and destroy enemy missiles and also to control rockets and satellites.
-\end{itemize}
+\input{fabrication-of-lasers.tex}
 
 \usection{Different Lasers}
 
 \usubsection{Helium - Neon Laser}
-\begin{itemize}
-	\item It is a 4 level Gaseous system.
-	\item Created by Ali Jawan, W. Bennet, D. Harrul in 1962
-	\item It produces continuous output.
-	\item Pumping mechanism: 10kV electron dischange
-	\item Active medium: mixture of He and Ne in 10:1 ratio. (Active center is Ne)
-	\item wavelength of light emitted: 632.8 nm (red color)
-\end{itemize}
-\fullwidthimg{he-ne}
-
-\ussubsection{Working}
-Due to electric dischange in gas, energetic electron interacts with ground state helium atoms. The impact of $e^{-}$ results in exchange of some of its energy to the atom. As a result. Helium atoms gets excited to higher energy levels: $F_{1} \& F_{2}$. These two energy levals are close to $E_{4} \& E_{6}$ levels of Neon atoms and collision of second kind takes place between them, hence we goes to excited state. $E_{5}$ of $E_{3}$. $E_2$ level of we forms metastable state.
-
-3 types of transition are possible :
-
-\begin{itemize}
-	\item $E_{4} \rightarrow E_{3}$, emitting infrared light of $\lambda=1.15 \mu \mathrm{m}$
-	\item $E_6$ $\rightarrow E_5$, emitting $F R$ of $\lambda = 3.39 \mu \mathrm{m}$
-	\item $E_6 \rightarrow E_3$, emitting red light of $\lambda = 632.8$ nm
-\end{itemize}
-
-IR light emitted is absorped by the mirrors. Neon atoms in terminal level $E_{3}$ decay very rapialy to $E_{2}$ metastable state, much faster than spontaneously decaying from $E_{6} \rightarrow E_{3}$ level. Thus lower level $E_3$ is kept empty and population inversion is achieved between $E_{6} \& E_{3}$. Intensity of light produced is inversely proportional to diameter of quartz tube.
-\bigskip
-
-\resizebox{1\textwidth}{!}{
-	\input{../images/he-ne.tex}
-}
+\input{he-ne-laser.tex}
 
 \usubsection{Ruby Laser}
 
-\begin{itemize}
-	\item first laser fabricated
-	\item Created in 1960 by Maiman
-	\item It is a 3 level system
-	\item Produced light in pulsating maner (continuous mode not possible due to heating of active medium)
-	\item Active medium: $\mathrm{Al}_{2} \mathrm{O}_{3} \cdot \mathrm{Cr}^{3+}$ (0.05-0.5 \% of Al atoms are replaced with Cr atoms)
-	\item Pumping source: Xenon lamp. (the lamp has a helical structure that wounds the ruby rod).
-	\item Eavelength of light emitted: 6943 $\amstr$
-\end{itemize}
+\input{ruby-laser.tex}
 
-\begin{center}
-	\includegraphics[max width=\textwidth]{ruby-laser}
-\end{center}
+\vspace{1.5cm}
 
-$\star$ Population inversion is achieved between E$_m$ \& E,
-
-\input{../images/pulsed-graph.tex}
-
-\ussubsection{Working}
-Cr$^{3+}$ ions absorb pumping light and go to excited states E$_2$ \& E$_3$. From these a rapid non-radiation transition to the metastable level E$_m$ takes place. Decay from E$_m$ is very slow that with sufficient excitation, populations inversion between E$_m$ \& E$_1$ can occur. Those photons are allowed to pass many times in the active medium with the help of mirrors. When threshold conditions are. satisfied, an intense pulse of light of wavelength 6934$\amstr$ is emitted. Continuous operation is not possible due to excessive heating of active medium.
-
-\multiskip{5}
-
-\qa{1}{For semiconductor, band gap is 0.9eV, what is wavelength of light emitted from it?}
-{
-	\begin{flalign*}
-		h\nu               & = 0.9 \uunit{eV} = 1.442 \times 10^{-19}\uunit{~J}                     &  & \\
-		\therefore \nu     & = \frac{1.442 \times 10^{-19}}{h}                                    &  & \\
-		                   & = \frac{1.442 \times 10^{-19}}{\h} = 2.176 \times 10^{14} \uunit{~Hz} &  & \\
-		\therefore \lambda & = c / \nu         = 1.38\uunit{~\mu m}                                &  & \\
-	\end{flalign*}
-}
-\qa{2}{For a He-Ne laser with wavelength 632.8 nm and output power 3.14 mW how many photons are emitted in each minute in operation?}
-{
-	\begin{flalign*}
-		\textrm{Energy of each photon } = h\nu & = \frac{hc}{\lambda}                       &  & \\
-		                                       & = \frac{\h \times \lc}{632.8\time 10^{-9}} &  & \\
-		                                       & = 3.14 \times 10^{-19} \uunit{~J}           &  &
-	\end{flalign*}
-	\begin{flalign*}
-		\therefore \textrm{ Energy emitted in 1 minute } & = 3.14 \uunit{~mW} \times 60 = 0.1884\uunit{J}        &  & \\
-		\therefore \textrm{ Number of photons emitted }  & =\frac{0.1884}{3.14 \times 10^{-19}}=6\times10^{17} &  & \\
-	\end{flalign*}
-}
-
-\qa{3}{Calculate ratio of population of two states of ruby laser in which transition from one state to another is responsible for emission of photon of wavelength 6928 $\amstr$ (Assuming that the transition temperature is 18$^{\circ}$C)}{
-
-	Transition temperature (T) = 18$^{\circ}$C = 291K
-	\medskip
-
-	frequency of light emitted $\nu$ = c/$\lambda$ = $\cfrac{\lc}{6928\times 10^{-10}} = 4.3302 \times 10^{14} \uunit{Hz}$
-	\begin{flalign*}
-		\frac{N_2}{N_1} & = e \caret (-h\nu / (kT))                                        &  & \\
-		                & = e \caret (-\h \times 4.3302 \times 10^{14} / (\kB \times 291)) &  & \\
-		                & = e^{-71.45} = 9.32 \times 10 ^ {-32}                            &  &
-	\end{flalign*}
-}
+\input{questions-2.tex}
 
 \usection{Fibre Optics}
 Fibre optics deals with transmission of information using light (which has minimal energy loss). Total internal reflection is the principle behind it.
 
 \usubsection{Total internal reflection}
-\textbf{Total internal reflection}: It is a phenomenon which happens when light traveling from denser to lighter medium will reflect back to the same media if the incident angle is greater than a particular angle(known as  critical angle of the media interface).
-
-\begin{minipage}[t][][b]{.57\textwidth}%
-	By snell's law:
-	$$
-		n_{1} \sin \left(\theta_{1}\right)=n_{2} \sin \left(\theta_{2}\right)
-	$$
-
-	At critical angle ($\theta_1 = \theta_c$), $\theta_{2}=90$
-	\vspace{-.5cm}
-	\indentbox{1cm}{
-		\begin{flalign*}
-			 & \therefore n_{1} \sin \left(\theta_{c}\right)=n_{2}   &  & \\
-			 & \theta_{c}=\sin ^{-1}\left(\frac{n_{2}}{n_{1}}\right) &  &
-		\end{flalign*}
-	}
-
-	\ussubsection{$\theta_c$ for various material interfaces: }
-	\begin{itemize}
-		\item Water - air =49$^{\circ}$
-		\item Diamond - air 24$^{\circ}$
-		\item Gluss - air 42$^{\circ}$
-	\end{itemize}
-\end{minipage}%
-\begin{minipage}[t][][b]{.4\textwidth}%
-
-	\input{../images/tir.tex}
-
-	\input{../images/fo-cable.tex}
-
-\end{minipage}
+\input{tir.tex}
 
 \usubsection{Structure of Fiber Optic Cable}
-
-\includegraphics[max width=\textwidth]{2024_06_16_30d750483617f1939202g-05(2).jpg}
-
-\begin{itemize}
-	\item Polyurethane: for mecharical crushing
-	\item Butfor jacket : to prevent moistume
-	\item Si-coarting : protect from dust \& soratches
-\end{itemize}
-
+\input{structure-of-foc.tex}
 
 \usubsection{Classification of Fibre Optic Cables}
-\begin{itemize}
-	\item Based on Index profile: step-index, graded index
-	\item Based on made : single mode, multi mode.
-\end{itemize}
+\input{classification-of-foc.tex}
 
-\ussubsection{Step Index Single Mode}
-
-\input{../images/sism.tex}
-
-\begin{itemize}
-	\item Allows only one path for light
-	\item Bandwidth distance product: $>3 \uunit{GHzkm}$
-	\item Splicing is difficut.
-\end{itemize}
-
-\ussubsection{Step Index Multi Mode}
-
-\input{../images/simm.tex}
-
-\begin{itemize}
-	\item Allows multiple path for light
-	\item Easier to splice
-	\item Bandwidth distance product (BwDP) $\sim 300 \uunit{MHz km}$
-\end{itemize}
-
-\ussubsection{Graded Index Multi Mode}
-
-\input{../images/gimm.tex}
-
-\begin{itemize}
-	\item Gradual decrease in refractive index.
-	\item BWDP $\approx 3 \uunit{GHz km}$
-\end{itemize}
-
-\ussubsection{Comparison between different Cables}
-
-\begin{longtblr}
-	{
-		colspec = {XX},
-		hlines,
-		vlines,
-		rowsep=6pt,
-		colsep=5pt
-	}
-
-	\SetCell{c} \textbf{Step Index}                                   & \SetCell{c} \textbf{Graded Index}                               \\
-	Refractive index changes sharply from core-cladding interface     & Refractive index changes gradually from core-cladding interface \\
-	Refractive index profile looks like steps                         & Refractive index profile looks like parabola                    \\
-	Attenuation is more for multimode and less for single mode        & Attenuation is usually less                                     \\
-	Numerical Aperture is more for multimode and less for single mode & Numerical Aperture is usually less                              \\
-\end{longtblr}
-
-\begin{longtblr}
-	{
-		colspec = {XX},
-		hlines,
-		vlines,
-		rowsep=6pt,
-		colsep=5pt
-	}
-
-	\SetCell{c} \textbf{Single Mode}              & \SetCell{c} \textbf{Multi Mode}                                  \\
-	Only one mode can propagate through fibre     & Allows a large number of modes                                   \\
-	Smaller core diameter                         & Larger core diameter                                             \\
-	Difference in refractive indices is very less & Difference in refractive indices is more compared to single mode \\
-	No multimodal dispersion                      & There is multimodal dispersion
-\end{longtblr}
-
-\multiskip{2}
+\vspace{1.5cm}
 
 \usubsection{Numerical Aperture (NA)}
-\begin{minipage}[t][][b]{.67\textwidth}%
-	Numerical Aperture is defined as sine of largest angle that a incident ray should have for it to undergo TIR in core
-	\bigskip
+\input{numerical-aperture.tex}
 
-	By snell's law:
-	$n_a\sin (\alpha)=n_1\sin (\alpha)$
-
-	For TIR, angle of incidence	in the medium must be $>\theta_c$.
-
-	$\alpha$ at $\theta_{c}$ is called acceptance angle. $\left(\alpha_{m}\right)$
-
-	\begin{flalign*}
-		n_a \sin \left(\alpha_{m}\right) & =n_1 \sin \left(90-\theta_{c}\right)                 &  & \\
-		                                 & =n_{1} \cos (\theta)                                 &  & \\
-		                                 & \equiv n_{1} \sqrt{1-\sin ^{2}(\theta_c)}            &  & \\
-		                                 & =n_{1} \sqrt{1-\left(\frac{n_{2}}{n_{1}}\right)^{2}} &  & \\
-		                                 & =\sqrt{n_{1}^{2}-n_{2}^{2}}                          &  &
-	\end{flalign*}
-
-	$\boxed{\therefore NA = n_{a} \cdot \sin \left(\alpha_{m}\right) =\sqrt{n_{1}^{2}-n_{2}^{2}}\ }$
-\end{minipage}
-\begin{minipage}[t][][b]{.3\textwidth}%
-	\begin{center}
-		\includegraphics[max width=\textwidth]{2024_06_16_30d750483617f1939202g-06(1)}
-	\end{center}
-
-\end{minipage}
 \usubsection{Propagation of light ray in Fibre Optic cable}
-\begin{minipage}[t][][b]{.67\textwidth}%
-	\ussubsection{Single mode \& Multi mode}
-	\begin{center}
-		\includegraphics[max width=\textwidth]{2024_06_16_30d750483617f1939202g-06(2)}
-	\end{center}
-\end{minipage}
+\input{propagation-delay-in-foc.tex}
 
-\ussubsection{Graded index}
-
-\includegraphics[max width=\floatfigwidth]{2024_06_16_30d750483617f1939202g-06}
-
-$\star$ Eventhough all waves have different velocities, they reach at same time, due to precise differences in distance which they travel.
-
-\qa{1}{An optical fibre has core refractive index of 1.55 \& cladding refractive index of 1.50. Calculate Numerical Aperture}{
-
-	\eqnleft{NA=\sqrt{n_1^2-n_2^2}=\sqrt{1.55^2-1.5^2}=0.391}
-}
-\qa{2}{Calculate acceptance angle of given fibre, if core refractive index = 1.563 cladding refractive index =1.498}{
-
-	Assuming refractive index of air ($n_a$) = 1.
-	\medskip
-
-	\begin{flalign*}
-		n_a \cdot \sin \left(\alpha_m\right)           & =\sqrt{1.563^2-1.498^2}                                      &  & \\
-		\therefore \text{acceptance angle}\ (\alpha_m) & =\sin ^{-1}\left(\sqrt{1.563^2-1.498^2}\right)=26.49^{\circ} &  & \\
-	\end{flalign*}
-}
-
-\qa{3}{An optical fibre Numerical Aperture = 0.20, refractive index of cladding = 1.59. Find acceptance angle for fibre in water (n=4/3)}{
-	Here $n_a = 4/3$
-
-	\begin{flalign*}
-		n_a \sin \left(\alpha_m\right) & =0.20                                                        &  & \\
-		\therefore \alpha_m            & =\sin ^{-1}\left(\frac{3}{4} \times 0.20\right)=8.63^{\circ} &  &
-	\end{flalign*}
-}
-
-\qa{4}{For a cable, Numerical Aperture = 0.39, and difference between refractive indices of core and cladding is 0.05. Find refractive index of core}
-{
-
-	\begin{flalign*}
-		NA=\sqrt{n_1^2-n_2^2} & =0.39                                                   &  & \\
-		n_1^2-n_2^2           & \equiv \left(n_1+n_2\right) \left(n_1-n_2\right)=0.1521 &  &
-	\end{flalign*}
-	\begin{flalign*}
-		\Rightarrow n_1+n_2 & = \frac{0.1521}{n_1-n_2} = 3.042 &  &
-	\end{flalign*}
-	\begin{flalign*}
-		\therefore n_1     =n_{\mathrm{core }} & =\frac{\left(n_1+n_2\right)+\left(n_1-n_2\right)}{2} &  & \\
-		                                       & =\frac{3.042+0.05}{2}=1.546                          &  &
-	\end{flalign*}
-}
-\qa{5}{For step index fibre, $n_{\mathrm {core }}=1.52, n_{\mathrm {cladding }}=1.41$. Find $\theta_c$}{
-\eqnleft{\theta_c=\sin ^{-1}\left(\frac{1.41}{1.52}\right)=68.1^{\circ}}
-}
+\input{questions-3.tex}
 
 \end{document}
