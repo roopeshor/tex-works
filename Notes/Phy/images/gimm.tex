@@ -28,6 +28,16 @@
 				\draw[scale=.5, domain=0:12, smooth, blue] (-2,-2) -- node {\smallmidarrow{.8pt}{0.01}} (0, 0) plot (\x, {.8*sin(\x * .9 r)});
 				\draw[scale=.5, domain=0:12, smooth, blue] (-2.5,-1.5) -- node {\smallmidarrow{.8pt}{0.2}} (0, 0) plot (\x, {.6*sin(\x * .9 r)});
 				\doubleCylinder{.7}{.3}{6}
+				\node[
+					draw,
+					rectangle,
+					fill=blue!20,
+					text width=5cm,
+					text justified,
+					minimum height=8mm,
+					xshift=3cm,
+					yshift=-2.8cm
+				] {Eventhough all waves have different velocities, they reach at same time, due to precise differences in distance which they travel.};
 			\end{scope}
 		\end{scope}
 	\end{tikzpicture}

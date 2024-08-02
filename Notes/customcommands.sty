@@ -24,6 +24,10 @@
 \usepackage{tikz}
 \usepackage{empheq}
 \usepackage{tcolorbox}
+\usepackage[european,s traightvoltages, americanresistor, americaninductors]{circuitikz}
+\usepackage{pgfplots}
+\usepackage{tikz-3dplot}
+
 \usetikzlibrary{
 	arrows.meta,
 	positioning,
@@ -40,6 +44,7 @@
 	shapes.misc,
 	snakes
 }
+\pgfplotsset{compat=1.18}
 \hypersetup{colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=cyan,}
 \urlstyle{same}
 
@@ -168,6 +173,13 @@
 	\end{tcolorbox}
 }
 
+
+%%%%% dev fx
+\newcommand{\dottedgrid}[4]{
+	\draw[thin, dotted] (#1, #2) grid (#3,#4);
+	\foreach \i in {#1,...,#3} \node at (\i,-2ex) {\i};
+	\foreach \i in {#2,...,#4} \node at (-2ex,\i) {\i};
+}
 
 \DefTblrTemplate{caption-tag}{default}{}
 \DefTblrTemplate{caption-sep}{default}{}

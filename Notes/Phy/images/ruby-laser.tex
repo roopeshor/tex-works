@@ -1,0 +1,47 @@
+\resizebox{\linewidth}{!}{
+	\begin{tikzpicture}[decoration=snake]
+		\coordinate (tube start) at (3.2,6.75);
+		\coordinate (tube end) at ($(tube start) + (9, 0)$);
+
+		% right side of coils
+		\draw[decorate, decoration={coildown, amplitude=1.1cm, aspect=0.5, segment length=1cm}, line width=3mm, white] (tube start) -- (tube end);
+		\draw[decorate, decoration={coildown, amplitude=1.25cm, aspect=0.57, segment length=1cm}, black] ($ (tube start) + (-.15, 0) $) -- (tube end);
+		\draw[decorate, decoration={coildown, amplitude=.95cm, aspect=0.43, segment length=1cm}, black] ($ (tube start) + (.15, 0) $) -- (tube end);
+		% extra bit that extends to bottom
+		\draw[fill=white]
+		($ (tube end) + (-.224, 0)$) .. controls ++(-.1, -.6) and ++(.2, .5) .. ++(-.5, -1.7) coordinate (tube right start)
+		-- ++(-.3, 0) coordinate (tube right end) .. controls ++(.25, .5) and ++(0, -.3) .. ($ (tube end) - (.533, -.02) $);
+
+		% rod
+		\draw[fill=pink!45, opacity=1, stroke=black] (1.7, 7.5) -- ++(10.7, 0) arc (90:-90:.5 and .75) -- ++(-10.7, 0) arc (270:90:.5 and .75);
+		\fill[opacity=.4, pink] (1.7, 6.75) ellipse (.5 and .75);
+		\fill[opacity=.7, pattern=north west lines] (12.4, 6.75) ellipse (.5 and .75);
+		\draw[opacity=.1] (1.7, 7.5) arc (90:-90:.5 and .75);
+		\draw[opacity=.8] (12.4, 7.5) arc (90:270:.5 and .75);
+
+		% left side of coils
+		\draw[decorate, decoration={coilup, amplitude=1.1cm, aspect=0.5, segment length=1cm}, line width=3mm, white] (tube start) -- (tube end);
+		\draw[decorate, decoration={coilup, amplitude=1.25cm, aspect=0.57, segment length=1cm}, black] ($ (tube start) + (-.15, 0) $) -- (tube end);
+		\draw[decorate, decoration={coilup, amplitude=.95cm, aspect=0.43, segment length=1cm}, black] ($ (tube start) + (.15, 0) $) -- (tube end);
+		% extra bit that extends to bottom
+		\draw[fill=white]
+		($ (tube start) + (.15, 0) $) .. controls ++(-.1, -.6) and ++(-.2, .2) .. ++(.2, -1.7) coordinate (tube left start)
+		-- ++(-.3, 0) coordinate (tube left end) .. controls ++(-.3, .5) and ++(-.04, -.3) .. ($ (tube start) - (.147, -.02) $);
+
+		% circuit
+		\filldraw (tube left start) rectangle ($(tube left end) - (0, .05)$);
+		\filldraw (tube right start) rectangle ($(tube right end) - (0, .05)$);
+		\draw (tube left end) ++(0.15, 0) -- ++(0, -.5) -| (4.5, 4.5) -- ++(0, -1.5) coordinate (a) to[C, l^=Capacitor] ++(5, 0) coordinate (b) -- ++(0, 1.5) -| ($(tube right end) + (.15, 0)$);
+		\draw (a) |- ++(1.25, -1.75) to[battery, l_=Power supply] ++(1, 0) to [R] ++(2, 0) -| (b);
+
+		% labels
+		\draw[<-] (1.75, 6.2) -- ++(-1, -1) node[align=center, anchor=east] {Fully\\ silvered\\ end};
+		\draw[<-] (2.7, 7.5) -- ++(-.5, 1) node[align=center, anchor=south] {Ruby rod};
+		\draw[<-] (8, 8) -- ++(.5, .7) node[align=center, anchor=south] {Xenon flash lamp};
+		\draw[<-] (12.2, 6.2) -- ++(.5, -1) node[align=center, anchor=north] {Partially\\ silvered\\ end};
+
+		\draw[red, decorate, ->] (12.6, 7) -- ++(1.25, 0);
+		\draw[red, decorate, ->] (12.6, 6.8) -- ++(1.25, 0) node [anchor=west, align=left] {Laser\\ beam};
+		\draw[red, decorate, ->] (12.6, 6.6) -- ++(1.25, 0);
+	\end{tikzpicture}%
+}
