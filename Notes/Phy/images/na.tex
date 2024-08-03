@@ -1,0 +1,48 @@
+\begin{tikzpicture}[every node/.style={sloped,allow upside down}]
+	\coordinate (S) at (2, 0);
+	\coordinate (S') at (2, 10);
+	\coordinate (O) at (5, 5);
+	\coordinate (L) at (0, 5);
+
+	% cable
+	\draw[fill=gray!30, fill opacity=.5] (5, 2) rectangle ++(8, 6);
+	\draw[fill=blue!50, fill opacity=.3] (5, 3.5) rectangle ++(8, 3);
+	
+	% cone base
+	\filldraw [green!10, fill opacity=.5]
+	(S')
+	.. controls ++(1.1, -2) and ++(1.1, 2) .. (S)
+	.. controls ++(-1.1, 2) and ++(-1.1, -2) ..
+	(S');
+
+	% axis
+	\draw[dashed, thick] (L) -- (13, 5);
+	
+	% cone LS
+	\filldraw [green!10, fill opacity=.7] (O) -- (S') .. controls ++(1.1, -2) and ++(1.1, 2) .. (S) -- cycle;
+	\draw [dashed] (O) -- (S');
+	\draw [green, dashed]
+	(S')
+	.. controls ++(1.1, -2) and ++(1.1, 2) .. (S)
+	.. controls ++(-1.1, 2) and ++(-1.1, -2) ..
+	(S');
+
+	% ray
+	\draw[line width=1pt, red]
+	(S) -- node{\midarrow{1pt}{.5}}
+	(O) -- node{\midarrow{1pt}{.5}}
+	++(3, 1.5) coordinate(A) -- node{\midarrow{1pt}{.7}} (13, 4);
+
+	% labels
+	\draw (A) -- ++(0, -1.5) coordinate(P);
+	\draw (P) rectangle ++(-.2, .2);
+	\pic[blue, draw=blue, thick, angle eccentricity=1.5,angle radius=.5cm, "$\alpha$"] {angle=L--O--S};
+	\pic[draw=black, thick, angle eccentricity=1.5,angle radius=.5cm, "$\theta_c$"] {angle=O--A--P};
+	\node at (12.5, 7.5) {$n_2$};
+	\node at (12.5, 6) {$n_1$};
+	\node at (12.5, 8.4) {$n_a$};
+	\node at (12, 3.8) {Core};
+	\node at (12, 2.2) {Cladding};
+	\draw[->] (1, 2) node[align=center, anchor=north east] {Acceptance\\ angle} -- ($(O) - (.9, .6)$);
+	\draw[->, green!50!black] (4.5, 9) node[anchor=west] {Acceptance cone} -- (3, 7.7);
+\end{tikzpicture}
