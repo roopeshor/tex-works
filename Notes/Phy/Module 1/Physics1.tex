@@ -1,44 +1,35 @@
 \documentclass[12pt, a4paper]{article}
-\input{../../customcommands}
-\input{../../constructs/higherConstructs.tex}
-\input{../../misc/coils.tex}
+\input{../../imports.tex}
+\input{../../tikz-shapes.tex}
 
 \begin{document}
-\uheading{1}{Lasers \& Fibre optics}
-\usection{Laser}
+\chapterheader{1}{Lasers \& Fibre optics}
+
 \input{laser.tex}
 
-\usubsection{Spontaneous \& stimulated emission}
 \input{spontaneous-stimulated-emission.tex}
 
-\usubsection{Einstein's coefficients}
 \input{einstein-coefficients.tex}
 
-\usubsection{Population Inversion}
 \input{population-inversion.tex}
 
-\usubsection{Metastable state}
+\subtopic{Metastable state}
 The atoms excited will undergo spontaneous emission and attain popalation inversion. These atoms reach a intermediate state between the transitioning states which has more life time than higher energy state. This state is known as \textbf{metastable state}. From here, atoms undergo stimulated emission and lasing action takes place. (In two level systems, lasing action doesn't takes place because of lack of metastable state)
 
-\usubsection{Representing transitions}
 \input{representing-transitions.tex}
 
-\usubsection{Purity of spectral line}
 \input{purity-of-spectral-lines.tex}
 
 \vspace{1.5cm}
 
 \input{questions-1.tex}
 
-\usubsection{Fabrication of laser}
 \input{fabrication-of-lasers.tex}
 
-\usection{Different Lasers}
+\topic{Different Lasers}
 
-\usubsection{Helium - Neon Laser}
 \input{he-ne-laser.tex}
 
-\usubsection{Ruby Laser}
 
 \input{ruby-laser.tex}
 
@@ -48,27 +39,19 @@ The atoms excited will undergo spontaneous emission and attain popalation invers
 
 \newpage
 
-\usection{Fibre Optics}
+\topic{Fibre Optics}
 Fibre optics deals with transmission of information using light (which has minimal energy loss). Total internal reflection is the principle behind it.
 
-\usubsection{Total internal reflection}
 \input{tir.tex}
 
-\usubsection{Structure of Fiber Optic Cable}
 \input{structure-of-foc.tex}
-
-\usubsection{\texorpdfstring{Classification of Fibre Optic Cables \&\\ Propagation of light in them}
-{Classification of Fibre Optic Cables \& Propagation of light in them}}
 
 \input{classification-of-foc_light-propagation.tex}
 
 \vspace{1.5cm}
-
-\usubsection{Numerical Aperture (NA)}
 \input{numerical-aperture.tex}
 
 \vspace{1.5cm}
-
 \input{questions-3.tex}
 
 \end{document}

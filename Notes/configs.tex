@@ -1,0 +1,101 @@
+\usepackage[a4paper, top=2cm, bottom=3cm, left=2cm, right=2cm]{geometry}
+\usepackage[export]{adjustbox}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage[version=4]{mhchem}
+\usepackage{stmaryrd}
+\usepackage{polyglossia}
+\usepackage{fontspec}
+\usepackage{ucharclasses}
+\usepackage{fancyhdr}
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usepackage{relsize}
+\usepackage{makecell}
+\usepackage{framed}
+\usepackage{changepage}
+\usepackage{tabularray}
+\usepackage{etoolbox}
+\usepackage{xstring}
+\usepackage{pstricks-add}
+\usepackage{tikz}
+\usepackage{empheq}
+\usepackage[skins]{tcolorbox}
+\usepackage[european,s traightvoltages, americanresistor, americaninductors]{circuitikz}
+\usepackage{pgfplots}
+\usepackage{tikz-3dplot}
+\usepackage[T1]{fontenc}
+\usepackage[Sonny]{fncychap}
+
+\usetikzlibrary{
+	angles,
+	arrows,
+	arrows.meta,
+	backgrounds,
+	calc,
+	decorations,
+	decorations.markings,
+	decorations.pathmorphing,
+	fit,
+	patterns,
+	positioning,
+	quotes,
+	shapes.arrows,
+	shapes.callouts,
+	shapes.geometric,
+	shapes.misc,
+	snakes,
+}
+
+\pgfplotsset{compat=1.18}
+
+\hypersetup{colorlinks=true, linkcolor=blue, filecolor=magenta, urlcolor=cyan,}
+\urlstyle{same}
+
+\setmainlanguage{english}
+\setotherlanguages{norwegian, arabic}
+\newfontfamily\arabicfont{Noto Naskh Arabic}
+\graphicspath{ {../images/} }
+
+\renewcommand\theadfont{\bfseries}
+
+
+%%%%%%%%%% Fancy header %%%%%%%%%
+\pagestyle{fancy}
+\fancyhead[C]{}
+\fancyfoot[C]{\medskip\thepage}
+\renewcommand{\footrulewidth}{.4pt}
+\renewcommand{\headrulewidth}{0pt}
+\setlength{\headheight}{14.49998pt}
+\addtolength{\topmargin}{-2.49998pt}
+\newcommand{\figwidth}{8cm}
+\newcommand{\floatfigwidth}{5cm}
+
+
+
+%%%%%%%%%% constants/symbols %%%%%%%%%
+\newcommand\longUparrow{\mathrel{\scalebox{1}[2]{$\uparrow$}}}
+\DeclareRobustCommand{\rchi}{{\mathpalette\irchi\relax}}
+\newcommand{\irchi}[2]{\raisebox{\depth}{$#1\chi$}}
+\newcommand{\term}[1]{\underline{\textbf{#1}}}
+\newcommand{\amstr}{\mathring{\textrm{A}}}
+\newcommand{\h}{6.626 \times 10^{-34}}
+\newcommand{\kB}{1.38 \times 10^{-23}}
+\newcommand{\lc}{3 \times 10^{8}}
+\newcommand{\uunit}[1]{\mathrm{~#1}}
+\newcommand{\doparindent}{\setlength\parindent{.5cm}}
+\newcommand{\noparindent}{\setlength\parindent{0pt}}
+
+
+
+\DefTblrTemplate{caption-tag}{default}{}
+\DefTblrTemplate{caption-sep}{default}{}
+\DefTblrTemplate{caption-text}{default}{}
+\DefTblrTemplate{contfoot-text}{default}{}
+\DefTblrTemplate{conthead-text}{default}{}
+
+\noparindent
