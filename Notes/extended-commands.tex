@@ -118,11 +118,19 @@
 				minimum height= 3cm,
 				minimum width = \textwidth
 			] at (.5\textwidth, 1.5) {
-				\scshape 
+				\scshape
 				\parbox{\textwidth}{\fontsize{28pt}{28pt}\selectfont{}\centering #2}
 			};
 			\node[fill=white, minimum width = 1.3cm] at (.5\textwidth, 3) {\Huge #1};
+			\node at (.5\textwidth, -.5) {\tt \footnotesize \DTMnow};
 		\end{tikzpicture}
 	}
-	\vspace*{.7cm}
+	\vspace*{.2cm}
 }
+
+\newcommand{\margindate}[1]{
+	\begin{tikzpicture}[remember picture,overlay]
+		\node[left=3mm, white, fill=orange!60!black, anchor=east] at (0, .1) {\small \tt #1};
+	\end{tikzpicture}%
+}
+\newcommand{\ruler}{\rule{\textwidth}{1pt}}
