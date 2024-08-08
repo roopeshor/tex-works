@@ -72,16 +72,14 @@ out while reading paragraphs of text.
 	\emph{Do not overuse this!}. It is meant for important stuff only.
 }
 
-\vspace*{1cm}
+% \vspace*{1cm}
 
-\begin{minipage}[t][][t]{.6\textwidth}%
-	\textbf{Sidebox}: Side box shows some minor notes, for.eg in equations etc. They should provide useful hints. If and must only be used in cases where adding that extra bit of info breaks the continuity of argument. The thing is its is hard to get it aligned. One option is to adjust positioning and inner alignment of the containing minpage
-\end{minipage}%
-\hfill%
-\begin{minipage}[t][][b]{6cm}%
-	\sidebox{6cm}{
-		Side boxes can displayed on sides of page with \texttt{minpage}. But as of now, its is hard to get precise alignment.
-	}
+\sidebox{6cm}{
+	Side boxes are Tik\textit{Z} overlays, and are by default anchored to north east.
+}%
+\begin{minipage}[t][][t]{.6\textwidth}
+	\textbf{Sidebox}: Side box shows some minor notes, for.eg in equations etc. They should provide useful hints. If and must only be used in cases where adding that extra bit of info breaks the continuity of argument. The thing is its is hard to get it aligned.\\[10pt]
+	\verb|\sidebox[x][y]{width}{content}[border][fill]|
 \end{minipage}
 
 \subtopic{Dates}
@@ -89,6 +87,5 @@ out while reading paragraphs of text.
 Always add date to notes! \verb|\margindate{06 Aug}|
 
 \ruler
-
 
 \end{document}

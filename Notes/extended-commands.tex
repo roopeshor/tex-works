@@ -35,6 +35,7 @@
 	\textbf{#1 #2}
 	\indentbox{.76cm}{
 		\ans
+		
 		#3
 	}
 	\vspace{.75cm}
@@ -75,17 +76,22 @@
 		#3
 	\end{tcolorbox}
 }
-% {width}{content}[framecolor][bgcolor]
-\NewDocumentCommand{\sidebox}{m m O{orange!80!black!90} O{orange!10}}{
-	\begin{tcolorbox}[
-			width=#1,
-			left=5pt,
-			colframe=#3,
-			colback=#4
+
+% [x][y]{width}{content}[border][fill]
+\NewDocumentCommand{\sidebox}{O{0cm} O{0cm} m m O{orange!80!black!90} O{orange!10}}{%
+	\begin{tikzpicture}[remember picture,overlay]%
+		\node[
+			draw=#5,
+			fill=#6,
+			text width=#3-8pt,
+			rounded corners=6,
+			inner sep=8pt,
+			ultra thick,
+			anchor=north east,
+			align=justify
 		]
-		#2
-	\end{tcolorbox}
-}
+		at (\textwidth+#1, #2) {#4};%
+	\end{tikzpicture}}
 
 \NewDocumentCommand{\multiskip}{m}{%
 	\begingroup
@@ -110,6 +116,7 @@
 	\end{tcolorbox}
 }
 
+% {chap. number}{name}
 \newcommand{\chapterheader}[2]{
 	\resizebox{\textwidth-3pt}{!}{
 		\begin{tikzpicture}[very thick]
@@ -134,3 +141,16 @@
 	\end{tikzpicture}%
 }
 \newcommand{\ruler}{\rule{\textwidth}{1pt}}
+
+%% {left}{right}{contentL}{contentR}
+\newcommand{\twosided}[4]{
+	\begin{minipage}{#1\textwidth}
+		#3
+	\end{minipage}%
+	\hfill%
+	\vrule%
+	\hfill%
+	\begin{minipage}{#2\textwidth}
+		#4
+	\end{minipage}
+}
