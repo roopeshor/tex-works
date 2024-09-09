@@ -14,7 +14,7 @@
 	\section*{\Large \fontfamily{ppl}\selectfont #1}
 	\addcontentsline{toc}{subsection}{\protect\numberline{}#1}
 }
-\newcommand{\ussubsection}[1]{
+\newcommand{\ssubsection}[1]{
 	\section*{\large \fontfamily{ppl}\selectfont#1}
 	\addcontentsline{toc}{subsection}{\protect\numberline{}#1}
 }
@@ -135,9 +135,9 @@
 	\vspace*{.2cm}
 }
 
-\newcommand{\margindate}[1]{
+\NewDocumentCommand{\margindate}{m O{.1}}{
 	\begin{tikzpicture}[remember picture,overlay]
-		\node[left=3mm, white, fill=orange!60!black, anchor=east] at (0, .1) {\small \tt #1};
+		\node[left=3mm, white, fill=orange!60!black, anchor=east] at (0, #2) {\small \tt #1};
 	\end{tikzpicture}%
 }
 \newcommand{\ruler}{\rule{\textwidth}{1pt}}
