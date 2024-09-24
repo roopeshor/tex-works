@@ -1,0 +1,89 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{mathrsfs}
+\usepackage{color}
+\usepackage[colorlinks]{hyperref}
+\usepackage{svg}
+\usepackage{fancyhdr}
+\usepackage{minted}
+\usepackage{bold-extra}
+% \usepackage{mathptmx}
+% \usepackage[OT1]{fontenc}
+\usepackage{framed}
+
+\newcommand{\usection}[1]{
+	\section*{\center \Huge #1}
+	\addcontentsline{toc}{section}{\protect\numberline{}#1}
+}
+\newcommand{\usubsection}[1]{
+	\section*{\LARGE #1}
+	\addcontentsline{toc}{subsection}{\protect\numberline{}#1}
+}
+
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+
+\newcommand{\ttbold}[1]{\textbf{\texttt{#1}}}
+
+\fancyhead[C]{}
+\fancyfoot[R]{\ttbold{\thepage}}
+\fancyfoot[L]{\ttbold{20323085}}
+\addtolength{\headwidth}{\marginparwidth}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{.5pt}
+\addtolength{\topmargin}{-4.0pt}
+
+
+\linespread{1.05}
+\begin{document}
+\begin{titlepage}
+	\newgeometry{top=2.5in, bottom=1in, left=1in, right=1in}
+	\centering
+
+	{\huge \textbf{Stopwatch} \par}
+
+	\vspace{1.3cm}
+
+	{\large Submitted by \par}
+
+	\vspace{.5cm}
+
+	{\large \textbf{Neha Sethumadhavan}\par}
+	{\large \textbf{Roopesh O R}\par}
+	{\large \textbf{Roshna Palatty Santhosh}\par}
+	{\large \textbf{Sreenandan C K}\par}
+	{\large \textbf{Merella Jobi}\par}
+
+	\vspace{2.5cm}
+
+ 	\includesvg[inkscapearea=drawing, width=1.5in]{cusat.svg}\par
+
+	\vspace{.1cm}
+
+	{\textbf{Division of Electronics Engineering} \par}
+	{\textbf{School of Engineering} \par}
+	{\textbf{Cochin University of Science and Technology} \par}
+	{\textbf{Kochi - 682022} \par}
+
+	\vspace{.5cm}
+
+	{\textbf{September 2024} \par}
+
+	\vfill
+
+\end{titlepage}
+\setlength{\parskip}{5pt}%
+\newgeometry{top=3cm, bottom=3cm, left=2.54cm, right=2.54cm}
+
+\vspace*{4cm}
+\thispagestyle{empty}
+\addtocounter{page}{-1}
+\usection{Abstract}
+\vspace{.5cm}
+Here we present the design and implementation of a digital stopwatch using a 555 timer as the clock source. The stopwatch displays time in minutes and seconds, utilizing basic digital electronics components such as counters, decoders, and seven-segment displays. The 555 timer is configured in astable mode to generate a clock pulse with a frequency of 1 Hz, serving as the time base for the stopwatch. A series of 60-second counts is accumulated for the seconds, and upon reaching 60, a minute counter increments. These counters are implemented using combination of binary and decade counters, and the output is decoded and displayed on four seven-segment displays, two for minutes and the other two for seconds.
+Control functionalities include start, stop, and reset buttons are also present to control the operation of the stopwatch.
+
+\end{document}
