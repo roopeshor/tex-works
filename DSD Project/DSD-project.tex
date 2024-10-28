@@ -3,23 +3,30 @@
 \usepackage[utf8]{inputenc}
 \usepackage{mathrsfs}
 \usepackage{color}
-\usepackage[colorlinks]{hyperref}
 \usepackage{svg}
 \usepackage{fancyhdr}
 \usepackage{minted}
 \usepackage{bold-extra}
-% \usepackage{mathptmx}
-% \usepackage[OT1]{fontenc}
 \usepackage{framed}
 \usepackage{longtable}
 \usepackage{multirow}
+\usepackage{array}
+\usepackage[colorlinks = true,
+            linkcolor = orange,
+            urlcolor  = orange,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}
 
 \newcommand{\usection}[1]{
-	\section*{\center \Huge #1}
+	\section*{\LARGE #1}
 	\addcontentsline{toc}{section}{\protect\numberline{}#1}
 }
 \newcommand{\usubsection}[1]{
-	\section*{\LARGE #1}
+	\section*{\Large #1}
+	\addcontentsline{toc}{subsection}{\protect\numberline{}#1}
+}
+\newcommand{\uusubsection}[1]{
+	\section*{\large #1}
 	\addcontentsline{toc}{subsection}{\protect\numberline{}#1}
 }
 
@@ -32,7 +39,7 @@
 
 \fancyhead[C]{}
 \fancyfoot[R]{\ttbold{\thepage}}
-\fancyfoot[L]{\ttbold{20323085}}
+\fancyfoot[L]{\ttbold{Digital Stopwatch}}
 \addtolength{\headwidth}{\marginparwidth}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{.5pt}
@@ -42,9 +49,11 @@
 \linespread{1.05}
 \begin{document}
 \begin{titlepage}
-	\newgeometry{top=2.5in, bottom=1in, left=1in, right=1in}
+	\newgeometry{top=2.3in, bottom=1in, left=1in, right=1in}
 	\centering
 
+	{\Large \textbf{DSD Project:} \par}
+	\vspace{.3cm}
 	{\huge \textbf{Digital Stopwatch} \par}
 
 	\vspace{1.5cm}
@@ -72,7 +81,7 @@
 
 	\vspace{.5cm}
 
-	{\textbf{September 2024} \par}
+	{\textbf{October 2024} \par}
 
 	\vfill
 
@@ -81,33 +90,184 @@
 \newgeometry{top=3cm, bottom=3cm, left=2.54cm, right=2.54cm}
 \thispagestyle{empty}
 \addtocounter{page}{-1}
-\section*{\Large Abstract}
+\usection{Abstract}
 \vspace{.5cm}
-Here we present the design and implementation of a digital stopwatch using a 555 timer as the clock source. The stopwatch displays time in minutes and seconds, utilizing basic digital electronics components such as counters, decoders, and seven-segment displays. The 555 timer is configured in astable mode to generate a clock pulse with a frequency of 1 Hz, serving as the time base for the stopwatch. A series of 60-second counts is accumulated for the seconds, and upon reaching 60, a minute counter increments. These counters are implemented using combination of binary and decade counters, and the output is decoded and displayed on four seven-segment displays, two for minutes and the other two for seconds.
-Control functionalities include start, stop, and reset buttons are also present to control the operation of the stopwatch.
+Here, we present the design and implementation of a digital stopwatch using a 555 timer as the clock source. The stopwatch displays time in minutes and seconds, utilizing basic digital electronics components such as counters, decoders, and seven-segment displays. The 555 timer is configured in astable mode to generate a clock pulse with a frequency of 2 Hz, serving as the time base for the stopwatch. A series of 60-second counts is accumulated for the seconds, and upon reaching 60, a minute counter increments. These counters are implemented using a combination of binary and decade counters, and the output is decoded and displayed on four seven-segment displays, two for minutes and the other two for seconds.
+Control functionalities, including start, pause, and reset buttons, are also present to control the operation of the stopwatch.
+
 \vspace*{2cm}
-\section*{\Large Project Estimate}
+\usection{Project Cost}
 
-\begin{tabular}{ |p{5cm}|p{3cm}|p{3cm}|  }
+\setlength{\tabcolsep}{8pt}
+{\renewcommand{\arraystretch}{1.15}
+\begin{tabular}{|p{6cm}|p{3cm}|p{3cm}|}
+
  \hline
- Components & Quantity & Approx. Cost \\
+ Components & Quantity & Cost \\
  \hline
-7447 - 7 segment decoder & 4 & 80 \\
-7408 - AND gate & 2 & 20 \\
-7432 - OR gate & 2 & 20 \\
-7404 - NOT gates & 1 & 15 \\
-7490 - decade counter & 2 & 70 \\
-7493 - 4bit counter & 2 & 70 \\
-555 timer & 1 & 15 \\
-Breadboard & 4-5 & $\sim$200 \\
-Capacitor & 4-5 & $\sim$20 \\
-Resistors & 35 & $\sim$40 \\
-7 segment display & 4 & 120 \\
-Potentiometer (100k) & 1 & 20 \\
+SN74LS47 - 7 segment decoder & 4 & 80 \\
+SN74LS90 - decade counter & 2 & 42 \\
+SN74LS93 - 4bit counter & 2 & 50 \\
+NE555P timer & 1 & 8 \\
+Breadboard & 3 & 180 \\
+Capacitor (100nF \& 10$\mu$F) & 2 & 10 \\
+Resistors (1k$\Omega$ \& 10k$\Omega$) & 10 & 17 \\
+7 segment display & 4 & 50 \\
+Potentiometer (100k$\Omega$) & 1 & 7 \\
+Push button & 1 & 5 \\
+Slide switch & 1 & 5 \\
+Diode & 4 & 10 \\
+wires & as required & \\
 \hline
-\multicolumn{2}{|c|}{Total} & $\sim$ 690 \\
+\multicolumn{2}{|c|}{Total} & 464 \\
 
+ \hline
+
+\end{tabular}
+}
+
+\usection{Design}
+\begin{figure}[H]
+	\includesvg[inkscapearea=drawing, width=\textwidth]{schm.svg}
+	\caption{Block schematic of circuit}
+\end{figure}
+
+A 2Hz clock is generated using a 555 astable multivibrator. This clock is passed to the first BCD counter. BCD will count from 0 to 9, and it will reset to 0 afterwards. This first counter stores the 1's place of the seconds. MSB of this counter is passed to the clock of a mod-6 counter, which will count from 0 to 5, giving 10's place of second.
+This cascading process is repeated by adding one more BCD and mod-6 counter to divide the frequency and store minutes.
+
+The output of each counter is passed to a 7-segment decoder, and the output is displayed on a 7-segment display.
+
+The circuit is reset by using a pull-down switch. Further implementation regarding reset circuitry is given in the “Resetting circuit” section.
+Pause functionality is achieved by using a slide switch, which acts as a gate to the clock. Hence, the counter works only when the switch is toggled.
+
+\usection{Construction}
+
+\usubsection{Clock}
+
+\begin{figure}[H]
+	\centering
+	\includesvg[inkscapearea=drawing, width=.8\textwidth]{timer.svg}
+	\caption{Clock generator}
+\end{figure}
+
+IC 555 is configured to work in astable mode, as shown above. The output frequency is adjusted using a 100k preset, and a 2Hz output is at pin 3. This output is given to the clock of the counter network, which will further divide the frequency and count seconds and minutes.
+
+\usubsection{Counters}
+
+\begin{figure}[H]
+	\centering
+	\includesvg[inkscapearea=drawing, width=\textwidth]{counter.svg}
+	\caption{Counter circuit}
+\end{figure}
+
+Here we used following ICs: \\
+74LS90: to count 1's place of second and minute \\
+74LS93: to count 10's place of second and minute
+
+74LS90 is a decade or BCD counter, counting from 0 (0000) to 9 (1001). This is used for counting in one's place for seconds and minutes.
+
+74LS93 is a mod 16 counter. In order to count 10's place of minutes and seconds (from 0 to 5), the IC is configured to reset when the output goes to 6 (0110). When the binary of 6 (0110) is produced, a reset signal is given to the IC to reset it back to 0, ready for the next minute. This is done by connecting the $Q_C$ and $Q_B$ pins to the reset pins $R_0(1)$ and $R_0(2)$. Since these reset pins are master reset, the counter will reset when both $Q_C$ and $Q_B$ are 1 (i.e. in 6), hence making it a mod-6 counter. Further, an external reset pin is connected to reset pins in a wired-OR manner to reset the counter manually.
+
+The counters are connected asynchronously, with the output of one counter being used to drive the clock of the next counter. This is also called the frequency division method, as the frequency of the clock cycles is divided by the modulus of each counter.
+
+\usubsection{Decoders \& Display}
+
+\begin{figure}[H]
+	\centering
+	\includesvg[inkscapearea=drawing, width=\textwidth]{decoder.svg}
+	\caption{Decoders \& display}
+\end{figure}
+
+74LS47 is used to decode BCD to 7-segment display code ICs. 74LS47 has an active low output. Thus, it can be easily interfaced with common anode 7-segment displays. Hence, in our implementation, we used a common anode display.
+To limit current flow, in the usual approach, a resistor is placed between each LED pin of the display. However, in order to reduce circuit complexity, we added resistors between the common pins of the displays.
+
+
+\usubsection{Resetting the counter}
+\begin{figure}[H]
+	\centering
+	\includesvg[inkscapearea=drawing, width=.7\textwidth]{reset.svg}
+	\caption{Resetting circuit}
+\end{figure}
+
+A reset option in a stopwatch typically works by clearing the current elapsed time and returning the display to zero. When the reset button is pressed, the internal timer stops, and the displayed time resets to 00:00. Here, we used a push button configured to act as a pull-down switch. The reset button overrides clock signals, and hence, when activated, it will immediately reset all counts.
+
+In the case of BCD counters (7490), suitable inputs can be given to counter to reset. We followed the function table and connected $R_{0(2)}$ to +5V, $R_{9(1)}$ to GND and $R_{0(1)}$ to the switch output (RST)
+\begin{table}[H]
+	\centering
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{|cccc|cccc|}
+	\hline
+	\multicolumn{4}{|c|}{Reset inputs} & \multicolumn{4}{|c|}{Output} \\
+ \hline
+ $R_{0(1)}$ & $R_{0(2)}$ & $R_{9(1)}$ & $R_{9(2)}$ & $Q_A$ & $Q_B$ & $Q_C$ & $Q_D$\\
+ \hline
+	H & H & L & X  &  L & L & L & L \\
+	H & H & X & L  &  L & L & L & L \\
+	L & X & L & X  &  \multicolumn{4}{|c|}{COUNT} \\
+	X & L & X & L  &  \multicolumn{4}{|c|}{COUNT} \\
+	L & X & X & L  &  \multicolumn{4}{|c|}{COUNT} \\
+	X & L & L & X  &  \multicolumn{4}{|c|}{COUNT} \\
  \hline
 \end{tabular}
+\caption{7490 reset/count function table}
+\end{table}
 
+
+In the case of 7493, the counter can be reset by connecting both reset pins $R_{0(1)}$ and $R_{0(2)}$ to +5V:
+
+\begin{table}[H]
+	\centering
+\renewcommand{\arraystretch}{1.1}
+\begin{tabular}{|cc|cccc|}
+	\hline
+	\multicolumn{2}{|c|}{Reset inputs} & \multicolumn{4}{|c|}{Output} \\
+ \hline
+ $R_{0(1)}$ & $R_{0(2)}$ & $Q_A$ & $Q_B$ & $Q_C$ & $Q_D$\\
+ \hline
+	H & H  &  L & L & L & L \\
+	L & X  &  \multicolumn{4}{|c|}{COUNT} \\
+	X & L  &  \multicolumn{4}{|c|}{COUNT} \\
+ \hline
+\end{tabular}
+\caption{7493 reset/count function table}
+\end{table}
+
+But in this case, we also have to reset the IC when the count becomes 0110 (i.e. $Q_CQ_B$ = 1). So, the expression for Reset to IC is RST + $Q_CQ_B$. Implementing this expression as a circuit will take two additional ICs. But using boolean algebra, we can rewrite this as (RST + $Q_C$)$\cdot$(RST + $Q_B$), This OR-AND expression can be implemented by the a OR gate IC and 7493 itself (since its master reset pin serves the purpose of the AND gate). Furthermore, the OR operation can be done by the wired-OR method, in which two wires are directly connected along with a diode to prevent reverse current flow and short circuits. Thus, we only need four diodes in our circuit to reset the 7493 IC.
+
+\usection{Operation}
+Initially, when turned on, the counter might show random values. Hence, before using this for counting purposes, the clock must be blocked (using the slide switch), and the reset button must be pressed. When the counting has to be paused, the slide switch can be moved to a different position.
+
+\usection{Known Limitations}
+The accuracy of the timer is in the range of few seconds as we are using a gated 2Hz clock. So, proper resume functionality cannot be achieved. This can be overcome by using a clock of higher frequency and proper frequency division.
+
+
+\usection{Future improvements}
+
+\uusubsection{Accuracy}
+We can improve the accuracy of the stopwatch by increasing the accuracy of the driving clock. Instead of having a 555 timer IC, which is a cheap and reliable source as the driving clock, we can use the more accurate quartz crystal oscillators, which would be more reliable and give better long-time accuracy to the stopwatch.
+
+\uusubsection{Precision}
+We can add two more sets of displays which can display in milliseconds. This will be more useful in cases where more precise time readings are required. However, adding this requires using a more precise clock source, such as quartz oscillators.
+
+\uusubsection{Portability}
+We can reduce the size of the stopwatch by using a custom-made PCB. This will also increase the reliability of the stopwatch, as loose contacts can be avoided. We can also use a more specific IC instead, which will also decrease the size.
+
+\uusubsection{Power-on Reset}
+In current implementation, the Ic has to be reset manually before use. A Power-on reset functionality will reset the counter when powering on the device, and makes the system easier to use. 
+
+
+\usection{References}
+	\begin{itemize}
+		\item Datasheets of ICs
+			\begin{itemize}
+				\item 7490, 7493: \url{https://www.ti.com/lit/gpn/SN74LS90}
+				\item 7447: \url{https://www.ti.com/lit/gpn/SN5447A}
+			\end{itemize}
+		\item 555 Astable multivibrator, Wikipedia: \url{https://en.wikipedia.org/wiki/555_timer_IC#Astable}
+		\item Wired OR connection: \url{https://wikipedia.org/wiki/Wired_logic_connection}
+		\item \emph{Digital clock but without a microcontroller}: \url{https://www.instructables.com/Digital-Clock-But-Without-a-Microcontroller-Hardco/}
+		\item \emph{DIY Digital Clock With 7 Segment LED Display}: \url{https://www.instructables.com/DIY-Digital-Clock-With-7-Segment-LED-Display/}
+		\item Crystal Oscillator circuit :\url{https://www.electronicecircuits.com/electronic} \url{-circuits/accurate-1-khz-square-wave-crystal-oscillator-circuit/}
+		\item Power-on reset: \url{https://www.techtarget.com/whatis/definition/power-on-} \url{reset-PoR}
+	\end{itemize}
 \end{document}
