@@ -1,0 +1,151 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{color}
+\usepackage{svg}
+\usepackage{fancyhdr}
+\usepackage{longtable}
+\usepackage{multirow}
+\usepackage{array}
+\usepackage[colorlinks = true,
+            linkcolor = orange,
+            urlcolor  = orange,
+            citecolor = blue,
+            anchorcolor = blue]{hyperref}
+			
+\usepackage{pgf}
+\usepackage{pgfpages}
+
+% \pgfpagesdeclarelayout{boxed}{\edef\pgfpageoptionborder{0pt}}
+% {\pgfpagesphysicalpageoptions
+% 	{logical pages=1}
+% 	\pgfpageslogicalpageoptions{1}
+% 	{
+% 	border code=\pgfsetlinewidth{1pt}\pgfstroke,%
+% 	border shrink=\pgfpageoptionborder,%
+% 	resized width=.80\pgfphysicalwidth,%
+% 	resized height=.80\pgfphysicalheight,%
+% 	center=\pgfpoint{.5\pgfphysicalwidth}{.5\pgfphysicalheight}%
+% 	}%
+% }
+
+% \pgfpagesuselayout{boxed}
+
+\newcommand{\usection}[1]{
+	\section*{\centering \LARGE #1}
+	\addcontentsline{toc}{section}{\protect\numberline{}#1}
+}
+\newcommand{\usubsection}[1]{
+	\section*{\Large #1}
+	\addcontentsline{toc}{subsection}{\protect\numberline{}#1}
+}
+\newcommand{\uusubsection}[1]{
+	\section*{\large #1}
+	\addcontentsline{toc}{subsection}{\protect\numberline{}#1}
+}
+
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyfoot{}
+
+\newcommand{\ttbold}[1]{\textbf{\texttt{#1}}}
+
+\fancyhead[C]{}
+\fancyfoot[R]{\ttbold{\thepage}}
+\fancyfoot[L]{\ttbold{Digital Stopwatch}}
+\addtolength{\headwidth}{\marginparwidth}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{.5pt}
+\addtolength{\topmargin}{-4.0pt}
+
+
+\linespread{1.05}
+\begin{document}
+\begin{titlepage}
+	\newgeometry{top=4in, bottom=1in, left=1in, right=1in}
+	\centering
+
+	{\Large \textbf{Electronic circuits Assignment:} \par}
+	\vspace{.3cm}
+	{\huge \textbf{Experiments using LTspice} \par}
+
+	\vspace{1.5cm}
+
+	{\large Submitted by:\par}
+
+	\vspace{.4cm}
+	{\large \underline{\textbf{Batch 11}}\par}
+	\vspace{.1cm}
+	{\large \textbf{Roopesh O R}\par}
+	{\large \textbf{Roshna Palatty Santhosh}\par}
+	{\large \textbf{Sadhnan Shameem Thappi}\par}
+	{\large \textbf{Sandeep S}\par}
+
+	\vspace{2cm}
+
+	{\textbf{November 2024} \par}
+
+	\vfill
+
+\end{titlepage}
+\setlength{\parskip}{5pt}%
+\newgeometry{top=3cm, bottom=3cm, left=2.54cm, right=2.54cm}
+
+\usection{RC Low Pass Filter}
+\vspace*{1cm}
+\usubsection{Aim}
+To design a 2 stage RC low pass filter with cutoff frequency of 2KHz and plot its frequency response.
+
+\usubsection{Design}
+
+
+\usubsection{Circuit}
+
+\usubsection{Frequency response}
+
+\usubsection{Result}
+Designed a 2 stage RC low pass filter. It's simulated cutoff frequency is found to be: 
+
+\newpage
+\usection{Zener Series Regulator}
+\vspace*{1cm}
+\linespread{.9}
+\usubsection{Aim}
+\begin{enumerate}
+	\item To design a 5V Zener series regulator for a input voltage of +8 to +20V and maximum load current of 50mA
+	\item Plot and its load regulation and line regulation and find percentage load regulation and line regulation.
+\end{enumerate}
+
+\usubsection{Design}
+$I_L(max) = 50mA, \ I_L(min) = 10mA, \ I_Z(\max) = 20mA, \ I_Z(min) = 10mA, \ V_Z = 5.1V$ \ $V_{in}(min) = 8V, \ V_{in}(max) = 20V$
+
+$V_s(max) = V_{in}(max) - V_Z = 20V - 5.1V = 14.9V$
+
+\vspace*{.5cm}
+At minimum load current:
+
+$R_s{max} = \dfrac{V_s(max)}{I_L(min) + I_Z{max}} = \dfrac{14.9V}{10mA + 20mA} \approx 500 \Omega $
+
+\vspace*{.5cm}
+At maximum load current:
+
+$R_s{min} = \dfrac{V_s(max)}{I_L(max) + I_Z{min}} = \dfrac{14.9V}{50mA + 10mA} \approx 250 \Omega $
+
+\vspace*{.5cm}
+$\therefore R_s = \sqrt{R_s{max}\times R_s{min}} = \sqrt{500\times 250} = 353 \Omega$
+
+\usubsection{Circuit}
+
+\usubsection{Load and line regulation}
+
+\usubsection{Result}
+Designed a 5V Zener series regulator and obtained its line regulation and load regulation.
+
+Line regulation = 
+
+Load regulation = 
+
+\end{document}
