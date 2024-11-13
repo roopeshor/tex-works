@@ -14,7 +14,7 @@
             urlcolor  = orange,
             citecolor = blue,
             anchorcolor = blue]{hyperref}
-			
+\usepackage{float}
 \usepackage{pgf}
 \usepackage{pgfpages}
 
@@ -46,6 +46,7 @@
 	\addcontentsline{toc}{subsection}{\protect\numberline{}#1}
 }
 
+\newcommand{\res}[1]{\textbf{\underline{\underline{#1}}}}
 
 \pagestyle{fancy}
 \fancyhead{}
@@ -55,7 +56,7 @@
 
 \fancyhead[C]{}
 \fancyfoot[R]{\ttbold{\thepage}}
-\fancyfoot[L]{\ttbold{Digital Stopwatch}}
+\fancyfoot[L]{}
 \addtolength{\headwidth}{\marginparwidth}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{.5pt}
@@ -120,32 +121,44 @@ Designed a 2 stage RC low pass filter. It's simulated cutoff frequency is found 
 \end{enumerate}
 
 \usubsection{Design}
-$I_L(max) = 50mA, \ I_L(min) = 10mA, \ I_Z(\max) = 20mA, \ I_Z(min) = 10mA, \ V_Z = 5.1V$ \ $V_{in}(min) = 8V, \ V_{in}(max) = 20V$
+\begin{itemize}
+ \item $V_{in}(max) = 20V$
+ \item $V_Z = 5.1V$ \hspace*{.5cm} $V_{in}(min) = 8V$
+ \item $I_L(max) = 50mA$ \hspace*{.5cm} $I_L(min) = 10mA$
+ \item $I_Z(\max) = 20mA$ \hspace*{.5cm} $I_Z(min) = 10mA$
+\end{itemize}
 
-$V_s(max) = V_{in}(max) - V_Z = 20V - 5.1V = 14.9V$
+$V_s(max) = V_{in}(max) - V_Z = 20V - 5.1V = \res{14.9V}$
 
 \vspace*{.5cm}
 At minimum load current:
 
-$R_s{max} = \dfrac{V_s(max)}{I_L(min) + I_Z{max}} = \dfrac{14.9V}{10mA + 20mA} \approx 500 \Omega $
+$$R_s{max} = \dfrac{V_s(max)}{I_L(min) + I_Z(max)} = \dfrac{14.9V}{10mA + 20mA} \approx \res{500 $\Omega$} $$
 
 \vspace*{.5cm}
 At maximum load current:
 
-$R_s{min} = \dfrac{V_s(max)}{I_L(max) + I_Z{min}} = \dfrac{14.9V}{50mA + 10mA} \approx 250 \Omega $
+$$R_s{min} = \dfrac{V_s(max)}{I_L(max) + I_Z(min)} = \dfrac{14.9V}{50mA + 10mA} \approx \res{250 $\Omega$} $$
 
 \vspace*{.5cm}
-$\therefore R_s = \sqrt{R_s{max}\times R_s{min}} = \sqrt{500\times 250} = 353 \Omega$
+$\therefore R_s = \sqrt{R_s{max}\times R_s{min}} = \sqrt{500\times 250} = \res{353 $\Omega$}$
 
-\usubsection{Circuit}
-
-\usubsection{Load and line regulation}
-
+\usubsection{Circuit and output waveform}
+\begin{figure}[H]
+\centering
+	{%
+		\setlength{\fboxsep}{0pt}%
+		\setlength{\fboxrule}{.5pt}%
+		\fbox{\includegraphics*[width=.45\textwidth]{zener-ckt.png}}%
+	}%
+	\hspace*{.5cm}
+	{%
+		\setlength{\fboxsep}{0pt}%
+		\setlength{\fboxrule}{.5pt}%
+		\fbox{\includegraphics*[width=.45\textwidth]{zener-plot.png}}%
+	}%
+\end{figure}
 \usubsection{Result}
-Designed a 5V Zener series regulator and obtained its line regulation and load regulation.
-
-Line regulation = 
-
-Load regulation = 
+Designed a 5V Zener series regulator and obtained is output plot
 
 \end{document}
