@@ -1,7 +1,7 @@
 \documentclass[12pt, a4paper]{article}
 \usepackage{geometry}
 \usepackage[utf8]{inputenc}
-\usepackage{amsmath}
+\usepackage[fleqn]{amsmath}
 \usepackage{amssymb}
 \usepackage{color}
 \usepackage{svg}
@@ -10,43 +10,32 @@
 \usepackage{multirow}
 \usepackage{array}
 \usepackage[colorlinks = true,
-            linkcolor = orange,
-            urlcolor  = orange,
-            citecolor = blue,
-            anchorcolor = blue]{hyperref}
+  linkcolor = orange,
+  urlcolor  = orange,
+  citecolor = blue,
+anchorcolor = blue]{hyperref}
 \usepackage{float}
-\usepackage{pgf}
-\usepackage{pgfpages}
-
-% \pgfpagesdeclarelayout{boxed}{\edef\pgfpageoptionborder{0pt}}
-% {\pgfpagesphysicalpageoptions
-% 	{logical pages=1}
-% 	\pgfpageslogicalpageoptions{1}
-% 	{
-% 	border code=\pgfsetlinewidth{1pt}\pgfstroke,%
-% 	border shrink=\pgfpageoptionborder,%
-% 	resized width=.80\pgfphysicalwidth,%
-% 	resized height=.80\pgfphysicalheight,%
-% 	center=\pgfpoint{.5\pgfphysicalwidth}{.5\pgfphysicalheight}%
-% 	}%
-% }
-
-% \pgfpagesuselayout{boxed}
 
 \newcommand{\usection}[1]{
-	\section*{\centering \LARGE #1}
-	\addcontentsline{toc}{section}{\protect\numberline{}#1}
+  \section*{\centering \LARGE #1}
+  \addcontentsline{toc}{section}{\protect\numberline{}#1}
 }
 \newcommand{\usubsection}[1]{
-	\section*{\Large #1}
-	\addcontentsline{toc}{subsection}{\protect\numberline{}#1}
+  \section*{\Large #1}
+  \addcontentsline{toc}{subsection}{\protect\numberline{}#1}
 }
 \newcommand{\uusubsection}[1]{
-	\section*{\large #1}
-	\addcontentsline{toc}{subsection}{\protect\numberline{}#1}
+  \section*{\large #1}
+  \addcontentsline{toc}{subsection}{\protect\numberline{}#1}
 }
 
 \newcommand{\res}[1]{\textbf{\underline{\underline{#1}}}}
+\newcommand{\unit}[1]{\text{#1}}
+\newcommand{\mA}{\text{mA}}
+\newcommand{\V}{\text{V}}
+\newcommand{\kHz}{\text{kHz}}
+\newcommand{\nF}{\text{nF}}
+\newcommand{\kO}{\text{k}\Omega}
 
 \pagestyle{fancy}
 \fancyhead{}
@@ -55,60 +44,78 @@
 \newcommand{\ttbold}[1]{\textbf{\texttt{#1}}}
 
 \fancyhead[C]{}
-\fancyfoot[R]{\ttbold{\thepage}}
+\fancyfoot[C]{\ttbold{\thepage}}
 \fancyfoot[L]{}
 \addtolength{\headwidth}{\marginparwidth}
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{.5pt}
 \addtolength{\topmargin}{-4.0pt}
 
-
 \linespread{1.05}
 \begin{document}
 \begin{titlepage}
-	\newgeometry{top=4in, bottom=1in, left=1in, right=1in}
-	\centering
+  \newgeometry{top=4in, bottom=1in, left=1in, right=1in}
+  \centering
 
-	{\Large \textbf{Electronic circuits Assignment:} \par}
-	\vspace{.3cm}
-	{\huge \textbf{Experiments using LTspice} \par}
+  {\Large \textbf{Electronic Circuits lab assignment:} \par}
+  \vspace{.3cm}
+  {\huge \textbf{Experiments using LTspice} \par}
 
-	\vspace{1.5cm}
+  \vspace{1.5cm}
 
-	{\large Submitted by:\par}
+  {\large Submitted by:\par}
 
-	\vspace{.4cm}
-	{\large \underline{\textbf{Batch 11}}\par}
-	\vspace{.1cm}
-	{\large \textbf{Roopesh O R}\par}
-	{\large \textbf{Roshna Palatty Santhosh}\par}
-	{\large \textbf{Sadhnan Shameem Thappi}\par}
-	{\large \textbf{Sandeep S}\par}
+  \vspace{.4cm}
+  {\large \underline{\textbf{Batch: B11}}\par}
+  \vspace{.1cm}
+  {\large \textbf{Roopesh O R}\par}
+  {\large \textbf{Roshna Palatty Santhosh}\par}
+  {\large \textbf{Sadhnan Shameem Thappi}\par}
+  {\large \textbf{Sandeep S}\par}
 
-	\vspace{2cm}
+  \vspace{2cm}
 
-	{\textbf{November 2024} \par}
+  {\textbf{November 2024} \par}
 
-	\vfill
+  \vfill
 
 \end{titlepage}
 \setlength{\parskip}{5pt}%
-\newgeometry{top=3cm, bottom=3cm, left=2.54cm, right=2.54cm}
+\newgeometry{top=2.5cm, bottom=3cm, left=2.54cm, right=2.54cm}
 
 \usection{RC Low Pass Filter}
 \vspace*{1cm}
 \usubsection{Aim}
-To design a 2 stage RC low pass filter with cutoff frequency of 2KHz and plot its frequency response.
+To design and simulate a 2 stage RC low pass filter with upper cutoff frequency at 20kHz and plot its frequency response.
 
 \usubsection{Design}
+\vspace*{-.5cm}
+\begin{align*}
+  & \text{Upper cutoff frequency at $n^{\text{th}}$ stage: } f_H(n) = \frac{f_H\text{ per stage}}{1.1\times\sqrt{n}} \\[8pt]
+  & \text{Number of stage, n = 2, and } f_H(2) = f_H' = 20\kHz \\[8pt]
+	& \text{For $f_H'$ to be 20kHz:} \\[8pt]
+  & f_H \text{ per stage} = f_H \times 1.1\sqrt{n} = 20\kHz \times 1.1\sqrt{2} \approx 31.113\kHz \\[8pt]
+  & \text{Let } C_1 = 10\nF \\[8pt]
+  & \therefore R_1 = \frac{1}{2\pi C_1 f_H'} = \frac{1}{2\pi \times 10\nF \times 31.113\kHz} \approx 511 \Omega \\[18pt]
+	& \hspace*{-.25cm} \left.\begin{array}{lr}
+		C_2 = C_1/10  &= 1\nF \hspace*{.55cm} \\[8pt]
+		R_2 = R_1 \times 10 &= 5.11 \kO
+	\end{array}\right\} \text{ To avoid loading effect}
+\end{align*}
 
+\usubsection{Circuit \& frequency response}
+\begin{figure}[H]
+	{\centering
+	\includegraphics[width=\textwidth]{freq-resp.png}
+	}
+	-3 dB cutoff frequency = \res{18.672kHz}
+\end{figure}
 
-\usubsection{Circuit}
-
-\usubsection{Frequency response}
 
 \usubsection{Result}
-Designed a 2 stage RC low pass filter. It's simulated cutoff frequency is found to be: 
+Designed and simulated a 2 stage RC low pass filter.
+
+It's cutoff frequency was found to be: \res{18.672kHz}
 
 \newpage
 \usection{Zener Series Regulator}
@@ -116,49 +123,69 @@ Designed a 2 stage RC low pass filter. It's simulated cutoff frequency is found 
 \linespread{.9}
 \usubsection{Aim}
 \begin{enumerate}
-	\item To design a 5V Zener series regulator for a input voltage of +8 to +20V and maximum load current of 50mA
-	\item Plot and its load regulation and line regulation and find percentage load regulation and line regulation.
+  \item To design and simulate a zener series voltage regulator for a output voltage of +10V and maximum current of 100mA. (input voltage varies from 12V to 22V)
+  \item Plot and its load regulation and line regulation and find percentage load regulation
 \end{enumerate}
 
 \usubsection{Design}
+
 \begin{itemize}
- \item $V_{in}(max) = 20V$
- \item $V_Z = 5.1V$ \hspace*{.5cm} $V_{in}(min) = 8V$
- \item $I_L(max) = 50mA$ \hspace*{.5cm} $I_L(min) = 10mA$
- \item $I_Z(\max) = 20mA$ \hspace*{.5cm} $I_Z(min) = 10mA$
+  \item $V_Z = 5.1\V$ (\href{https://electronics.stackexchange.com/a/485566/356797}{\underline{using modified BZX84B8V2L with $BV$=5.1V}})
+  \item $V_o = 10\V$ \hspace*{.5cm} $V_{in}(max) = 22\V$
+  \item $I_D = I_Z(min) = 5\mA$ \hspace*{.5cm} $I_{C2} = 2\mA$
+  \item $h_{fe}$ for Q1 (2N3055): $\beta_1 = 15 $\hspace*{.5cm} $h_{fe}$ for Q2 (BC547): $\beta_2$ = 100
 \end{itemize}
+\begin{align*}
+  & V_{RD} = V_o - V_Z = 4.9\V \\[7pt]
+  & R_D = \frac{V_{RD}}{I_Z(min)} = \frac{4.9\V}{5\mA} = 980\Omega \\[20pt]
+  & \text{\underline{For transistor Q2:}} \\
+  & I_{B2} = \frac{I_{C2}}{\beta_2} = 20\mu \text{A} \\[7pt]
+  & V_{R2} = V_Z + V_{BE2} = 5.1\V + 0.7\V = 5.8\V \\[7pt]
+  & V_{R1} = V_o + V_{R2} = 10\V + 5.8\V = 4.2\V \\[10pt]
+  & I_{R1} = 10I_{B2} = 0.2\mA \hspace*{.7cm} I_{R2} = 9I_{B2} = 0.18\mA \\[7pt]
+  & R_2 = \frac{V_{R2}}{I_{R2}} = \frac{5.8\V}{0.18\mA} \approx 32\kO\\[10pt]
+  & R_1 = \frac{V_{R1}}{I_{R1}} = \frac{4.2\V}{0.2\mA} = 21\kO \\[20pt]
+  & \text{\underline{For transistor Q1:}} \\
+  & I_{E1} = I_L + I_{R1} + I_{D} = 100\mA + 0.2\mA + 5\mA \approx 105\mA \\[7pt]
+  & I_{B1} = \frac{I_{E1}}{\beta_1} = \frac{105\mA}{15} = 7\mA
+\end{align*}
 
-$V_s(max) = V_{in}(max) - V_Z = 20V - 5.1V = \res{14.9V}$
+\begin{align*}
+  & I_{R3} = I_{B1} + I_{C2} = 7\mA + 2\mA = 9\mA\\[7pt]
+  & \therefore R_3 = \frac{V_{in}(max) - (V_{BE1} + V_o)}{I_{R3}} \\[10pt]
+  & \ \ \ \ \ \ \ = \frac{22\V - (0.7\V + 10\V)}{9\mA} = 1.26\kO
+\end{align*}
 
-\vspace*{.5cm}
-At minimum load current:
-
-$$R_s{max} = \dfrac{V_s(max)}{I_L(min) + I_Z(max)} = \dfrac{14.9V}{10mA + 20mA} \approx \res{500 $\Omega$} $$
-
-\vspace*{.5cm}
-At maximum load current:
-
-$$R_s{min} = \dfrac{V_s(max)}{I_L(max) + I_Z(min)} = \dfrac{14.9V}{50mA + 10mA} \approx \res{250 $\Omega$} $$
-
-\vspace*{.5cm}
-$\therefore R_s = \sqrt{R_s{max}\times R_s{min}} = \sqrt{500\times 250} = \res{353 $\Omega$}$
-
-\usubsection{Circuit and output waveform}
+\usubsection{Circuit, Load \& line regulation}
+\uusubsection{Load regulation}
 \begin{figure}[H]
-\centering
-	{%
-		\setlength{\fboxsep}{0pt}%
-		\setlength{\fboxrule}{.5pt}%
-		\fbox{\includegraphics*[width=.45\textwidth]{zener-ckt.png}}%
-	}%
-	\hspace*{.5cm}
-	{%
-		\setlength{\fboxsep}{0pt}%
-		\setlength{\fboxrule}{.5pt}%
-		\fbox{\includegraphics*[width=.45\textwidth]{zener-plot.png}}%
-	}%
+  \includegraphics*[width=\textwidth]{load-reg.png}%
 \end{figure}
+
+\begin{align*}
+  \text{Load Regulation} & = \dfrac{V_{NL} - V_{FL}}{V_{NL}}\times 100\% \\[10pt]
+  & = \dfrac{9.9587 - 9.8387}{9.9587}\times 100\% \\[10pt]
+  & = \res{1.20\%}
+\end{align*}
+
+\vspace*{.5cm}
+\uusubsection{Line regulation}
+\begin{figure}[H]
+  \includegraphics*[width=\textwidth]{line-reg.png}%
+\end{figure}
+\begin{flalign*}
+  \text{Line Regulation} & = \dfrac{\Delta V_{out}}{\Delta V_{in}} \times 100\% \\[10pt]
+  & = \dfrac{\Delta V(n002)}{\Delta V(n001)} \times 100\% \\[10pt]
+  & = \dfrac{10.2544 - 9.6197}{22 - 12} \times 100\% \\[10pt]
+  & = \res{6.35\%}
+\end{flalign*}
+
 \usubsection{Result}
-Designed a 5V Zener series regulator and obtained is output plot
+
+Design and simulated a zener series voltage regulator and obtained its regulation parameters:
+
+Load regulation = 6.35\%
+
+Line regulation = 1.20\%
 
 \end{document}
