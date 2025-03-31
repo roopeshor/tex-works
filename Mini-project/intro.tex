@@ -1,0 +1,28 @@
+\chapter{Introduction}
+\setlength\parindent{1cm}
+
+Efficient Irrigation is very crucial in modern agriculture for
+maximizing both production and profit. Water scarcity and inefficient
+irrigation practices pose significant challenges. Traditional
+irrigation methods often lead to overwatering or underwatering,
+resulting in poor crop yield and excessive water consumption. With
+the increasing demand for sustainable farming solutions, automated
+irrigation systems provide an efficient way to optimize water usage
+while ensuring healthy plant growth.
+
+The Automatic Irrigation System automates plant watering based on
+real-time soil moisture levels. The system uses 433MHz RF for
+wireless communication. In the transmitter unit the soil moisture
+sensor continuously measures whether the moisture content in the soil
+is above or below a set reference and produces a corresponding
+digital signal. Then an encoder (HT12E) encodes this data in the
+transmitter unit and transmits it using an RF transmitter module. The
+data is received and decoded at the receiver unit and according to
+the received data the receiver unit activates a relay, turning on a
+water pump to irrigate the soil. Once the moisture level reaches the
+desired value, the transmitter detects this change and sends an
+update to the receiver, which then deactivates the relay, switching
+off the pump. This data can be accessed through a webpage hosted by a
+NodeMCU. This system ensures efficient water management, reducing
+wastage and minimizing manual intervention, making it an ideal
+solution for smart agriculture.

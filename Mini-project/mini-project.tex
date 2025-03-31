@@ -9,7 +9,7 @@
 \usepackage{cite}
 \usepackage{svg}
 \usepackage{fontspec}
-\usepackage{color}
+% \usepackage{color}
 \usepackage[hidelinks]{hyperref}
 \usepackage{setspace}
 \usepackage{etoolbox}
@@ -18,566 +18,94 @@
 \usepackage{indentfirst}
 \usepackage[format=plain, font=it]{caption}
 \usepackage{wrapfig}
+\usepackage{longtable}
+\usepackage{fancyhdr}
 
 \newcommand{\subtitlefont}{\fontsize{18}{18}\selectfont}
-\newcommand{\chapterFont}{\fontsize{18}{18}\selectfont}
+\newcommand{\chapterFont}{\fontsize{20}{20}\selectfont}
 \newcommand{\sectionFont}{\fontsize{14}{14}\selectfont}
 \newcommand{\titlefont}{\fontsize{25}{25}\selectfont}
 \newcommand{\titlepagefont}{\fontsize{13}{13}\selectfont}
 \newcommand{\bodyfont}{\fontsize{13}{13}\selectfont}
 \newcommand{\certificateTitle}[1]{{\centering \fontsize{18}{18}\selectfont #1}}
-\newcommand{\headingc}[1]{
-  \begin{center}
-    \chapterFont #1
-  \end{center}
-}
+
 \newcommand{\doindent}{\setlength\parindent{1cm}}
 \newcommand{\addsvg}[2]{\includesvg[inkscapearea=drawing, width=#2]{#1}}
 \newcommand{\addimg}[2]{\includegraphics[width=#2]{#1}}
 \newcommand{\floatfig}[6]{
-  %{l|r}{w}{img}{size}{cap}{bot}
-  \begin{wrapfigure}{#1}{#2\textwidth}
-    \centering
-    \addimg{images/#3}{#4\linewidth}
-    \caption{\centering #5}
-    \vspace*{#6}
-  \end{wrapfigure}
+	%{l|r}{w}{img}{size}{cap}{bot}
+	\begin{wrapfigure}{#1}{#2\textwidth}
+		\centering
+		\addimg{images/#3}{#4\linewidth}
+		\caption{\centering #5}
+		\vspace*{#6}
+	\end{wrapfigure}
 }
 \newcommand{\floatfigsvg}[6]{
-  %{l|r}{w}{img}{size}{cap}{bot}
-  \begin{wrapfigure}{#1}{#2\textwidth}
-    \centering
-    \addsvg{images/#3}{#4\linewidth}
-    \caption{\centering #5}
-    \vspace*{#6}
-  \end{wrapfigure}
+	%{l|r}{w}{img}{size}{cap}{bot}
+	\begin{wrapfigure}{#1}{#2\textwidth}
+		\centering
+		\addsvg{images/#3}{#4\linewidth}
+		\caption{\centering #5}
+		\vspace*{#6}
+	\end{wrapfigure}
 }
 
 \titleformat{\chapter}[display]
-{\chapterFont \centering} % Font settings: Huge size, bold, centered
+{\chapterFont \centering}
 {\chaptername\ \thechapter} % Numbering format
 {10pt} % Space between number and title
 {\chapterFont} % Title font settings
 \titlespacing*{\chapter}{0pt}{0in}{20pt}
 
-\titleformat*{\section}{\sectionFont}
+% \titleformat*{\section}{\sectionFont}
 
-\makeatletter
-\patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
+% \makeatletter
+% \patchcmd{\chapter}{\if@openright\cleardoublepage\else\clearpage\fi}{}{}{}
 
 \begin{document}
 \pagenumbering{gobble}
 \linespread{1.2}
 \setmainfont{Times New Roman}
-\begin{titlepage}
-  \titlepagefont
-  \newgeometry{top=1.7in, bottom=1in, left=1in, right=1in}
-  \centering
-  {\subtitlefont Mini Project Report on \par}
-  \vspace{.3cm}
 
-  {\titlefont {Automatic Irrigation System} \par}
+\input{title.tex}
+\input{certificate.tex}
 
-  \vspace{1cm}
+% \newgeometry{top=1in, bottom=1in, left=1in, right=1in}
+% \pagestyle{fancy}
+% \fancyhead{}
+% \fancyfoot{}
+% \fancyhead[L]{Automatic Irrigation System}
+% \fancyfoot[R]{\thepage}
+% \fancyfoot[L]{\textit{Division of Electronics Engg, SOE, CUSAT}}
+% \renewcommand{\headrulewidth}{0pt}
+% \renewcommand{\footrulewidth}{1pt}
+% \setlength{\headheight}{15pt}
 
-  {\textit{Submitted by} \par}
-  \vspace{.5cm}
+% \setstretch{1.2}
 
-  \textbf {Roopesh O R (20323085)} \par
-  \textbf {Roshna Palatty Santhosh (20323086)} \par
-  \textbf {Sumayya Punnoth (20323100)} \par
-  \textbf {Merella Jobi (20323113)} \par
+% \fancypagestyle{plain}
 
-  \vspace{1cm}
-  {\textit{in partial fulfillment of requirement for the award of the
-  degree} \par}
-  {\textit{Of}} \par
-  \vspace{.6cm}
-  {\textbf{BACHELOR OF TECHNOLOGY} \par}
-  {\textbf{in}} \par
-  {\textbf{ELECTRONICS AND COMMUNICATION} \par}
-  \vspace{1cm}
+% \input{ack.tex}
+\input{abstract.tex}
+\pagebreak
 
-  \addsvg{cusat}{1.5in}\par
-
-  \vspace{1cm}
-
-  {\textbf{Division of Electronics Engineering} \par}
-  {\textbf{School of Engineering} \par}
-  {\textbf{Cochin University of Science and Technology} \par}
-  {\textbf{Kochi - 682022} \par}
-
-  \vspace{.5cm}
-
-  {\textbf{April 2025} \par}
-
-  \vfill
-
-\end{titlepage}
-%% certificate
-\newgeometry{top=3cm, bottom=3cm, left=3cm, right=3cm}
-\vspace*{3cm}
-\begin{center}
-
-  \certificateTitle{
-    DIVISION OF ELECTRONICS ENGINEERING \\
-    SCHOOL OF ENGINEERING \\
-    COCHIN UNIVERSITY OF SCIENCE AND TECHNOLOGY \\
-    KOCHI-682022 \\
-  }
-  \vspace{1cm}
-  \addsvg{cusat}{1.5in}\par
-  \vspace{1cm}
-  \certificateTitle{\textbf {Certificate}}
-  \vspace{.3cm}
-
-  \titlepagefont
-  \setstretch{1.5}
-  \textit{
-    Certified that the project report entitled \strong{“Automatic
-    Irrigation System"}
-    is a bonafide work of \strong{Roopesh O R, Roshna Palatty
-    Santhosh, Sumayya Punnoth, Merella Jobi} towards the partial
-    fulfillment for the award of the
-    degree of B.Tech in Electronics and Communication of Cochin
-    University of Science and Technology, Kochi-682022.
-  }
-
-  \vspace{3cm}
-  \begin{minipage}[t][][r]{.4\linewidth}
-    Project Co-ordinator
-  \end{minipage}
-  \hfill
-  \begin{minipage}[t][][l]{.4\linewidth}
-    \begin{flushright}
-      Head of Division\\
-      Dr. Deepa Sankar
-    \end{flushright}
-  \end{minipage}
-\end{center}
-
-\newpage
-\setstretch{1.2}
-\headingc{Abstract}
-
-This project details the design and implementation of an automatic
-irrigation system with remote monitoring, addressing the critical
-need for efficient water management in agriculture. The system
-consists of a Transmitter, Receiver, Soil Moisture Sensor, NodeMCU,
-Encoder, Decoder, Relay and Motor. The transmitter utilizes a soil
-moisture sensor to continuously monitor the moisture level of soil,
-encodes and transmits the data. The receiver receives this data,
-decodes and activates the motor through a relay which pumps the water
-till the threshold water level is reached. This data can be accessed
-through a webpage hosted by NodeMCU.
-
-\newpage
-
-\renewcommand{\contentsname}{Table of contents}
-\renewcommand{\cfttoctitlefont}{\chapterFont}
-\renewcommand{\cftbeforetoctitleskip}{0pt}
-\renewcommand{\cftbeforeloftitleskip}{0pt}
-\renewcommand{\cftbeforelottitleskip}{0pt}
-\renewcommand{\cftaftertoctitleskip}{10pt}
-\renewcommand{\cftafterlottitleskip}{10pt}
-\renewcommand{\cftafterloftitleskip}{10pt}
-\renewcommand{\cftlottitlefont}{\chapterFont}
-\renewcommand{\cftloftitlefont}{\chapterFont}
-
-\renewcommand{\cftdotsep}{4}
-\renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
-\renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}}
-\renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}} % for parts
-\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
-
-\newgeometry{top=2cm}
-
-\tableofcontents
-
-\newpage
-\pagenumbering{roman}
-
-\cleardoublepage
-\phantomsection
-\addcontentsline{toc}{chapter}{\listfigurename}
-\listoffigures
-
-\newpage
-
-\cleardoublepage
-\phantomsection
-\addcontentsline{toc}{chapter}{\listtablename}
-\listoftables
-\newpage
-
+\input{tocloft.tex}
 \doindent
 \pagenumbering{arabic}
-\chapter{Introduction}
-\setlength\parindent{1cm}
 
-Efficient Irrigation is very crucial in modern agriculture for
-maximizing both production and profit. Water scarcity and inefficient
-irrigation practices pose significant challenges. Traditional
-irrigation methods often lead to overwatering or underwatering,
-resulting in poor crop yield and excessive water consumption. With
-the increasing demand for sustainable farming solutions, automated
-irrigation systems provide an efficient way to optimize water usage
-while ensuring healthy plant growth.
-
-The Automatic Irrigation System automates plant watering based on
-real-time soil moisture levels. The system uses 433MHz RF for
-wireless communication. In the transmitter unit the soil moisture
-sensor continuously measures whether the moisture content in the soil
-is above or below a set reference and produces a corresponding
-digital signal. Then an encoder (HT12E) encodes this data in the
-transmitter unit and transmits it using an RF transmitter module. The
-data is received and decoded at the receiver unit and according to
-the received data the receiver unit activates a relay, turning on a
-water pump to irrigate the soil. Once the moisture level reaches the
-desired value, the transmitter detects this change and sends an
-update to the receiver, which then deactivates the relay, switching
-off the pump. This data can be accessed through a webpage hosted by a
-NodeMCU. This system ensures efficient water management, reducing
-wastage and minimizing manual intervention, making it an ideal
-solution for smart agriculture.
-
-\newpage
-\chapter{Objective}
-\noindent
-The main objectives of this project are:
-\begin{enumerate}
-  \item To improve irrigation efficiency while reducing operational
-    costs and labor.
-  \item Reduce water wastage through sensing and control.
-  \item Enable remote monitoring of agriculture fields
-\end{enumerate}
-
-\newpage
-\chapter{Block diagram}
-
-\begin{figure}[ht]
-	\centering
-	\addsvg{images/block}{.9\linewidth}
-	\caption{Block Diagram}
-  \end{figure}
-
-The soil moisture sensor placed in the soil in the field produces a
-digital signal representing whether soil is dry or not is generated
-by comparing moisture level and a set reference voltage. This signal
-is encoded and transmitted over radio. This signal is received and
-decoded at a receiver setup in the home. Based on the signal
-received, the receiver drives a switch which actuates the relay and
-hence the water pump, supplying water to the field. The soil moisture
-status is read by NodeMCU and updates the status on a website hosted in NodeMCU
-
-\newpage
-\chapter{Circuit Diagram}
-
-\section{Transmitter}
-\begin{figure}[ht]
-  \centering
-  \addsvg{images/tx}{.7\linewidth}
-  \caption{Transmitter circuit}
-\end{figure}
-The resistive soil moisture sensor placed in the soil continuously
-senses the water level of the soil, providing a digital output from
-the DO pin of the sensor based on a set threshold level. The sensor
-gives a high output if the water content falls below the threshold
-level, and a low output otherwise. This digital signal is directly
-fed into the input data pin AD8 (pin 10) of the HT12E encoder. The
-address pins A0 to A7 (pins 1 to 8) of the encoder are set to 0. The
-HT12E encoder then takes this digital signal and encodes it with the
-address creating a data packet. The data packet obtained from DOUT
-(pin 17) is then sent to an RF transmitter module’s data input pin
-DATA for modulation and wireless transmission. This RF transmitter
-modulates the digital data onto a radio frequency carrier signal of
-433Mhz and then transmits it wirelessly via an antenna of length
-20cm. This transmission occurs continuously based on the data from
-the moisture sensor.
-
-\newpage
-
-\section{Receiver}
-\begin{figure}[ht]
-  \centering
-  \addsvg{images/rx}{.8\linewidth}
-  \caption{Receiver circuit}
-\end{figure}
-
-The RF receiver module tuned at 433MHz receives the radio frequency
-signal transmitted by the transmitter unit. The RF module demodulates
-the received signal. This decoded data is then fed into the HT12D
-decoder’s data input pin DIN (pin 14). The decoder is configured with
-the same address as the HT12E encoder in the transmitter by setting
-the address pins A0 to A7 (pins 1 to 8) to ground. It checks the
-address portion of the received data to ensure it matches its own. If
-the addresses match, the decoder extracts the data portion of the
-signal and presents it through its output data pins D8-D11. This
-extracted digital data represents the soil moisture status and is
-then taken from D8 (pin 10). The data is then given to a relay such
-that it only turns on if data is high (i.e., water content is low)
-and transmission is valid. This is achieved by using two transistors
-in an AND gate configuration that takes the values from VT (pin 17)
-and D8 (pin 10) as input.
-
-The relay module is wired in a normally OFF configuration. It is
-switched to ON state when both VT and D8 pins are high. This turns on
-a water pump that is connected to the relay and pumps water to the
-plants. When the received digital data from the soil moisture sensor
-becomes low and the switching circuit turns off relay and it switches
-back to OFF state which turns the water pump off.
-
-\newpage
-
-\chapter{Components}
-
-\section{Soil Moisture Sensor}
-
-\setlength\intextsep{0pt}
-\setlength{\columnsep}{.6cm}
-\floatfig{r}{.4}{sms.png}{1}{Soil moisture sensor}{.4cm}
-
-The Resistive Soil Moisture Sensor Module consists of two probes
-which are used to measure the moisture content of water. Resistive
-soil moisture sensors work by measuring the resistance of the soil,
-which changes with moisture content, with higher moisture leading to
-lower resistance. The sensor uses two probes to pass a current
-through the soil, and the resistance encountered is used to estimate
-moisture levels. The sensing circuit is calibrated to different soil
-types for proper measurement by adjusting the built in potentiometer
-
-\section{FS1000A: Transmitter \& Receiver module}
-
-\floatfig{l}{.45}{fs100a.png}{.9}
-{FS1000A receiver \&\\ transmitter pair}{.2cm}
-
-This is a combination of two modules used for data transmission and
-reception. The  core of the transmitter module is a SAW resonator
-tuned to operate at 433MHz. Apart from that, it has a switching
-transistor and some passive components. When the DATA input is high,
-the oscillator generates a constant RF output carrier wave at 433MHz,
-and when the DATA input is low, the oscillator ceases operation;
-resulting in an amplitude modulated wave. The module can cover a
-minimum of 10 meters and with proper antenna and power supplies.
-Theoretically it can transmit up to 100 meters.
-
-The Receiver module consists of an RF tuned circuit and an Op-Amp
-that amplify the received carrier wave. The amplified signal is then
-fed into a PLL Phase Lock Loop, which allows the demodulator to
-“lock” onto frequency of incoming signal. The demodulated signal is
-preset at two output pins which are internally connected
-\newpage
-
-\section{HT12E: Encoder IC}
-
-\floatfigsvg{r}{.45}{ht12e.svg}{.8}{HT12E encoder IC pinout}{-1cm}
-
-The function of HT12E is to encode a 4-bit data and 8-bit address and
-send it out through the output pin. The IC has operating voltage
-ranging from 2.4V to 5V with typical value of 3V. The Transmission
-Enable pin (pin 14) is pulled to ground to activate transmission. The
-4-bit data that has to be sent is given to the pins AD8 to AD11 and
-an address of 8-bit is set using the pins A0 to A7.  Moreover a
-resistor has to be connected between OSC1 and OSC2 pins to set the
-operation frequency of encoder
-
-\vspace*{1.5cm}
-
-\section{HT12D: Decoder IC}
-
-\floatfigsvg{r}{.45}{ht12d.svg}{.8}{HT12D decoder IC pinout}{0cm}
-
-The function of HT12D is to decode the data obtained from a receiver
-circuit and send it through the output pins. The IC has a wide range
-of operating voltage from 2.4V to 12V with typical voltage being 5V.
-A signal on the DIN pin activates the oscillator which starts
-decoding of the incoming signal and obtains data and address in it.
-The decoder will then check if the received address matches with the
-preset address three times continuously. If it matches, the 4-bits of
-data are decoded to activate the output pins D8-D11 and the VT pin is
-set high to indicate a valid transmission.
-
-\section{BC547B: Transistor}
-
-\floatfig{r}{.45}{bc547.png}{.5}{BC547 transistor}{-2cm}
-
-The BC547B, an NPN transistor, can handle current up to 200mA. The
-gain current of this transistor is from 110 to 800. The maximum base
-to emitter reverse voltage it can handle is 6V and maximum collector
-to emitter voltage is 45V. The transistor is available in the TO-92 package.
-
-\vspace*{1cm}
-
-\section{18650 Battery and case}
-
-\floatfig{r}{.45}{battery.png}{.9}{18650 battery and its holder}{-1cm}
-
-An 18650 battery is a cylindrical, lithium-ion rechargeable battery,
-named for its dimensions (18mm diameter and 65mm length), known for
-its high energy density and long lifespan. Here we have used a 3.7V
-18650 battery with 2600mAh capacity. This battery was chosen at the
-transmitter circuit as it can power the circuit for months without
-recharge in (ideal conditions)
-
-\vspace*{1cm}
-
-\section{JQC-3FC(T73)DC05V: Relay}
-
-\setlength{\columnsep}{.3cm}
-\floatfig{r}{.45}{relay.png}{.6}{PCB Mount Relay}{0cm}
-
-This is an electromechanical relay that mechanically switches contact
-between two points. The relay is operated by applying a voltage
-across the coil pins. When coil gets energized producing a magnetic
-field that actuates a contact lever. When the coil is de-energized
-the contact returns to normal position. The relay we used can handle
-switching of 120V 10A AC supply or 24V 10A DC supply. The relay can
-switch at most 60Hz. The coil has to be powered by a 5V supply in
-order for it to actuate the contact
-
-\section{DC Motor Pump}
-
-\floatfig{r}{.4}{pump.png}{.6}{DC motor pump}{-1cm}
-
-We used a 6V DC motor pump to supply water to the field. The motor
-consumes 4-5W of power. The motor can work from 3V to 6V. It can
-supply water up to a height of 110cm at maximum operating voltage.
-For the purpose of demonstration, the motor is powered by a regulated
-power supply that can supply 5V DC
-
-\vspace*{1cm}
-
-\section{NodeMCU}
-The NodeMCU ESP32 is a development board based on the ESP32
-microcontroller. It is programmable with various programming
-languages. This board has 2.4 GHz dual-mode Wifi and a BT wireless
-connection. In addition, a 512 KB SRAM and a 4MB flash memory are
-integrated into the microcontroller development board. The board has
-21 pins for interface connection, including I2C, SPI, UART, DAC, and
-ADC. The NodeMCU's ADC (Analog-to-Digital Converter) input is
-configured for the 0-3.3V range with appropriate signal conditioning
-to match sensor output characteristics.  The module can be powered
-using an external supply through its micro USB port or with 5V and
-GND pins in the board
-
-\newpage
-\chapter{Circuit Design}
-\section{Encoder IC oscillator}
-\begin{figure}[ht]
-	\centering
-	\addsvg{images/enc-osc.svg}{.8\linewidth}
-	\caption{Plot of Oscillator frequency vs supply voltage for HT12E}
-  \end{figure}
-
-\vspace*{.5cm}
-The encoder is powered by a voltage supply of 3.7V. An arbitrary
-value of 1MΩ is chosen for the resistor across the oscillator pins
-OSC1 and OSC2 (pins 16 and 15). From the Oscillator Frequency vs
-Supply Voltage graph of the encoder IC, the oscillation frequency
-corresponding to the particular resistance and voltage values is seen
-to be 2.71kHz.
-
-\newpage
-
-\section{Decoder IC oscillator}
-\begin{figure}[ht]
-	\centering
-	\addsvg{images/dec-osc.svg}{.8\linewidth}
-	\caption{Plot of Oscillator frequency vs supply voltage for HT12E}
-  \end{figure}
-
-\vspace*{.5cm}
-The recommended oscillator frequency for the decoder is 50 times that
-of the encoder's frequency. In this case it has to be 135kHz. The
-decoder is powered by a voltage supply of 5V. From the Oscillator
-Frequency vs Supply Voltage graph of the decoder, it can be seen that
-the resistor value corresponding to a 5V supply voltage and
-calculated oscillation frequency (135kHz) is 62kΩ. The nearest
-resistance value which we had was 68kΩ and we proceeded to use it
-.This resistor is connected across the pins OSC1 and OSC2 (pins 16 and 15).
-
-\section{Switching circuit}
-The switching circuit is designed such that the relay is only turned
-on when both the sensor data as well as the valid transmission, VT,
-is high. To achieve this two transistors are placed in an AND gate
-configuration. The transistors are cascaded so that both of them have
-to be biased (by VT and D8) for the relay to turn on.
-
-The relay needs 5V to operate, and its coil has a resistance of 60Ω.
-Therefore the current flowing through should be around 80mA. This
-means that the transistor must allow at least 80mA or more. From the
-IC vs VCE graph, it can be inferred that a base current of 400uA and
-more should be applied. The output voltage from the decoder IC is 5V.
-To get the desired 400uA at the base, a resistance can be connected
-in series. The resistor value is calculated to be ~12kΩ. Therefore,
-the base resistor is chosen to be 10kΩ.
-
-It was noticed that during transmission, during irrigation the relay
-would occasionally flicker due to some noise in the communication. To
-eliminate this, a capacitor of  220uF is placed in the base of the
-transistors, effectively acting as a low pass filter.
-
-\newpage
-\chapter{Construction and Testing}
-\section{PCB Layout}
-
-\section{Assembled circuit}
-
-\newpage
-\chapter{Conclusion}
-With this project we have successfully implemented an automatic
-irrigation system enabling efficient water management through remote
-monitoring and wireless communication. By using a soil moisture
-sensor, the system monitors the moisture level of soil and supplies
-water based on soil conditions. This ensures optimal plant hydration
-reducing manual labour and water wastage. The system not only
-optimizes water usage but also promotes sustainable growth by
-preventing overwatering and underwatering.
-
-\newpage
-\chapter{Limitations}
-Currently the maximum range of stable transmission is 10 meters. This
-could be further improved by proper designing of antennas. This could
-also avoid cases where transmission can occasionally halt for a brief
-time. Also the system can fail during precipitation due to limited
-waterproofing..
-
-\newpage
-\chapter{Future scope}
-\begin{enumerate}
-  \item Create an enclosure: \\
-    Since the system operates in an external agricultural
-    environment, exposure to    dust, soil and moisture is
-    inevitable. A well sealed-enclosure prevents water damage and
-    dust accumulation ensuring smooth working of sensitive components.
-  \item Integrating additional sensors: \\
-    Sensors such as temperature, humidity, light, pH sensors etc. can
-    be helpful in optimizing irrigation based and also helps in
-    gathering information about environment of farmland
-  \item Remote control: \\
-    If needed, the user can optionally turn on the motor remotely.
-    This is useful in cases where the user has prior knowledge of
-    possible power supply failure later in the day. Hence user can
-    water plants in advance.
-  \item Using drip irrigation and recycling of water: \\
-    In  drip irrigation water is supplied to the roots of plants drop
-    by drop. This can further reduce wastage of water through
-    evaporation or runoff
-\end{enumerate}
-
-\newpage
-\chapter{References}
-\begin{enumerate}
-  \item “Electronics For You Express”, february 2021 edition, page 56
-    - https://online.\\fliphtml5.com/oxomv/fjlb/
-  \item HT12E data encoder - https://www.farnell.com/datasheets/1899539.pdf
-  \item HT12D data decoder - https://www.farnell.com/datasheets/57850.pdf
-  \item BC547B NPN transistor -
-    https://cdn.sparkfun.com/assets/d/5/e/5/d/BC547.pdf
-  \item FS1000A radio transmitter and receiver -
-    https://robu.in/wp-content/uploads/2016/05/\\FS1000A-datasheet.pdf
-  \item JQC-3FC(T73)DC05V sugar cube relay
-    https://pdf.voron.ua/files/pdf\\/relay/JQC-3F(T73).pdf
-\end{enumerate}
+\input{intro.tex}
+\input{objective.tex}
+\input{block.tex}
+\input{circuit.tex}
+\input{components.tex}
+\input{cost.tex}
+\input{design.tex}
+\input{construction.tex}
+\input{conclusion.tex}
+\input{limitation.tex}
+\input{future-scope.tex}
+\input{references.tex}
+% \input{appendices.tex}
 
 \end{document}

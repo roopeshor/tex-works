@@ -1,0 +1,56 @@
+\newpage
+\chapter{Circuit Design}
+\section{Encoder IC oscillator}
+\begin{figure}[ht]
+	\centering
+	\addsvg{images/enc-osc.svg}{.8\linewidth}
+	\caption{Plot of Oscillator frequency vs supply voltage for HT12E}
+\end{figure}
+
+\vspace*{.5cm}
+The encoder is powered by a voltage supply of 3.7V. An arbitrary
+value of 1MΩ is chosen for the resistor across the oscillator pins
+OSC1 and OSC2 (pins 16 and 15). From the Oscillator Frequency vs
+Supply Voltage graph of the encoder IC, the oscillation frequency
+corresponding to the particular resistance and voltage values is seen
+to be 2.71kHz.
+
+\newpage
+
+\section{Decoder IC oscillator}
+\begin{figure}[ht]
+	\centering
+	\addsvg{images/dec-osc.svg}{.8\linewidth}
+	\caption{Plot of Oscillator frequency vs supply voltage for HT12E}
+\end{figure}
+
+\vspace*{.5cm}
+The recommended oscillator frequency for the decoder is 50 times that
+of the encoder's frequency. In this case it has to be 135kHz. The
+decoder is powered by a voltage supply of 5V. From the Oscillator
+Frequency vs Supply Voltage graph of the decoder, it can be seen that
+the resistor value corresponding to a 5V supply voltage and
+calculated oscillation frequency (135kHz) is 62kΩ. The nearest
+resistance value which we had was 68kΩ and we proceeded to use it
+.This resistor is connected across the pins OSC1 and OSC2 (pins 16 and 15).
+
+\section{Switching circuit}
+The switching circuit is designed such that the relay is only turned
+on when both the sensor data as well as the valid transmission, VT,
+is high. To achieve this two transistors are placed in an AND gate
+configuration. The transistors are cascaded so that both of them have
+to be biased (by VT and D8) for the relay to turn on.
+
+The relay needs 5V to operate, and its coil has a resistance of 60Ω.
+Therefore the current flowing through should be around 80mA. This
+means that the transistor must allow at least 80mA or more. From the
+IC vs VCE graph, it can be inferred that a base current of 400uA and
+more should be applied. The output voltage from the decoder IC is 5V.
+To get the desired 400uA at the base, a resistance can be connected
+in series. The resistor value is calculated to be ~12kΩ. Therefore,
+the base resistor is chosen to be 10kΩ.
+
+It was noticed that during transmission, during irrigation the relay
+would occasionally flicker due to some noise in the communication. To
+eliminate this, a capacitor of  220uF is placed in the base of the
+transistors, effectively acting as a low pass filter.

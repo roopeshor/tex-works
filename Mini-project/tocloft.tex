@@ -1,0 +1,39 @@
+\renewcommand{\contentsname}{Table of contents\hfill\hfill}
+\renewcommand{\cfttoctitlefont}{\hfill\chapterFont}
+\renewcommand{\cftbeforetoctitleskip}{0pt}
+\renewcommand{\cftaftertoctitleskip}{10pt}
+
+\renewcommand{\cftlottitlefont}{\chapterFont}
+\renewcommand{\cftbeforelottitleskip}{0pt}
+\renewcommand{\cftafterlottitleskip}{10pt}
+\renewcommand{\listfigurename}{\hfill List of Figures\hfill}
+\renewcommand{\listtablename}{\hfill List of Tables\hfill}
+\renewcommand{\cftloftitlefont}{\chapterFont}
+\renewcommand{\cftbeforeloftitleskip}{0pt}
+\renewcommand{\cftafterloftitleskip}{10pt}
+
+\renewcommand{\cftbeforechapskip}{3pt}
+\renewcommand{\cftchapleader}{\cftdotfill{\cftdotsep}}
+% \renewcommand{\cftdotsep}{4}
+% \renewcommand{\cftsecleader}{\cftdotfill{\cftdotsep}}
+% \renewcommand{\cftsubsecleader}{\cftdotfill{\cftdotsep}}
+% \renewcommand{\cftpartleader}{\cftdotfill{\cftdotsep}} % for parts
+\vspace*{-10pt}
+\tableofcontents
+% \vspace*{-5pt}
+
+
+\newpage
+\pagenumbering{roman}
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Figure}
+\listoffigures
+
+\newpage
+
+% \cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Table}
+\listoftables
+\newpage
