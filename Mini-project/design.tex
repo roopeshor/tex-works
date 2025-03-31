@@ -2,9 +2,9 @@
 \chapter{Circuit Design}
 \section{Encoder IC oscillator}
 \begin{figure}[ht]
-	\centering
-	\addsvg{images/enc-osc.svg}{.8\linewidth}
-	\caption{Plot of Oscillator frequency vs supply voltage for HT12E}
+  \centering
+  \addsvg{images/enc-osc.svg}{.8\linewidth}
+  \caption{Plot of Oscillator frequency vs supply voltage for HT12E}
 \end{figure}
 
 \vspace*{.5cm}
@@ -19,9 +19,9 @@ to be 2.71kHz.
 
 \section{Decoder IC oscillator}
 \begin{figure}[ht]
-	\centering
-	\addsvg{images/dec-osc.svg}{.8\linewidth}
-	\caption{Plot of Oscillator frequency vs supply voltage for HT12E}
+  \centering
+  \addsvg{images/dec-osc.svg}{.8\linewidth}
+  \caption{Plot of Oscillator frequency vs supply voltage for HT12E}
 \end{figure}
 
 \vspace*{.5cm}
@@ -32,7 +32,8 @@ Frequency vs Supply Voltage graph of the decoder, it can be seen that
 the resistor value corresponding to a 5V supply voltage and
 calculated oscillation frequency (135kHz) is 62kΩ. The nearest
 resistance value which we had was 68kΩ and we proceeded to use it
-.This resistor is connected across the pins OSC1 and OSC2 (pins 16 and 15).
+Upon testing, we fount that this slight change did not had much deteoration
+in the communication system. This resistor is connected across the pins OSC1 and OSC2 (pins 16 and 15).
 
 \section{Switching circuit}
 The switching circuit is designed such that the relay is only turned
