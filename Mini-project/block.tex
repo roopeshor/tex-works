@@ -1,16 +1,16 @@
-% \newpage
-\chapter{Block diagram}
-
-\begin{figure}[ht]
-	\centering
-	\addsvg{images/block}{.9\linewidth}
-	\caption{Block Diagram}
-\end{figure}
-
+\section{Block diagram}
 The soil moisture sensor placed in the soil in the field produces a
 digital signal representing whether soil is dry or not is generated
 by comparing moisture level and a set reference voltage. This signal
-is encoded and transmitted over radio. This signal is received and
+is encoded and transmitted over radio.
+
+\begin{figure}[ht]
+  \centering
+  \addsvg{images/block}{.9\linewidth}
+  \caption{Block Diagram}
+\end{figure}
+
+This signal is received and
 decoded at a receiver setup in the home. Based on the signal
 received, the receiver drives a switch which actuates the relay and
 hence the water pump, supplying water to the field. The soil moisture

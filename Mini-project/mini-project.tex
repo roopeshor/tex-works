@@ -1,5 +1,5 @@
 \documentclass[12pt, a4paper]{report}
-\usepackage{geometry}
+\usepackage[headheight=15pt, headsep=10pt, footskip=2cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -13,10 +13,10 @@
 \usepackage[hidelinks]{hyperref}
 \usepackage{setspace}
 \usepackage{etoolbox}
-\usepackage{tocloft}
+\usepackage[titles]{tocloft}
 \usepackage{titlesec}
 \usepackage{indentfirst}
-\usepackage[format=plain, font=it]{caption}
+\usepackage[format=plain, font=it, figurename=Fig.]{caption}
 \usepackage{wrapfig}
 \usepackage{longtable}
 \usepackage{fancyhdr}
@@ -73,44 +73,32 @@
 
 \newgeometry{top=1.25in, bottom=1.25in, left=1.25in, right=1.25in}
 
+\input{ack.tex}
+\input{abstract.tex}
+\newgeometry{top=1in, left=1in, right=1in}
+
 \pagestyle{fancy}
 \fancyhead{}
 \fancyfoot{}
 \fancyfoot[R]{\thepage}
 \fancyfoot[L]{\textit{Division of Electronics Engg, SOE, CUSAT}}
 \renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{1pt}
-\setlength{\headheight}{15pt}
+\renewcommand{\footrulewidth}{0pt}
 
-
-% \input{ack.tex}
 \fancypagestyle{plain}
-
-\input{abstract.tex}
-
-\pagebreak
-
-\newgeometry{top=1in, left=1in, right=1in}
-
-\fancyfootoffset{0in}
 
 \input{tocloft.tex}
 \doindent
 \pagenumbering{arabic}
 \fancyhead[L]{Automatic Irrigation System}
 \setlength{\headheight}{15pt}
+\input{liter.tex}
 \input{intro.tex}
-\input{objective.tex}
-\input{block.tex}
-\input{circuit.tex}
-\input{components.tex}
-\input{cost.tex}
 \input{design.tex}
-\input{construction.tex}
-\input{conclusion.tex}
-\input{limitation.tex}
-\input{future-scope.tex}
+\input{res-conclusion.tex}
+\input{limitation-future.tex}
+\input{cost.tex}
 \input{references.tex}
-% \input{appendices.tex}
+\input{appendix.tex}
 
 \end{document}
