@@ -1,0 +1,61 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage[headheight=15pt, headsep=10pt, footskip=2cm]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{color}
+\usepackage{svg}
+\usepackage{fontspec}
+
+\newcommand{\titlefont}{\fontsize{25}{25}\selectfont}
+\newcommand{\titlepagefont}{\fontsize{13}{13}\selectfont}
+
+\newcommand{\addsvg}[2]{\includesvg[inkscapearea=drawing, width=#2]{#1}}
+
+\begin{document}
+\pagenumbering{gobble}
+\linespread{1.2}
+\setmainfont{Times New Roman}
+
+\begin{titlepage}
+	\titlepagefont
+	\centering
+
+	\vspace*{\fill}
+
+	{\titlefont {PYTHON PROJECT REPORT} \par}
+
+	\vspace{1cm}
+
+	{\textit{\textbf{Submitted by}} \par}
+	\vspace{.5cm}
+
+	\textbf {Roopesh O R (20323085)} \par
+	\textbf {Roshna Palatty Santhosh (20323086)} \par
+	\textbf {Merella Jobi (20323113)} \par
+
+	\vspace{1cm}
+	{\textit{\textbf{in partial fulfillment of requirement for the award of the degree \\ of }} \par}
+	\vspace{.6cm}
+	{\textbf{BACHELOR OF TECHNOLOGY \\ in \\ ELECTRONICS AND COMMUNICATION} \par}
+	\vspace{1cm}
+
+    \includesvg[inkscapearea=drawing, width=1.5in]{cusat}
+
+	\vspace{1cm}
+
+	{\textbf{
+    DIVISION OF ELECTRONICS ENGINEERING \\
+    SCHOOL OF ENGINEERING \\
+    COCHIN UNIVERSITY OF SCIENCE AND TECHNOLOGY \\
+    KOCHI - 682022
+    } \par}
+
+	\vspace{.5cm}
+
+	{\textbf{APRIL 2025} \par}
+
+	\vspace*{\fill}
+
+\end{titlepage}
+
+\end{document}
