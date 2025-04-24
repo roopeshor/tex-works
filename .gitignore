@@ -14,7 +14,7 @@
 **/*.fdb_latexmk
 **/*.xdv
 **/svg-inkscape
-**/_minted-*
+**/_minted*
 # avoid subfig compiles & temps
 */*/*.pdf
 */**/-*
