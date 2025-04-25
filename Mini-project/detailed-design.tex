@@ -9,14 +9,14 @@ The encoder is powered by a voltage supply of 3.7V. An arbitrary value of 1MΩ a
 The recommended oscillator frequency for the decoder is 50 times that of the encoder's frequency. In this case, for and encoder frequency of 2.71kHz, the decoder frequency has to be 135kHz. The decoder is powered by a voltage supply of 5V. From the Oscillator Frequency vs Supply Voltage graph of the decoder shown in \fref{Plot of Oscillator frequency vs supply voltage for HT12D}, it can be seen that the resistor value corresponding to a 5V supply voltage and calculated oscillation frequency (135kHz) is 62kΩ. However  68kΩ was the resistor value available while the construction of prototype which is nearest the calculated value. Upon testing, this slight change in resistance did not produce much deterioration in the communication system. This resistor is connected across the pins OSC1 and OSC2
 \vspace*{10pt}
 
-\blocksvg{enc-osc}{.62}{Plot of Oscillator frequency vs supply voltage for HT12E}
-\vspace*{20pt}
-\blocksvg{dec-osc}{.62}{Plot of Oscillator frequency vs supply voltage for HT12D}
+\blocksvg{enc-osc}{.7}{Plot of Oscillator frequency vs supply voltage for HT12E}
+\vspace*{36pt}
+\blocksvg{dec-osc}{.7}{Plot of Oscillator frequency vs supply voltage for HT12D}
 
 \subsection{Switching circuit}
 
 
-\blocksvg{switch}{.35}{Switching circuit}
+\blocksvg{switch}{.43}{Switching circuit}
 % \begin{figure}[ht!]
 % 	\centering
 % 	\begin{minipage}[t]{0.43\linewidth}
@@ -30,11 +30,11 @@ The recommended oscillator frequency for the decoder is 50 times that of the enc
 % 	\end{minipage}
 % 	\label{Switching circuit}
 % \end{figure}
-\vspace*{10pt}
+\vspace*{12pt}
 The switching circuit shown in \fref{Switching circuit} is designed such that the relay is only turned on when both the sensor data as well as the valid transmission, VT, is high. To achieve this two transistors are placed in an AND gate configuration. The transistors are cascaded so that both of them have to be biased (by VT and D8) for the relay to turn on.
-\vspace*{10pt}
+\vspace*{12pt}
 
-\blocksvg{bc547}{.65}{Plot of CE voltage vs collector current for BC547}
+\blocksvg{bc547}{.7}{Plot of CE voltage vs collector current for BC547}
 
 % \vspace*{.5cm}
 

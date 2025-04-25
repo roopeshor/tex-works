@@ -1,5 +1,5 @@
-\documentclass[12pt, letterpaper]{report}
-\usepackage[headheight=15pt, headsep=24pt, footskip=25pt]{geometry}
+\documentclass[12pt, a4paper]{report}
+\usepackage[headheight=15pt, headsep=15pt, footskip=25pt]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage{amsmath}
 \usepackage{amsfonts}
@@ -95,8 +95,7 @@
 {\chaptername\ \thechapter} % Numbering format
 {10pt} % Space between number and title
 {\chapterFont} % Title font settings
-\titlespacing*{\chapter}{0pt}{0in}{15pt}
-
+\titlespacing*{\chapter}{0pt}{0in}{20pt}
 
 \begin{document}
 \widowpenalty=10
@@ -106,10 +105,8 @@
 \newgeometry{top=1.25in, bottom=1.25in, left=1.25in, right=1.25in}
 
 \input{title.tex}
-\inspage
 
 \input{certificate.tex}
-\inspage
 
 \setstretch{1.5}
 \input{ack.tex}
@@ -136,10 +133,10 @@
 \input{intro.tex}
 \input{liter.tex}
 \input{design.tex}
-\input{results.tex}
-\input{conclusion.tex}
-\input{limitation-future.tex}
 \input{cost.tex}
+\input{results.tex}
+\input{limitation-future.tex}
+\input{conclusion.tex}
 \input{references.tex}
 \input{appendix.tex}
 

@@ -18,19 +18,8 @@
 \tableofcontents
 
 \newpage
-\newlength{\padfig}
-\renewcommand{\cftfigpresnum}{\figurename\ }
-\renewcommand{\cftfigaftersnum}{:}
-\settowidth{\padfig}{\cftfigpresnum\cftfigaftersnum}
-\addtolength{\cftfignumwidth}{\padfig}
 
 \pagenumbering{roman}
-\cleardoublepage
-\phantomsection
-\addcontentsline{toc}{chapter}{List of Figure}
-\listoffigures
-
-\newpage
 
 \newlength{\padtab}
 \renewcommand{\cfttabpresnum}{\tablename\ }
@@ -41,4 +30,17 @@
 \phantomsection
 \addcontentsline{toc}{chapter}{List of Table}
 \listoftables
+\newpage
+
+\newlength{\padfig}
+\renewcommand{\cftfigpresnum}{\figurename\ }
+\renewcommand{\cftfigaftersnum}{:}
+\settowidth{\padfig}{\cftfigpresnum\cftfigaftersnum}
+\addtolength{\cftfignumwidth}{\padfig}
+
+\cleardoublepage
+\phantomsection
+\addcontentsline{toc}{chapter}{List of Figure}
+\listoffigures
+
 \newpage
