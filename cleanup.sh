@@ -15,5 +15,5 @@
  find . -name "*.synctex.gz" -delete
  find . -name "*.fdb_latexmk" -delete
  find . -name "*.xdv" -delete
- find . -name "*_minted-*" -delete
+ find . -name "*_minted*" -exec rm -r "{}" \;
  find . -name "*svg-inkscape" -delete
