@@ -1,0 +1,143 @@
+\section{Overview of the Industry}
+
+The Unmanned Aerial Vehicle (UAV), or drone, industry represents a frontier of modern engineering, blending robotics, aerodynamics, and computer science. Globally, UAVs have transitioned from niche military hardware to indispensable tools across various sectors, including logistics, infrastructure inspection, precision agriculture, and disaster management. This rapid commercialization is driven by advancements in flight autonomy, sensor technology, and improved data analysis.
+
+International competitions like the Student Unmanned Aerial Systems (SUAS) competition play a vital role in this ecosystem. They serve as crucibles for innovation, pushing the boundaries of what is possible and fostering the next generation of engineers and technologists. These events challenge teams to solve complex, real-world problems, creating a high-stakes environment that accelerates learning and development far beyond the standard academic curriculum. This internship at AI Aerial Dynamics was an immersion into this competitive and innovative world, focusing on the practical application of advanced engineering principles to a specific, challenging goal.
+
+\section{Objective of the Internship}
+The primary objective of this one-month internship at AI Aerial Dynamics was to design, develop, and deploy a highly autonomous quadcopter to compete in the Student Unmanned Aerial Systems (SUAS) 2025 competition held in Maryland, USA.
+
+The key technical objectives for the project were to engineer a UAV capable of:
+\begin{itemize}
+	\item Performing fully autonomous takeoff and landing.
+	\item Navigating a flight path using predefined GPS waypoints.
+	\item Conducting real-time aerial mapping of a designated mission area.
+	\item Detecting and classifying specific ground objects from aerial imagery.
+	\item Executing a precision payload drop mechanism at multiple target locations.
+\end{itemize}
+\noindent
+My personal objectives for this internship were:
+
+\begin{itemize}
+	\item To gain hands-on experience in the electronic systems integration and documentation of a complex aerial vehicle.
+	\item To develop practical skills in UAV software tools and programming libraries such as Mission Planner and pymavlink.
+	\item To understand the project lifecycle, from component selection and assembly to field testing and debugging under high-pressure competitive environments.
+	\item To collaborate effectively within a multidisciplinary team of engineers
+\end{itemize}
+
+\section{Details about the Internship}
+
+This internship was a fast-paced, hands-on project focused on tangible outcomes. The work was structured around the SUAS 2025 competition, demanding excellence in design, execution, and teamwork under the mentorship of AI Aerial Dynamics.
+
+\subsection{Project and competition Overview and Team Structure}
+
+The project involved building a robust quadcopter from the ground up which satisfies certain constraints put forward by the competition. The basic constraints were:
+\begin{itemize}
+	\item Weight must be under 20kg
+	\item Should be able to fly autonomously
+	\item Must have Flight Termination Failsafes
+\end{itemize}
+
+The team was divided into three core sub-teams: Electronics, Mechanics, and Software. I was a member of the Electronics team, with some contributions to the mechanical and software aspects as well.
+
+\subsection{My Role and Responsibilities}
+
+My responsibilities spanned the full lifecycle of the drone's development, from design and documentation to integration and debugging.
+
+\noindent
+\begin{itemize}
+	\item \textbf{Electronics Integration \& Documentation:}
+	      \begin{itemize}
+		      \item Designed the electronic interconnects for the drone. To facilitate collaboration among other team members and iterative design, the wiring schematics were created and maintained in Figma. This allowed all team members to review the architecture in real-time and provide critical feedback.
+		      \item Developed a electronic system for payload mechanism.
+	      \end{itemize}
+	\item  \textbf{Software Contributions:}
+	      \begin{itemize}
+		      \item I optimized the real-time video pipeline using ffmpeg tools. Through parameter tuning, I successfully reduced the end-to-end video latency from approximately 1000ms down to 600ms,which was almost sufficient for real-time object detection task.
+		      \item Setup Mission Planner software for occassional flight tests.
+	      \end{itemize}
+
+	\item \textbf{Mechanical and Design Contributions:}
+	      \begin{itemize}
+		      \item Actively participated in the full mechanical assembly of the drone frame and contributed some concepts to the payload mechanism's physical layout.
+		      \item Helped in designing a custom-fit protective casing for the various electronic modules.
+	      \end{itemize}
+\end{itemize}
+
+
+\subsection{Drone System Architecture and Components}
+
+The drone was built prioritizing robustness, practical availability and some transportation factors. Electronic components of the drone were chosen based on whether they have extensive documentation, community support as well as track record of reliability, making them a sound investment for future projects. A critical, overriding factor in component selection was local availability within India, which was essential to meet our compressed project timeline as well.
+
+\blocksvg{block}{.8}{A high-level system architecture diagram of drone}
+\vspace*{1cm}
+\begin{longtable}[h!]{|l|l|p{5cm}|} \hline
+	\textbf{Component}       & \textbf{Model / Type}       & \textbf{Purpose}                                        \\ \hline
+	Flight Controller        & CubePilot Cube Orange+      & Central processing unit for flight control and autonomy \\ \hline
+	Video/Data Link          & SiYi HM30                   & Long-range video and telemetry transmission             \\ \hline
+	Mapping and FPV Camera   & ADTi Surveyor 24L           & High-resolution aerial mapping and object detection     \\ \hline
+	Manual Control/Telemetry & Skydroid T12                & Redundant telemetry and manual flight control           \\ \hline
+	Power Module             & Mauch Power Cube            & Power distribution and battery elimination (BEC)        \\ \hline
+	Propulsion System        & Hobbywing X8                & Provided thrust for the quadcopter                      \\ \hline
+	Frame                    & EFT E410P  & Provided the structural foundation for the drone        \\ \hline
+	\caption{Key Components of the UAV}
+\end{longtable}
+
+
+\subsection{Project Execution and Competition}
+
+\subsubsection{Project Execution}
+
+The project's execution phase was defined by tight deadlines and the need for rapid development and debugging. Due to the late arrival of many key components, we had very limited time for full-system testing. A major constraint was the high-capacity battery capable of powering the entire 20kg drone. According to to airport security rules, the capacity of batteries being transported must be less than 100Wh. This forced to buy batteries from the USA and test the whole system there. Meanwhile we tested the rest of the subsystems one by one using a smaller drone offered by our mentor. The smaller drone was used to test software systems and we used top of a building to test other systems like payload mechanism and GPS.
+\begin{itemize}
+	\item \textbf{Camera System Test}: The ADTi Surveyor 24L camera were not be obtained until the last week. Hence we used a small IP camera.SiYi HM30 video transmitter and IP camera were mounted on a smaller, separate drone to test their behaviour in flight, including video transmission and object detection.
+	\item \textbf {Payload Mechanism Test}: To verify the payload drop, we tested the winch mechanism from the top of a 15-meter-tall building, satisfying the competition's minimum drop-height requirement.
+\end{itemize}
+
+This approach, while not robust enough, was necessary. This meant the fully integrated 20kg system was never flown prior to the competition.
+
+Prior to mission demonstration, teams had to submit a Technical Design Report (TDR) detailing the overview of architecture, component and safetey systems of drone. Moreover a website showcasing the team had to be submitted.
+
+\subsubsection{In the competition venue}
+
+The final stage was the SUAS 2025 competition. After disassembling and transporting the drone to Maryland, USA, we reassembled it and tested the drone in the backyard of hotel we stayed. There was lot of last-moment issues with payload mechanism and related electronics and some part has to be modified. Software team also had to make changes in the software due to some changes in the rulebook of the competition. In june 24th, the competition began with orientation session where teams were remined of overview of program and provided opportunity to network with others. The next day we had to appear for safety inspection of drone, where our drone passed all technical and safety aspects and allowed to fly the next day.
+
+\blockimage{drone-1.jpg}{.6}{Assembled drone before safely inspection}
+
+
+On 26th june, the mission day, the drone has to be demonstrated for its mission execution capabilities. Since we were attempting four air drops of payloads the mission flow was follwing:
+Takeoff
+Navigate thorugh 12 Waypoint (considered a 'Lap')
+Conduct aerial mapping
+Conduct Air Drop during a lap, four times
+Land
+Remove UAS from Runway
+
+The software was written to drive the drone in this flow.
+In the competition, the drone performed a perfect autonomous takeoff and began its primary task: navigating a 12-waypoint course. However, a critical issue emerged as it finished the lap. Instead of proceeding to the next mission phase (mapping), the software system at the Ground control station (GCS) directed it to begin a second lap. Shortly after, the Mauch Power Cube's sensor incorrectly detected a low-voltage condition, triggering the battery failsafe.
+
+To ensure the safety of the aircraft, the GCS Pilot made the decision to trigger the Return to Launch (RTL) command. The drone responded perfectly, autonomously returning to its takeoff position and landing safely. While we were unable to complete the payload drop and aerial mapping, the flight demonstrated the robustness of our core navigation and safety systems. The incident itself provided a crucial lesson in the reality of complex systems: components can fail in unexpected ways, and a deep understanding of every subsystem is critical. Post-mission log analysis pointed to a calibration issue with the power module as well as the software written.
+
+\blockimage{drone-2.jpg}{.6}{Drone during takeoff}
+
+Despite the mission's outcome, our team successfully completed the optional "Design for Transport" challenge, demonstrating modularity of mechanical design by assembling the drone from a collapsed state to flying condition under five minutes.
+
+\section{Conclusion}
+
+This internship was an immensely rewarding and intensive learning experience. The successful construction and competitive performance of our autonomous drone stand as a testament to the team's dedication and skill.
+
+I gained profound practical knowledge in drone technology, from the intricacies of electronic system integration and power management to the practical application of software like Mission Planner. The challenges, particularly the compressed timeline and component delays, improved my skills in learning, rapid problem-solving and debugging under pressure. The project also provided invaluable non-technical lessons, including the administrative complexities of international travel with technical equipment (visa and customs processes) and insights into effective team leadership observed from my team leads. The entire experience solidified my technical foundation and built my confidence in tackling large-scale, multidisciplinary engineering projects.
+
+\blockimage{team.jpg}{.8}{Our team at competition venue}
+
+\section{Future Scope}
+
+The project has opened up several aspects for future work.
+
+\begin{itemize}
+	\item \textbf{Indigenous Component Manufacturing}:
+During the travel to Mumbai for VISA process, I had a conversation with an embedded system engineer working in similar industry. He highlighted the current scenario of electronics market in India and critical need for indigenous component manufacturing for security of the nation. Inspired by this, a potential future project for me is to design and develop a domestic alternative to an imported component. I plan to focus on creating a Battery Eliminator Circuit (BEC), similar in function to the Mauch Power Cube we used. This would be a challenging as the module itself is very complex and was designed for much higher power consumption.
+
+\item \textbf{Team and Project Continuation}:
+The team plans to build on the success of this project. Our immediate goal is to participate in the upcoming NIDAR competition, hosted by Ministry of Electronics and Information Technology and Drone Federation India, which will allow us to further refine our platform. Furthermore, the long-term vision is to expand the team's activities, transforming it into a hub for fostering a general engineering mindset among college students, making them more confident and industry-ready. The focus will be on encouraging innovation and hands-on product development
+\end{itemize}
