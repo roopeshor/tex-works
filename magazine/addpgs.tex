@@ -1,0 +1,75 @@
+\documentclass[a4paper]{book}
+\usepackage[final]{pdfpages}
+\usepackage{fancyhdr}
+\usepackage{calc}
+\usepackage{fontspec}
+\usepackage{color}
+
+
+
+\newfontfamily\mts[Scale=1.1]{Montserrat-Medium.ttf}
+
+\newcommand{\epage}[2]{
+	\includepdf[
+	pages=#1-#2, pagecommand=\thispagestyle{empty}
+]{o.pdf}
+}
+
+\newcommand{\fpage}[2]{
+	\includepdf[
+	pages=#1-#2, pagecommand=\thispagestyle{fancy}
+]{o.pdf}
+}
+
+
+\newcommand{\blackfoot}{
+	\fancyfoot[C]{
+	\textcolor{footercolor2}{
+		\mts \thepage
+	}%
+}
+}
+\newcommand{\whitefoot}{
+	\fancyfoot[C]{
+	\textcolor{footercolor}{
+		\mts \thepage
+	}%
+}
+}
+
+\begin{document}
+\pagenumbering{gobble}
+
+\epage{1}{18}
+
+\definecolor{footercolor}{rgb}{.3,.3,.3}
+\definecolor{footercolor2}{rgb}{.9,.9,.9}
+\topmargin 2.95cm
+\setlength{\evensidemargin}{2.1cm}
+\setlength{\oddsidemargin}{2.1cm}
+\newcommand{\pad}{\hspace*{7pt}|\hspace*{7pt}}
+\fancyhead{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\pagenumbering{arabic}
+
+\whitefoot
+\epage{19}{19}
+\fpage{20}{47}
+\blackfoot
+\fpage{48}{57}
+\whitefoot
+\fpage{58}{82}
+\epage{83}{88}
+\fpage{89}{89}
+\blackfoot
+\fpage{90}{90}
+\whitefoot
+\fpage{91}{91}
+\blackfoot
+\fpage{92}{92}
+\whitefoot
+\fpage{93}{104}
+\epage{105}{105}
+\end{document}
