@@ -38,28 +38,28 @@ The project involved building a robust quadcopter from the ground up which satis
 	\item Must have Flight Termination Failsafes
 \end{itemize}
 
-The team was divided into three core sub-teams: Electronics, Mechanics, and Software. I was a member of the Electronics team, with some contributions to the mechanical and software aspects as well.
+The team was divided into three core sub-teams: Electronics, Mechanics, and Software. This division was not rigid, and team members could contribute to any subteam. I was a member of the Electronics team, with some contributions to the mechanical and software aspects as well.
 
 \subsection{My Role and Responsibilities}
 
-My responsibilities spanned the full lifecycle of the drone's development, from design and documentation to integration and debugging.
+My responsibilities spanned the full lifecycle of the drone's development, from design and documentation to integration and testing.
 
 \noindent
 \begin{itemize}
 	\item \textbf{Electronics Design, Implementation \& Documentation:}
 	      \begin{itemize}
+					\item Created list of electronic components required to meet competition criteria and prepare datasheets for them.
 		      \item Designed the electronic interconnects for the drone. To facilitate collaboration among other team members and iterative design, the wiring schematics were created and maintained in Figma. This allowed all team members to review the architecture in real-time and provide critical feedback.
 		      \item Developed a electronic system for payload mechanism.
 	      \end{itemize}
 	\item  \textbf{Software Contributions:}
 	      \begin{itemize}
-		      \item Optimized the real-time video pipeline using ffmpeg tools. Through parameter tuning, I successfully reduced the end-to-end video latency from approximately 1000ms down to 600ms,which was almost sufficient for real-time object detection task.
+		      \item Optimized the real-time video pipeline using ffmpeg tools. Through parameter tuning, I successfully reduced the end-to-end video latency from approximately 1000ms down to 600ms, which was almost sufficient for our purpose of real-time object detection task.
 		      \item Setup Mission Planner software for occassional flight tests.
 	      \end{itemize}
-
 	\item \textbf{Mechanical and Design Contributions:}
 	      \begin{itemize}
-		      \item Actively participated in the full mechanical assembly of the drone frame and contributed some concepts to the payload mechanism's physical layout.
+		      \item Helped in the full mechanical assembly of the drone frame and contributed some concepts to the payload mechanism's physical layout.
 		      \item Helped in designing a custom-fit protective casing for the various electronic modules.
 	      \end{itemize}
 \end{itemize}
@@ -70,12 +70,12 @@ My responsibilities spanned the full lifecycle of the drone's development, from 
 The drone was built prioritizing robustness, practical availability and some transportation factors. Electronic components of the drone were chosen based on whether they have extensive documentation, community support as well as track record of reliability, making them a sound investment for future projects. A critical, overriding factor in component selection was local availability within India, which was essential to meet our compressed project timeline as well.
 
 \blocksvg{block}{.9}{A high-level system architecture diagram of drone}
-\vspace*{1cm}
+\vspace*{-1cm}
 \begin{longtable}[h!]{|l|l|p{5cm}|} \hline
 	\textbf{Component}       & \textbf{Model / Type}       & \textbf{Purpose}                                        \\ \hline
 	Flight Controller        & CubePilot Cube Orange+      & Central processing unit for flight control and autonomy \\ \hline
 	Video/Data Link          & SiYi HM30                   & Long-range video and telemetry transmission             \\ \hline
-	Mapping and FPV Camera   & ADTi Surveyor 24L           & High-resolution aerial mapping and object detection     \\ \hline
+	Camera   & ADTi Surveyor 24L           & High-resolution aerial mapping and object detection     \\ \hline
 	Manual Control/Telemetry & Skydroid T12                & Telemetry and manual flight control           \\ \hline
 	Power Module             & Mauch Power Cube            & Power distribution and battery elimination (BEC)        \\ \hline
 	Propulsion System        & Hobbywing X8                & Provided thrust for the quadcopter                      \\ \hline
@@ -88,7 +88,7 @@ The drone was built prioritizing robustness, practical availability and some tra
 
 \subsubsection{Project Execution}
 
-The project's execution phase was defined by tight deadlines and the need for rapid development and debugging. Due to the late arrival of many key components, we had very limited time for full-system testing. A major constraint was the high-capacity battery capable of powering the entire 20kg drone. According to to airport security rules, the capacity of batteries being transported must be less than 100Wh. This forced to buy batteries from the USA and test the whole system there. Meanwhile we tested the rest of the subsystems one by one using a smaller drone offered by our mentor. The smaller drone was used to test software systems and we used top of a building to test other systems like payload mechanism and GPS.
+The project's execution phase was defined by tight deadlines and the need for rapid development and debugging. Due to the late arrival of many key components, we had very limited time for full-system testing. A major constraint was the high-capacity battery capable of powering the entire 20kg drone. According to to airport security rules, the capacity of batteries being transported must not exceed 100Wh. This forced us to buy batteries from the USA and test the whole system there. Meanwhile we tested the rest of the subsystems one by one using a smaller drone offered by our mentor. The smaller drone was used to test software systems and we used top of a building to test other systems like payload mechanism and GPS.
 \begin{itemize}
 	\item \textbf{Camera System Test}: The ADTi Surveyor 24L camera were not be obtained until the last week. Hence we used a small IP camera.SiYi HM30 video transmitter and IP camera were mounted on a smaller, separate drone to test their behaviour in flight, including video transmission and object detection.
 	\item \textbf {Payload Mechanism Test}: To verify the payload drop, we tested the winch mechanism from the top of a 15-meter-tall building, satisfying the competition's minimum drop-height requirement.
