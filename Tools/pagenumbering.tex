@@ -1,0 +1,16 @@
+\documentclass{article}
+\usepackage[final]{pdfpages}
+\usepackage{fancyhdr}
+\usepackage[T1]{fontenc}
+
+\begin{document}
+	\includepdf[pages=1, fitpaper]{i.pdf}
+	\pagenumbering{arabic}
+	\renewcommand{\headrulewidth}{0pt}
+	\topmargin -3.6in
+	\addtolength{\textwidth}{4in}
+	\fancyfoot[C]{\hspace*{8.7in} \huge \thepage}
+	
+	\includepdf[pages=2-15, fitpaper, pagecommand=\thispagestyle{fancy}]{i.pdf}
+	\includepdf[pages=16, fitpaper]{i.pdf}
+\end{document}

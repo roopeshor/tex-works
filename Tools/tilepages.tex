@@ -1,0 +1,14 @@
+\documentclass[a4paper]{article}
+\usepackage{pdfpages}
+\usepackage[margin=1in]{geometry}
+
+\begin{document}
+\includepdfmerge[
+    nup=2x4,           % Arrange in a 2x2 grid.
+    frame=true,        % Add a border (frame) around each slide.
+    delta=5pt 15pt,   % Add 10pt of horizontal and vertical padding between slides.
+    scale=0.89,         % Slightly scale down to ensure fit with padding
+    offset=12 0,
+]{i.pdf, -}
+
+\end{document}
