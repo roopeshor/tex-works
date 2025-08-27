@@ -33,14 +33,14 @@
 \newcommand{\certificateTitle}[1]{{\centering \fontsize{18}{18}\selectfont #1}}
 
 \newcommand{\doindent}{\setlength\parindent{1cm}}
-\newcommand{\addsvg}[2]{\includesvg[inkscapearea=drawing, width=#2]{#1}}
-\newcommand{\addimg}[2]{\includegraphics[width=#2]{#1}}
+\newcommand{\addsvg}[2]{\includesvg[inkscapearea=drawing, width=#2]{images/#1}}
+\newcommand{\addimg}[2]{\includegraphics[width=#2]{images/#1}}
 
 \NewDocumentCommand{\blockimage}{mmmO{0pt}}{%
 %{img}{size}{cap}{intermspacing}
   \begin{figure}[ht]
     \centering
-    \addimg{images/#1}{#2\linewidth}
+    \addimg{#1}{#2\linewidth}
     \vspace*{#4}
     \caption{#3}
     \label{#3}
@@ -51,7 +51,7 @@
 %{img}{size}{cap}{intermspacing}
   \begin{figure}[ht!]
     \centering
-    \addsvg{images/#1}{#2\linewidth}
+    \addsvg{#1}{#2\linewidth}
     \vspace*{#4}
     \caption{#3}
     \label{#3}
@@ -59,10 +59,10 @@
 }
 
 \newcommand{\floatfig}[6]{
-  %{l|r}{w}{img}{size}{cap}{bot}
+  %{l|r}{w}{img}{size}{cap}{boimages/multi}t}
   \begin{wrapfigure}{#1}{#2\textwidth}
     \centering
-    \addimg{images/#3}{#4\linewidth}
+    \addimg{#3}{#4\linewidth}
     \caption{\centering #5}
 		\label{#5}
     \vspace*{#6}
@@ -74,7 +74,7 @@
 %   %{l|r}{w}{img}{size}{cap}{bot}
 %   \begin{wrapfigure}{#1}{#2\textwidth}
 %     \centering
-%     \addsvg{images/#3}{#4\linewidth}
+%     \addsvg{#3}{#4\linewidth}
 %     \caption{\centering #5}
 % 		\label{#5}
 %     \vspace*{#6}
