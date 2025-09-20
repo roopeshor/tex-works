@@ -1,0 +1,45 @@
+
+\chapter{Project Execution and Competition}
+\section{Project Execution}
+
+The project's execution phase was defined by tight deadlines and the need for rapid development and debugging. Due to the late arrival of many key components, we had very limited time for full-system testing. A major constraint was the high-capacity battery capable of powering the entire 20kg drone. According to to airport security rules, the capacity of batteries being transported must not exceed 100Wh. This forced us to buy batteries from the USA and test the whole system there. Meanwhile we tested the rest of the subsystems one by one using a smaller drone offered by our mentor. The smaller drone was used to test software systems and we used top of a building to test other systems like payload mechanism and GPS.
+\begin{itemize}
+	\item \textbf{Camera System Test}: The ADTi Surveyor 24L camera were not be obtained until the last week. Hence we used a small IP camera.SiYi HM30 video transmitter and IP camera were mounted on a smaller, separate drone to test their behaviour in flight, including video transmission and object detection.
+	\item \textbf {Payload Mechanism Test}: To verify the payload drop, we tested the winch mechanism from the top of a 15-meter-tall building, satisfying the competition's minimum drop-height requirement.
+\end{itemize}
+
+This approach, while not robust enough, was necessary. This meant the fully integrated 20kg system was never flown prior to the competition.
+
+Prior to mission demonstration, teams had to submit a Technical Design Report (TDR) detailing the overview of architecture, component and safetey systems of drone. Moreover a website showcasing the team had to be submitted. All of these developments took place in the during internal and semester exams, requiring us to prepare and adjust schedule of work.
+
+It took us a while to get payload mechanism to work as intended.
+Due to slight manufacturing defects (mostly caused by low tolerance of printers),
+parts were not fitting together correctly. Since there was limited time to go for another round of iteration, we had to do some manual adjustments, cutoff certain pieces and then put together everything
+\section{At the competition venue}
+The final stage was the SUAS 2025 competition. After disassembling and transporting the drone to Maryland, USA, we reassembled it and tested the drone in the backyard of hotel we stayed. There was lot of last-moment issues with payload mechanism and related electronics and some part has to be modified. Software team also had to make changes in the software due to some changes in the rulebook of the competition. In june 24th, the competition began with orientation session where teams were remined of overview of program and provided opportunity to network with others. The next day we had to appear for safety inspection of drone, where our drone passed all technical and safety aspects and allowed to fly the next day.
+
+\vspace*{.5cm}
+
+\blockimage{drone-1.jpg}{.6}{Assembled drone before safely inspection}
+
+
+On 26th june, the mission day, the drone has to be demonstrated for its mission execution capabilities. Since we were attempting four air drops of payloads the mission flow was follwing:
+\begin{enumerate}
+	\item Takeoff
+	\item Navigate thorugh 12 Waypoint (considered a 'Lap')
+	\item Conduct aerial mapping
+	\item Conduct Air Drop during a lap, four times
+	\item Land
+	\item Remove UAS from Runway
+\end{enumerate}
+
+The software was written to drive the drone in this flow.
+In the competition, the drone performed a perfect autonomous takeoff and began its primary task: navigating a 12-waypoint course. However, a critical issue emerged as it finished the lap. Instead of proceeding to the next mission phase (mapping), the software system at the Ground control station (GCS) directed it to begin a second lap. Shortly after, the Mauch Power Cube's sensor incorrectly detected a low-voltage condition, triggering the battery failsafe.
+
+To ensure the safety of the aircraft, the GCS Pilot made the decision to trigger the Return to Launch (RTL) command. The drone responded perfectly, autonomously returning to its takeoff position and landing safely. While we were unable to complete the payload drop and aerial mapping, the flight demonstrated the robustness of our core navigation and safety systems. The incident itself provided a crucial lesson in the reality of complex systems: components can fail in unexpected ways, and a deep understanding of every subsystem is critical. Post-mission log analysis pointed to a calibration issue with the power module as well as the software written.
+
+\pagebreak
+Despite the mission's outcome, our team successfully completed the optional "Design for Transport" challenge, demonstrating modularity of mechanical design by assembling the drone from a collapsed state to flying condition under five minutes.
+
+\blockimage{drone-2.jpg}{.8}{Drone during takeoff}
+

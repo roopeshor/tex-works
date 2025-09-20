@@ -1,4 +1,4 @@
-\documentclass[12pt, a4paper]{article}
+\documentclass[12pt, a4paper]{report}
 \usepackage{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage{mathrsfs}
@@ -18,21 +18,9 @@
 \usepackage{longtable}
 \usepackage{caption}
 \usepackage{subcaption}
-
-\pagestyle{fancy}
-\fancyhead{}
-\fancyfoot{}
+\usepackage{enumitem}
 
 \newcommand{\ttbold}[1]{\textbf{\texttt{#1}}}
-
-\fancyhead[C]{}
-\fancyfoot[R]{\ttbold{\thepage}}
-\fancyfoot[L]{\ttbold{20323085}}
-\addtolength{\headwidth}{\marginparwidth}
-\renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{.5pt}
-\addtolength{\topmargin}{-4.0pt}
-
 
 \newcommand{\subtitlefont}{\fontsize{18}{18}\selectfont}
 \newcommand{\chapterFont}{\fontsize{20}{20}\selectfont}
@@ -47,7 +35,7 @@
 
 \NewDocumentCommand{\blockimage}{mmmO{0pt}}{%
 %{img}{size}{cap}{intermspacing}
-  \begin{figure}[ht]
+  \begin{figure}[ht!]
     \centering
     \addimg{#1}{#2\linewidth}
     \vspace*{#4}
@@ -67,76 +55,55 @@
   \end{figure}
 }
 
-% \newcommand{\floatfig}[6]{
-%   %{l|r}{w}{img}{size}{cap}{bot}
-%   \begin{wrapfigure}{#1}{#2\textwidth}
-%     \centering
-%     \addimg{images/#3}{#4\linewidth}
-%     \caption{\centering #5}
-% 		\label{#5}
-%     \vspace*{#6}
-%   \end{wrapfigure}
-% }
+\newcommand{\inspage}{
+  \clearpage
+  \thispagestyle{empty}
+  \hfill
+  \clearpage
+}
+\titleformat{\chapter}
+{\chapterFont \centering}
+{\thechapter.}
+{1em}{}
 
-% \newcommand{\fref}[1]{Fig \ref{#1}}
-% % \newcommand{\floatfigsvg}[6]{
-% %   %{l|r}{w}{img}{size}{cap}{bot}
-% %   \begin{wrapfigure}{#1}{#2\textwidth}
-% %     \centering
-% %     \addsvg{images/#3}{#4\linewidth}
-% %     \caption{\centering #5}
-% % 		\label{#5}
-% %     \vspace*{#6}
-% %   \end{wrapfigure}
-% % }
+\titlespacing*{\chapter}{0pt}{0in}{10pt}
 
-% % \renewcommand{\cite}[1]{\textsuperscript{[\ref{#1}]}}
+\makeatother
 
-% \newcommand{\inspage}{
-%   \clearpage
-%   \thispagestyle{empty}
-%   \hfill
-%   \clearpage
-% }
-
-% \titleformat{\chapter}[display]
-% {\chapterFont}
-% {} % Numbering format
-% {0pt} % Space between number and title
-% {\chapterFont} % Title font settings
-% \titlespacing*{\chapter}{0pt}{0in}{10pt}
-
-
-\linespread{1.2}
 \begin{document}
-% \widowpenalty=10
+\widowpenalty=10
 \pagenumbering{gobble}
 \linespread{1.2}
 \setmainfont{Times New Roman}
-\newgeometry{top=1.25in, bottom=1.25in, left=1.25in, right=1.25in}
+\setlist{itemsep=3pt, parsep=2pt} 
 
 \input{title.tex}
 
+\newgeometry{margin=0in}
+\newgeometry{inner=3.5cm}
 \input{certificate.tex}
 \input{toc.tex}
 
-\setstretch{1.5}
+\setstretch{1.45}
 
-\newgeometry{top=2cm, bottom=3cm, left=1in, right=1in}
-
-\pagestyle{fancy}
 \fancyhead{}
 \fancyfoot{}
 \fancyfoot[R]{\thepage}
-\fancyfoot[L]{\texttt{20323085}}
+\fancyfoot[L]{20323085}
 \renewcommand{\headrulewidth}{0pt}
-\renewcommand{\footrulewidth}{0.5pt}
+\renewcommand{\footrulewidth}{.5pt}
 
+\pagestyle{fancy}
 \fancypagestyle{plain}
-\doindent
+
 \pagenumbering{arabic}
-\setlength{\headheight}{15pt}
-\setstretch{1.15}
-\input{intro.tex}
+% \inspage
+\setcounter{page}{1}
+\input{overview.tex}
+\input{objective.tex}
+\input{details.tex}
+\input{project.tex}
+\input{conclusion_scope.tex}
+
 
 \end{document}
