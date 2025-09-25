@@ -3,7 +3,7 @@
 Sort of backup & reference folder for my tex works.
 
 > To compile these, its recommended to install entire texlive packages (`texlive-full`)
-## Convert to pdf using pdflatex
+## Compile to pdf
 
  `lualatex -shell-escape -8bit file.tex`
  
