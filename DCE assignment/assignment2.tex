@@ -16,6 +16,7 @@
 \title{DCE assignment - 2}
 
 \begin{document}
+\pagenumbering{gobble}
 \begin{titlepage}
     \centering
     \begin{tikzpicture}[remember picture, overlay]
@@ -117,8 +118,8 @@ Create a MATLAB code to simulate Delta modulation and demodulation system.
 \begin{minted}{matlab}
 clearvars; close all;
 
-fm = 1; % highest msg freq
-fs = 50; % sampling freq
+fm = 2; % highest msg freq
+fs = 100; % sampling freq
 t = 0:1/fs:1;
 
 msg = 3 * sin(2*pi*t*fm);
@@ -140,22 +141,20 @@ for i = 1:len
 end
 
 subplot(3, 1, 1);
-hold on
-plot(msg);
-stairs([accumulated, 0]);
+hold on; plot(msg);
+stairs([accumulated, 0], "LineWidth",2);
 xlim([1, len]);
 xlabel("sample");
 ylabel("Amplitude");
 legend(["Input signal", "Accumulator"]);
 title("Input signal & accumulator");
 
+% modulated
 subplot(3, 1, 2);
-stairs([deltaMod, 0]);
+stairs([deltaMod, 0], "LineWidth",2);
 title("Delta modulation & corresponding bitstream");
 xlabel("samples");
-for i = 1:len
-   text(i + 0.2, 0, string((deltaMod(i) + 1)/2));
-end
+
 xlim([1, len+1]);
 ylim([-1.2, 1.2]); yticks([-1, 1])
 
@@ -163,17 +162,17 @@ ylim([-1.2, 1.2]); yticks([-1, 1])
 N = length(deltaMod);
 accum = zeros(1, N);
 for i = 2:N
-    accum(i) = accum(i-1) + dy * deltaMod(i-1);
+accum(i) = accum(i-1) + dy * deltaMod(i-1);
 end
 
 % apply low pass
-[b, a] = butter(3, fm / fs * 10);
+[b, a] = butter(2, fm / fs * 10);
 y = filter(b, a, accum);
 
 subplot(3, 1, 3);
 hold on;
-stairs(accum);
-plot(y);
+stairs(accum, "LineWidth",2);
+plot(y, "LineWidth",2);
 xlim([1, N]);
 title("Demodulated output");
 legend(["Accumulator", "Filter output"])
@@ -183,59 +182,82 @@ ylabel("Amplitude");
 
 \subsection*{Output waveforms}
 \begin{figure*}[!h]
-    \includesvg[inkscapearea=drawing, width=\textwidth]{dm}
+    \includesvg[inkscapearea=drawing, width=\textwidth]{u2}
 \end{figure*}
 
+\pagebreak
 \section*{Question 3}
 Implement BPSK, BASK and BFSK modulation using MATLAB code/ SIMULINK model.
 
 \subsection*{Code}
 \begin{minted}{matlab}
-clearvars; close all;
-
-Tb = 1;   % symbol period
-fs = 500; % freq at which basis fxs are sampled
-t = linspace(0, Tb, fs);
-
-msgbits = [1 0 1 1 0 1 0];
-N = length(msgbits);
-
-% basis functions
-fc1 = 5;
-fc2 = 8;
-s1 = sqrt(Tb/2) * cos(2*pi*fc1.*t);
-s2 = sqrt(Tb/2) * cos(2*pi*fc1.*t+pi);
-s3 = sqrt(Tb/2) * cos(2*pi*fc2.*t);
-
-msgsampled = kron(msgbits, ones(1, fs));
-bask = kron(msgbits, s1);
-bpsk = kron(msgbits, s1) + kron(~msgbits, s2);
-bfsk = kron(msgbits, s1) + kron(~msgbits, s3);
-
-tiledlayout(4, 1);
-t = linspace(0, Tb*N, fs*N);
-plot_(t, msgsampled, "Message");
-for i=1:N
-    text(i-0.5, 0.5, string(msgbits(i)));
+x = [0 1 0 1 0 0 1 1 1 0 1 1];
+len = length(x);
+T_b = 100; % samples per bit
+t = 0 : 1/T_b : len; % time vector
+%% Parameters
+f_c = 4; % Carrier frequency for BPSK and BASK
+f1 = 4; % BFSK frequency for bit 0
+f2 = 8; % BFSK frequency for bit 1
+%% Initialize signals
+bpsk = [];
+bfsk = [];
+bask = [];
+%% Generate modulated signals
+for i = 1:len
+% BPSK
+if x(i) == 1
+bpsk = [bpsk sin(2*pi*f_c*(0:1/T_b:1 - 1/T_b))];
+else
+bpsk = [bpsk -sin(2*pi*f_c*(0:1/T_b:1 - 1/T_b))];
 end
-plot_(t, bask, "BASK");
-plot_(t, bpsk, "BPSK");
-plot_(t, bfsk, "BFSK");
-
-function plot_(t, fx, title_)
-    nexttile;
-    plot(t, fx);
-    k = (max(fx) - min(fx)) * 0.2;
-    ylim([min(fx) - k, max(fx) + k]);
-    title(title_);
-    xlabel("t");
-    ylabel("Amplitude");
+% BFSK
+if x(i) == 1
+bfsk = [bfsk sin(2*pi*f2*(0:1/T_b:1 - 1/T_b))];
+else
+bfsk = [bfsk sin(2*pi*f1*(0:1/T_b:1 - 1/T_b))];
 end
-
+% BASK
+if x(i) == 1
+bask = [bask sin(2*pi*f_c*(0:1/T_b:1 - 1/T_b))];
+else
+bask = [bask zeros(1, T_b)];
+end
+end
+%% Plot data stream
+figure('Name','Digital Modulation Signals','NumberTitle','off');
+subplot(4,1,1);
+stairs(0:len, [x x(end)], 'LineWidth', 2);
+ylim([-0.5 1.5]);
+title('Data Stream');
+xlabel('Time');
+ylabel('Amplitude');
+grid on;
+%% Plot BPSK
+subplot(4,1,2);
+plot(t(1:end-1), bpsk, 'LineWidth', 2);
+title('Binary Phase Shift Keying (BPSK)');
+xlabel('Time');
+ylabel('Amplitude');
+grid on;
+%% Plot BFSK
+subplot(4,1,3);
+plot(t(1:end-1), bfsk, 'LineWidth', 2);
+title('Binary Frequency Shift Keying (BFSK)');
+xlabel('Time');
+ylabel('Amplitude');
+grid on;
+%% Plot BASK
+subplot(4,1,4);
+plot(t(1:end-1), bask, 'LineWidth', 2);
+title('Binary Amplitude Shift Keying (BASK)');
+xlabel('Time');
+ylabel('Amplitude');
+grid on;
 \end{minted}
 
 \subsection*{Output waveforms}
 \begin{figure*}[!h]
-    \includesvg[inkscapearea=drawing, width=\textwidth]{bsk}
+    \includesvg[inkscapearea=drawing, width=\textwidth]{Untitled.svg}
 \end{figure*}
 \end{document}
