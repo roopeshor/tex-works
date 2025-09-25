@@ -15,8 +15,5 @@
 **/*.xdv
 **/svg-inkscape
 **/_minted*
-# avoid subfig compiles & temps
-*/*/*.pdf
-*/**/-*
 
 **/noupload
