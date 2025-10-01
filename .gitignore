@@ -13,6 +13,7 @@
 **/*.synctex.gz
 **/*.fdb_latexmk
 **/*.xdv
+**/*.asv
 **/svg-inkscape
 **/_minted*
 
