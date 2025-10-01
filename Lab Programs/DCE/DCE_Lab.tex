@@ -499,7 +499,8 @@ for i=1:l3
         z1(i) = z1(i) + x(j) * h(i-j+1);
     end
 end
-disp(z1)
+disp("using loop: ");
+disp(z1);
 
 function stem_(x,y,yl,tl)
     nexttile;

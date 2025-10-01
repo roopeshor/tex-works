@@ -1,0 +1,51 @@
+clearvars; close all;
+
+global fs;
+fs = 100000;
+fc = 20;
+Ac = 2;
+fm = 2;
+t = 0:1/fs:2;
+
+msg = sin(2 * pi * fm * t) + sin(2 * pi * 2*fm * t);
+intg = zeros(1, length(msg));
+
+fo
+
+fmax = 2*fm;
+x_max = max(abs(msg));
+
+intg = cumsum(msg) / fs;
+kf = .3 *fmax / max(msg); % narrow band β = .3
+nbfm = Ac * cos(2 * pi * fc * t + 2*pi*kf * intg);
+
+kf = 10 *fmax / max(msg); % wide band β = 50
+wbfm = Ac * cos(2 * pi * fc * t + 2*pi*kf * intg);
+
+tiledlayout(5, 2);
+plot_(t, msg, "Message");
+plot_(t, intg, "Message integrated");
+plot_(t, nbfm, "NBFM \beta = .3");
+plot_(t, wbfm, "WBFM \beta = 50");
+
+%%% demodulation
+z = hilbert(nbfm);
+phase = unwrap(angle(z));
+demod = diff(phase - 2*pi*fc * t);
+plot_(t, [0, demod], "Demodulated WBFM");
+function plot_(x, y, title_)
+    % plots y and its fourier transform
+    global fs;
+    nexttile;
+    plot(x, y);
+    xlim([min(x) max(x)])
+    title(title_)
+
+    nexttile;
+    N = length(y);
+    freq = abs(fftshift(fft(y))) / N;
+    f = (-N/2:N/2-1) * fs / N;
+    plot(f, freq);
+    title(title_ + " (Spectrum)")
+    xlim([0 40])
+end

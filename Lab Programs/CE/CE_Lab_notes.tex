@@ -1,0 +1,76 @@
+\documentclass[11pt,a4paper]{report}
+\usepackage[T1]{fontenc}
+\usepackage{graphicx}
+\usepackage{amssymb}
+\usepackage{xcolor}
+\usepackage[hidelinks,colorlinks=true,urlcolor=blue,linkcolor=teal]{hyperref}
+\usepackage{minted}
+\usepackage[margin=1in]{geometry}
+% \usepackage{showframe} % debugging
+\usepackage{longtable}
+\usepackage{setspace}
+\usepackage{mathtools}
+\usepackage{makecell}
+\usepackage[most]{tcolorbox}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{datetime2}
+
+\tcbset{enhanced,colback=white,colframe=cyan!75!black,fonttitle=\bfseries}
+\hypersetup{
+	pdftitle={CE Lab note},
+	pdfsubject={Some theory and MATLAB implementation of various modulation and encoding schemes}
+}
+
+\newcommand{\note}[1]{%
+	\begin{tcolorbox}[colframe=orange!75!black, title=Note]
+		#1
+	\end{tcolorbox}
+}
+\newcommand{\importMLCode}[1]{%
+	\setstretch{1}
+	\inputminted{matlab}{#1}
+	\setstretch{1.15}
+}
+\renewcommand\cellgape{\Gape[10pt]}
+
+\begin{document}
+\setstretch{1.15}
+\begin{center}
+	{\Huge \normalfont \underline{CE Lab Notes}}
+	
+	\vspace*{10pt}
+	\texttt{Last updated: \today\ \DTMcurrenttime}
+	
+	\vspace*{10pt}
+\end{center}
+\titleformat{\chapter}[display]{}{}{}{\bfseries\huge\filcenter}
+\titlespacing{\chapter}{0pt}{10pt}{20pt}
+
+\begin{center}
+	{\let\clearpage\relax \tableofcontents}
+\end{center}
+
+\vspace*{20pt}
+\note{These are notes I made along while I was studying for exam (and later refined).
+Many implementations done here are directly based on the theory. Hence certain things might be confusing at first.
+This is intended as a reference, and defintly not something to mug up night before exam. :)
+
+Also in each program I've put plotting codes inside a function (such as \mintinline{matlab}|plot_sig_fft|, \mintinline{matlab}|plot_|, \texttt{stairz}, etc..)
+This is to make code look neater, so that logic of program is not much obstructed by code to plot things
+}
+
+\titleformat{\chapter}[frame]
+{\huge\fontfamily{qpl}\selectfont}
+{\filcenter\enspace \thechapter\enspace}
+{10pt} % margin-bottom
+{\filcenter}
+
+\input{am.tex}
+\input{fm.tex}
+\input{pam.tex}
+\input{bsk.tex}
+\input{linecode.tex}
+\input{m-ary.tex}
+
+\end{document}
