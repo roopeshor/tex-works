@@ -1,4 +1,4 @@
-clearvars; close all;
+clearvars; 
 
 global fs;
 fs = 10000;

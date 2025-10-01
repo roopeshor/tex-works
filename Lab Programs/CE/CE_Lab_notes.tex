@@ -29,7 +29,7 @@
 }
 \newcommand{\importMLCode}[1]{%
 	\setstretch{1}
-	\inputminted{matlab}{#1}
+	\inputminted[autogobble]{matlab}{#1}
 	\setstretch{1.15}
 }
 \renewcommand\cellgape{\Gape[10pt]}
@@ -55,7 +55,7 @@
 \vspace*{20pt}
 \note{These are notes I made along while I was studying for exam (and later refined).
 Many implementations done here are directly based on the theory. Hence certain things might be confusing at first.
-This is intended as a reference, and defintly not something to mug up night before exam. :)
+This is intended as a reference, and defintly not something to mug up at a night before exam. :)
 
 Also in each program I've put plotting codes inside a function (such as \mintinline{matlab}|plot_sig_fft|, \mintinline{matlab}|plot_|, \texttt{stairz}, etc..)
 This is to make code look neater, so that logic of program is not much obstructed by code to plot things

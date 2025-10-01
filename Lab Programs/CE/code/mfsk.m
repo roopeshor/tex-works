@@ -5,7 +5,7 @@ M = 8; % modulation order
 fc = 5; % base carrier freq
 Df = 3; % distance between each frequency
 
-fs = 1000; % sampling freq
+fs = 300; % sampling freq
 t = linspace(0, 1, fs);
 % group each bit to form a decimal number
 n = log2(M); % number of bits to group
