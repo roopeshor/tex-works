@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="257.278mm"
+   height="156.212mm"
+   viewBox="0 0 257.278 156.212"
+   version="1.1"
+   id="svg1"
+   sodipodi:docname="freq_disc.svg"
+   inkscape:export-filename="Projects/tex-works/Lab Programs/CE/img/freq_disc.pdf"
+   inkscape:export-xdpi="96"
+   inkscape:export-ydpi="96"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#eeeeeeff"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#505050ff"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="0.48022818"
+     inkscape:cx="420.63337"
+     inkscape:cy="255.08707"
+     inkscape:window-width="1098"
+     inkscape:window-height="791"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="Triangle"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path135" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="marker13"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       inkscape:stockid="Triangle arrow"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       inkscape:isstock="true"
+       inkscape:collect="always"
+       preserveAspectRatio="xMidYMid">
+      <path
+         transform="scale(0.5)"
+         style="fill:context-stroke;fill-rule:evenodd;stroke:context-stroke;stroke-width:1pt"
+         d="M 5.77,0 -2.88,5 V -5 Z"
+         id="path13" />
+    </marker>
+  </defs>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-14.994907,-37.764314)">
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:8.21483px;line-height:1.25;font-family:'Gentium Basic';-inkscape-font-specification:'Gentium Basic, Bold';text-align:center;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.369153"
+       x="98.108664"
+       y="56.071714"
+       id="text1"><tspan
+         sodipodi:role="line"
+         id="tspan1"
+         style="fill:#000000;stroke:none;stroke-width:0.369153"
+         x="98.108664"
+         y="56.071714">Product</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#000000;stroke:none;stroke-width:0.369153"
+         x="98.108665"
+         y="66.340252"
+         id="tspan2">Modulator</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.7;stroke-dasharray:none"
+       id="rect2"
+       width="47.453346"
+       height="29.971187"
+       x="74.432132"
+       y="43.171917" />
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:8.21483px;line-height:1.25;font-family:'Gentium Basic';-inkscape-font-specification:'Gentium Basic, Bold';text-align:center;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.369153"
+       x="98.108664"
+       y="171.60472"
+       id="text4"><tspan
+         sodipodi:role="line"
+         id="tspan3"
+         style="fill:#000000;stroke:none;stroke-width:0.369153"
+         x="98.108664"
+         y="171.60472">Product</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#000000;stroke:none;stroke-width:0.369153"
+         x="98.108665"
+         y="181.87326"
+         id="tspan4">Modulator</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.7;stroke-dasharray:none"
+       id="rect4"
+       width="47.453346"
+       height="29.971187"
+       x="74.432132"
+       y="158.70492" />
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:8.4072px;line-height:1.25;font-family:'Gentium Basic';-inkscape-font-specification:'Gentium Basic, Bold';text-align:center;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.377797"
+       x="157.08784"
+       y="97.298992"
+       id="text7"><tspan
+         sodipodi:role="line"
+         style="fill:#000000;stroke:none;stroke-width:0.377797"
+         x="157.08784"
+         y="97.298992"
+         id="tspan7">Local</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#000000;stroke:none;stroke-width:0.377797"
+         x="157.08784"
+         y="107.80799"
+         id="tspan8">Oscillator</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.7;stroke-dasharray:none"
+       id="rect7"
+       width="39.995846"
+       height="23.279845"
+       x="137.14534"
+       y="87.79371" />
+    <path
+       style="fill:none;stroke:black;stroke-width:0.7;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1"
+       d="m 98.49778,99.190929 h 38.88521"
+       id="path10"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:black;stroke-width:0.7;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-start:url(#Triangle);marker-end:url(#Triangle)"
+       d="M 98.158802,76.267394 V 114.82625"
+       id="path11"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:black;stroke-width:0.7;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker13)"
+       d="M 19.994907,58.601842 H 71.786292"
+       id="path12"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:9.83553px;line-height:1.25;font-family:'Gentium Basic';-inkscape-font-specification:'Gentium Basic, Bold';fill:#000000;stroke-width:0.44198"
+       x="24.890559"
+       y="54.332548"
+       id="text14"><tspan
+         sodipodi:role="line"
+         id="tspan14"
+         style="stroke-width:0.44198"
+         x="24.890559"
+         y="54.332548">m(t)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:9.83553px;line-height:1.25;font-family:'Gentium Basic';-inkscape-font-specification:'Gentium Basic, Bold';fill:#000000;stroke-width:0.44198"
+       x="26.163157"
+       y="173.8104"
+       id="text15"><tspan
+         sodipodi:role="line"
+         id="tspan15"
+         style="stroke-width:0.44198"
+         x="26.163157"
+         y="173.8104">m'(t)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:5.88785px;line-height:1.25;font-family:'Gentium Basic';-inkscape-font-specification:'Gentium Basic, Bold';fill:#000000;stroke-width:0.264583"
+       x="99.619752"
+       y="106.33349"
+       id="text16"><tspan
+         sodipodi:role="line"
+         id="tspan16"
+         style="stroke-width:0.264583"
+         x="99.619752"
+         y="106.33349" /></text>
+    <circle
+       style="fill:none;stroke:#000000;stroke-width:0.8;stroke-dasharray:none"
+       id="ellipse4"
+       cx="216.73751"
+       cy="115.23158"
+       r="10.463522" />
+    <path
+       d="m 220.40584,119.97813 0.81857,-2.1687 h -0.17009 c -0.26577,0.70164 -0.98867,1.1694 -1.76473,1.37138 -0.1382,0.0319 -0.80794,0.21262 -2.10491,0.21262 h -4.09289 l 3.45504,-4.05036 c 0.0425,-0.0532 0.0531,-0.0744 0.0531,-0.10631 0,-0.0213 0,-0.0425 -0.0425,-0.10631 l -3.15737,-4.31613 h 3.71017 c 0.91426,0 1.53085,0.0957 1.59464,0.10631 0.36145,0.0532 0.95677,0.17009 1.48832,0.51028 0.17009,0.10631 0.62722,0.4146 0.8611,0.95678 h 0.17009 l -0.81857,-1.90293 h -8.01568 c -0.15947,0 -0.1701,0.0106 -0.19136,0.0425 0,0.0213 0,0.15947 0,0.23388 l 3.58261,4.90084 -3.50819,4.12477 c -0.0744,0.0744 -0.0744,0.11694 -0.0744,0.11694 0,0.0744 0.0638,0.0744 0.19136,0.0744 z m 0,0"
+       id="path2-1"
+       style="fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:0.6;stroke-dasharray:none" />
+    <path
+       style="fill:none;stroke:black;stroke-width:0.7;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle)"
+       d="m 121.94502,55.204272 h 94.40919 V 100.1429"
+       id="path5"
+       sodipodi:nodetypes="ccc" />
+    <path
+       style="fill:none;stroke:black;stroke-width:0.7;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle)"
+       d="m 122.47419,174.42229 h 94.40919 v -44.1276"
+       id="path6"
+       sodipodi:nodetypes="ccc" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.5476px;line-height:1.25;font-family:'Gentium Basic';-inkscape-font-specification:'Gentium Basic, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;stroke-width:0.698664"
+       x="209.62466"
+       y="97.846575"
+       id="text5"
+       transform="scale(0.98678157,1.0133955)"><tspan
+         sodipodi:role="line"
+         id="tspan5"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.5476px;font-family:'Gentium Basic';-inkscape-font-specification:'Gentium Basic, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.698664"
+         x="209.62466"
+         y="97.846575">+</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.7124px;line-height:1.25;font-family:'Gentium Basic';-inkscape-font-specification:'Gentium Basic, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;stroke-width:0.706067"
+       x="209.55174"
+       y="136.79359"
+       id="text6"
+       transform="scale(0.98678157,1.0133955)"><tspan
+         sodipodi:role="line"
+         id="tspan6"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:15.7124px;font-family:'Gentium Basic';-inkscape-font-specification:'Gentium Basic, Normal';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.706067"
+         x="209.55174"
+         y="136.79359">±</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:9.83553px;line-height:1.25;font-family:'Gentium Basic';-inkscape-font-specification:'Gentium Basic, Bold';fill:#000000;stroke-width:0.44198"
+       x="103.14722"
+       y="88.990782"
+       id="text9"><tspan
+         sodipodi:role="line"
+         id="tspan9"
+         style="stroke-width:0.44198"
+         x="103.14722"
+         y="88.990782">c(t)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:7.38481px;line-height:1.25;font-family:'Gentium Basic';-inkscape-font-specification:'Gentium Basic, Bold';text-align:center;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.331853"
+       x="50.220873"
+       y="103.94569"
+       id="text11"><tspan
+         sodipodi:role="line"
+         style="fill:#000000;stroke:none;stroke-width:0.331853"
+         x="50.220873"
+         y="103.94569"
+         id="tspan11">-90° Phase</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#000000;stroke:none;stroke-width:0.331853"
+         x="50.220873"
+         y="113.17671"
+         id="tspan12">Shifter</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.7;stroke-dasharray:none"
+       id="rect11"
+       width="35.973416"
+       height="21.442554"
+       x="32.21253"
+       y="95.099466" />
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:7.38481px;line-height:1.25;font-family:'Gentium Basic';-inkscape-font-specification:'Gentium Basic, Bold';text-align:center;text-anchor:middle;fill:#000000;stroke:none;stroke-width:0.331853"
+       x="98.004266"
+       y="126.3372"
+       id="text17"><tspan
+         sodipodi:role="line"
+         style="fill:#000000;stroke:none;stroke-width:0.331853"
+         x="98.004266"
+         y="126.3372"
+         id="tspan13">-90° Phase</tspan><tspan
+         sodipodi:role="line"
+         style="fill:#000000;stroke:none;stroke-width:0.331853"
+         x="98.004266"
+         y="135.56821"
+         id="tspan17">Shifter</tspan></text>
+    <rect
+       style="fill:none;stroke:#000000;stroke-width:0.7;stroke-dasharray:none"
+       id="rect17"
+       width="35.973416"
+       height="21.442554"
+       x="79.995923"
+       y="117.49097" />
+    <path
+       style="fill:none;stroke:black;stroke-width:0.7;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker13)"
+       d="m 98.347879,138.64029 v 17.55974"
+       id="path18"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:black;stroke-width:0.7;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker13)"
+       d="M 48.512875,58.70196 V 92.03845"
+       id="path19"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:black;stroke-width:0.7;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Triangle)"
+       d="m 49.762708,116.77818 v 57.30564 H 70.84943"
+       id="path20"
+       sodipodi:nodetypes="ccc" />
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:8.71358px;line-height:1.25;font-family:'Gentium Basic';-inkscape-font-specification:'Gentium Basic, Bold';fill:#000000;stroke-width:0.391563"
+       x="103.18283"
+       y="150.54727"
+       id="text20"><tspan
+         sodipodi:role="line"
+         id="tspan20"
+         style="stroke-width:0.391563"
+         x="103.18283"
+         y="150.54727">c'(t)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:9.83553px;line-height:1.25;font-family:'Gentium Basic';-inkscape-font-specification:'Gentium Basic, Bold';fill:#000000;stroke-width:0.44198"
+       x="192.65434"
+       y="183.74314"
+       id="text21"><tspan
+         sodipodi:role="line"
+         id="tspan21"
+         style="stroke-width:0.44198"
+         x="192.65434"
+         y="183.74314">s (t)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.00374px;line-height:1.25;font-family:'Gentium Basic';-inkscape-font-specification:'Gentium Basic, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;stroke-width:0.0759569"
+       x="193.41396"
+       y="189.3536"
+       id="text22"
+       transform="scale(1.0156526,0.98458862)"><tspan
+         sodipodi:role="line"
+         id="tspan22"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.00374px;font-family:'Gentium Basic';-inkscape-font-specification:'Gentium Basic, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.0759569"
+         x="193.41396"
+         y="189.3536">2</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:9.83553px;line-height:1.25;font-family:'Gentium Basic';-inkscape-font-specification:'Gentium Basic, Bold';fill:#000000;stroke-width:0.44198"
+       x="195.0671"
+       y="50.448322"
+       id="text10"><tspan
+         sodipodi:role="line"
+         id="tspan10"
+         style="stroke-width:0.44198"
+         x="195.0671"
+         y="50.448322">s (t)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.00374px;line-height:1.25;font-family:'Gentium Basic';-inkscape-font-specification:'Gentium Basic, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;fill:#000000;stroke-width:0.0759569"
+       x="196.31057"
+       y="53.972344"
+       id="text18"
+       transform="scale(1.0156526,0.98458862)"><tspan
+         sodipodi:role="line"
+         id="tspan18"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:6.00374px;font-family:'Gentium Basic';-inkscape-font-specification:'Gentium Basic, Bold';font-variant-ligatures:normal;font-variant-caps:normal;font-variant-numeric:normal;font-variant-east-asian:normal;stroke-width:0.0759569"
+         x="196.31057"
+         y="53.972344">1</tspan></text>
+    <path
+       style="fill:none;stroke:black;stroke-width:0.7;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#marker13)"
+       d="m 227.11635,115.09513 h 33.46728"
+       id="path1"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:9.83553px;line-height:1.25;font-family:'Gentium Basic';-inkscape-font-specification:'Gentium Basic, Bold';fill:#000000;stroke-width:0.44198"
+       x="243.7589"
+       y="109.97643"
+       id="text19"><tspan
+         sodipodi:role="line"
+         id="tspan19"
+         style="stroke-width:0.44198"
+         x="243.7589"
+         y="109.97643">s(t)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-weight:bold;font-size:7.12336px;line-height:1.25;font-family:'Gentium Basic';-inkscape-font-specification:'Gentium Basic, Bold';text-align:center;text-anchor:middle;fill:#000000;stroke-width:0.320103"
+       x="250.52402"
+       y="122.76728"
+       id="text23"><tspan
+         sodipodi:role="line"
+         id="tspan23"
+         style="stroke-width:0.320103"
+         x="250.52402"
+         y="122.76728">Modulated</tspan><tspan
+         sodipodi:role="line"
+         style="stroke-width:0.320103"
+         x="250.52402"
+         y="131.67148"
+         id="tspan24">wave</tspan></text>
+  </g>
+</svg>
