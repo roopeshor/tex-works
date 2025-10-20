@@ -1,0 +1,29 @@
+\section{System Identification with Noisy Output}
+
+In a practical scenario, you might have access to a system's input $x(n)$ and its noisy output $y_{noisy}(n)$, but its impulse response $h(n)$ is unknown. A method to estimate $h(n)$ is to use cross-correlation, especially when the input is white noise.
+
+\subsection*{Background Theory}
+For an LTI system, the cross-correlation of the input and output is related to the impulse response by the convolution:
+$$R_{xy}(k)=h(k) * R_{xx}(k)$$
+
+where $R_{xx}(k)$ is the autocorrelation of the input. If the input $x(n)$ is white noise, its autocorrelation $R_{xx}(k)$ approximates a scaled impulse function:
+
+$$R_{xx}(k) = \sigma _x ^ 2 \delta (k)$$
+
+Therefore, $R_{xy}(k)$ will approximate a scaled version of the impulse response $h(k)$.
+Hence 
+\begin{align*}
+	R_{xy}(k) &=h(k) * \sigma _x ^ 2 \delta (k) \\
+	 &= h(k)\sigma _x ^ 2
+\end{align*}
+
+So impulse response is: 
+$$h(k) = {R_{xy}(k)}{\sigma _x ^ 2}$$
+
+to obtain $\sigma _x ^ 2$, evaluvate $R_{xx}(k)$ at $k = 0$
+
+\underline{Question:}
+\begin{enumerate}
+	\item Create an "unknown" FIR system with some impulse response.
+	\item Use the above method to obtain an estimate of this unknown impulse respones
+\end{enumerate}

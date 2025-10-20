@@ -1,0 +1,30 @@
+\section{FIR Filter Design for Signal Restoration}
+
+You are given a discrete-time signal $x(n)$ which is a combination of a desired low-frequency signal and an unwanted high-frequency noise component. The signal is defined as:
+
+$$x(n)=\cos(0.1\pi n)+0.5sin(0.8\pi n)\quad \text{for} 0\le n\le 100$$
+Question is:
+\begin{enumerate}
+	\item Design a digital FIR low-pass filter to remove the high-frequency noise component.
+	\item Filter the input signal using designed filter
+\end{enumerate}
+
+\subsection*{Program}
+\importMLCode{code/Q1.m}
+\begin{figure*}[h!]
+	\begin{minipage}{.45\textwidth}
+		\caption*{Plotted signal}
+		\inc{Q11.pdf}
+		\vspace*{10pt}
+		\caption*{Filter's frequency response}
+		\inc{Q12.pdf}
+	\end{minipage}%
+	\hfill%
+	\begin{minipage}{.45\textwidth}
+		\caption*{Input message spectrum}
+		\inc{Q13.pdf}
+		\vspace*{10pt}
+		\caption*{Filtered Output spectrum}
+		\inc{Q14.pdf}
+	\end{minipage}
+\end{figure*}
