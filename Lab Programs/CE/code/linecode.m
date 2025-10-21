@@ -16,13 +16,18 @@ for i = 1:N
         n = n * -1;
     end
 end
-
-bitst = [0, bits]; % pad zero to beginning to make xor comparison easier
-
+% Differential coding scheme, xnor current bit and previous output
+% bits  =     0   1   0   0   1  ...
+%            /|  /|  /|  /|  /| 
+%           / | / | / | / | / | % xnor
+%          /  |/  |/  |/  |/  |
+%diffnt = 1   0   0   1   0   0 ...
+%         ^
+%         ignore this while plotting
 % reference bit is 1, if you want 0 as reference bit, use zeros()
 diffnt = ones(1, N + 1);
-for i = 2:N + 1
-    diffnt(i) = ~xor(bitst(i), diffnt(i-1));
+for i = 1:N
+    diffnt(i+1) = ~xor(bits(i), diffnt(i));
 end
 
 tiledlayout(8, 1);

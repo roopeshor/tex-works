@@ -47,7 +47,7 @@ function plot_(t, fx, title_)
     f = (-N/2:N/2-1) / N * fs;
 
     nexttile;
-    plot(f, real(freq));
+    plot(f, freq);
     xlim([0, 12]); xlabel("f");
     title(title_ + " (spectrum)");
 end
