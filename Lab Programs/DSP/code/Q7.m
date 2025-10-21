@@ -17,14 +17,9 @@ BPF1 = fs1(2) * sinc(fs1(2) * m) - (fs1(1) * sinc(fs1(1) * m));
 BPF2 = fs2(2) * sinc(fs2(2) * m) - (fs2(1) * sinc(fs2(1) * m));
 
 % corresponding BRF is:
-BRF1 = sinc(m) - BPF1;
-BRF2 = sinc(m) - BPF2;
 
 window = blackman(M)';
-BRF1 = BRF1 .* window;
-BRF2 = BRF2 .* window;
-
 % merge filters:
-mergedFilter = BRF1 + BRF2;
+mergedFilter = (sinc(m) - (BPF1 + BPF2)) .* window;
 
 freqz(mergedFilter);
