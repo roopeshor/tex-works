@@ -1,0 +1,33 @@
+\pagebreak
+\section{Signal Reconstruction from Aliased Components}
+An analog signal containing two important frequency components, $f_1=100$ Hz and $f_2=800$ Hz, was sampled at $f_s=1000$ Hz. This sampling rate satisfies the Nyquist criterion for $f_1$ but violates it for $f_2$.
+
+\underline{Question:}
+\begin{enumerate}
+	\item Determine the aliased frequency of the 800 Hz component in the discrete-time domain. The formula for the aliased frequency is $f_{alias}=|f_2-k f_s|$, where $k$ is an integer that brings the result into the range $[0,f_s/2]$.
+	\item Write a MATLAB script to generate the resulting discrete-time signal, $x(n)$, for $N=200$ samples (sampling frequency of $200$Hz).
+	\item Design two separate FIR filters with sufficient stop band attenuation ($\approx 70$dB) to isolate each of the original components:
+	\begin{enumerate}
+		\item A low-pass filter to isolate the 100 Hz component.
+		\item A band-pass filter to isolate the 800 Hz component (which now appears at its aliased frequency).
+	\end{enumerate}
+	\item Apply each filter to the mixed signal $x(n)$ to get two output signals, $y_{100}(n)$ and $y_{800}(n)$.
+\end{enumerate}
+
+\subsection*{Program}
+
+\importMLCode{code/Q6.m}
+
+\begin{figure*}[ht!]
+	\begin{minipage}{.48\textwidth}
+		\inc{Q61.pdf}
+		\vspace*{10pt}
+		\inc{Q62.pdf}
+	\end{minipage}%
+	\hfill%
+	\begin{minipage}{.48\textwidth}
+		\inc{Q63.pdf}
+		\vspace*{10pt}
+		\inc{Q64.pdf}
+	\end{minipage}
+\end{figure*}

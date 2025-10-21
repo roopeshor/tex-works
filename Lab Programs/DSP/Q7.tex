@@ -1,0 +1,22 @@
+\section{Multi-Band Stop FIR Filter Design}
+You have a signal that is corrupted by noise at two specific frequency bands: a low-frequency hum and a high-frequency hiss.
+\begin{itemize}
+	\item Low-frequency hum: centered around $\omega=0.2\pi$.
+	\item High-frequency hiss: centered around $\omega=0.7\pi$.
+\end{itemize}
+\textbf{Task}: Design a single FIR filter that passes all frequencies except for those in the two specified bands.
+
+Specifications:
+\begin{enumerate}
+	\item Stopband 1: $[0.15\pi, 0.25\pi]$
+	\item Stopband 2: $[0.65\pi, 0.75\pi]$
+	\item Minimum Stopband Attenuation: 55 dB.
+\end{enumerate}
+
+\subsection*{Program}
+
+\importMLCode{code/Q7.m}
+
+\begin{figure*}[ht!]
+	\inc{Q7.pdf}
+\end{figure*}

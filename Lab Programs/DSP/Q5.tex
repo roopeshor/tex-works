@@ -1,0 +1,25 @@
+\section{Extraction of periodic signals from noisy signal}
+
+Given a input signal $s(t) = sin(2\pi t) + sin(4\pi t)$, add some white noise to it (obtaining $s_{noisy}(t)$)
+and extract the periodic signal
+
+\subsection*{Program}
+To do this, evaluvate $s_{noisy}(t)$ over very large time interval and
+finding the period using autocorrelation.
+The autocorrelation of periodic signal is also periodic with same period as that of original signal
+Then by observing the plot, obtain a estimate of time period $T_{est}$ and
+slice $s_{noisy}(t)$ into array of signals with length $T_{est}$ (using \mintinline{matlab}|reshape(s, cols, rows)| function).
+
+\importMLCode{code/Q5.m}
+
+
+\begin{figure*}[ht!]
+	\begin{minipage}{.48\textwidth}
+		\inc{Q51.pdf}
+	\end{minipage}%
+	\hfill%
+	\begin{minipage}{.48\textwidth}
+		\inc{Q52.pdf}
+	\end{minipage}
+	\caption*{Notice that autocorrelation (top right) is periodic with period 200}
+\end{figure*}
