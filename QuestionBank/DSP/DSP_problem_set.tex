@@ -1,0 +1,163 @@
+\documentclass[12pt]{article}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\usepackage{hyperref}
+\begin{document}
+	\newcommand{\ssq}{\ensuremath{\sqrt{2}}}
+	\newcommand{\sect}[1]{\section*{\centering Module #1}
+		\vspace*{-.5cm}
+		\rule{\textwidth}{.5pt}}
+	\title{\vspace*{-1.5cm} DSP Questions}
+	\date{}
+	\maketitle
+\vspace*{-2cm}
+\begin{center}
+	Compilation of previous year questions and internal papers
+\end{center}
+
+\sect{1}
+\begin{enumerate}
+\item Compare DFT and FFT Algorithms. How many complex additions and multiplications are needed to compute a 64 pt DFT when using DFT equations and FFT? Also comment on the computational advantage of the FFT algorithm over the direct method.
+\item Define Discrete Fourier Transform (DFT) \hfill [\textit{2025 sem}]
+\item State and prove the time shifting property of DTFT, DFT
+\item Find the output of an LTI system if the input $x(n) = \{2,2,1\}$ and the impulse response $h(n) = \{3,2\}$ using DFT
+\item Find the four point circular convolution of the sequences $x_1(n)=\{2, 1, 2, 1\}$ and $x_2(n) = \{1, 2, 3, 4\}$.
+\item If $x(n)= \{1, 2, 3, 4\}$ find the DFT.
+\item How will you obtain linear convolution  from circular convolution? For $x(n)=\{1,2,3\}$ and $h(n)=\{-1,-2\}$, obtain linear convolution $x(n) * h(n)$ using circular convolution.
+\item Find the DFT of the sequence $\{1, 2, 3, 4, 4, 3, 2, 1\}$ using DIT FFT algorithm.
+\item Find the circular convolution of $x_1(n)=\{1,2,1,3\}$ and $x_2(n)  = \{1,-1,1\}$.
+\item State and prove any 3 properties of DFT.
+\item Compute the 4 point DFT of $x[n]=\{1,1,0,0\}$.
+\item What is inplace computation?
+\item Compare DIT and DIF FFT algorithms.
+\item Find circular convolution of the sequences $x_1(n) = \{1, 2, 0,-1\}$ and $x_2(n) = \{2,1\}$
+\item An 8 point sequence is given by $x(n) = \{1,-1,-1, -1,1,1,1,-1\}$, compute the 8 point DFT of $x(n)$ using radix-2 DIT-FFT.
+\item Find the inverse DFT of $X(k) =\{7,-\ssq -j\ssq, -j,\ssq - j\ssq ,1, \ssq +j \ssq , j, -\ssq + j\ssq \}$ using FFT,
+\item Using DIT FFT, compute the 8-point DFT of $x(n) = \{1,0,1,0,1,0,1,0\}$. \hfill [\textit{2025 sem}]
+\item Find IDFT of sequence $X(k) = \{10, -2 + 2j, -2, -2-2j\}$ using DIT algorithm. \\
+$\rightarrow$ \textit{\color{teal}{This can be done by a 4 point IFFT, and you would get $x(n) = \{1,2,3,4\}$}}
+\item Find the DTFT of the sequence $h(n) = \{4,2,3,2,4\}$ and plot the magnitude response.
+\item The first 5 points of an 8 pt. DFT is given as $X(k) = \{20, -5.828 - j2.414, 0, -0.172-j0.414, 0,\cdots \}$. Find the corresponding $x(n)$. Use DIT algorithm.
+\item find DTFT of $x[n] = a^n u(n); |a| < 1$
+\item Using the properties of DFT, compute the circular convolution of $x_1(n) = \{1,2,1,2\}$ and $x_2(n) = \{1,2,3,4\}$. \hfill [\textit{2025 sem}]
+\item Compute the 4-point DFT of $x(n) = \{1,2,2,1\}$. \hfill [\textit{2025 sem}]
+\item \textbf{\textit{Block convolution and DIF-FFT was not asked in any previous year questions. But do study it}}\end{enumerate}
+
+\sect{2}
+\begin{enumerate}
+\item Define phase delay and group delay of FIR filters.
+\item Discuss the finite word length effects in FIR filters.
+\item Discuss the effect of coefficient quantization in FIR filters.
+\item What are Gibbs Oscillations (Gibb’s phenomenon)? How can they be overcome them?
+\item What are the disadvantages of Fourier series method? [\textit{CUCEK 2025 internal}]
+\item What are the desirable characteristics of window functions? [\textit{CUCEK 2025 internal}]
+\item Realize the system with impulse response $h(n) = \{4,2,3,2,4\}$ in Direct form and Linear Phase form. Calculate the phase delay and group delay.
+\item Give the Hamming window function and plot its spectrum.
+\item Compare the characteristics of Hamming and Blackman windows.\hfill [\textit{2025 sem}]
+\item Give the equations for the N point Hamming and Hanning, Rectangular, Bartlett window functions. Compare them in terms of main lobe width and side lobe level. [\textit{2024 supplimentary exam}]
+\item Explain the procedure for designing FIR filters using windows.
+\item Explain the frequency sampling method used for the design of FIR filters. Discuss the principle of sampling the desired frequency response and how it determines the filter coefficients. \hfill [\textit{2025 sem}]
+\item Briefly explain the different types of windows used in FIR filter design.
+\item Design an FIR low-pass filter of length $N=7$ using a Hamming window with cutoff frequency, $\omega_c = 0.4\pi$. \hfill [\textit{2025 sem}]
+\item Design an FIR HPF filter using Bartlett window. The cut off frequency $\omega _c=50\pi$. $\omega_s = 200\pi$. Assume $N=9$
+\item Realize an FIR filter with $h[n] = \{1,0.5,0.25,0.5,1\}$ using minimum number of multipliers.
+\item Determine a direct form realization of the FIR filter with the following filter function using minimum number of multipliers. $h(n) =\{1, 2, 3, 4, 3, 2, 1\}$
+\item Get the filter coefficients for the following FIR filter using Fourier series truncation method. Assume $N = 7$.
+
+\begin{equation*}
+	H_d(e^{j\omega}) =
+	\begin{cases}
+		1 &,  0 \le |\omega| < \frac{\pi}{2} \\
+		0 &,  \frac{\pi}{2} \le \omega \le \pi
+	\end{cases}
+\end{equation*}
+\item Obtain the linear phase realization of 
+$$y(n) = x(n) + 2x(n - 1) - 0.5x(n - 2) + 3x(n - 3) - 0.5x(n-4)+ 2x(n-5)+ x(n-6)$$
+\item Obtain the cascade realization with minimum number of multipliers for the system function \hfill [\textit{2025 sem}]
+$$H(z) = \left(\frac{1}{2} + z^{-1} + \frac{1}{2}z^{-2}\right)\left(1+\frac{1}{3}z+^{-1}+z^{-2}\right)$$
+
+\item Design a filter with desired frequency response using a Hamming window for N=7.
+\begin{equation*}
+	H_d(e^{j\omega}) =
+	\begin{cases}
+		e^{-j3\omega} &,  -\frac{\pi}{4} \le \omega \le \frac{\pi}{4} \\
+		0 &,  \frac{\pi}{4} < |\omega| \le \pi
+	\end{cases}
+\end{equation*}
+\item Design an ideal high pass filter with a frequency response
+\begin{equation*}
+	H_d(e^{j\omega}) =
+	\begin{cases}
+		1 &,  \textrm{for }\frac{\pi}{4} \le |\omega| \le \pi \\
+		0 &,  \textrm{for } 0 \le |\omega| \le \frac{\pi}{4}
+	\end{cases}
+\end{equation*}
+using Hamming window. Find the values of $h(n)$ for $N = 11$. Find $H(z)$. Realize the filter using a suitable method.
+\item Using frequency sampling method, designa bandpass filter with the following specifications:
+\begin{itemize}
+	\item sampling frequency = 8000Hz
+	\item cut-off frequencies = 1000Hz, 3000Hz
+\end{itemize}
+Determine filter coefficient for $N=7$ \hfill [\textit{CUCEK 2025 internal}]
+
+\href{https://drive.google.com/file/d/1OMfmG-yjCWkEvjYwHO8KlNEm-NfIYwSq/view}{\color{blue}{Solution uploaded here}}
+\end{enumerate}
+
+\sect{3}
+\begin{enumerate}
+	\item Describe the characteristics of a Butterworth filter
+	\item All stable analog filters are transformed to stable digital filters using Impulse Invariance Technique - Prove. What are the drawbacks?
+	\item Write short notes on finite word length effects in IIR digital filters.
+	\item What is frequency warping? Discuss how it can be eliminated?
+	\item What is the fundamental principle of impulse invariant method? \hfill [\textit{CUCEK 2025 internal}]
+	\item What are the properties of the impulse invariant transformation? Explain.\hfill [\textit{2025 sem}]
+	\item Compare IIR and FIR filters
+	\item Distinguish between Butterworth and Chebyshev filters.
+	\item Explain limit cycle behaviors in signal processing, and their types.
+	\item  Illustrate the bilinear transformation method of obtaining digital filter from analog filter.
+	\item Find the poles of an analog Chebyshev LP filter whose pass band ripple is 2 dB at 20 r/sec and the stop band attenuation is 15 dB at 40 r/s
+	\item Design a first order low pass digital Butterworth filter with a cut off frequency of 500 Hz. The sampling frequency is 10 KHz. Use bilinear transformation technique.
+	\item Design a digital Butterworth LP filter with the following	specifications, use Impulse invariance transformation.
+	$$
+	\begin{aligned}
+		0.7071  \le & |H(e^{j\omega})| \le 1,	\quad & 0 \le |\omega| \le 0.2\pi \\
+		& |H(e^{j\omega})| \le 0.17783, \quad  & 0.4\pi \le |\omega| \le \pi
+	\end{aligned}
+	$$
+	[Analog filter design + transformation to digital (8+2 marks)]
+	\item Design a digital low-pass Butterworth filter using the Bilinear Transformation (BLT) method to satisfy the following specifications: \hfill [\textit{2025 sem}]
+	$$
+	\begin{aligned}
+		0.9 \le & |H(e^{j\omega})| \le 1,	\quad & 0 \le |\omega| \le 0.4\pi \\
+		& |H(e^{j\omega})| \le 0.15, \quad  & 0.6\pi \le |\omega| \le \pi
+	\end{aligned}
+	$$
+	Take $T = 1$s. Realize the filter.
+	
+	\item Obtain the canonical form, Cascade and parallel realizations of the IIR filter:
+	$$y(n) = -0.1 y(n - 1) + 0.72y(n - 2) + 0.7x(n) - 0.252 x(n - 2)$$
+	\item Obtain the direct form I, direct form II and cascade realization for the system having the difference equation:
+	$$y(n) + 0.1 y(n-1)- 0.2 y(n- 2) = 3x(n) +3.6x(n-1) + 0.6x(n-2)$$
+	\item Draw the Direct Form I, Direct Form II, Parallel, and Cascade realizations of the digital filter with the following difference equation \hfill [\textit{2025 sem}]
+	$$y[n]-\frac{3}{4}y[n-1] + \frac{1}{8}y[n-2] = x[n] + \frac{1}{2}x[n-1] + \frac{1}{4}x[n-2]$$
+	\item  Realize the given IIR filter in Direct Form I, Direct Form II, cascade and parallel forms:
+	$$H(z) = \frac{1-z^{-1}}{\left(1-\dfrac{1}{2}z^{-1}\right)\left(1-\dfrac{1}{4}z^{-1}\right)}$$
+\end{enumerate}
+
+\sect{4}
+\begin{enumerate}
+	\item What is pipelining? What are the different stages in pipelining?
+	\item Discuss the special instructions used in DSP processors. [\textit{2023 sem exam}]
+	\item Describe Harvard architecture.
+	\item Explain the operation of a MAC unit in a DSP processor.
+	\item Describe how MAC operations are performed in a single instruction cycle in TMS320C54X. Explain its architecture with diagram.\hfill [\textit{2025 sem}]
+	\item List the advantages of floating point processors.
+	\item Discuss how, DSP processors are more advantageous than microcontrollers?
+	\item Differentiate between fixed and floating point processors.
+	\item Discuss the different addressing modes of a TMS320C54X processor with examples.
+	\item Draw and explain the architecture of the TMS320C54x processor [\textit{2022 special Supplementary exam}]
+	\item Draw and explain architecture of the TMS320C67X \hfill [\textit{2022 special Supplementary exam}]
+	\item Explain the different addressing modes in TMS320C67X processors.
+\end{enumerate}
+\end{document}

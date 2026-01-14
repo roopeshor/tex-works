@@ -1,0 +1,131 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[margin={1.5cm,2cm}]{geometry}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{multicol}
+\usepackage[T1]{fontenc}
+
+\titleformat*{\section}{\fontsize{14}{14}\selectfont\normalfont\bfseries}
+\titleformat*{\subsection}{\fontsize{12}{12}\selectfont\normalfont\bfseries}
+\setlist[enumerate]{itemsep=5pt}
+\setlength{\columnsep}{1cm}
+
+\renewcommand\thesubsection{\arabic{subsection}.\hspace*{-1em} }
+\begin{document}
+\pagenumbering{gobble}
+\begin{center}
+	\fontsize{16}{16}
+	\selectfont
+	\textbf{Experiment No 2: H-Plane Structure Using HFSS}
+\end{center}
+\vspace*{.75cm}
+\fontfamily{ppl}\selectfont
+\begin{multicols}{2}
+\section*{Aim}
+To design and model an H-plane structure using
+ANSYS HFSS by creating and modifying 3D
+geometry
+\section*{Software Required}
+ ANSYS Electronics Desktop (HFSS)
+\section*{Theory}
+An H-plane tee junction is formed by attaching a
+simply waveguide to a rectangular waveguide
+which already has two parts. The arms of
+rectangular waveguide make two parts called
+collinear parts i.e., part1 and part2 while the new
+part is called as side arm or H-arm. This H-plane
+tee is also called Shunt tee.As the axis of the side
+arm is parallel to the magnetic field, this function
+is called H-plane tee junction. This is also called as
+current junction or the magnetic field divide itself
+into arms.\\[.5cm]
+\includegraphics[width=\linewidth]{3.jpg}
+
+\vspace*{2cm}
+\section*{Procedure}
+\renewcommand{\labelenumii}{\alph{enumii}.}
+\begin{enumerate}[leftmargin=*, itemsep=15pt]
+	\item \textbf{Create Base Box}
+	\begin{enumerate}
+		\item Open \textbf{HFSS} and start a new 3D model.
+		\item Go to \textbf{Draw $\rightarrow$ Box} to create a rectangular box.
+		\item Enter the following dimensions:
+		\begin{itemize}
+			\item \textbf{X-dimension}: 22.86 mm
+			\item \textbf{Y-dimension}: 10.16 mm
+			\item \textbf{Z-dimension}: 60 mm
+		\end{itemize}
+		\item Specify the position of the box as:
+		\begin{itemize}
+			\item \textbf{X = -11.43 mm}
+			\item \textbf{Y = -5.08 mm}
+			\item \textbf{Z = 0 mm}
+		\end{itemize}
+		\item Click \textbf{OK} to create the box.
+		\item Press \textbf{Ctrl + D} to zoom out and view the model properly.
+	\end{enumerate}
+	\item \textbf{Rotate/Duplicate for H-Plane Structure}
+	\begin{enumerate}
+		\item Right-click the created box $\rightarrow$ \textbf{Edit $\rightarrow$ Duplicate $\rightarrow$ Around Axis}
+		\item select Y-axis and set rotation = +90$^\circ$ $\rightarrow$ Click OK.
+		\item Repeat: Duplicate around Y-axis with -90$^\circ$ $\rightarrow$ Click OK.
+	\end{enumerate}
+	\item \textbf{Uniting the Model}
+		\begin{enumerate}
+			\item Select \textbf{all three boxes} created.
+			\item Right-click on the selection.
+			\item Choose \textbf{Edit $\rightarrow$ Boolean $\rightarrow$ Unite}
+		\end{enumerate}
+	\item \textbf{Assigning Wave Ports}
+		\begin{enumerate}
+			\item Select \textbf{one face} at the open end of the plane.
+			\item Right-click on the selected face and choose: \textbf{Excitations $\rightarrow$ Wave Port $\rightarrow$ Next}
+			\item In the dialog box, change \textbf{Name} if required $\rightarrow$ click \textbf{New Line}.
+			\item Click New Line and drag to draw the \textbf{integration line}.
+			\item Click \textbf{Next $\rightarrow$ Finish}.
+			\item Repeat to assign the second wave port.
+		\end{enumerate}
+	\item \textbf{Assigning Perfect E Boundary}
+		\begin{enumerate}
+			\item Select all the faces of the plane except the two end faces.
+			\item Right-click and choose: Assign Boundary $\rightarrow$ Perfect E $\rightarrow$ OK.
+		\end{enumerate}
+	\item \textbf{Creating Solution Setup}
+		\begin{enumerate}
+            \item Go to \textbf{Analysis $\rightarrow$ Add Solution Setup}.
+			\item set Solution Frequency = 10 GHz.
+			\item Set Maximum Number of Passes = 6 $\rightarrow$ OK.
+		\end{enumerate}
+	\item \textbf{Adding Frequency Sweep}
+		\begin{enumerate}
+            \item Go to Analysis $\rightarrow$ Setup 1 $\rightarrow$ Add Frequency Sweep.
+			\item Start = 5 GHz, Stop = 15 GHz
+			\item Click \textbf{OK}.
+			\item Right-click Analysis $\rightarrow$ Analyze All.
+		\end{enumerate}
+	\item \textbf{Plotting E Field Vectors}
+		\begin{enumerate}
+		\item Select the plane $\rightarrow$ right-click$\rightarrow$ Plot Fields $\rightarrow$ E $\rightarrow$ Vector E.
+			\item A dialog box appears $\rightarrow$ Done.
+			\item Animate the field distribution if required.
+		\end{enumerate}
+	\item \textbf{Plotting Magnetic Field (Mag H)}
+		\begin{enumerate}
+            \item Select one side internal face $\rightarrow$ right-click $\rightarrow$ Plot Fields $\rightarrow$ H $\rightarrow$ Mag H.
+			\item Click Animate to observe the magnetic field variation.
+		\end{enumerate}
+	\item \textbf{Plotting Magnetic Field on Remaining Faces}
+		\begin{enumerate}
+		\item Select all the other faces and right-click $\rightarrow$ Plot Fields $\rightarrow$ H $\rightarrow$ Mag H}.
+        \item Click \textbf{Done}.
+		\end{enumerate}
+\end{enumerate}
+\section*{Result}
+The H-plane structure was successfully created,
+simulated, and field distributions were observed in
+HFSS
+\end{multicols}
+\end{document}

@@ -1,0 +1,274 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[margin={2cm,2cm}]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage[T1]{fontenc}
+\titleformat*{\section}{\fontsize{14}{14}\selectfont\normalfont\bfseries}
+\titleformat*{\subsection}{\fontsize{12}{12}\selectfont\normalfont\bfseries}
+\setlist[enumerate]{itemsep=0pt}
+\renewcommand\thesubsection{\arabic{subsection}.\hspace*{-1em} }
+\begin{document}
+\pagenumbering{gobble}
+\begin{center}
+	\fontsize{16}{16}
+	\selectfont
+	\textbf{Experiment 2 : Study Of Microwave Components}
+\end{center}
+\fontfamily{ppl}\selectfont
+\section*{Aim}
+To study various microwave components used in X-band waveguide systems and understand their construction,
+working principles, and applications.
+\section*{Instruments/Equipments}
+\begin{enumerate}
+	\item Reflex klystron power supply
+	\item Gunn power supply
+	\item Slotted Line section
+	\item Microwave Test bench based on klystron and Gunn diode
+\end{enumerate}
+\section*{Components}
+Reflex Klystron tube, Klystron mount, Isolator , Variable Attenuator, Frequency meter, Detector mount, E plane,
+H plane, Magic tee, Directional Coupler, Matched termination, PIN Modulator, Gunn diode, different types of
+antennas available.
+\section*{Theory}
+Microwave components are devices used to generate, guide, control, measure, and radiate microwave energy
+(frequency > 1 GHz).In X-band systems (8.2-12.4 GHz), waveguides and solid-state sources like Gunn diodes
+or reflex-klystrons are used.
+Each microwave component performs a specific function, such as:
+\begin{enumerate}
+\item Generation (Gunn Oscillator / Klystron)
+\item Guiding (Rectangular Waveguide)
+\item Power measurement (Detector mounts, Slotted line)
+\item Power division (E-plane/H-plane/Magic Tee)
+\item Isolation (Circulators, Isolators)
+\item Matching (Slide Screw Tuners, Movable short)
+\item Radiation (Horn Antenna)
+\end{enumerate}
+\section*{Components With Explanation}
+\subsection{Waveguides}
+Waveguides are rectangular or circular shaped metallic tubes used to guide electromagnetic waves. In a
+rectangular waveguide, the electric and magnetic fields are distributed in a pattern across the cross-section of the
+waveguide. Each waveguide has a definite cut-off frequency below which no energy is transmitted.
+The dominant mode of a rectangular waveguide is given by:
+$$f_c = \frac{1}{2\sqrt{\mu\epsilon}}
+\sqrt{\left(\frac{m}{a}\right)^2 + \left(\frac{n}{b}\right)^2}$$
+where $m$ and $n$ correspond to modes and $a$ and $b$ are waveguide dimensions.
+\subsection{Waveguide Tees}
+Waveguide tees are used to connect waveguides to branch out the microwave signals. Commonly used microwave
+junctions are E-plane tee, H-plane tee, magic tee, hybrid ring, directional coupler, and circulator.
+\subsection{E-Plane Tee}
+E-plane tee is a T-shaped waveguide in which the side arm is parallel to the electric field of the main arm. A
+rectangular slot is made on the broader dimension of a waveguide and the side arm is attached as shown in the
+figure. Port 1 and port 2 are collinear ports and port 3 is the side arm. E-arm is also called series arm. Equal and
+opposite fields at the two ends of the collinear arms are obtained.
+\subsection{H-Plane Tee}
+The side arm of H-plane tee is parallel to the magnetic field of the main arm. All the three arms are of equal
+dimensions. When power is fed through the main arm, it splits into two equal parts at the two side arms. The
+waves
+ leaving
+ the
+ two
+ side
+ arms
+ have
+ equal
+ magnitudes
+ and
+ are
+ in
+ phase.
+When power is fed through one of the side arms, it divides into two waves entering the main arm and the other
+side arm. The outputs will be additive in magnitude and phase.
+\subsection{Magic Tee}
+A magic tee (hybrid tee) is a combination of E-plane tee and H-plane tee. It has a long waveguide in which two
+side arms are attached as shown in the figure. Port 1 and port 2 are collinear arms, port 3 is the H-arm (parallel
+arm), and port 4 is the E-arm (series arm).
+This four-port hybrid tee junction combines the properties of E-plane and H-plane tees. When power is fed
+through port 3 (H-arm), the field divides equally between port 1 and port 2 and the outputs are in phase.
+When power is fed through port 4 (E-arm), the field divides equally between port 1 and port 2 but the outputs are
+180° out of phase.
+If equal amplitude and phase signals are applied at the two collinear arms, the energy appears only at the H-arm,
+while no output appears at the E-arm. The energy applied to the parallel arm gets divided equally between port 1
+and port 2.
+\subsection{Directional Coupler}
+A directional coupler is a hybrid waveguide which couples power in an auxiliary waveguide in one direction. It
+is a four-port device with one port terminated in a matched load so that there is no power reflected.
+Directivity of the directional coupler is defined as the ratio of the power coupled in the auxiliary arm to the power
+coupled in the isolated arm. Ideally, directivity is infinite since the power in the uncoupled auxiliary arm is zero.
+The coupling is expressed in decibels (dB) as the ratio of power coupled in the auxiliary arm.
+\subsection{Slotted Waveguide Section}
+The slotted waveguide section is used to study the standing wave in the waveguide. A narrow longitudinal slot
+is cut along the centre of the broad wall of the waveguide. The slot provides smooth impedance transformation.
+The slot is long enough to cover several wavelengths.
+A probe is inserted in the holder and movable carriage on the section. A scale is attached to the slotted section to
+measure the distance the probe is moved.
+\subsection{Frequency Meter}
+A frequency meter is used to measure the frequency of the microwave signal in the waveguide. It consists of a
+calibrated tunable cavity. The calibration of frequency is done based on the resonance condition.
+Frequency Meter (Resonant Type)
+In one type of frequency meter, the frequency can be read directly from the scale. In another type, the frequency
+is determined from the chart supplied by the manufacturer.
+\subsection{Attenuators}
+Attenuators are used to provide suitable power level and to isolate different parts of a microwave circuit. They
+are calibrated to read the attenuation level in decibels (dB). A variable attenuator in a microwave test bench is
+an important component used to adjust the power level of a signal in a controlled manner. It allows precise control
+of signal attenuation, which is critical for testing and calibration in microwave systems.A variable attenuator
+typically consists of resistive elements or a combination of passive components that can be adjusted to change
+the level of attenuation in the signal path
+\subsection{Isolator}
+An isolator is a device used to isolate the microwave source from the rest of the circuit. It allows transmission of
+waves only in one direction. This prevents reflections from reaching the source and protects the microwave
+generator.
+\subsection{Circulator}
+A circulator is a multi-port junction in which power may flow from one port to the next port only in one direction.
+A common application of circulators is in isolation of transmitter and receiver. Four-port circulators are
+commonly used.
+\subsection{Vswr Meter}
+A VSWR meter is an indicating voltmeter calibrated in dB. The square wave modulated output is needed to use
+the VSWR meter as the measuring device.
+Klystron Power Supply
+A klystron power supply is an equipment used to energize the klystron tube. It provides heater voltage and
+stabilized bias voltages to the electrodes of the tube. Since the variation in the bias voltage will affect the
+frequency of operation.
+\subsection{Tunable Probe}
+A tunable probe consists of a probe tip, crystal detector, and an adjustable penetration depth mechanism.
+It is used to pick up the electric field inside a waveguide and converts the RF (microwave) signal into a DC
+voltage, which can be measured using a VSWR meter or microammeter.
+\subsection{Detector Mount}
+A detector mount consists of a crystal diode placed inside a waveguide along with a tuning plunger.
+It is used to detect microwave power by converting the microwave signal into a proportional DC output, which
+can be measured using a VSWR meter or microammeter.
+\subsection{Klystron/Gunn Oscillator \& Mount}
+A klystron tube or Gunn diode is mounted inside a tuned cavity to generate microwave oscillations.
+A movable tuning plunger is provided to adjust the operating frequency.
+It generates continuous wave (CW) microwave signals and serves as the basic microwave source for X-band
+experiments.
+\subsection{Matched Termination}
+The matched termination is a termination or a load for a microwave setup. Standing waves occur when ever a
+load doesn't completely absorb the power reaching it. In the microwave measurements, whether for power or
+component characteristics e.g. VSWR of slotted section, it is terminated for minimum reflection. The match
+termination serves this purpose. The closed end has a resistive element of suitable electrical and mechanical
+characteristics for providing near perfect load.
+\subsection{Pyramidal Horn Antenna}
+A pyramidal horn antenna is used to convert guided electromagnetic waves from a waveguide into radiated waves
+infreespace. It is commonly used for gain measurements, radiation pattern measurements, and other microwave
+radiation experiments due to its high directivity and low reflection
+\subsection{Gunn Oscillators}
+Gunn Oscillators are solid state microwave energy generators. These consist of waveguide cavity flanged on one
+end and micrometer driven plunger fitted on the other end. A Gunn-diode is mounted inside the Wave guide with
+BNC (F) connector for DC bias. Each Gunn oscillator is supplied with calibration certificate giving frequency vs
+micrometer reading.
+\subsection{Pin Modulators}
+Pin modulators are designed to modulate the continuous wave output of Gunn Oscillators. It is operated by the
+square pulses derived from the UHF (F) connector of the Gunn power supply. These consist of a pin diode
+mounted inside a section of Wave guide flanged on its both end. A fixed attenuation vane is mounted inside at
+the input to protect the oscillator.
+\subsection{Gunn Power Supply}
+Provides regulated DC bias and modulation pulses for Gunn diode \& PIN modulator.
+\vspace*{.5cm}
+\section*{Precautions}
+Beam voltage should not exceed 250V , Fan should be operated to reduce the heat for reflex
+klystron. Carefully follow the specifications of the device and equipment.
+\vspace*{.5cm}
+\section*{Result}
+Various microwave components including waveguides, attenuators, directional couplers, tees, tuners,
+terminations,
+ horn
+ antennas,
+ Gunn
+ oscillators
+ were
+ successfully
+ studied.
+
+ \begin{figure}[htbp]
+	\centering
+	\newcommand{\llwd}{0.25\linewidth}
+	\setlength{\tabcolsep}{20pt}
+	\begin{tabular}{ccc}
+\begin{minipage}{\llwd}
+\centering
+\includegraphics[width=\linewidth]{01.jpg}
+Slotted Section
+\end{minipage} &
+
+\begin{minipage}{\llwd}
+\centering
+\includegraphics[width=\linewidth]{02.jpg}
+Mounting Base
+\end{minipage} &
+
+\begin{minipage}{\llwd}
+\centering
+\includegraphics[width=\linewidth]{03.jpg}
+Matched load
+\end{minipage} \\[3.4cm]
+
+\begin{minipage}{\llwd}
+\centering
+\includegraphics[width=\linewidth]{04.jpg}
+Horn antenna
+\end{minipage} &
+
+\begin{minipage}{\llwd}
+\centering
+\includegraphics[width=\linewidth]{05.jpg}
+Detector Mount
+\end{minipage} &
+
+\begin{minipage}{\llwd}
+\centering
+\includegraphics[width=\linewidth]{06.jpg}
+Klystron Power Supply
+\end{minipage} \\[2.6cm]
+
+\begin{minipage}{\llwd}
+\centering
+\includegraphics[width=\linewidth]{07.jpg}
+Microwave test bench \\ -Gunn
+\end{minipage} &
+
+\begin{minipage}{\llwd}
+\centering
+\includegraphics[width=\linewidth]{08.jpg}
+Microwave test bench \\ -Klystron
+\end{minipage} &
+
+\begin{minipage}{\llwd}
+\centering
+\includegraphics[width=\linewidth]{09.jpg}
+Directional coupler
+\end{minipage} \\[4em]
+
+\begin{minipage}{\llwd}
+\centering
+\includegraphics[width=\linewidth]{10.jpg}
+Isolator
+\end{minipage} &
+
+\begin{minipage}{\llwd}
+\centering
+\includegraphics[width=\linewidth]{11.jpg}
+E Plane
+\end{minipage} &
+
+\begin{minipage}{\llwd}
+\centering
+\includegraphics[width=\linewidth]{12.jpg}
+H Plane
+\end{minipage} \\[1em]
+
+\begin{minipage}{\llwd}
+\centering
+\includegraphics[width=\linewidth]{13.jpg}
+Magic Tee
+\end{minipage} & &
+
+\end{tabular}
+
+\end{figure}
+
+ \end{document}
