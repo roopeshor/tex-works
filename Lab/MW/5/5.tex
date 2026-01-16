@@ -1,0 +1,78 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[margin={2cm,2cm}]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage[T1]{fontenc}
+\titleformat*{\section}{\fontsize{14}{14}\selectfont\normalfont\bfseries}
+\titleformat*{\subsection}{\fontsize{12}{12}\selectfont\normalfont\bfseries}
+\setlist[enumerate]{itemsep=0pt}
+\renewcommand\thesubsection{\arabic{subsection}.\hspace*{-1em} }
+\begin{document}
+\pagenumbering{gobble}
+\begin{center}
+\fontsize{16}{16}
+\selectfont
+\textbf{Experiment 5 : Study Of Microwave Components}
+\end{center}
+\fontfamily{ppl}\selectfont
+\section*{Aim}
+To sdetermine the frequency \& wavelength in a rectangular waveguide working on TE$_{10}$ mode.
+\section*{Instruments/Equipments}
+\begin{enumerate}
+\item Klystron Power Supply
+\item Klystron tube with Klystron mounts
+\item Isolator
+\item Variable attenuator
+\item Frequency meter
+\item Slotted section
+\item Tunable probe
+\item oscilloscope
+\item BNC cable
+\end{enumerate}
+
+\section*{Theory}
+Mode represents in wave guides as either TE$_{mn}$/ TM$_{mn}$, Where
+TE-Transverse electric, TM-Transverse magnetic. $m$ - Number of half wave length variation in
+broader direction. $n$ - Number of half wave length variation in shorter direction.
+$$\frac{\lambda_g}{2} = d_1 - d_2$$
+Where $d_1$ and $d_2$ are the distance between two successive minima/maxima. It
+is having highest cut off frequency hence dominant mode. For dominant TE$_{10}$ mode
+in rectangular wave guide $\lambda_0, \lambda_g, \lambda_c$ are related as below.
+$$\frac{1}{\lambda_0^2} = \frac{1}{\lambda_g^2} + \frac{1}{\lambda_c^2} $$
+
+Where $\lambda_0$ is free space wave length,$\lambda_g$ is guide wave length,
+$\lambda_c$
+is cutoff wave length.
+For TE$_{10}$ mode
+$$
+\lambda_c=\frac{2a}{m}
+$$
+Where m = 1 in TE$_{10}$ mode and $a$ is inner broad dimension of waveguide.
+The wavelength of the signal in an unbounded medium (air or vacuum), calculated
+as
+$$\lambda_0 = c/f$$
+Where $c = 3\times10^8$ m/s is velocity of light and $f$ is frequency.
+For propagation to occur, the operating free space wavelength must be less than
+the cutoff wavelength ($\lambda_0 < \lambda_c$)
+
+\section*{Procedure}
+\begin{enumerate}
+\item Set up the components and equipments as shown in figure.
+\begin{figure}
+\centering
+\includegraphics[width=.9\linewidth]{1.png}
+\end{figure}
+
+\item Set Mode selector switch to FM-Mode position with FM amplitude and FM frequency knob at mid
+position. Keep beam voltage control knob fully anticlockwise(minimum) and reflector voltage knob
+to fully clockwise(Maximum).
+\item Fan should be kept infront of klystron
+\item Switch on Fan
+\item Switch On the klystron power supply and oscilloscope. SAdjust the repeller voltage until a square wave on a DSO.Record the parameters beam voltage,beam current,repeller voltage correctly using
+the Mode Select switch on the Klystron Power Supply
+\end{enumerate}
+\end{document}
