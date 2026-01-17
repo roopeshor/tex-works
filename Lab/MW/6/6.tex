@@ -1,0 +1,133 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[margin={1.8cm,1.8cm}]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{subcaption}
+\usepackage[T1]{fontenc}
+\usepackage{soulutf8} 
+\titleformat*{\section}{\fontsize{14}{14}\selectfont\normalfont\bfseries}
+
+\titleformat{\subsection}{\fontsize{12}{12}\selectfont\normalfont\bfseries}{}{0em}{\ul}
+
+\setlist[enumerate]{itemsep=0pt}
+\renewcommand\thesubsection{\arabic{subsection}.\hspace*{-1em} }
+\begin{document}
+\pagenumbering{gobble}
+\begin{center}
+\fontsize{16}{16}
+\selectfont
+\textbf{Experiment 6 : TE$_{10}$ mode in Rectangular Waveguide}
+\end{center}
+\fontfamily{ppl}\selectfont
+\section*{Aim}
+To determine the frequency \& wavelength in a rectangular waveguide working on TE$_{10}$ mode.
+\section*{Instruments/Equipments}
+\begin{enumerate}
+\item Klystron Power Supply
+\item Klystron tube with Klystron mounts
+\item Isolator
+\item Variable attenuator
+\item Frequency meter
+\item Slotted section
+\item Tunable probe
+\item oscilloscope
+\item BNC cable
+\end{enumerate}
+
+\section*{Theory}
+Mode represents in wave guides as either TE$_{mn}$/ TM$_{mn}$, Where
+TE-Transverse electric, TM-Transverse magnetic. $m$ - Number of half wavelength variation in
+broader direction. $n$ - Number of half wavelength variation in shorter direction.
+$$\frac{\lambda_g}{2} = d_1 - d_2$$
+Where $d_1$ and $d_2$ are the distance between two successive minima/maxima. It
+is having highest cut off frequency hence dominant mode. For dominant TE$_{10}$ mode
+in rectangular wave guide $\lambda_0, \lambda_g, \lambda_c$ are related as below.
+$$\frac{1}{\lambda_0^2} = \frac{1}{\lambda_g^2} + \frac{1}{\lambda_c^2} $$
+
+Where $\lambda_0$ is free space wavelength, $\lambda_g$ is guide wavelength, $\lambda_c$
+is cutoff wavelength. For TE$_{10}$ mode
+$$
+\lambda_c=\frac{2a}{m}
+$$
+Where m = 1 in TE$_{10}$ mode and $a$ is inner broad dimension of waveguide.
+The wavelength of the signal in an unbounded medium (air or vacuum), calculated
+as
+$$\lambda_0 = c/f$$
+Where $c = 3\times10^8$ m/s is velocity of light and $f$ is frequency.
+For propagation to occur, the operating free space wavelength must be less than
+the cutoff wavelength ($\lambda_0 < \lambda_c$)
+
+\section*{Procedure}
+\begin{enumerate}
+\item Set up the components and equipments as shown in figure.
+\usetikzlibrary {graphs,shapes.misc}
+
+\begin{tikzpicture}[very thick, nsd/.style={
+ rectangle, minimum width=21mm, minimum height=13mm, very thick, draw=black, align=center
+}]
+\graph [grow right sep=7mm] {
+"Klystron \\ Power supply" [nsd, yshift=10mm, xshift=-3mm];
+"Klystron \\ Power supply" -- "Klystron \\ Mount"[nsd]
+-- Isolator[nsd]
+-- "Variable \\ Attenuator"[nsd]
+-- "Frequency \\ Meter"[nsd]
+-- "Slotted line" [nsd];
+"Slotted line" -- "Tunable \\ Probe" [nsd, xshift=114mm, yshift=30mm]
+-- DSO[nsd, xshift=114mm, yshift=30mm]
+};
+\end{tikzpicture}
+
+\item Set Mode selector switch to FM-Mode position with FM amplitude and FM frequency knob at mid
+position. Keep beam voltage control knob minimum and reflector voltage knob
+to Maximum.
+\item Fan should be kept infront of klystron
+\item Switch on Fan and the klystron power supply and oscilloscope. Adjust the repeller voltage until a square wave on a DSO is obtained .Record the parameters beam voltage,beam current,repeller voltage correctly using
+the Mode Select switch on the Klystron Power Supply
+\end{enumerate}
+
+\subsection*{Frequency Measurement}
+Direct Method (Frequency Meter)
+\begin{enumerate}
+	\item Slowly rotate the knob of the Direct Reading Frequency Meter.
+\item Observe the DSO square waveform for a sharp dip in the reading, which occurs at resonance.
+\item The frequency indicated on the meter dial at this dip is the operating frequency ($f_0$)
+\end{enumerate}
+\subsection*{Guide Wavelength ($\lambda_g$) Measurement}
+This method uses a slotted line terminated with a open, Short Circuit and loaded to produce standing waves.
+\begin{enumerate}
+	\item Move the control knob of the slotted line slowly from a minimum position. Observe the output on the Oscilloscope and note the distance at the point where a peak is achieved.
+\item Record this position as $d_1$
+\item Move to the next adjacent minimum position and record it as $d_2$. Repeat this procedure
+\item Calculate $\lambda_g$: The distance between two successive minima is half the guide wavelength: \\[-1em]
+$$\lambda_g = 2|d_1 - d_2|$$
+\end{enumerate}
+
+\subsection*{Indirect Method (Calculation)}
+\begin{enumerate}
+	\item Measure Waveguide Dimension ($a$): Use the broader inner dimension of the waveguide (typically 2.286cm for X-band).
+\item Calculate Cutoff Wavelength ($\lambda_c$): For the dominant
+TE$_{10}$ mode, $m=1, \lambda_c = 2a/m$
+\item Find Free Space Wavelength ($\lambda_0$): Use the relation: $1/ \lambda_0^2 = 1/ \lambda_g^2 + 1/ \lambda_c^2 $
+\item Determine Frequency ($f$): Use $f = c/ \lambda_0$ , where $c \approx 3 \times 10^8$m/s.
+\item Finally, compare the calculated frequency from the slotted line method with the direct reading from
+the frequency meter to verify accuracy 
+$$\frac{\text{Obtained value} (f) - \text{Observed value}(f_0)}{\text{Obtained value} (f)}\times 100$$
+\end{enumerate}
+
+\section*{Result Analysis}
+\begin{enumerate}
+	\item Measure the frequency obtained by frequency meter.
+	\item Calculate the guide wavelength as twice the distance between two successive minimum positions obtained as above: $ \lambda_g = 2(d_1-d_2)$
+\item Measure the wave-guide inner broad dimension $a$ which will be around 22.86 mm for X band: 
+$\lambda_c = 2a$
+\item Calculate the frequency by following equation:\\[-.5em]
+$$f = \frac{c}{\lambda_0} = c \sqrt{\frac{1}{\lambda_g^2} + \frac{1}{\lambda_c^2}}$$
+\item Calculate \% error in frequency in open, shorted and loaded condition
+\end{enumerate}
+
+\end{document}
