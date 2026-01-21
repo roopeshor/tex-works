@@ -1,0 +1,87 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[margin={2cm,2.3cm}]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{subcaption}
+\usepackage[T1]{fontenc}
+\usepackage{soulutf8} 
+\titleformat*{\section}{\fontsize{14}{14}\selectfont\normalfont\bfseries}
+
+\titleformat{\subsection}{\fontsize{12}{12}\selectfont\normalfont\bfseries}{}{0em}{\ul}
+
+\setlist[enumerate]{itemsep=0pt}
+\renewcommand\thesubsection{\arabic{subsection}.\hspace*{-1em} }
+\begin{document}
+\pagenumbering{gobble}
+\begin{center}
+\fontsize{16}{16}
+\selectfont
+\textbf{Experiment 3 : V-I characteristics of Gunn Diode}
+\end{center}
+\fontfamily{ppl}\selectfont
+\section*{Aim}
+To study V-I characteristics of Gunn Diode
+\section*{Apparatus required}
+\begin{minipage}[t]{0.35\linewidth}
+	\begin{itemize}
+		\item Gunn oscillator
+		\item Gun power supply
+		\item Isolator
+		\item PIN modulator	
+		\item Variable attenuator
+	\end{itemize}
+\end{minipage}
+\begin{minipage}[t]{0.45\linewidth}
+	\begin{itemize}
+		\item Frequency meter
+		\item Detector mount
+		\item Wave guide stands
+		\item Cables and accessories.
+	\end{itemize}
+\end{minipage}
+
+\section*{Theory}
+The Gunn Oscillator is based on negative differential conductivity effect in bulk semiconductors, which has two conduction bands minima separated by an energy gap (greater than thermal agitation energies). A disturbance at the cathode gives rise to high field region, which travels towards the anode. When this high field domain reaches the anode, it disappears and another domain is formed at the cathode and starts moving towards anode and so on. The time required for domain to travel from cathode to anode (transit time) gives oscillation frequency.
+
+In a Gunn Oscillator, the Gunn diode is placed in a resonant cavity. In this case the Oscillation frequency is determined by cavity dimension than by diode itself.
+
+Although Gunn oscillator can be amplitude modulated with the bias voltage. We have used separate PIN modulator through PIN diode for square wave modulation.
+
+A measure of the square wave modulation capability is the modulation depth i.e. the output ratio between, 'ON and 'OFF state.
+
+\section*{Procedure}
+\begin{enumerate}
+\item Set up the components and equipmoents as shown in figure:
+\usetikzlibrary{shapes.misc,graphs}
+\begin{tikzpicture}[very thick, nsd/.style={rectangle, align=center, very thick, draw=black, minimum width=20mm, minimum height=13mm}]
+\graph [grow right sep=7mm] {
+"Gunn \\ Power \\ Supply"   [nsd, yshift=10mm];
+"Gunn \\ Power \\ Supply"
+-- "Gunn \\ Oscillator"     [nsd]
+-- "Isolator"               [nsd]
+-- "PIN \\ Modulator"       [nsd]
+-- "Variable \\ Attenuator" [nsd]
+-- "Frequency \\ Meter"     [nsd]
+-- "Detector \\ Mount"      [nsd]
+};
+\end{tikzpicture}
+
+
+\item Keep the control knob of Gunn Power Supply as shown:
+\begin{itemize}
+        \item Gunn bias knob	:	fully anti- clockwise
+        \item PIN bias knob	:	fully anti- clockwise
+        \item PIN Mod frequency	:	mid position
+\end{itemize}
+
+\item Switch ON the Gunn power supply 
+\item Vary the Gunn bias from minimum to maximum.
+\item Measure the Gunn diode voltage and current(do not keep in the maximum current position)
+
+\end{enumerate}
+\end{document}

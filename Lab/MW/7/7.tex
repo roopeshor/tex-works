@@ -1,0 +1,233 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[margin={2cm,2cm}]{geometry}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{multicol}
+\usepackage[T1]{fontenc}
+
+\titleformat*{\section}{\fontsize{14}{14}\selectfont\normalfont\bfseries}
+\titleformat*{\subsection}{\fontsize{12}{12}\selectfont\normalfont\bfseries}
+\setlist[enumerate]{itemsep=5pt}
+\setlength{\columnsep}{1cm}
+
+\renewcommand\thesubsection{\arabic{subsection}.\hspace*{-1em} }
+\begin{document}
+\pagenumbering{gobble}
+\begin{center}
+	\fontsize{16}{16}
+	\selectfont
+	\textbf{Experiment 7 : Dipole Antenna Design Using HFSS}
+\end{center}
+\raggedcolumns
+
+\vspace*{.75cm}
+\fontfamily{ppl}\selectfont
+
+\begin{multicols}{2}
+\section*{Aim}
+To design and simulate a dipole antenna using ANSYS HFSS and to study its S-parameter characteristics, radiation pattern, gain, and electric field distribution at an operating frequency of 5 GHz
+\section*{Software Required}
+ ANSYS Electronics Desktop (HFSS)
+\section*{Theory}
+A dipole antenna is one of the simplest and most 
+widely used antennas in wireless communication 
+systems. It consists of two equal-length conductive 
+arms placed collinearly and fed at the center by a 
+balanced source. The most common form is the 
+half-wave dipole, whose total length is 
+approximately $\lambda/2$, where $\lambda$ is the wavelength of 
+operation.
+
+When an alternating current is applied at the feed 
+point, currents flow in opposite directions in the 
+two arms of the dipole. These time-varying currents 
+produce electromagnetic radiation. The maximum 
+current occurs at the center of the dipole and
+gradually decreases to zero at the ends, while the
+voltage is minimum at the center and maximum at
+the ends.
+
+The dipole antenna radiates maximum power in the
+plane perpendicular to its axis and minimum power
+along the axis of the antenna. Hence, its radiation pattern is bidirectional and resembles a figure-of-eight in the E-plane. The radiation is linearly polarized, and the polarization depends on the orientation of the dipole.
+
+\columnbreak
+\section*{Procedure}
+\begin{enumerate}[leftmargin=*, itemsep=15pt]
+% 1
+\item \textbf{Open HFSS}
+\begin{itemize}
+	\item Open ANSYS HFSS
+	\item New Project $\rightarrow$ \textbf{Insert HFSS Design}
+\end{itemize}
+
+%2
+\item \textbf{Draw Dipole (Copper Cylinder)}
+\begin{itemize}
+	\item Draw $\rightarrow$ \textbf{Cylinder}
+	\item Material: \textbf{Copper}
+	\item Axis: \textbf{Z}
+	\item Radius: \textbf{1}
+	\item Height: \textbf{12}
+	\item Position: \textbf{(0, 0, 0.5)}
+	\item No. of segments: \textbf{0}
+	\item Fit All (Ctrl + D)
+\end{itemize}
+
+% 3
+\item \textbf{Duplicate for Second Arm}
+\begin{itemize}
+	\item Duplicate the cylinder
+	\item Rotate about X-axis = $180^\circ$
+	\item Ok
+\end{itemize}
+
+%4 
+\item \textbf{Dipole Formation}
+	\begin{itemize}
+		\item Select both cylinders
+		\item Ensure \textbf{double arm dipole}
+		\item \textbf{Unite}
+		\item Change \textbf{color}
+		\item Set \textbf{Transparency = 0.6}
+	\end{itemize}
+
+% 5
+\item \textbf{Feed Creation}
+\begin{itemize}
+	\item Select \textbf{YZ Plane}
+	\item Draw $\rightarrow$ \textbf{Rectangle}
+	\item Zoom in and rotate
+	\item Rectangle name: \textbf{Rectangle1 (Feed)}
+	\textbf{Rectangle Properties:}
+	\begin{itemize}
+		\item Position: \textbf{(0, -1, -0.5)}
+		\item Axis: \textbf{X}
+		\item Y-size: \textbf{2}
+		\item Z-size: \textbf{1}
+	\end{itemize}
+\end{itemize}
+(feed be placed at the center of the dipole)
+
+%6
+\item \textbf{Assign Excitation}
+\begin{itemize}
+	\item Select \textbf{Rectangle1}
+	\item \textbf{Excitations $\rightarrow$ Assign $\rightarrow$ Lumped Port}
+	\item Click \textbf{New Line}
+	\item Assign reference conductor
+	\item OK
+\end{itemize}
+(Dipole feed gap is very small and not a  transmission line-hence lumped port is used)
+
+%7
+\item \textbf{Radiation Box}
+\begin{itemize}
+	\item Select \textbf{XY Plane}
+	\item Create $\rightarrow$ \textbf{Box}
+	\item \textbf{Dimensions}
+	\begin{itemize}
+		\item X = 4
+		\item Y = 4
+		\item Z = 40
+	\end{itemize}
+	\item \textbf{Position}: (-20, -20, -20)
+	\item Set \textbf{Transparency = 0.8}
+	\item Assign \textbf{Radiation Boundary}
+	\end{itemize}
+
+%8
+\item \textbf{Analysis Setup}
+\begin{itemize}
+	\item Analysis $\rightarrow$ \textbf{Add Solution Setup}
+	\item \textbf{Frequency = 5 GHz}
+\end{itemize}
+
+%9
+\item \textbf{Frequency Sweep}
+\begin{itemize}
+	\item Sweep Type: \textbf{Fast}
+	\item Start: \textbf{5 GHz}
+	\item Stop: \textbf{10 GHz}
+	\item Points: \textbf{451}
+\end{itemize}
+
+%10
+\item \textbf{Far Field Setup}
+\begin{itemize}
+	\item Results $\rightarrow$ \textbf{Create Far Fields Report}
+	\item Select \textbf{Radiation}
+	\item Insert \textbf{Far Field Setup}
+	\item Magnitude \& Phase
+	\item Angular Values:
+	\begin{itemize}[leftmargin=*]
+		\item Phi $(\phi): -180^\circ$ to $+180^\circ$, Step = $2^\circ$
+ 		\item Theta $(\theta): -180^\circ$ to $+180^\circ$, Step = $2^\circ$
+	\end{itemize}
+\end{itemize}
+
+\columnbreak
+% 11
+\item \textbf{Visibility OFF}
+\begin{itemize}
+	\item Turn axis / grid \textbf{visibility OFF}
+	\item Used for clear plots
+\end{itemize}
+
+% 12
+\item \textbf{Field Overlay}
+\begin{itemize}
+	\item Results $\rightarrow$ \textbf{Field Overlay}
+	\item Plot Fields $\rightarrow$ \textbf{E}
+	\item Shows electric field distribution
+\end{itemize}
+
+% 
+\item \textbf{Validation \& Analysis}
+\begin{itemize}
+	\item HFSS $\rightarrow$ \textbf{Validate Design}
+	\item Click \textbf{Analyze All}
+\end{itemize}
+
+% 
+\item \textbf{S-Parameter Plot}
+\begin{itemize}
+	\item Results $\rightarrow$ \textbf{Create Modal Solution Data Report}
+	\item Rectangular Plot
+	\item \textbf{S(1,1) in dB}
+	\item Add marker if required
+\end{itemize}
+
+% 
+\item \textbf{3D Far Field Plot}
+\begin{itemize}
+	\item Results $\rightarrow$ \textbf{Create Far Field Report}
+	\item \textbf{3D Polar Plot}
+	\item Quantity: \textbf{Gain (Total)}
+	\item Units: \textbf{dB}
+\end{itemize}
+
+% 
+\item \textbf{Radiation Pattern}
+\begin{itemize}
+	\item Results $\rightarrow$ \textbf{Create Far Field }Report
+	\item \textbf{Radiation Pattern}
+	\item Gain (Total) in dB
+\end{itemize}
+
+% 
+\item \textbf{E-Field Animation}
+\begin{itemize}
+	\item Results $\rightarrow$ \textbf{Animate Fields}
+	\item Select \textbf{Mag\_E}
+	\item Observe radiation behavior
+\end{itemize}
+
+\end{enumerate}
+\section*{Result}
+A dipole antenna was designed and simulated in HFSS at 5 GHz. The S$_{11}$ plot shows good impedance matching, and the radiation pattern obtained is bidirectional, confirming proper dipole antenna operation.
+\end{multicols}
+\end{document}
