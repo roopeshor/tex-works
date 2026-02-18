@@ -1,0 +1,236 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[left=1.5cm, right=1cm, top=2cm, bottom=2cm]{geometry}
+\usepackage{graphicx}
+\usepackage{mathtools}
+\usepackage{amssymb}
+\usepackage{hyperref}
+\usepackage{multicol}
+\usepackage{minted}
+\usepackage{tcolorbox}
+\usepackage{framed}
+
+\allowdisplaybreaks
+\addtolength\jot{10pt}
+\setlength{\parindent}{0pt}
+\setlength{\belowdisplayskip}{30pt}
+\setlength{\belowdisplayskip}{10pt}
+\setlength{\fboxsep}{10pt}
+\setlength{\columnsep}{30pt}
+
+\renewcommand{\lg}{\log}
+\renewcommand{\thesubsection}{\thesection.\alph{subsection}}
+\renewcommand{\thesubsubsection}{\thesection.\alph{subsection}.\arabic{subsubsection}}
+
+\newcommand{\MHz}{\text{MHz}}
+\title{Week 4 Assignment}
+\author{Roopesh O R}
+\begin{document}
+	\begin{center}
+		{\LARGE Week 4 Assignment} \\[10pt]
+		{Roopesh O R}
+		\vspace{1cm}
+	\end{center}
+	\begin{multicols*}{2}
+	
+	\section{Question 1}
+	Given specification:
+	\begin{enumerate}
+		\item The DC gain is 1.
+		\item The gain at 1 MHz is at least 0.95.
+		\item The gain at 2 MHz is at most $10^{-1}$
+	\end{enumerate}
+	
+	\subsection{Finding filter parameters}
+	\subsubsection{Minimum order needed}
+	For specification 3: \\
+	Let cutoff frequency be $f_c$, hence:
+	
+	
+	\begin{flalign*}
+		\left[\frac{1}{\sqrt{1 + \left(f/f_c\right) ^{2n}}}\right]_{f = 2\times10^6} &= 10^{-1} && \\
+		\frac{1}{\sqrt{1 + \left(2\times10^6/f_c\right) ^{2n}}} &= 10^{-1} && \\	
+		\left(2\times10^6/f_c\right) ^{2n} &= 10^2 - 1  && \\
+		& = 99&& \\
+		2n \left[\lg (2 \times 10^6) - \lg f_c\right] & = \lg 99 \tag{1}&&
+	\end{flalign*}
+	
+	For specification 2: 
+	\begin{flalign*}
+		\left[\frac{1}{\sqrt{1 + \left(f/f_c\right) ^{2n}}}\right]_{f = 10^6} &= 0.95 && \\
+		2n \left[\lg 10^6 - \lg f_c\right] & = \lg (1/0.95^2-1) \tag{2}&&
+	\end{flalign*}
+	
+	Subtracting (2) from (1):
+	
+	\begin{flalign*}
+		2n\lg 2 &= \lg 99 - \lg (1/0.95^2-1) && \\
+		n &= \frac{\lg 99 - \lg (1/0.95^2-1)}{2\lg 2} = 4.9&&
+	\end{flalign*}
+	\setlength{\fboxsep}{10pt}
+	\fbox{So Order of filter is $n=5$}
+	
+	\subsubsection{3dB bandwidth}
+	
+	Substituting n=5 in equation (1):
+	
+	\begin{flalign*}
+		10 \left[\lg (2 \times 10^6) - \lg f_c\right] & = \lg 99 && \\
+		\lg f_c = -\frac{\lg 99}{10} &+ \lg (2 \times 10^6) && \\
+		\therefore f_c &= 1.263 \MHz &&
+	\end{flalign*}
+	\fbox{So 3dB bandwidth is 1.263 \MHz}
+	
+	\subsubsection{Magnitude response plot}
+	\includegraphics*[width=\linewidth]{db.pdf}	
+	Here orange line shows that passband criteria has met ($|H(j\omega)| \ge -0.22dB$).
+
+\subsection{New order for tolerance in 3dB bandwidth}
+If $f_c$ varies by $\pm 5$\% then the range of $f_c$ is from 1.199 MHz to 1.326 MHz
+
+\textbf{For $f_c$ = 1.199 MHz:}
+
+stop band:
+\begin{flalign*}
+	\frac{1}{\sqrt{1 + \left(\frac{2\times 10^6}{1.199\times 10^6}\right) ^{2n}}} &= 10^{-1} && \\
+	n  &= \frac{\lg 99}{2\lg (2/1.199)}&& \\
+	n &= 4.49
+\end{flalign*}
+
+
+pass band:
+\begin{flalign*}
+	\frac{1}{\sqrt{1 + \left(\frac{1\times 10^6}{1.199\times 10^6}\right) ^{2n}}} &= 0.95 && \\
+	n  &= \frac{\lg (1/0.95^2 - 1)}{-2\lg (1.199)}&& \\
+	\Aboxed{n &= 6.13}
+\end{flalign*}
+
+
+\textbf{For $f_c$ = 1.326 MHz:}
+
+stop band:
+\begin{flalign*}
+	\frac{1}{\sqrt{1 + \left(\frac{2\times 10^6}{1.326\times 10^6}\right) ^{2n}}} &= 10^{-1} && \\
+	n  &= \frac{\lg 99}{2\lg (2/1.326)}&& \\
+	n &= 5.59
+\end{flalign*}
+
+
+pass band:
+\begin{flalign*}
+	\frac{1}{\sqrt{1 + \left(\frac{1\times 10^6}{1.326\times 10^6}\right) ^{2n}}} &= 0.95 && \\
+	n  &= \frac{\lg (1/0.95^2 - 1)}{-2\lg (1.326)}&& \\
+	n &= 3.94
+\end{flalign*}
+\begin{framed}
+	Therefore order need to satisfy requirement for 5\% tolerance in $f_c$ is 7
+\end{framed}
+Magnitude response for $n=7$:
+
+\includegraphics*[width=\linewidth]{n7.pdf}
+Here we can see pass band and stop band is satisfied for given frequency deviation.
+
+\includegraphics*[width=\linewidth]{n6.pdf}	
+But if $n=6$, the pass band criteria is not satisfied for f = 1.199 MHz. Hence the minimum filter order is 7
+
+\section{Question 2}
+A high-Q bandpass filter the poles are located approximately at
+$$s≈ -\frac{2Q}{\omega_0} \pm j\omega_0​$$
+Hence the impulse response of the filter is approximately a damped oscillation with frequency $\omega_0$ :
+
+\[h(t) \approx \frac{\omega_0}{Q} e^{-\frac{\omega_0}{2Q}t} \cos(\omega_0 t)\]
+To maximize the output at any point in time, the input signal $v_i(t)$ should be such that convolution $h(t)*v_i(t)$ is maximum. For that to occur $v_i(t)$ should be a \textbf{square wave} whose sign at any instant is same as that of $h(t)$.
+
+\includegraphics*[width=\linewidth]{2.pdf}
+
+Hence the output at the peak becomes the integral of absolute of $h(t)$.
+
+\begin{framed}
+Hence the waveform $v_i(t)$ that maximizes the peak output is a \textbf{square wave with frequency $\omega_0$}.
+\end{framed}
+
+
+\subsection*{Peak value}
+
+\begin{flalign*}
+V_{\text{max}} &= \int_{0}^{\infty} |h(t)| dt && \\
+ &= \int_{0}^{\infty} \left|\frac{\omega_0}{Q} e^{-\frac{\omega_0}{2Q}t} \cos(\omega_0 t)\right| dt &&
+\end{flalign*}
+Since the envelope $\exp\left(-\dfrac{\omega_0}{2Q}t\right)$ decays very slowly relative to the oscillation period (because $Q\gg 1$), we can approximate $∣\cos(\omega_0 ​t)∣$ by its average value over a period, which is $2/\pi$:
+
+\begin{flalign*}
+	V_{\text{max}} &\approx \frac{2\omega_0}{\pi Q}\int_{0}^{\infty} e^{-\frac{\omega_0}{2Q}t} dt && \\
+	&= \frac{2\omega_0}{\pi Q} \frac{2Q}{\omega_0} && \\
+	&= \frac{4}{\pi} \approx 1.273 &&
+\end{flalign*}
+
+\subsection*{Comparison with Sinusoidal Input}
+If $v_i(t)$ is constrained to be sinusoidal with $|v_i| \le 1$:
+$$v_i(t) = \cos(\omega_0 t)$$
+
+The peak occurs at resonant frequency $\omega_0$, and magnitude is:
+\begin{flalign*}
+|H(j\omega_0)| &= \left|\frac{j\omega_0/(\omega_0 Q)}{(j\omega_0/\omega_0)^2 + j\omega_0/(\omega_0 Q) + 1}\right| && \\
+&= \frac{j/Q}{-1 + j/Q + 1} = 1 && 
+\end{flalign*}
+
+\begin{framed}
+Hence maximum peak voltage is 1 is $v_i$ is constrained to be sinusoidal and amplitude < 1, compared to 1.273 if $v_i$ is just amplitude constrained
+\end{framed}
+
+\section*{MATLAB codes}
+\subsection*{1.a.3}
+\begin{minted}{matlab}
+f = .5e6:1e3:2.5e6;
+n = 5;
+fc = 1.263e6;
+TF = 1./sqrt(1 + (f/fc).^(2*n));
+plot(f, 10*log10(TF));
+
+l1Mhz = 10*log10(0.95);
+l2Mhz = 10*log10(0.1);
+
+line([.5e6, 2.5e6], [l1Mhz, l1Mhz]);
+line([.5e6, 2.5e6], [l2Mhz, l2Mhz]);
+line([1e6, 1e6], [0, -15]);
+line([2e6, 2e6], [0, -15]);
+xlabel("f(MHz)");
+ylabel("Gain (dB)")
+\end{minted}
+
+\subsection*{1.b}
+\begin{minted}{matlab}
+f = .5e6:1e3:2.5e6;
+TF = @(fc, n) 1./sqrt(1 + (f/fc).^(2*n));
+hold on;
+n=6;
+plot(f, TF(1.263e6, n));
+plot(f, TF(1.199e6, n));
+plot(f, TF(1.326e6, n));
+
+line([0.5e6, 2.5e6], [0.95, 0.95]);
+line([0.5e6, 2.5e6], [0.1, 0.1]);
+line([1e6, 1e6], [1, 0]);
+line([2e6, 2e6], [1, 0]);
+hold off;
+title("n="+n)
+legend([ ...
+"f_c = 1.263MHz", ...
+"f_c = 1.199MHz", ...
+"f_c = 1.326MHz" ...
+]);
+xlabel("f(MHz)"); ylabel("Gain")
+\end{minted}
+
+\subsection*{2}
+\begin{minted}{matlab}
+x = 0:.01:10;
+w = 5;
+y = 5*exp(-x/2).*cos(w*x);
+plot(x, y);
+hold on;
+plot(x, sign(y));
+legend(["h(t)", "v_i(t)"])
+\end{minted}
+\end{multicols*}
+\end{document}

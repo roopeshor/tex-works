@@ -1,0 +1,19 @@
+\documentclass[dvisvgm]{minimal}
+\usepackage{tikz}
+\usetikzlibrary {graphs,shapes.misc}
+\begin{document}
+\begin{tikzpicture}[very thick, nsd/.style={
+ rectangle, minimum width=20mm, minimum height=13mm, very thick, draw=black, align=center
+}]
+\graph [grow right sep=7mm] {
+"Klystron \\ Power supply" [nsd, yshift=20mm, xshift=-1.5mm];
+"Klystron \\ Power supply" -- "Klystron \\ Mount"[nsd]
+-- Isolator[nsd]
+-- "Variable \\ Attenuator"[nsd]
+-- "Frequency \\ Meter"[nsd]
+-- "E Plane" [nsd];
+"E Plane" -- "Matched \\ Load" [nsd, xshift=110mm, yshift=40mm];
+"E Plane" -- "detector \\ Mount "[nsd, xshift=137mm, yshift=20mm]
+-- "DSO" [nsd, xshift=137mm, yshift=20mm]
+};
+\end{tikzpicture}

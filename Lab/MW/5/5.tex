@@ -1,0 +1,95 @@
+\documentclass[11pt, a4paper]{article}
+\usepackage[vmargin={2cm,4.7cm}, hmargin={2cm,2.4cm}]{geometry}
+\usepackage[utf8]{inputenc}
+\usepackage{float}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{graphicx}
+\usepackage{tikz}
+\usepackage{subcaption}
+\usepackage[T1]{fontenc}
+\usepackage{soulutf8} 
+\titleformat*{\section}{\fontsize{14}{14}\selectfont\normalfont\bfseries}
+
+\titleformat{\subsection}{\fontsize{12}{12}\selectfont\normalfont\bfseries}{}{0em}{\ul}
+
+\setlist[enumerate]{itemsep=0pt}
+\renewcommand\thesubsection{\arabic{subsection}.\hspace*{-1em} }
+\begin{document}
+\pagenumbering{gobble}
+\begin{center}
+\fontsize{16}{16}
+\selectfont
+\textbf{Experiment 5(a) : E-Plane Tee}
+\end{center}
+\fontfamily{ppl}\selectfont
+\section*{Aim}
+To study the characteristics of an E-plane tee junction and determine its isolation.
+\section*{Apparatus required}
+\begin{enumerate}
+\item Klystron Power Supply
+\item Klystron tube with Klystron mounts
+\item Isolator
+\item Variable attenuator
+\item Frequency meter
+\item Detector mount
+\item DSO
+\item E-plane tee junction
+\item Matched load
+\item BNC cable
+\end{enumerate}
+
+\section*{Theory}
+An E-plane tee is a T-shaped waveguide junction in which the side arm is parallel to the electric field (E-field) of the main waveguide.
+\begin{itemize}
+\item  When power is fed into the side arm, it divides equally between the two collinear arms with $180^\circ$ phase difference.
+\item  When equal and opposite waves are applied to the collinear arms, the resultant field at the side arm is zero.
+\item Hence, the side arm acts as a difference port.
+\end{itemize}
+
+Insertion loss is the reduction in signal power caused by inserting a device (such as a filter, attenuator, or waveguide junction) into a transmission line or microwave system.
+When a component is introduced between a source and a load, part of the input power is
+\begin{itemize}
+\item Absorbed,
+\item Reflected, or
+\item Dissipated as heat
+\end{itemize}
+This results in a decrease in the output power, which is termed insertion loss.
+
+$$\text{Insersion Loss(dB)} = 10\log_{10} \left(\frac{P_{\text{in}}}{P_\text{out}}\right) $$
+
+\pagebreak
+
+Since power is proportional to the square of voltage:
+
+$$\text{Insersion Loss(dB)} = 20\log_{10} \left(\frac{V_1}{V_2}\right) $$
+
+Where:
+\begin{itemize}
+\item $V_1$ = Input voltage
+\item $V_2$ = Output voltage
+\end{itemize}
+
+\section*{Procedure}
+\begin{enumerate}
+\item Set up the components and equipments as shown in figure.
+
+\includegraphics[width=\linewidth]{a.pdf}
+
+\item Set Mode selector switch to AM-Mode position with AM amplitude and AM frequency knob at mid
+position. Keep beam voltage control knob fully anticlockwise (minimum) and reflector voltage knob
+to fully clockwise (maximum).
+\item Place the cooling fan in front of the klystron tube and switch ON the fan to avoid overheating
+\item Switch 'On' the klystron power supply and oscilloscope. Adjust the repeller voltage until a square wave on a DSO
+\item Measure the input voltage by disconnecting the E plane tee and Connect the detector mount directly to the output of the microwave bench. Note the voltage indicated on the DSO. This voltage is taken as the \textbf{input reference voltage $V_1$}
+\item Connect the E-plane tee to the setup.
+\item Connect the detector mount to one port and terminate the other port with a matched load.
+\item Measure the output voltage on the DSO . This voltage is the output voltage $V_2$.and calculate the isolation in dB using 
+$$\text{Isolation (dB)} = 20\log_{10} \left(\frac{V_1}{V_2}\right) $$
+\item Interchange the position of the matched load and detector mount. Note the change in DSO reading and determine isolation.
+\end{enumerate}
+
+\section*{Result}
+The characteristics of the E-plane tee were studied and its isolation was determined
+\end{document}
