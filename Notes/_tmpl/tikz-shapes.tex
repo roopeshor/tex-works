@@ -1,0 +1,232 @@
+% must be used with config.tex
+
+\usepackage{listofitems}
+\usepackage{xargs}
+\usepackage{fp}
+\usetikzlibrary{3d,perspective}
+
+% startx, starty, endx, endy
+\newcommand{\dottedgrid}[4]{
+	\draw[thin, dotted] (#1, #2) grid (#3,#4);
+	\foreach \i in {#1,...,#3} \node at (\i,-2ex) {\i};
+	\foreach \i in {#2,...,#4} \node at (-2ex,\i) {\i};
+}
+
+% line width, length
+\newcommand{\smallmidarrow}[2]{\tikz \draw[arrows = {-Straight Barb[scale=.8]}, line width=#1] (0,0) -- +(#2,0);}
+\newcommand{\midarrow}[2]{\tikz \draw[arrows = {-Straight Barb[scale=1.1]}, line width=#1] (0,0) -- +(#2,0);}
+
+
+\newcommandx{\shadedPlane}[6][5=blue, 6=0.8]{
+	\readlist\a{#1}%
+	\readlist\b{#2}%
+	\readlist\c{#3}%
+	\readlist\d{#4}%
+	\coordinate (P1) at (\a[1], \a[2], \a[3]);
+	\coordinate (P2) at (\b[1], \b[2], \b[3]);
+	\coordinate (P3) at (\c[1], \c[2], \c[3]);
+	\coordinate (P4) at (\d[1], \d[2], \d[3]);
+	\fill[pattern=north east lines, pattern color=#5, opacity=#6]
+	(P1) -- (P2) -- (P3) -- (P4)-- cycle;
+	\draw[thick, color=#5, opacity=#6]
+	(P1) -- (P2) -- (P3) -- (P4) -- cycle;
+}
+
+
+\newcommandx{\axes}[2][1=1, 2=1.3]{
+	\FPeval\axside{#1 * #2}
+	\draw[->, red] (0,0,0) -- (\axside,0,0) node[anchor=north east] {$x$};
+	\draw[->, green] (0,0,0) -- (0,\axside,0) node[anchor=north west] {$y$};
+	\draw[->, blue] (0,0,0) -- (0,0,\axside) node[anchor=south] {$z$};
+}
+
+
+\newcommandx{\wirecube}[2][2=1pt]{
+	% vertices of the cube & plane
+	\coordinate (A) at (0,0,0);
+	\coordinate (B) at (#1,0,0);
+	\coordinate (C) at (#1,#1,0);
+	\coordinate (D) at (0,#1,0);
+	\coordinate (E) at (0,0,#1);
+	\coordinate (F) at (#1,0,#1);
+	\coordinate (G) at (#1,#1,#1);
+	\coordinate (H) at (0,#1,#1);
+
+	% Draw the edges of the cube
+	\draw[thick] (A) -- (B) -- (C) -- (D) -- cycle;
+	\draw[thick] (E) -- (F) -- (G) -- (H) -- cycle;
+	\draw[thick] (A) -- (E);
+	\draw[thick] (B) -- (F);
+	\draw[thick] (C) -- (G);
+	\draw[thick] (D) -- (H);
+
+	% Add points to illustrate vertices
+	\foreach \i in {(A), (B), (C), (D), (E), (F), (G), (H)} {
+			\filldraw[black] \i circle (#2);
+		}
+}
+
+\newcommand{\wirecubewithlabels}[2]{
+	\wirecube{#1}[#2]
+
+	% Label the side lengths
+	\coordinate (A) at (0,0,0);
+	\coordinate (B) at (#1,0,0);
+	\coordinate (D) at (0,#1,0);
+	\coordinate (E) at (0,0,#1);
+
+	\node at ($(A)!0.8!(B)$) [above] {$\vec{a}$};
+	\node at ($(A)!0.7!(D)$) [above right] {$\vec{b}$};
+	\node at ($(A)!0.7!(E)$) [above] {$\vec{c}$};
+	\draw[thick, ->] (A) -- (B);
+	\draw[thick, ->] (A) -- (D);
+	\draw[thick, ->] (A) -- (E);
+	\pic [blue,draw,angle radius=0.25cm] {angle=B--A--E};
+	\pic [green,draw,angle radius=0.25cm] {angle=D--A--B};
+	\pic [red,draw,angle radius=0.25cm] {angle=D--A--E};
+
+	\node[color=blue, scale=.8] at (.4,0.4,0) {$\gamma$};
+	\node[color=green, scale=.8] at (.7,0,.7) {$\beta$};
+	\node[color=red, scale=.8] at (-0.3,0.3,0.3) {$\alpha$};
+}
+
+
+\newcommand{\millerDiagramQuad}[6]{
+	\begin{tikzpicture}[
+			scale=#6,
+			x={(-.45cm, -.4cm)},
+			y={(1cm, 0cm)},
+			z={(0cm, 1cm)}
+		]
+		\axes[#5]
+		\shadedPlane{#1}{#2}{#3}{#4}
+
+		\wirecube{#5}[0pt]
+
+	\end{tikzpicture}
+}
+
+
+\newcommand{\millerDiagram}[5]{
+	\millerDiagramQuad{#1}{#2}{#3}{#3}{#4}{#5}
+}
+
+
+\newcommand{\doubleCylinder}[3]{
+	\draw (0,0) ellipse (#1 and #1*2);
+	\draw (0,#1*2) -- ++(#3, 0);
+	\draw (0,-#1*2) -- ++(#3, 0);
+
+	\draw (0,0) ellipse (#2 and #2*2);
+	\draw (0,#2*2) -- ++(#3, 0);
+	\draw (0,-#2*2) -- ++(#3, 0);
+}
+
+
+% x,y, r, y-scalar, x-length, y-shear, color
+\newcommand{\cylinder}[7]{
+	\begin{scope}[shift={(#1, #2)}]
+		\draw[fill=#7, draw=black] (#5, #4*#3+#6) arc (90:-80:#3 and #4*#3) -- ++(-#5, -#6) arc (-80:90:#3 and #4*#3) -- cycle;
+		\draw[fill=#7, draw=black] (0, 0) ellipse (#3 and #4*#3);
+	\end{scope}
+}
+
+
+% x, y, l, count, hair dx, hair dy, color, angle
+\newcommand{\mirror}[8]{
+	\begin{scope}[rotate=#8, shift={(#1, #2)}]
+		\draw[color=#7] (0, 0) -- ++(0,#3);
+		\foreach \i in {0,...,#4} {
+				\draw[#7] (0, \i/#4*#3) --++(-#5, -#6);
+			}
+	\end{scope}
+}
+
+
+
+
+%%%%%%%%% coil
+
+\makeatletter%
+% Decorations based on
+% https://tex.stackexchange.com/questions/32297/modify-tikz-coil-decoration/43605#43605
+% coilup decoration
+%
+% Parameters: \pgfdecorationsegmentamplitude, \pgfdecorationsegmentlength,
+\pgfdeclaredecoration{coilup}{coil}{
+	\state{coil}[switch if less than=
+		1.5\pgfdecorationsegmentlength+
+		\pgfdecorationsegmentaspect\pgfdecorationsegmentamplitude+
+		\pgfdecorationsegmentaspect\pgfdecorationsegmentamplitude to last,
+		width=+\pgfdecorationsegmentlength]
+	{
+		\pgfpathcurveto
+		{\pgfpoint@oncoil{0    }{ 0.555}{1}}
+		{\pgfpoint@oncoil{0.445}{ 1    }{2}}
+		{\pgfpoint@oncoil{1    }{ 1    }{3}}
+		\pgfpathmoveto{\pgfpoint@oncoil{1    }{-1    }{9}}
+		\pgfpathcurveto
+		{\pgfpoint@oncoil{0.445}{-1    }{10}}
+		{\pgfpoint@oncoil{0    }{-0.555}{11}}
+		{\pgfpoint@oncoil{0    }{ 0    }{12}}
+	}
+	\state{last}[width=.5\pgfdecorationsegmentlength+
+		\pgfdecorationsegmentaspect\pgfdecorationsegmentamplitude+
+		\pgfdecorationsegmentaspect\pgfdecorationsegmentamplitude,next state=final]
+	{
+		\pgfpathcurveto
+		{\pgfpoint@oncoil{0    }{ 0.555}{1}}
+		{\pgfpoint@oncoil{0.445}{ 1    }{2}}
+		{\pgfpoint@oncoil{1    }{ 1    }{3}}
+		\pgfpathmoveto{\pgfpoint@oncoil{1    }{ 1    }{3}}
+	}
+	\state{final}
+	{
+		\pgfpathmoveto{\pgfpointdecoratedpathlast}
+	}
+}
+% coildown decoration
+%
+% Parameters: \pgfdecorationsegmentamplitude, \pgfdecorationsegmentlength,
+\pgfdeclaredecoration{coildown}{coil}
+{
+	\state{coil}[switch if less than=
+		1.5\pgfdecorationsegmentlength+
+		\pgfdecorationsegmentaspect\pgfdecorationsegmentamplitude+
+		\pgfdecorationsegmentaspect\pgfdecorationsegmentamplitude to last,
+		width=+\pgfdecorationsegmentlength]
+	{
+		\pgfpathmoveto{\pgfpoint@oncoil{1    }{1    }{3}}
+		\pgfpathcurveto
+		{\pgfpoint@oncoil{1.555}{ 1    }{4}}
+		{\pgfpoint@oncoil{2    }{ 0.555}{5}}
+		{\pgfpoint@oncoil{2    }{ 0    }{6}}
+		\pgfpathcurveto
+		{\pgfpoint@oncoil{2    }{-0.555}{7}}
+		{\pgfpoint@oncoil{1.555}{-1    }{8}}
+		{\pgfpoint@oncoil{1    }{-1    }{9}}
+	}
+	\state{last}[width=.5\pgfdecorationsegmentlength+
+		\pgfdecorationsegmentaspect\pgfdecorationsegmentamplitude+
+		\pgfdecorationsegmentaspect\pgfdecorationsegmentamplitude,next state=final]
+	{
+		% Comment the next 5 lines when closing the last loop
+		\pgfpathmoveto{\pgfpoint@oncoil{1    }{ 1    }{3}}
+		\pgfpathcurveto
+		{\pgfpoint@oncoil{1.555}{ 1    }{4}}
+		{\pgfpoint@oncoil{2    }{ 0.555}{5}}
+		{\pgfpoint@oncoil{2    }{ 0    }{6}}
+	}
+	\state{final}
+	{}
+}
+\def\pgfpoint@oncoil#1#2#3{%
+	\pgf@x=#1\pgfdecorationsegmentamplitude%
+	\pgf@x=\pgfdecorationsegmentaspect\pgf@x%
+	\pgf@y=#2\pgfdecorationsegmentamplitude%
+	\pgf@xa=0.083333333333\pgfdecorationsegmentlength%
+	\advance\pgf@x by#3\pgf@xa%
+}%
+\makeatother%
+
+%%%%%%%%% coil %%%%%%%%
