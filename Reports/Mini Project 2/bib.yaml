@@ -1,0 +1,17 @@
+controlled-flooding:
+  type: Article
+  title: Controlled Flooding in Wireless Ad-hoc Networks
+  author:
+    - A. Rahman
+    - W. Olesinski
+    - P. Gburzynski
+  url: https://web.archive.org/web/20170210205207/http://www.senserf.com/pg/PAPERS/tarp1.pdf
+meshtastic:
+  type: Web
+  title: Build Long-Range IoT Applications Fast With Meshtastic
+  author: Stephen Cass
+  url: https://spectrum.ieee.org/build-iot-apps-with-meshtastic
+wiki-adhoc:
+  type: Web
+  author: Community
+  url: https://en.wikipedia.org/wiki/Wireless_ad_hoc_network
