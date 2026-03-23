@@ -56,7 +56,7 @@ The characteristics of the microwave isolator were studied. It was observed that
 
 == Setup
 #figure(
-	image("1.png")
+	image("6b.png")
 )
 
 == Observation table

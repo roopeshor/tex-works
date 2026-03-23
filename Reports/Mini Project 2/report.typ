@@ -5,6 +5,8 @@
 #showFooter("none")
 #include "title.typ"
 #include "certificate.typ"
+#include "acknowledgment.typ"
+#include "abstract.typ"
 
 #set page(numbering: "i")
 #showFooter("number")

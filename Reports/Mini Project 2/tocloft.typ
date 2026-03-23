@@ -27,7 +27,6 @@
   let no-nums = query(label("unnumbered"))
   if it.element in no-nums {
     return strong[
-      #box(width: 10pt)
       #it.body()
       // dots
       #box(width: 1fr, repeat(gap: 0.15em)[.]) #it.page()
@@ -49,7 +48,7 @@
 
 #{
   show heading: none
-  heading(numbering: none)[#box(width: 12pt)List of Figures]
+  heading(numbering: none)[List of Figures]
 }
 
 #outline(
@@ -61,7 +60,7 @@
 
 #{
   show heading: none
-  heading(numbering: none)[#box(width: 12pt)List of Tables]
+  heading(numbering: none)[List of Tables]
 }
 #outline(
   title: [List of Tables],

@@ -6,6 +6,12 @@ controlled-flooding:
     - W. Olesinski
     - P. Gburzynski
   url: https://web.archive.org/web/20170210205207/http://www.senserf.com/pg/PAPERS/tarp1.pdf
+routing:
+  type: Article
+  title: A distributed routing algorithm for mobile wireless networks
+  author:
+    - M. Scott Corson
+    - Anthony Ephremides
 meshtastic:
   type: Web
   title: Build Long-Range IoT Applications Fast With Meshtastic

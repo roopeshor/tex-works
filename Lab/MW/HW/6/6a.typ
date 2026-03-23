@@ -61,7 +61,7 @@ The directional coupler characteristics were measured, and the values of couplin
 
 == Setup
 #figure(
-	image("1.png")
+	image("6a.png")
 )
 
 == Observation table
