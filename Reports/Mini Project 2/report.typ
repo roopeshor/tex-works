@@ -10,6 +10,7 @@
 
 #set page(numbering: "i")
 #showFooter("number")
+#counter(page).update(1)
 #include "tocloft.typ"
 
 #counter(page).update(1)

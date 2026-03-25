@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="100mm"
+   height="75mm"
+   viewBox="0 0 100 75"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1">
+    <marker
+       style="overflow:visible"
+       id="marker3"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:round"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path3" />
+    </marker>
+    <marker
+       style="overflow:visible"
+       id="ArrowWideRounded"
+       refX="0"
+       refY="0"
+       orient="auto-start-reverse"
+       markerWidth="1"
+       markerHeight="1"
+       viewBox="0 0 1 1"
+       preserveAspectRatio="xMidYMid">
+      <path
+         style="fill:none;stroke:context-stroke;stroke-width:1;stroke-linecap:round"
+         d="M 3,-3 0,0 3,3"
+         transform="rotate(180,0.125,0)"
+         id="path2" />
+    </marker>
+  </defs>
+  <g
+     id="layer1"
+     transform="translate(-55.149621,-94.554737)">
+    <g
+       id="g8"
+       transform="translate(0.24889118,3.3224892)">
+      <g
+         id="g2"
+         transform="translate(16.773285,27.988505)">
+        <ellipse
+           style="fill:none;stroke:#000000;stroke-width:0.352778;stroke-linecap:round;stroke-dasharray:none"
+           id="ellipse10"
+           cx="45.657787"
+           cy="99.276909"
+           rx="7.1050625"
+           ry="7.0091419" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.23333px;line-height:1.05;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:start;letter-spacing:0.264583px;word-spacing:0.264583px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;stroke:none;stroke-width:0.560001;stroke-linecap:round;stroke-dasharray:none"
+           x="41.948456"
+           y="100.79826"
+           id="text2"><tspan
+             id="tspan2"
+             style="fill:#000000;stroke:none;stroke-width:0.56"
+             x="41.948456"
+             y="100.79826">Src</tspan></text>
+      </g>
+      <g
+         id="g3"
+         transform="translate(54.073293,10.100119)">
+        <ellipse
+           style="fill:none;stroke:#000000;stroke-width:0.352778;stroke-linecap:round;stroke-dasharray:none"
+           id="ellipse2"
+           cx="45.657787"
+           cy="99.276909"
+           rx="7.1050625"
+           ry="7.0091419" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.23333px;line-height:1.05;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:start;letter-spacing:0.264583px;word-spacing:0.264583px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;stroke:none;stroke-width:0.560001;stroke-linecap:round;stroke-dasharray:none"
+           x="43.00679"
+           y="100.79826"
+           id="text3"><tspan
+             id="tspan3"
+             style="fill:#000000;stroke:none;stroke-width:0.56"
+             x="43.00679"
+             y="100.79826">N2</tspan></text>
+      </g>
+      <g
+         id="g5"
+         transform="translate(54.073292,49.916821)">
+        <ellipse
+           style="fill:none;stroke:#000000;stroke-width:0.352778;stroke-linecap:round;stroke-dasharray:none"
+           id="ellipse4"
+           cx="45.657787"
+           cy="99.276909"
+           rx="7.1050625"
+           ry="7.0091419" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.23333px;line-height:1.05;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:start;letter-spacing:0.264583px;word-spacing:0.264583px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;stroke:none;stroke-width:0.560001;stroke-linecap:round;stroke-dasharray:none"
+           x="43.00679"
+           y="100.79826"
+           id="text5"><tspan
+             id="tspan5"
+             style="fill:#000000;stroke:none;stroke-width:0.56"
+             x="43.00679"
+             y="100.79826">N3</tspan></text>
+      </g>
+      <g
+         id="g6"
+         transform="translate(93.240385,27.988505)">
+        <ellipse
+           style="fill:none;stroke:#000000;stroke-width:0.352778;stroke-linecap:round;stroke-dasharray:none"
+           id="ellipse5"
+           cx="45.657787"
+           cy="99.276909"
+           rx="7.1050625"
+           ry="7.0091419" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:4.23333px;line-height:1.05;font-family:Arial;-inkscape-font-specification:'Arial Bold';text-align:start;letter-spacing:0.264583px;word-spacing:0.264583px;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#000000;stroke:none;stroke-width:0.560001;stroke-linecap:round;stroke-dasharray:none"
+           x="40.890121"
+           y="100.79826"
+           id="text6"><tspan
+             id="tspan6"
+             style="fill:#000000;stroke:none;stroke-width:0.56"
+             x="40.890121"
+             y="100.79826">Dest</tspan></text>
+      </g>
+      <path
+         style="fill:#cccccc;stroke:#000000;stroke-width:0.352778;stroke-dasharray:none;marker-start:url(#ArrowWideRounded);marker-end:url(#marker3)"
+         d="m 69.914745,121.77458 21.128081,-9.98781"
+         id="path1" />
+      <path
+         style="fill:#cccccc;stroke:#000000;stroke-width:0.352777;stroke-dasharray:none;marker-start:url(#ArrowWideRounded);marker-end:url(#marker3)"
+         d="m 68.570229,133.68314 22.66467,13.061"
+         id="path4" />
+      <path
+         style="fill:#cccccc;stroke:#000000;stroke-width:0.352777;stroke-dasharray:none;marker-start:url(#ArrowWideRounded);marker-end:url(#marker3)"
+         d="m 108.52151,111.21054 22.66468,10.37196"
+         id="path5" />
+      <path
+         style="fill:#cccccc;stroke:#000000;stroke-width:0.352777;stroke-dasharray:none;marker-start:url(#ArrowWideRounded);marker-end:url(#marker3)"
+         d="M 107.56115,146.35999 131.37826,132.5307"
+         id="path6" />
+    </g>
+  </g>
+</svg>

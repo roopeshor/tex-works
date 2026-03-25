@@ -1,3 +1,9 @@
+wsn-reliable:
+  type: Article
+  title: The Reliability of Wireless Sensor Network on Pipeline Monitoring System.
+  author:
+    - Hafizh Prihtiadi
+    - Mitra Djamal
 controlled-flooding:
   type: Article
   title: Controlled Flooding in Wireless Ad-hoc Networks
@@ -17,7 +23,37 @@ meshtastic:
   title: Build Long-Range IoT Applications Fast With Meshtastic
   author: Stephen Cass
   url: https://spectrum.ieee.org/build-iot-apps-with-meshtastic
-wiki-adhoc:
-  type: Web
-  author: Community
-  url: https://en.wikipedia.org/wiki/Wireless_ad_hoc_network
+energy-evaluation:
+  type: Article
+  author:
+    - S. Santha Meena
+    - J. Manikandan
+  title: Study and evaluation of different topologies in wireless sensor network
+history:
+  type: Article
+  title: Computer network development to achieve resource sharing
+  author:
+    - Lawrence G. Roberts
+    - Barry D. Wessler
+wsn:
+  title: "Wireless Sensor Network as a Mesh: Vision and Challenges"
+  author:
+    - Zhanserik Nurlan
+    - et al.
+  type: Article
+dapf:
+  type: Article
+  title: An efficient flooding algorithm for Mobile Ad-hoc networks
+  author:
+    - Fatemeh Nourazar
+    - Masoud Sabaei
+nRF-datasheet:
+  title: nRF24L01 Single Chip 2.4GHz Transceiver
+  type: Article
+  author: Nordic Semiconductor
+  url: https://cdn.sparkfun.com/datasheets/Wireless/Nordic/nRF24L01_Product_Specification_v2_0.pdf 
+stm-datasheet:
+  title: Low-density performance line, ARM-based 32-bit MCU with 16 or 32 KB Flash, USB, CAN, 6 timers, 2 ADCs, 6 com. interfaces
+  type: Article
+  author: ST Microelectronics
+  url: https://www.st.com/resource/en/datasheet/stm32f103c6.pdf
