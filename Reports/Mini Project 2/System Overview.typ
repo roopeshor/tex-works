@@ -1,11 +1,24 @@
 #import "@preview/algorithmic:1.0.7"
+#import "@preview/acrostiche:0.7.0": *
 #import algorithmic: style-algorithm, algorithm-figure
 #show: style-algorithm
 
 = System Overview
 
-The system is made with portability in mind. The algorithm is custom developed based on already available Controlled flooding algorithms (@controlled-flooding @dapf)
+The system is made with portability in mind. The development board and nRF module are inserted onto header pins soldered on a small section of prototype board. The algorithm is custom developed based on already available Controlled flooding algorithms @controlled-flooding @dapf
 == Hardware 
+The nRF module is interfaced to STM board via #acr("SPI") through hardware #acr("SPI") peripheral of STM32. An indicator LED used to indicate the status of transmission is attached to `PB11` pin of STM. Built-in LED in the development board -- which is accessed by `PC13` is used to indicate reception of radio packet reducing the need for additional LED and current limiting resistor.
+#figure(
+  grid(
+    columns: 2,
+    column-gutter: 1cm,
+    image("images/transceiver-ckt.svg"),
+    image("images/transceiver-ckt.svg"),
+  ),
+  caption: [Circuit diagram]
+)
+
+While implementing, we soldered female berg strip onto prototype board. For transmitter, we were experimenting various configurations hence it was not soldered in a prototype board.
 
 #figure(
   grid(
@@ -17,8 +30,18 @@ The system is made with portability in mind. The algorithm is custom developed b
   caption: [Transmitter (left) and receiver(right) modules]
 )
 
-== Algorithm
+== Software <sw-section>
 This section outlines the algorithm of custom controlled flooding method. @routing
+
+
+While setting up the Arduino IDE for development few flash settings had to be adjusted as shown in @fig:stm-settings
+
+#figure(
+  image("images/stm-flash-settings.png", height: 10cm),
+  caption: [Settings to apply while flashing the program to STM32]
+) <fig:stm-settings>
+
+
 === Transmitter
 #import "@preview/algorithmic:1.0.7"
 #import algorithmic: style-algorithm, algorithm-figure

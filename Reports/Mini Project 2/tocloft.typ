@@ -32,30 +32,6 @@
   ]
 }
 
-// Set spacing for heading outline
-#show outline.entry.where(level: 1): it => {
-  if it.element.func() == heading {
-    v(5pt)
-    strong(it)
-  } else {
-    v(3pt)
-    it
-  }
-}
-
-#show outline.entry: it => {
-  // things that shouldnt be numbered
-  let no-nums = query(label("unnumbered"))
-  if it.element in no-nums {
-    return strong[
-      #it.body()
-      // dots
-      #box(width: 1fr, repeat(gap: 0.15em)[.]) #it.page()
-    ]
-  }
-  it
-}
-
 #addToPDFBookmark("Table of contents")
 #outline(
   title: [Table of contents],
@@ -70,7 +46,7 @@
   target: figure.where(kind: image),
 )
 #v(1cm)
-
+#pagebreak()
 #addToPDFBookmark("List of Tables")
 #outline(
   title: [List of Tables],
@@ -82,6 +58,7 @@
 #print-index(
   title: [List of Abbreviations],
   row-gutter: 10pt,
+  sorted: "up"
 )
 
 #pagebreak()

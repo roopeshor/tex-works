@@ -1,18 +1,34 @@
 #import "@preview/acrostiche:0.7.0": *
 = Results and Discussion
 
+== Results
+Initially direct connection between transmitter and receiver was tested, which was successful. Then we moved on to 3 node communication. Here the radio modules showed very poor range, hence for transmission to occur, they had to be placed very close to each other as shown in @3-node-com. Here transmitter (shown on left) could transmit only up to the nearest repeater which relays it to receiver node (shown on right). Since #acr("ACK") mechanism was implemented the signal has to travels back to transmitter again through the repeater.
+
+#figure(
+  image("images/3 nodes.jpg", width: 12cm),
+  caption: [Communication with 3 nodes]
+)<3-node-com>
+
+The output from all nodes were logged through Serial port and are displayed in the console using *_Minicom_* @minicom. 
 
 #figure(
   image("images/serial-outputs.png"),
   caption: [Serial output from Transmitter, Receiver and Repeater nodes (left to right)]
 )
 
-== Latency Measure
+Later on we tested with all 4 nodes and formed the network which we originally intended to. During operation, on most case the packet travels through both repeaters and reaches the destination at almost the same time. However the radio library we used picks up only one of these packets and the program logs its signature. Hence when the other packet reaches the node, it simply discards it. In similar way, repeater nodes might obtain packets from other repeaters. But the nodes are programmed to detect and discard these duplicate packets, preventing the network from collapsing due to looping
 
 #figure(
-  image("images/latency-direct.png", width: 10cm),
-  caption: [Round trip Transmission delay in direct communication]
+  image("images/4 nodes.jpg", width: 12cm),
+  caption: [Communication with 4 nodes]
 )
+
+
+== Latency Measure
+
+Many serial print function calls and delays were added in the program for debugging purpose. These were removed during the transmission and reception period and only essential logging functionality was left out. The latency here refers to the time period between transmission of SOS signal and reception of a ACK signal. The multiple SOS signals were sent in succession and the latency was logged.
+
+In a direct communication, the latency was highly predictable with an averages value of 1304$mu$s (latency in each transmission is shown in @tab:direct-latency). Since a packet has maximum size of 32 bytes, the maximum date rate for our network scheme is approximately 24 KiB/s
 
 #figure(
   caption: "Latency for direct communication",
@@ -24,10 +40,18 @@
     ($mu s$)*], [1301], [1306], [1312], [1304], [1304], [1304], [1305], [1304], [1304],
     [*Average*],table.cell(colspan: 9)[*1304$mu s$*]
   )
-)
+)<tab:direct-latency>
 
 #figure(
- caption: "Latency for 1-hop communication",
+  image("images/latency-direct.png", width: 10cm),
+  caption: [Serial messages in generated in round trip transmission]
+)
+
+For a 3 node communication however, we saw significant increase in latency of almost 30 fold increase. Our speculation for this steep increase is signal attenuation (hence packet loss) as well as #acrf("ESB") feature of nRF24L01+ chip. Which automatically transmits same packet multiple times in a network
+
+Based on this, the maximum data rate of the communication possible is less than 1KiB/s
+#figure(
+ caption: "Latency for 3 node communication",
   table(
   columns: 5,
   align: center+horizon,
@@ -38,6 +62,7 @@ $mu s$*]
 ) 
 )
 == limitations
-The physical RF layer of this prototype is powered by the standard nRF24L01+ transceiver (without the external Power Amplifier and Low Noise Amplifier stages). While this choice keeps the prototype highly cost-effective and energy-efficient, it introduces specific physical and programmatic limitations:
-- Range Constraints: Without a PA+LNA, the transmission range of the standard nRF24L01+ is strictly limited (typically 10 to 30 meters depending on obstacles). In a real forest deployment, RF absorption by trees would further reduce this range, necessitating a higher density of relay nodes.
-- MAC-Layer Abstraction: The nRF24L01+ chip features a built-in hardware protocol called #acr("ESB"). ESB automatically handles hardware-level ACKs and auto-retransmissions (e.g., automatically resending a failed packet up to 3 times, or up to 15 times depending on register settings). While convenient for simple point-to-point links, this hardware abstraction removes granular software control from the developer. It makes it difficult to implement precise, custom collision-avoidance algorithms at the MAC (Media Access Control) layer, as the hardware dictates the timing of the retransmissions independent of the STM32's software mesh logic.
+The physical RF layer of this prototype is powered by the standard nRF24L01+ transceiver (without the external Power Amplifier and Low Noise Amplifier stages). While this choice keeps us to demonstrate the proof-of-concept of algorithm, it introduces specific limitations:
+
++ *Range Constraints*: Without a PA+LNA, the transmission range of the standard nRF24L01+ is strictly limited (typically 10 to 30 meters depending on obstacles). In a real forest deployment, RF absorption by trees would further reduce this range, necessitating a higher density of relay nodes.
++ *MAC-Layer Abstraction*: The nRF24L01+ chip features a built-in hardware protocol called #acr("ESB"). ESB automatically handles hardware-level ACKs and auto-retransmissions (e.g., automatically resending a failed packet up to 3 times, or up to 15 times depending on register settings). While convenient for simple point-to-point links, this hardware abstraction removes granular software control from the developer. It makes it difficult to implement precise, custom collision-avoidance algorithms at the MAC (Media Access Control) layer, as the hardware dictates the timing of the retransmissions independent of the STM32's software mesh logic.

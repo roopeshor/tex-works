@@ -13,13 +13,22 @@
 = Appendices <unnumbered>
 
 == Transmitter Program
-
+#set text(size: 11.5pt)
+#set par(leading: .6em)
 ```cpp
 #include <SPI.h>
 #include <nRF24L01.h>
 #include <RF24.h>
 
 #define MAX_PATH_SIZE 27
+// node ID is never 0
+#define DEST_NODE_ID 5
+#define THIS_NODE_ID 1
+#define MAX_PACKET_SIZE 32
+#define MAX_SEEN_STACK 20
+#define BTN_SOS_PIN PB1
+#define LED_SOS_SEND PC13
+#define LED_SOS_ACK PB8
 typedef struct __attribute__((packed)) {
   byte msgID;
   byte msg_type; // 0 - sos, 1 - ack
@@ -32,31 +41,20 @@ s } Packet;
 RF24 radio(PB0, PA4);
 const uint64_t address = 0xF0F0F0F0E1LL;
 
-// node ID is never 0
-#define DEST_NODE_ID 5
-#define THIS_NODE_ID 1
-#define MAX_PACKET_SIZE 32
-#define MAX_SEEN_STACK 20
-
 byte seenTxrStack[MAX_SEEN_STACK] = { 0 };
 byte seenMsgIDStack[MAX_SEEN_STACK] = { 0 };
 int seenStackTop = -1;
 
-#define BTN_SOS_PIN PB1
-#define LED_SOS_SEND PC13
-#define LED_SOS_ACK PB8
 byte msgID = 1;
 Packet pkt;
 byte waitingForACK = 0;
 long lastSOS_Sent;
 void setup() {
-
   Serial.begin(9600);
 
   pinMode(BTN_SOS_PIN, INPUT_PULLUP);
   pinMode(LED_SOS_SEND, OUTPUT);
   pinMode(LED_SOS_ACK, OUTPUT);
-
   digitalWrite(LED_SOS_SEND, HIGH);
 
   if (!radio.begin()) {
@@ -67,7 +65,6 @@ void setup() {
 
   radio.openWritingPipe(address);
   radio.openReadingPipe(0, address);
-
   radio.setPALevel(RF24_PA_MIN);
   radio.startListening();
 
@@ -176,6 +173,11 @@ void markAsSeen(Packet pkt) {
 
 #define MAX_PATH_SIZE 27
 #define DEBUG true
+#define THIS_NODE_ID 5
+#define MAX_PACKET_SIZE 32
+#define MAX_SEEN_STACK 20
+#define LED_SEND PC13
+#define LED_RX PB11
 
 typedef struct __attribute__((packed)) {
   byte msgID;
@@ -190,12 +192,6 @@ typedef struct __attribute__((packed)) {
 RF24 radio(PB0, PA4);
 const uint64_t address = 0xF0F0F0F0E1LL;
 
-#define THIS_NODE_ID 5
-#define MAX_PACKET_SIZE 32
-#define MAX_SEEN_STACK 20
-
-#define LED_SEND PC13
-#define LED_RX PB11
 Packet pkt;
 
 byte seenTxrStack[MAX_SEEN_STACK] = { 0 };
@@ -213,10 +209,8 @@ void setup() {
     }
   }
 
-
   radio.openReadingPipe(0, address);
   radio.openWritingPipe(address);
-
   radio.setPALevel(RF24_PA_MIN);
   radio.startListening();
 
