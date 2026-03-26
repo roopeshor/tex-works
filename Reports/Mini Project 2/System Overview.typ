@@ -4,8 +4,18 @@
 
 = System Overview
 
-== Working
-Controlled flooding @controlled-flooding
+The system is made with portability in mind. The algorithm is custom developed based on already available Controlled flooding algorithms (@controlled-flooding @dapf)
+== Hardware 
+
+#figure(
+  grid(
+    columns: 2,
+    gutter: 5mm,
+    image("images/Tx_final.jpg"),
+    image("images/Rx_final.jpg"),
+  ),
+  caption: [Transmitter (left) and receiver(right) modules]
+)
 
 == Algorithm
 This section outlines the algorithm of custom controlled flooding method. @routing

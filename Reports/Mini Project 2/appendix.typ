@@ -12,7 +12,7 @@
 #set heading(numbering: "A.1")
 = Appendices <unnumbered>
 
-== Tranmitter Program
+== Transmitter Program
 
 ```cpp
 #include <SPI.h>

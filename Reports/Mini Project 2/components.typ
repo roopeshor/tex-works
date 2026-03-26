@@ -1,18 +1,58 @@
-= Components Used
+#import "@preview/acrostiche:0.7.0": *
+= Component Selection
 
-List all components in various sub headings..
+The key components used are STM32F103 (C6T6 variant), and nRF24L01+. Other minor components used are listed in _@cost-estimate: Project cost_
 
 == STM32F103
+#set list(indent: 1em)
 
-The STM32F103 is the main processing unit of each node in the network. It is based on the ARM Cortex-M3 architecture and is responsible for controlling all node operations, including packet creation, packet forwarding, routing logic, path recording, and communication with peripheral devices. The micro-controller offers sufficient processing speed, low power consumption, and multiple communication interfaces such as SPI and UART, which make it well suited for embedded wireless applications. In this project, the STM32F103 handles the software-defined mesh logic and manages the interaction with the nRF24L01+ transceiver.
+The STM32F103 is the main processing unit of each node in the network. It is based on the ARM Cortex-M3 architecture and is responsible for controlling all node operations, including packet creation, packet forwarding, routing logic, path recording, and communication with peripheral devices. The microcontroller offers sufficient processing speed, low power consumption, and multiple communication interfaces such as SPI and UART, which make it well suited for embedded wireless applications. In this project, the STM32F103 handles the software-defined mesh logic and manages the interaction with the nRF24L01+ transceiver.
+The microcontroller has following key specifications:
+- 16 KiB flash memory and 6 KiB #acs("SRAM").
+- 72 MHz Clock frequency
+- Supports 2.0 to 3.6V Input, has one #acs("SPI"), one #acs("I2C"), 2 #acr("USART")
+- 37 #acr("GPIO")
 
-== nRF
 
-The nRF24L01+ module is used to establish wireless communication between nodes in the mesh network. It operates in the 2.4 GHz ISM band and supports low-power, short-range digital communication with good data transfer rates. The transceiver communicates with the STM32F103 through the SPI interface and is responsible for transmitting and receiving packets between neighboring nodes. In this project, the nRF24L01+ enables multi-hop communication through controlled flooding, allowing packets to propagate across the network while recording the relay path followed. Its low cost, compact size, and ease of integration make it an ideal choice.
+#figure(
+  gap: 20pt,
+  image("images/stm32.jpg", width: 10cm),
+  caption: [STM32F103 development board]
+)
 
-== Cost estimate
 
-get a rough estimate of project.
+There are many STM32 variants (such as F401) in market however we choose this particular model due to the requirements:
+- Very low cost
+- No need of floating point operations (hence not considering F401)
+- Enough number of #acr("GPIO") pins for future expansion of peripherals.
+However programming the board was not a easy task. ST Microelectronics recommends using *_STM32CubeIDE_* -- the official #acs("IDE") for STM boards -- for creating and flashing programs onto the development boards. The board we are currently using is unfortunately unsupported by the IDE. Hence the board was programmed using Arduino IDE by installing STM board package @stm-flasing and setting appropriate settings while flashing (as shown in @fig:stm-settings). The programming was hence written in Arduino's C++ language.
+#figure(
+  image("images/stm-flash-settings.png", height: 10cm),
+  caption: [Settings to apply while flashing the program to STM board]
+) <fig:stm-settings>
+
+== nRF24L01+
+
+The nRF24L01+ module is used to establish wireless communication between nodes in the mesh network. It operates in the 2.4 GHz ISM band and supports low-power, short-range digital communication with good data transfer rates. The transceiver communicates with the STM32F103 through the SPI interface and is responsible for transmitting and receiving packets between neighboring nodes. In this project, the nRF24L01+ enables multi-hop communication through controlled flooding, allowing packets to propagate across the network while recording the relay path followed. The module has following specifications: @nRF-datasheet
+
+- Very low standby current of 22μA
+- Supports input voltage of 1.9 to 3.6V, (which can be powered by STM board itself). 
+- 12 mA current consumption during operation. 
+- Data rate of 250Kbps
+
+#figure(
+ gap: 10pt,
+ image("images/nRF24.jpg", height: 5cm),
+ caption: [nRF24L01+ and its pinout]
+ 
+)
+We considered other alternatives such as nRF24L01+PA+LNA version which has power amplifier for transmission and a low noise amplifier for receiver extending the #acr("LOS") communication range to 1km. However the module was five times expensive than the base model significantly rising the budget. Moreover due to its extensive range, it is not suitable for the demonstration of our network as we will have to setup large area for testing. Similarly LoRa modules were also not considered due to its wide range and high abstraction from hardware. 
+FS1000A was another module taken for consideration for being inexpensive. But from our past experiences, the module is often unstable and has higher rate of failure. Moreover these modules have poor manufacturing quality.
+
+The nRF24L01 was chosen considering the drawbacks of other alternatives.
+
+== Project cost <cost-estimate>
+
 
 #figure(
   caption: [Cost estimate],
@@ -22,7 +62,10 @@ get a rough estimate of project.
     table.header([*Item*], [*Unit Cost*], [*Total*]),
     [STM32], [90], [450],
     [nRF], [60], [300],
-    [add more components],[], [],
-    table.cell(colspan: 2)[*Total*], [*750*],
+    [LED],[2], [8],
+    [Resistors],[1], [4],
+    [Prototype board], [60], [60],
+    [Push button], [5], [5],
+    table.cell(colspan: 2)[*Total*], [*827*],
   ),
 )

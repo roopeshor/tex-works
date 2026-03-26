@@ -57,3 +57,8 @@ stm-datasheet:
   type: Article
   author: ST Microelectronics
   url: https://www.st.com/resource/en/datasheet/stm32f103c6.pdf
+stm-flasing:
+  type: Web
+  title: How to program and debug the STM32 using the Arduino IDE
+  author: B.Montanari
+  url: https://community.st.com/t5/stm32-mcus/how-to-program-and-debug-the-stm32-using-the-arduino-ide/ta-p/608514

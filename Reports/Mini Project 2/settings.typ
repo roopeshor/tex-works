@@ -73,6 +73,7 @@
       #v(10pt)
     ]
   }
+  show figure: set block(spacing: 25pt)
   // contents
   body
 }

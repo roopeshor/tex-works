@@ -13,6 +13,14 @@
   "AODV": "Ad-hoc On-demand Distance Vector",
   "GNSS": "Global Navigation Satellite Systems",
   "ACK": "Acknowledgment",
+  "IDE": "Integrated Development Environment",
+  "LOS": "Line-of-Sight",
+  "SRAM": "Static RAM",
+  "SPI": "Serial Peripheral Interface",
+  "I2C": "Inter-Integrated Circuit",
+  "GPIO": "General Purpose I/O",
+  "USART": "Universal Synchronous/Asynchronous Receiver Transmitter",
+  "ESB": "Enhanced ShockBurst"
 ))
 
 // set listing heading style

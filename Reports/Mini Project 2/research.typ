@@ -17,7 +17,7 @@ Historically, network systems have been studied for wide area communication @his
 	caption: [Star and Common Bus topologies]
 )
 
-In these scenario decentralized _*Mesh Networking*_ has emerged as a viable solution @wsn. In a mesh topology, individual nodes can act as originators of data and/or active relays (routers) for their peers. This cooperative data forwarding extends the effective range of the network far beyond the capability of single transmitter system and provides much higher fault tolerance; if one node fails, the network can  re-routes traffic through other existing paths. These netowork are self-organizing and does not require a central orchestrator.
+In these scenario decentralized _*Mesh Networking*_ has emerged as a viable solution @wsn. In a mesh topology, individual nodes can act as originators of data and/or active relays (routers) for their peers. This cooperative data forwarding extends the effective range of the network far beyond the capability of single transmitter system and provides much higher fault tolerance; if one node fails, the network can  re-routes traffic through other existing paths. These network are self-organizing and does not require a central orchestrator.
 
 #figure(
 	image("images/mesh-e.svg", height: 6cm),
@@ -26,4 +26,4 @@ In these scenario decentralized _*Mesh Networking*_ has emerged as a viable solu
 
 Despite the advantages of mesh topologies, implementing them in highly constrained environments is a significant engineering challenge. Standard mesh protocols, such as Zigbee has performance and interoperability issues for large networks. Furthermore, many commercial mesh solutions are proprietary or rely on heavy, power-hungry transceivers.
 
-There are more complex systems like #acrpl("MANET"), and #acrpl("VANET") which are suited for very dynamic environments. We also expored _Meshtastic_ a sophesticated off-grid mesh networking LoRa protocol @meshtastic. However, the problem our project tries to tackle involves a relatively static environment where nodes remain in their place for long run. Hence routing scheme such as *Controlled Flooding* @controlled-flooding best suited for our problem domain. Controlled flooding is easier to implement while being light on resources.
+There are more complex systems like #acrpl("MANET"), and #acrpl("VANET") which are suited for very dynamic environments. We also explored _Meshtastic_ a sophisticated off-grid mesh networking LoRa protocol @meshtastic. However, the problem our project tries to tackle involves a relatively static environment where nodes remain in their place for long run. Hence routing scheme such as *Controlled Flooding* @controlled-flooding best suited for our problem domain. Controlled flooding is easier to implement while being light on resources.
