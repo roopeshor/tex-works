@@ -11,11 +11,15 @@ The nRF module is interfaced to STM board via #acr("SPI") through hardware #acr(
 #figure(
   grid(
     columns: 2,
-    column-gutter: 1cm,
-    image("images/transceiver-ckt.svg"),
-    image("images/transmitter.svg"),
+    column-gutter: .5cm,
+    row-gutter: 5pt,
+    image("images/transmitter.svg", height: 6cm),
+    image("images/transceiver-ckt.svg", height: 6cm),
+    [Transmitter],
+    [Receiver]
   ),
-  caption: [Circuit diagram]
+  gap: 25pt,
+  caption: [Transmitter and Receiver circuit diagrams]
 )
 
 While implementing, we soldered female berg strip onto prototype board. For transmitter, we were experimenting various configurations hence it was not soldered in a prototype board.
