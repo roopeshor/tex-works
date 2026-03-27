@@ -1,8 +1,11 @@
 = Future Scope
 
-Just fill this thing.....
-- sending high volume of data (increasing bandwidth)
-- Ad-hoc possibility
-- vehicle ad-hoc
-- sensor networks (wild fire detection..)
-- etc...
++ *Increasing Bandwidth / High-Volume Data:* The current system is limited by the 32-byte payload constraint of the nRF24L01+ module. This can be improved using techniques such as packet fragmentation, where large data is split into smaller packets and reassembled at the destination. Pipelining and efficient encoding methods can further enhance throughput. These improvements would enable transmission of more complex data beyond simple control signals.
+
++ *Ad-hoc Networking:* The system can be extended into a full Ad hoc network where nodes dynamically organize without centralized control. By implementing routing protocols like Ad hoc On-Demand Distance Vector Routing, the network can determine optimal paths automatically. This would allow the system to adapt to node failures and topology changes. Such enhancements improve scalability and robustness.
+
++ *Vehicular Ad-hoc Networks (VANETs):* The project can be applied to Vehicular Ad Hoc Network systems where vehicles communicate in real time. Multi-hop communication enables messages such as accident alerts or traffic updates to propagate across vehicles. Additional features like GPS integration and low-latency communication would enhance performance. This can contribute to safer and more efficient transportation systems.
+
++ *Wireless Sensor Networks (WSN):* The system is well-suited for Wireless Sensor Network applications in remote environments. Sensor nodes can collect data such as temperature or smoke levels and transmit it across multiple hops. This is useful in applications like wildfire detection and environmental monitoring. Energy-efficient communication strategies can further improve long-term deployment.
+
++ *IoT and Smart Systems:* The system can be integrated into Internet of Things applications for smart environments. Devices can communicate over a decentralized mesh network for tasks like smart agriculture or home automation. Data collected from multiple nodes can be used for monitoring and decision-making. Future integration with cloud platforms can enable remote access and analytics.

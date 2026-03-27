@@ -20,7 +20,9 @@
   "I2C": "Inter-Integrated Circuit",
   "GPIO": "General Purpose I/O",
   "USART": "Universal Synchronous/Asynchronous Receiver Transmitter",
-  "ESB": "Enhanced ShockBurst"
+  "ESB": "Enhanced ShockBurst",
+  "PA+LNA": "Power Amplifier and Low Noise Amplifier",
+  "MAC": "Media Access Control"
 ))
 
 // set listing heading style

@@ -13,7 +13,7 @@ The nRF module is interfaced to STM board via #acr("SPI") through hardware #acr(
     columns: 2,
     column-gutter: 1cm,
     image("images/transceiver-ckt.svg"),
-    image("images/transceiver-ckt.svg"),
+    image("images/transmitter.svg"),
   ),
   caption: [Circuit diagram]
 )
@@ -60,6 +60,8 @@ While setting up the Arduino IDE for development few flash settings had to be ad
   }
 )
 
+The transmitter node is initialized by configuring the button and LED GPIO pins. The LED is set to indicate an idle state, and the radio module is checked for proper operation. If the radio is not responding, the system enters an infinite loop to prevent faulty execution. Once verified, the radio is set to listening mode, preparing it for communication.
+
 #algorithm-figure(
   "SOS Event and Transmission Start",
   {
@@ -75,6 +77,8 @@ While setting up the Arduino IDE for development few flash settings had to be ad
       })
   }
 )
+
+When the SOS button is pressed and the system is not waiting for an acknowledgment, a new transmission is initiated. The LED is turned on to indicate active transmission, and a packet is constructed in memory. A flag (`waitingForACK`) is set to indicate that the node is now expecting an acknowledgment preventing duplicate transmissions. The current time is stored (`lastSOS_Sent`) to track when the packet was sent. Additionally, the message ID (`msgID`) is incremented to uniquely identify each transmission. A short delay is added to prevent rapid repeated transmissions and avoid confusion with previously sent packets.
 
 #algorithm-figure(
   "ACK Reception",
@@ -100,6 +104,8 @@ While setting up the Arduino IDE for development few flash settings had to be ad
   }
 )
 
+When the node is awaiting acknowledgment and it receives a packet, it is checked for validity, duplication, or relevance. If the packet has already been seen or is not an SOS signal, it is discarded. If the packet reaches its intended destination, the system blinks an LED to indicate reception and stores its signature to prevent reprocessing. Expired packets are also discarded to maintain efficiency.
+
 === Receiver
 
 #algorithm-figure(
@@ -114,6 +120,8 @@ While setting up the Arduino IDE for development few flash settings had to be ad
       Line[Set radio in listening mode]
   }
 )
+
+The receiver node is initialized by configuring the required LED GPIO pins, used for indicating reception and transmission activity. The radio module is then initialized and checked for proper operation; if it fails, the system halts to avoid unreliable communication. Once verified, the radio is configured with the appropriate address and settings for receiving data. Finally, the node is set to listening mode, allowing it to continuously monitor for incoming packets.
 
 #algorithm-figure(
   "Handle arrival of new package",
@@ -143,3 +151,6 @@ While setting up the Arduino IDE for development few flash settings had to be ad
       })
   }
 )
+
+When a payload is received, the packet is first read and checked against previously seen packets to avoid duplication and unnecessary retransmission. If the packet has already been processed, it is immediately discarded. The algorithm also checks whether the packet has expired (based on hop limit); expired packets are ignored to prevent network congestion. After validating the packet, the node appends its own ID to the packet path, allowing tracking of the route taken. If the current node is the destination, it indicates successful reception by blinking the RX LED, stores the packet signature to avoid future duplicates, and constructs an acknowledgment (ACK) packet addressed to the original sender. Regardless of whether it is the destination or an intermediate node, the packet’s signature is saved to prevent reprocessing. Finally, the packet is transmitted further in the network, and the TX LED blinks to indicate forwarding activity.
+
