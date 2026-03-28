@@ -120,6 +120,7 @@
 
   show figure: set block(spacing: 25pt)
   show figure.caption: it => {emph[#it]}
+  show raw: set text(font: "DejaVu Sans Mono")
   // contents
   body
 }

@@ -13,8 +13,8 @@
 = Appendices <unnumbered>
 
 == Transmitter Program
-#set text(size: 11.5pt)
-#set par(leading: .6em)
+#set text(size: 11pt)
+#set par(leading: .4em)
 ```cpp
 #include <SPI.h>
 #include <nRF24L01.h>
@@ -35,6 +35,7 @@ typedef struct __attribute__((packed)) {
   byte ttl;
   byte src;
   byte dest;
+  byte path[MAX_PATH_SIZE];
 s } Packet;
 
 // Radio Pins: CE = PB0, CSN = PA4

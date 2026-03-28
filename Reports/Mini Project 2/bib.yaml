@@ -66,3 +66,8 @@ minicom:
   type: Web
   title: minicom(1) - Linux man page
   url: https://linux.die.net/man/1/minicom
+stm-connection:
+  type: Web
+  author: Barnaby Walters
+  title: Programming a Blue/Black Pill STM32 Board with a ST-Link v2
+  url: https://waterpigs.co.uk/articles/black-blue-pill-stm32-st-link-connection/

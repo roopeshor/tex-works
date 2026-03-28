@@ -16,7 +16,9 @@ The output from all nodes were logged through Serial port and are displayed in t
   caption: [Serial output from Transmitter, Receiver and Repeater nodes (left to right)]
 )
 
-Later on we tested with all 4 nodes and formed the network which we originally intended to. During operation, on most case the packet travels through both repeaters and reaches the destination at almost the same time. However the radio library we used picks up only one of these packets and the program logs its signature. Hence when the other packet reaches the node, it simply discards it. In similar way, repeater nodes might obtain packets from other repeaters. But the nodes are programmed to detect and discard these duplicate packets, preventing the network from collapsing due to looping
+Later on we tested with all 4 nodes and formed the network which we originally intended to. During operation, on most case the packet travels through both repeaters and reaches the destination at almost the same time. However the radio library we used picks up only one of these packets and the program logs its signature. Hence when the other packet reaches the node, it simply discards it. In similar way, repeater nodes might obtain packets from other repeaters. But the nodes are programmed to detect and discard these duplicate packets, preventing the network from collapsing due to looping.
+
+During the testing we found there was some packet, possibly due to the way the RF module itself works. The details are mentioned in @limitations
 
 #figure(
   image("images/4 nodes.jpg", width: 12cm),
@@ -61,7 +63,7 @@ Based on this, the maximum data rate of the communication possible is less than 
 $mu s$*]
 ) 
 )
-== limitations
+== limitations <limitations>
 The prototype is not free of limitations, and there are lot of areas that can be improved on. They are listed below.
 
 === RF module limitations
@@ -70,3 +72,8 @@ The physical RF layer of this prototype is powered by the standard nRF24L01+ tra
 + *Range Constraints*: Without a #acr("PA+LNA"), the transmission range of the standard nRF24L01+ is strictly limited (typically 10 to 30 meters depending on obstacles). In a real forest deployment, RF absorption by trees would further reduce this range, necessitating a higher density of relay nodes.
 + *MAC-Layer Abstraction*: The nRF24L01+ chip features a built-in hardware protocol called #acr("ESB"). ESB automatically handles hardware-level #acp("ACK") and auto-retransmissions (automatically resending a failed packet up to 3 times, or up to 15 times depending on register settings). While highly useful for simple point-to-point links, this hardware abstraction removes granular software control from the developer. It makes it difficult to implement custom algorithms at the #acr("MAC") layer, as the hardware dictates the timing of the retransmissions independent of software defined mesh logic in STM.
 
+=== Geolocating Nodes
+The task of identifying physical location of nodes is left to the maintainers or personal handling the initial setup. This will not be much of an issue if the network being built is relatively small with few number of nodes. However it can get very complicated as number of nodes increases in very vast networks. Possible solution is to develop a software that can automatically log the ID of each node and the current location of the device. This can be used during setting up of the network.
+
+=== Security
+The prototype has some security flaws which a bad actor can utilize to take down the whole network. Most importantly, the network is susceptible to overflooding due to repeated transmission of SOS signals. This could be solved by modification to existing protocol or using more advanced systems like Meshtastic.

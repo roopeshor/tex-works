@@ -22,7 +22,8 @@
   "USART": "Universal Synchronous/Asynchronous Receiver Transmitter",
   "ESB": "Enhanced ShockBurst",
   "PA+LNA": "Power Amplifier and Low Noise Amplifier",
-  "MAC": "Media Access Control"
+  "MAC": "Media Access Control",
+  "DIP": "Dual in-line package"
 ))
 
 // set listing heading style

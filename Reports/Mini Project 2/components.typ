@@ -1,15 +1,15 @@
 #import "@preview/acrostiche:0.7.0": *
 = Component Selection
 
-The key components used are STM32F103 (C6T6 variant), and nRF24L01+. Other minor components used are listed in _@cost-estimate: Project cost_
+The key components used are STM32F103 (C6T6 variant), and nRF24L01+. Other minor components used are listed in @cost-estimate
 
-== STM32F103
+== STM32F103 <stm-board>
 
 The STM32F103 is the main processing unit of each node in the network. It is based on the ARM Cortex-M3 architecture and is responsible for controlling all node operations, including packet creation, packet forwarding, routing logic, path recording, and communication with peripheral devices. The microcontroller offers sufficient processing speed, low power consumption, and multiple communication interfaces such as SPI and UART, which make it well suited for embedded wireless applications. In this project, the STM32F103 handles the software-defined mesh logic and manages the interaction with the nRF24L01+ transceiver.
 The microcontroller has following key specifications:
 - 16 KiB flash memory and 6 KiB #acs("SRAM").
 - 72 MHz Clock frequency
-- Supports 2.0 to 3.6V Input
+- Supports 2.0 to 3.6V input
 - Has one #acs("SPI"), one #acs("I2C"), 2 #acr("USART")
 - 37 #acr("GPIO")
 
@@ -25,7 +25,7 @@ There are many STM32 variants (such as F401) in market however we choose this pa
 - No need of floating point operations (hence not considering F401)
 - Enough number of #acr("GPIO") pins for future expansion of peripherals.
 
-However programming the board was not a easy task. ST Microelectronics recommends using *_STM32CubeIDE_* -- the official #acs("IDE") for STM boards -- for creating and flashing programs onto the development boards. The board we are currently using is unfortunately unsupported by the IDE. Hence the board was programmed using Arduino IDE by installing STM board package @stm-flasing and setting appropriate settings (shown in @fig:stm-settings in @sw-section) while flashing. The programming was hence written in Arduino's C++ language.
+However programming the board was not a easy task. ST Microelectronics recommends using *_STM32CubeIDE_* -- the official #acs("IDE") for STM boards -- for creating and flashing programs onto the development boards. The board we are currently using is unfortunately unsupported by the IDE. Hence the board was programmed using Arduino IDE by installing STM board package @stm-flasing and setting appropriate settings (shown in @fig:stm-settings in @sw-section) while flashing. The program was hence written in Arduino's C++ language.
 
 == nRF24L01+
 
@@ -51,17 +51,18 @@ The nRF24L01 was chosen considering the drawbacks of other alternatives.
 
 Although a breadboard was used for a single node project, it was solely ment for testing purpose, the total cost listed covers prototype board can in place of breadboard.
 #figure(
-  caption: [Cost estimate],
+  caption: [Project cost],
   table(
-    columns: (1fr, .4fr, .4fr),
+    columns: (1fr, .4fr, .4fr, .4fr),
     inset: 10pt,
-    table.header([*Item*], [*Unit Cost*], [*Total*]),
-    [STM32], [90], [450],
-    [nRF], [60], [300],
-    [LED],[2], [8],
-    [Resistors],[1], [4],
-    [Prototype board], [60], [60],
-    [Push button], [5], [5],
-    table.cell(colspan: 2)[*Total*], [*827*],
+    table.header([*Item*], [*Unit Cost*], [*Units*], [*Total*]),
+    [STM32F103], [90], [4], [360],
+    [nRF24L01+], [60], [4], [240],
+    [LED], [2], [4], [8],
+    [Resistors], [1], [4], [4],
+    [Prototype board], [60], [1], [60],
+    [Push button], [5], [1], [5],
+    [18650 battery], [60], [2], [120],
+    table.cell(colspan: 3)[*Total*], [*₹797*],
   ),
 )
