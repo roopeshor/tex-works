@@ -1,0 +1,743 @@
+\documentclass[11pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[margin=2cm]{geometry}
+\usepackage{amsmath, amssymb}
+\usepackage{tcolorbox}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage{tfrupee}
+\usepackage{datetime2}
+\usepackage{tikz}
+\usetikzlibrary{automata, positioning, shapes.multipart, shapes.geometric, arrows.meta, calc}
+\begin{document}
+\pagestyle{empty}
+\hypersetup{
+    pdftitle={Design of vending machine controller},
+    pdfauthor={Roopesh},
+    pdfdisplaydoctitle=true  % Forces viewer to show title, not filename
+}
+\begin{center}
+	{\Huge Design of vending machine controller}
+	\vspace{1em}
+	
+	{\small \texttt{Last updated: \today\ \DTMcurrenttime}}
+\end{center}
+\vspace{1em}
+\noindent
+\begin{minipage}[t]{0.55\textwidth}
+  \section*{Design:}
+  We have following inputs:
+  \begin{itemize}
+    \item $X_1$: \rupee 5 inserted
+    \item $X_2$: \rupee 10 inserted
+  \end{itemize}
+
+  Here we assume input turns 1 when coin is being inserted and 0 when coin has been finished inserting.
+  \vspace{1em}
+
+  The state in the system holds current "internal balance" and output. Following are internal balance values:
+
+  \begin{itemize}
+    \item 0
+    \item 5
+    \item 10
+    \item $\ge 15$
+  \end{itemize}
+
+  \vspace{1.5em}
+  {$\ge 15$} value accounts for balance of 15 and 20.
+
+\end{minipage}%
+\hfill
+\begin{minipage}[t]{0.4\textwidth}
+  \vspace{0pt}
+  \begin{center}
+    \begin{tikzpicture}[>=Stealth, thick]
+      % Sequence 1
+      \draw (0,0) rectangle (1.2,1.8);
+      \draw (0.6, 2.5) circle (0.5) node {$5$};
+      \draw[dashed, white] (0,1.8) -- (1.2,1.8);
+      \node[right] at (1.5,0.9) {$X_2X_1 = 00$};
+      \draw[<-] (1.3, 1.8) -- (1.8, 1.9) node[right, font=\small] {Coin slot};
+
+      % Sequence 2
+      \begin{scope}[yshift=-2.8cm]
+        \draw (0,0) rectangle (1.2,1.8);
+        \draw[dashed, white] (0,1.8) -- (1.2,1.8);
+        \draw (0.6, 1.6) circle (0.5) node {$5$};
+        \node[right] at (1.5,0.9) {$X_2X_1 = 01$};
+      \end{scope}
+
+      % Sequence 3
+      \begin{scope}[yshift=-5.6cm]
+        \draw (0,0) rectangle (1.2,1.8);
+        \draw[dashed, white] (0,1.8) -- (1.2,1.8);
+        \draw (0.6, 0.7) circle (0.5) node {$5$};
+        \node[right] at (1.5,0.9) {$X_2X_1 = 00$};
+      \end{scope}
+    \end{tikzpicture}
+
+    \vspace{1.5em}
+    \small Coin insertion sequence and corresponding input.
+  \end{center}
+\end{minipage}
+
+\section*{State transitions}
+
+A coin insertion triggers state transition as following: (from initial state)
+
+\vspace{2em}
+\begin{center}
+  \scalebox{.9}{
+    \begin{tikzpicture}[>=Stealth, node distance=4.5cm, auto]
+      % State nodes
+      \node[circle split, draw, minimum size=1.2cm] (q0) {
+        $0$ \nodepart{lower} $0$
+      };
+
+      \node[circle split, draw, right of=q0, node distance=5cm] (q1) {
+        \begin{tabular}{c} balance \\ going to be 5
+        \end{tabular} \nodepart{lower} $0$
+      };
+
+      \node[circle split, draw, right of=q1, node distance=7cm, minimum size=1.2cm] (q2) {
+        \begin{tabular}{c} balance \\ is 5
+        \end{tabular} \nodepart{lower} $0$
+      };
+
+      % Transitions
+
+      \draw[->] (q0) -- node[above] {5 inserting} node[below] {$X_1=1$} (q1);
+      \path[->] (q0) edge [loop below, out=-110, in=-70, looseness=4] node {$X_1=0$} (q0);
+
+      \path[->] (q1) edge [loop below, out=-110, in=-70, looseness=4] node {$X_1=1$} (q1);
+
+      \draw[->] (q1) -- node[above] {insertion complete} node[below] {$X_1=0$} (q2);
+      \path[->] (q2) edge [loop below, out=-110, in=-70, looseness=4] node {$X_1=0$} (q2);
+
+      % Annotation
+      \node (output_text) at (-2.5, -1.5) {Output};
+      \draw[->, out=45, in=225] (output_text.north east) to (q0.south west);
+
+    \end{tikzpicture}
+  }
+\end{center}
+
+\vspace{2.5em}
+\noindent When coin is being inserted the system goes to a intermediate (but stable) state where the coin is `being' inserted. There after when coin is finished inserting it goes to another stable state where internal balance has been incremented
+
+\noindent
+
+\begin{tcolorbox}[colbacktitle=orange, coltitle=black, fonttitle=\large\bfseries, title={Why not directly increment internal balance when coin is being inserted instead of going to a intermediate state?}]
+
+  %   \textbf{}
+  \normalsize
+
+  \vspace{1.5em}
+  \noindent You might be tempted to implement this:
+
+  \vspace{1em}
+  \begin{center}
+    \begin{tikzpicture}[>=Stealth, auto]
+      \node[circle split, draw, minimum size=1.2cm] (q0) {
+        $0$ \nodepart{lower} $0$
+      };
+      \node[circle split, draw, right=2.5cm of q0, minimum size=1.2cm] (q1) {
+        $5$ \nodepart{lower} $0$
+      };
+
+      \draw[->] (q0) -- node[above] {5 inserted} node[below] {$X_1=1$} (q1);
+    \end{tikzpicture}
+  \end{center}
+
+  \vspace{1em}
+  \noindent It looks like it will works. But in practice this leads to a problem: how long should input be held $1$? If input is held $1$ for too long, the system will quickly traverse through many state in a loop even if input is just a pulse. The below figure shows what happens if $X_1=1$ for a brief period:
+
+  \begin{minipage}[t]{0.5\textwidth}
+    \vspace{0pt}
+    \begin{tikzpicture}[>=Stealth, thick]
+      % axes for X1
+      \draw[->] (0, 0) -- (4, 0) node[right] {$t$};
+      \draw[->] (0, 0) -- (0, 1.5) node[above] {$X_1$};
+      \node[left] at (0, 1) {$1$};
+      \node[left] at (0, 0) {$0$};
+
+      % X1 pulse
+      \draw[blue!70!black, thick] (0,0) -- (1,0) -- (1,1) -- (2,1) -- (2,0) -- (3.5,0);
+
+      % Annotation
+      \node[right, font=\small, text width=2cm, align=left] (p_note) at (2.5, 0.5) {input is just a pulse};
+      \draw[->] (p_note.west) -- (2, 0.5);
+
+      % axes for internal balance
+      \begin{scope}[yshift=-3cm]
+        \draw[->] (0, 0) -- (4, 0) node[right] {$t$};
+        \node[above, align=center, font=\small] at (0, 1.8) {internal\\balance};
+        \draw[->] (0, 0) -- (0, 1.8);
+        % ticks
+        \foreach \y/\ytext in {0.4/5, 0.8/10, 1.2/15} {
+          \draw (-0.1, \y) -- (0, \y) node[left] at (-0.1, \y) {\tiny $\ytext$};
+        }
+        \node[left] at (-0.1, 0) {\tiny $0$};
+
+        % staircase
+        \draw[blue!70!black, thick] (0,0) -- (1,0)
+        -- (1,0.4) -- (1.1,0.4)
+        -- (1.1,0.8) -- (1.2,0.8)
+        -- (1.2,1.2) -- (1.3,1.2)
+        -- (1.3,0) -- (1.4,0)
+        -- (1.4,0.4) -- (1.5,0.4)
+        -- (1.5,0.8) -- (1.6,0.8)
+        -- (1.6,1.2) -- (1.7,1.2)
+        -- (1.7,0) -- (1.8,0)
+        -- (1.8,0.4) -- (1.9,0.4)
+        -- (1.9,0.8) -- (3.5,0.8); % matching the end of the pulse
+
+        % Annotation
+        \node[right, font=\small, text width=3cm, align=left] (s_note) at (3.5, 1.4) {states change\\rapidly};
+        \draw[->] (s_note.west) to[out=180, in=0] (1.5, 0.6);
+      \end{scope}
+
+      % axes for o/p
+      \begin{scope}[yshift=-5cm]
+        \draw[->] (0, 0) -- (4, 0) node[right] {$t$};
+        \draw[->] (0, 0) -- (0, 1.3) node[left] {o/p};
+        \node[left] at (0, 0.6) {$1$};
+        \node[left] at (0, 0) {$0$};
+        % output pulses
+        \draw[blue!70!black, thick] (0,0) -- (1.2,0)
+        -- (1.2,0.6) -- (1.3,0.6)
+        -- (1.3,0) -- (1.6,0)
+        -- (1.6,0.6) -- (1.7,0.6)
+        -- (1.7,0) -- (3.5,0);
+
+        % Annotation
+        \node[right, font=\small, text width=3.5cm, align=left] (o_note) at (3, 0.8) {output also changes\\rapidly};
+        \draw[->] (o_note.west) to[out=180, in=0] (1.8, 0.3);
+      \end{scope}
+
+      % Vertical alignment lines
+      \draw[dashed, gray] (1, 1.5) -- (1, -5);
+      \draw[dashed, gray, thin] (1.2, -1.0) -- (1.2, -5);
+      \draw[dashed, gray, thin] (1.6, -1.0) -- (1.6, -5);
+      \draw[dashed, gray] (2, 1.5) -- (2, -5);
+
+    \end{tikzpicture}
+  \end{minipage}%
+  \hfill
+  \begin{minipage}[t]{0.48\textwidth}
+    \vspace{4.5em}
+    \begin{center}
+      \begin{tikzpicture}[>=Stealth, auto]
+        \node[circle split, draw, inner sep=1.5pt, minimum size=0.9cm] (q0) at (0,0) {$0$ \nodepart{lower} $0$};
+        \node[circle split, draw, inner sep=1.5pt, minimum size=0.9cm] (q1) at (2.2,0) {$5$ \nodepart{lower} $0$};
+        \node[circle split, draw, inner sep=1.5pt, minimum size=0.9cm] (q2) at (4.4,0) {$10$ \nodepart{lower} $0$};
+        \node[circle split, draw, inner sep=1.5pt, minimum size=0.9cm] (q3) at (6.6,0) {$15$ \nodepart{lower} $1$};
+
+        \draw[->] (q0) -- node[above, font=\footnotesize] {$X_1=1$} (q1);
+        \draw[->] (q1) -- node[above, font=\footnotesize] {$X_1=1$} (q2);
+        \draw[->] (q2) -- node[above, font=\footnotesize] {$X_1=1$} (q3);
+
+        \draw[->] (q3.south) to[bend left=50] node[below, font=\footnotesize] {$X_1=1$} (q1.south);
+      \end{tikzpicture}
+    \end{center}
+  \end{minipage}
+
+  \vspace{3em}
+  \noindent The internal state quickly switches as fast the circuit allows, hence all states become unstable when input becomes 1.
+\end{tcolorbox}
+
+\section*{State Diagram}
+
+We define states as following:
+\begin{itemize}
+  \item $A$: intital state, balance = 0 (output = 0)
+  \item $B$: balance is going to be 5 (output = 0)
+  \item $C$: balance is 5 (output = 0)
+  \item $D$: balance is going to be 10 (output = 0)
+  \item $E$: balance is 10 (output = 0)
+  \item $F$: balance is going to be $\ge 15$ (output = 0)
+  \item $G$: balance is $\ge 15$ (output = 1)
+\end{itemize}
+
+When state $G$ has reached, the vending machine dispenses. From $G$ the state transition scheme is as following: if input is 5, it goes to $B$ or if input is $10$ it goes to $C$.
+\begin{tcolorbox}[fonttitle=\large\bfseries, title={But in question it is told that the state to be reset to initial state after dispensing?}]
+  Indeed in question it is told that the state to be reset to 0. But since we are implementing a Moore machine, we cant do that directly. Because again the problem rises: what input should drive system to go from $G$ to $A$ while keeping the output stable for a while? This can be done only with Mealy machine where output depends on input and present state. However as you can guess, K-map simplification and circuit implementation will become very complex for output variable. Hence that requirement is carefully ignored. (This doesnt affect the overall functionality of vening machine).
+
+\end{tcolorbox}
+
+\vspace{2em}
+
+Based on this we can arrive at following state diagram:
+
+\begin{center}
+  \begin{tikzpicture}[>=Stealth, thick,
+    state/.style={circle, draw, minimum size=0.8cm, inner sep=2pt}]
+    % Nodes
+    \node[state] (A) at (0, 0) {A};
+    \node[state] (B) at (-2, -1.8) {B};
+    \node[state] (D) at (2, -1.8) {D};
+    \node[state] (C) at (0, -3.6) {C};
+    \node[state] (E) at (4, -3.6) {E};
+    \node[state] (F) at (2, -5.4) {F};
+    \node[state] (G) at (2, -7.2) {G};
+
+    \node[state] (M) at (10, -1.8) {M};
+    \node[state] (N) at (13, -1.8) {N};
+
+    % Loops
+    \path[->] (A) edge [loop above] node {00} (A);
+    \path[->] (B) edge [loop left] node {01} (B);
+    \path[->] (D) edge [loop above] node {01,10} (D);
+    \path[->] (C) edge [loop below] node {00} (C);
+    \path[->] (E) edge [loop right] node {00} (E);
+    \path[->] (F) edge [loop above] node {01,10} (F);
+    \path[->] (G) edge [loop below] node {00} (G);
+
+    % Edges
+    \draw[->] (A) -- node[above left] {01} (B);
+    \draw[->] (A) -- node[below left] {10} (D);
+    \draw[->] (B) -- node[below left] {00} (C);
+    \draw[->] (C) -- node[above left] {01} (D);
+    \draw[->] (C) -- node[below left] {10} (F);
+    \draw[->] (D) -- node[above right] {00} (E);
+    \draw[->] (E) -- node[below right] {01,10} (F);
+    \draw[->] (F) -- node[left] {00} (G);
+
+    \draw[->] (M) -- node[below] {$X_2X_1$} (N);
+    \draw (9.3, -.5) rectangle (13.8, -2.8);
+    \node[right, font=\small, text width=3cm, align=left] (s_note) at (10, -1) {State transition:};
+
+    % Curved lines
+    \draw[->] (G) to[out=180, in=250, looseness=1.5] node[below left] {01} (B);
+    \draw[->] (G) to[out=0, in=390, looseness=2.5] node[below right] {10} (D);
+  \end{tikzpicture}
+\end{center}
+
+\section*{Flow Table}
+
+\begin{center}
+  \renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \textbf{Present State} & \multicolumn{4}{c|}{\textbf{Input $X_2X_1$}} \\ \cline{2-5}
+    & \textbf{00} & \textbf{01} & \textbf{10} & \textbf{11} \\ \hline
+    A & A, 0 & B, \_ & D, \_   & \_,\_ \\ \hline
+    B & C, \_ & B, 0 & \_, \_ & \_,\_ \\ \hline
+    C & C, 0 & D, \_ & F, \_   & \_,\_ \\ \hline
+    D & E, \_ & D, 0 & D, 0   & \_,\_ \\ \hline
+    E & E, 0 & F, \_ & F, \_   & \_,\_ \\ \hline
+    F & G, \_ & F, 0 & F, 0   & \_,\_ \\ \hline
+    G & G, 1 & B, \_ & D, \_   & \_,\_ \\ \hline
+  \end{tabular}
+\end{center}
+State reduction is not done here, as each state already have a definite meaning, reducing it implies losing the functionlity.
+\begin{tcolorbox}[title={If you try creating implication table you'll get this}]
+
+  \begin{center}
+    \resizebox{.8\linewidth}{!}{
+      \begin{tikzpicture}[x=2.5cm, y=.8cm, >=Stealth]
+        % Draw the grid
+        \foreach \i in {0,...,5} {
+          \foreach \j in {\i,...,5} {
+            \draw (\i, 5-\j) rectangle (\i+1, 5-\j+1);
+          }
+        }
+
+        % Labels
+        \node[font=\bfseries] at (0.5, -.3) {A};
+        \node[font=\bfseries] at (1.5, -.3) {B};
+        \node[font=\bfseries] at (2.5, -.3) {C};
+        \node[font=\bfseries] at (3.5, -.3) {D};
+        \node[font=\bfseries] at (4.5, -.3) {E};
+        \node[font=\bfseries] at (5.5, -.3) {F};
+
+        \node[font=\bfseries] at (-0.3, 5.5) {B};
+        \node[font=\bfseries] at (-0.3, 4.5) {C};
+        \node[font=\bfseries] at (-0.3, 3.5) {D};
+        \node[font=\bfseries] at (-0.3, 2.5) {E};
+        \node[font=\bfseries] at (-0.3, 1.5) {F};
+        \node[font=\bfseries] at (-0.3, 0.5) {G};
+
+        % Contents
+        \node[align=center, font=\small] at (0.5, 5.5) {$\times$ AC}; % A,B
+        \node[align=center, font=\small] at (0.5, 4.5) {$\times$ BD, DF}; % A,C
+        \node[align=center, font=\small] at (0.5, 3.5) {$\times$ AE, BD}; % A,D
+        \node[align=center, font=\small] at (0.5, 2.5) {$\times$ BF, DF}; % A,E
+        \node[align=center, font=\small] at (0.5, 1.5) {$\times$ AG, BF, DF}; % A,F
+        \node[align=center, font=\Large] at (0.5, 0.5) {$\times$}; % A,G
+
+        \node[align=center, font=\small] at (1.5, 4.5) {$\times$ BD}; % B,C
+        \node[align=center, font=\small] at (1.5, 3.5) {$\times$ CE}; % B,D
+        \node[align=center, font=\small] at (1.5, 2.5) {$\times$ CE, BF}; % B,E
+        \node[align=center, font=\small] at (1.5, 1.5) {$\times$ CG}; % B,F
+        \node[align=center, font=\small] at (1.5, 0.5) {$\times$ CG}; % B,G
+
+        \node[align=center, font=\small] at (2.5, 3.5) {$\times$ CE, DF}; % C,D
+        \node[align=center, font=\small] at (2.5, 2.5) {$\times$, DF}; % C,E
+        \node[align=center, font=\small] at (2.5, 1.5) {$\times$, CG, DF}; % C,F
+        \node[align=center, font=\Large] at (2.5, 0.5) {$\times$}; % C,G
+
+        \node[align=center, font=\small] at (3.5, 2.5) {$\times$ DF}; % D,E
+        \node[align=center, font=\small] at (3.5, 1.5) {$\times$ EG}; % D,F
+        \node[align=center, font=\small] at (3.5, 0.5) {$\times$ EG, BD}; % D,G
+
+        \node[align=center, font=\small] at (4.5, 1.5) {$\times$ EG}; % E,F
+        \node[align=center, font=\Large] at (4.5, 0.5) {$\times$}; % E,G
+
+        \node[align=center, font=\small] at (5.5, 0.5) {$\times$ BF, DF}; % F,G
+
+      \end{tikzpicture}
+    }
+
+    All states are incompatable with each other
+  \end{center}
+
+\end{tcolorbox}
+\section*{Race free state assignment}
+\begin{tcolorbox}
+  If we assign binary state to 7 existing state, it will always result in a race
+  (\href{https://gemini.google.com/share/da168e616523}{Why?})
+
+  \begin{minipage}{.4\textwidth}
+    \begin{center}
+      \renewcommand{\arraystretch}{1.3}
+      \begin{tabular}{c|c}
+        \textbf{State} & \textbf{$S_2S_1S_0$} \\ \hline
+        A & 000 \\
+        B & 001 \\
+        C & 101 \\
+        D & 100 \\
+        E & 110 \\
+        F & 111 \\
+        G & 011 \\
+      \end{tabular}
+    \end{center}
+
+  \end{minipage}
+  \hfill
+  \begin{minipage}{.5\textwidth}
+    \resizebox{\linewidth}{!}{
+      \begin{tikzpicture}[>=Stealth, thick]
+        % Nodes
+        \node (A) at (0, 0)    {$A(000)$};
+        \node (B) at (-2, -1.8){$B(001)$};
+        \node (D) at (2, -1.8) {$D(100)$};
+        \node (C) at (0, -3.6) {$C(101)$};
+        \node (E) at (4, -3.6) {$E(110)$};
+        \node (F) at (2, -5.4) {$F(111)$};
+        \node (G) at (2, -7.2) {$G(011)$};
+
+        % Edges
+        \draw[->] (A) -- (B);
+        \draw[->] (A) -- (D);
+        \draw[->] (B) -- (C);
+        \draw[->] (C) -- (D);
+        \draw[->] (C) -- (F);
+        \draw[->] (D) -- (E);
+        \draw[->] (E) -- (F);
+        \draw[->] (F) -- (G);
+
+        % Curved lines
+        \draw[->] (G) to[out=180, in=250, looseness=1.5] (B);
+        \draw[->, red] (G) to[out=0, in=390, looseness=2.5] node[align=center, right] {3 bit \\ transitions} (D);
+      \end{tikzpicture}
+    }
+  \end{minipage}
+
+  \vspace{1em}
+  As you can see $G \rightarrow D$ transition results in multiple bit change.
+  Hence additional state has to be added.
+\end{tcolorbox}
+To obtain race free assignment, state $D$ is split to $D_1$ and $D_2$ in following manner:
+
+\begin{center}
+  \begin{tikzpicture}[>=Stealth, thick,
+    state/.style={circle, draw, minimum size=0.8cm, inner sep=2pt}]
+    % Nodes
+    \node[state] (A) at (0, 0) {A};
+    \node[state] (B) at (-2, -1.8) {B};
+    \node[state] (D1) at (2, -1.8) {$D_1$};
+    \node[state] (D2) at (6, -1.8) {$D_2$};
+    \node[state] (C) at (0, -3.6) {C};
+    \node[state] (E) at (4, -3.6) {E};
+    \node[state] (F) at (2, -5.4) {F};
+    \node[state] (G) at (2, -7.2) {G};
+
+    \draw[dashed, blue, very thick] (1.5, -1.2) rectangle (6.5, -2.3) node[right] {$D$ state};
+    % Loops
+    \path[->] (A) edge [loop above] node {00} (A);
+    \path[->] (B) edge [loop left] node {01} (B);
+    \path[->] (D1) edge [loop above] node {01,10} (D1);
+    \path[->] (D2) edge [loop above] node {01,10} (D2);
+    \path[->] (C) edge [loop below] node {00} (C);
+    \path[->] (E) edge [loop right] node {00} (E);
+    \path[->] (F) edge [loop above] node {01,10} (F);
+    \path[->] (G) edge [loop below] node {00} (G);
+
+    % Edges
+    \draw[->] (A) -- node[above left] {01} (B);
+    \draw[->] (A) -- node[below left] {10} (D1);
+    \draw[->] (B) -- node[below left] {00} (C);
+    \draw[->] (C) -- node[above left] {01} (D1);
+    \draw[->] (C) -- node[below left] {10} (F);
+    \draw[->] (D1) -- node[above right] {00} (E);
+    \draw[->] (D2) -- node[above left] {00} (E);
+    \draw[->] (E) -- node[below right] {01,10} (F);
+    \draw[->] (F) -- node[left] {00} (G);
+
+    % Curved lines
+    \draw[->] (G) to[out=180, in=250, looseness=1.5] node[below left] {01} (B);
+    \draw[->] (G) to[out=0, in=300, looseness=1.5] node[below right] {10} (D2);
+  \end{tikzpicture}
+\end{center}
+
+Hence we obtain following \textbf{modified flow table}
+\begin{center}
+  \renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \textbf{Present State} & \multicolumn{4}{c|}{\textbf{Input $X_2X_1$}} \\ \cline{2-5}
+    & \textbf{00} & \textbf{01} & \textbf{10} & \textbf{11} \\ \hline
+    A & A, 0 & B, \_ & $D_1$, \_   & \_,\_ \\ \hline
+    B & C, \_ & B, 0 & \_, \_ & \_,\_ \\ \hline
+    C & C, 0 & $D_1$, \_ & F, \_   & \_,\_ \\ \hline
+    $D_1$ & E, \_ & $D_1$, 0 & $D_1$, 0   & \_,\_ \\ \hline
+    $D_2$ & E, \_ & $D_2$, 0 & $D_2$, 0   & \_,\_ \\ \hline
+    E & E, 0 & F, \_ & F, \_   & \_,\_ \\ \hline
+    F & G, \_ & F, 0 & F, 0   & \_,\_ \\ \hline
+    G & G, 1 & B, \_ & $D_2$, \_   & \_,\_ \\ \hline
+  \end{tabular}
+\end{center}
+
+From this following following binary assignment is race free:
+
+\begin{minipage}{.4\textwidth}
+  \begin{center}
+    \renewcommand{\arraystretch}{1.3}
+    \begin{tabular}{c|c}
+      \textbf{State} & \textbf{$S_2S_1S_0$} \\ \hline
+      A & 000 \\
+      B & 001 \\
+      C & 011 \\
+      $D_1$ & 010 \\
+      $D_2$ & 100 \\
+      E & 110 \\
+      F & 111 \\
+      G & 101 \\
+    \end{tabular}
+  \end{center}
+\end{minipage}
+\hfill
+\begin{minipage}{.5\textwidth}
+  \resizebox{\linewidth}{!}{
+    \begin{tikzpicture}[>=Stealth, thick]
+      % Nodes
+      \node (A) at (0, 0)    {$A(000)$};
+      \node (B) at (-2, -1.8){$B(001)$};
+      \node (C) at (0, -3.6) {$C(011)$};
+      \node (D1) at (2, -1.8) {$D_1(010)$};
+      \node (D2) at (6, -1.8) {$D_2(100)$};
+      \node (E) at (4, -3.6) {$E(110)$};
+      \node (F) at (2, -5.4) {$F(111)$};
+      \node (G) at (2, -7.2) {$G(101)$};
+
+      % Edges
+      \draw[->] (A) -- (B);
+      \draw[->] (A) -- (D1);
+      \draw[->] (B) -- (C);
+      \draw[->] (C) -- (D1);
+      \draw[->] (C) -- (F);
+      \draw[->] (D1) -- (E);
+      \draw[->] (D2) -- (E);
+      \draw[->] (E) -- (F);
+      \draw[->] (F) -- (G);
+
+      % Curved lines
+      \draw[->] (G) to[out=180, in=250, looseness=1] (B);
+      \draw[->] (G) to[out=0, in=300, looseness=1] (D2);
+    \end{tikzpicture}
+  }
+\end{minipage}
+
+\section*{State transition table}
+The entries are rearranged to make picking the values for k-map easier
+\begin{center}
+  \renewcommand{\arraystretch}{1.3}
+  \begin{tabular}{|c|c|c|c|c|}
+    \hline
+    \textbf{$S_2S_1S_0$} & \multicolumn{4}{c|}{\textbf{Input $X_2X_1$}} \\ \cline{2-5}
+    & \textbf{00} & \textbf{01} & \textbf{11} & \textbf{10} \\ \hline
+    000 & 000 & 001 & \_\_\_ & 010    \\ \hline
+    001 & 011 & 001 & \_\_\_ & \_\_\_ \\ \hline
+    011 & 011 & 010 & \_\_\_ & 111    \\ \hline
+    010 & 110 & 010 & \_\_\_ & 010    \\ \hline
+    100 & 110 & 100 & \_\_\_ & 100    \\ \hline
+    101 & 101 & 001 & \_\_\_ & 100    \\ \hline
+    111 & 101 & 111 & \_\_\_ & 111    \\ \hline
+    110 & 110 & 111 & \_\_\_ & 111    \\ \hline
+  \end{tabular}
+\end{center}
+\vspace{3em}
+\section*{K-Maps for Next State variables}
+
+\def\drawkmapskeleton{
+  \draw[step=1cm, black] (0,0) grid (4,4);
+  \draw[black] (0, 4) -- +(-1, +1);
+  \foreach \x/\lbl in {0.5/00, 1.5/01, 2.5/11, 3.5/10} {
+    \node at (\x, 4.3) {\lbl};
+  }
+  \node at (0, 4.8) {$X_2 X_1$};
+  \foreach \y/\lbl in {3.5/00, 2.5/01, 1.5/11, 0.5/10} {
+    \node at (-0.4, \y) {\lbl};
+  }
+  \node at (-1, 4.2) {$S_1 S_0$};
+}
+
+\newcommand{\xab}{\overline{X_1}}
+\newcommand{\xbb}{\overline{X_2}}
+\newcommand{\sab}{\overline{S_0}}
+\newcommand{\sbb}{\overline{S_1}}
+\newcommand{\scb}{\overline{S_2}}
+
+% K-map for S2
+\begin{center}
+  \textbf{K-map for $S_2'$}:
+  \vspace{1em}
+
+  \begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
+    \begin{scope}
+      \drawkmapskeleton
+      \node at (2, -0.5) {\textbf{$S_2=0$}};
+      % Values S2=0
+      \node at (0.5,3.5) {0}; \node at (1.5,3.5) {0}; \node at (2.5,3.5) {X}; \node at (3.5,3.5) {0};
+      \node at (0.5,2.5) {0}; \node at (1.5,2.5) {0}; \node at (2.5,2.5) {X}; \node at (3.5,2.5) {X};
+      \node at (0.5,1.5) {0}; \node at (1.5,1.5) {0}; \node at (2.5,1.5) {X}; \node at (3.5,1.5) {1};
+      \node at (0.5,0.5) {1}; \node at (1.5,0.5) {0}; \node at (2.5,0.5) {X}; \node at (3.5,0.5) {0};
+
+      % Groups
+      % \overline{S_0} X_2
+      \draw[rounded corners=5pt, blue, thick] (0.1, 0.1) rectangle (0.9, 0.9);
+      % S_0 \overline{X_1}
+      \draw[rounded corners=5pt, green!60!black, thick] (2.1, 1.1) rectangle (3.9, 2.9);
+    \end{scope}
+
+    \begin{scope}[xshift=7cm]
+      \drawkmapskeleton
+      \node at (2, -0.5) {\textbf{$S_2=1$}};
+      % Values S2=1
+      \node at (0.5,3.5) {1}; \node at (1.5,3.5) {1}; \node at (2.5,3.5) {X}; \node at (3.5,3.5) {1};
+      \node at (0.5,2.5) {1}; \node at (1.5,2.5) {0}; \node at (2.5,2.5) {X}; \node at (3.5,2.5) {1};
+      \node at (0.5,1.5) {1}; \node at (1.5,1.5) {1}; \node at (2.5,1.5) {X}; \node at (3.5,1.5) {1};
+      \node at (0.5,0.5) {1}; \node at (1.5,0.5) {1}; \node at (2.5,0.5) {X}; \node at (3.5,0.5) {1};
+
+      % Groups
+      % \overline{S_0} X_2
+      \draw[rounded corners=5pt, blue, thick] (0.1, -0.1) rectangle (3.9, 0.9);
+      \draw[rounded corners=5pt, blue, thick] (0.1, 3.1) rectangle (3.9, 4.1);
+
+      \draw[rounded corners=5pt, red, thick] (0.1, 0.1) rectangle (3.9, 1.9);
+      % S_0 \overline{X_1}
+      \draw[rounded corners=5pt, green!60!black, thick] (-0.1, 0.1) rectangle (0.9, 3.9);
+      \draw[rounded corners=5pt, green!60!black, thick] (3.1, 0.1) rectangle (4.1, 3.9);
+    \end{scope}
+  \end{tikzpicture}
+
+  \vspace{1em}
+  $S_2' = \scb(\textcolor{blue}{S_1\sab\xbb\xab} + \textcolor{green!60!black}{S_0X_2}) + S_2(\textcolor{red}{S_1} + \textcolor{green!60!black}{\xab} + \textcolor{blue}{\sab})$
+
+\end{center}
+\vspace{1em}
+
+% K-map for S1
+\begin{center}
+  \textbf{K-map for $S_1'$}:
+  \vspace{1em}
+
+  \begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
+    \begin{scope}
+      \drawkmapskeleton
+      \node at (2, -0.5) {\textbf{$S_2=0$}};
+      % Values S2=0
+      \node at (0.5,3.5) {0}; \node at (1.5,3.5) {0}; \node at (2.5,3.5) {X}; \node at (3.5,3.5) {1};
+      \node at (0.5,2.5) {1}; \node at (1.5,2.5) {0}; \node at (2.5,2.5) {X}; \node at (3.5,2.5) {X};
+      \node at (0.5,1.5) {1}; \node at (1.5,1.5) {1}; \node at (2.5,1.5) {X}; \node at (3.5,1.5) {1};
+      \node at (0.5,0.5) {1}; \node at (1.5,0.5) {1}; \node at (2.5,0.5) {X}; \node at (3.5,0.5) {1};
+      \draw[rounded corners=5pt, green!60!black, thick] (2.1, 0.1) rectangle (3.9, 3.9);
+      \draw[rounded corners=5pt, blue, thick] (0.1, 0.1) rectangle (3.9, 1.9);
+      \draw[rounded corners=5pt, red, thick] (-0.1, 1.1) rectangle (0.9, 2.9);
+      \draw[rounded corners=5pt, red, thick] (3.1, 1.1) rectangle (4.1, 2.9);
+    \end{scope}
+
+    \begin{scope}[xshift=7cm]
+      \drawkmapskeleton
+      \node at (2, -0.5) {\textbf{$S_2=1$}};
+      % Values S2=1
+      \node at (0.5,3.5) {1}; \node at (1.5,3.5) {0}; \node at (2.5,3.5) {X}; \node at (3.5,3.5) {0};
+      \node at (0.5,2.5) {0}; \node at (1.5,2.5) {0}; \node at (2.5,2.5) {X}; \node at (3.5,2.5) {0};
+      \node at (0.5,1.5) {0}; \node at (1.5,1.5) {1}; \node at (2.5,1.5) {X}; \node at (3.5,1.5) {1};
+      \node at (0.5,0.5) {1}; \node at (1.5,0.5) {1}; \node at (2.5,0.5) {X}; \node at (3.5,0.5) {1};
+
+      % Groups
+      % S2 S1 \S0'
+      \draw[rounded corners=5pt, blue, thick] (2.1, 0.1) rectangle (3.9, 1.9);
+      % S2 S1 X1
+      \draw[rounded corners=5pt, green!60!black, thick] (1.1, 0.1) rectangle (2.9, 1.9);
+      % S2 \S0' \X2' \X1'
+      \draw[rounded corners=5pt, orange, thick] (0.1, -0.1) rectangle (0.9, 0.9);
+      \draw[rounded corners=5pt, orange, thick] (0.1, 3.1) rectangle (0.9, 4.1);
+    \end{scope}
+  \end{tikzpicture}
+
+  \vspace{1em}
+  $S_1' = \scb(\textcolor{red}{S_0\xab} + \textcolor{blue}{S_1} + \textcolor{green!60!black}{X_2}) + S_2(\textcolor{orange}{\sab\xab\xbb} + \textcolor{green!60!black}{S_1X_1} + \textcolor{blue}{S_1X_2})$
+\end{center}
+\vspace{1em}
+
+\begin{center}
+  \textbf{K-map for $S_0'$}:
+  \vspace{1em}
+
+  \begin{tikzpicture}[scale=0.8, every node/.style={transform shape}]
+    \begin{scope}
+      \drawkmapskeleton
+      \node at (2, -0.5) {\textbf{$S_2=0$}};
+      % Values S2=0
+      \node at (0.5,3.5) {0}; \node at (1.5,3.5) {1}; \node at (2.5,3.5) {X}; \node at (3.5,3.5) {0};
+      \node at (0.5,2.5) {1}; \node at (1.5,2.5) {1}; \node at (2.5,2.5) {X}; \node at (3.5,2.5) {X};
+      \node at (0.5,1.5) {1}; \node at (1.5,1.5) {0}; \node at (2.5,1.5) {X}; \node at (3.5,1.5) {1};
+      \node at (0.5,0.5) {0}; \node at (1.5,0.5) {0}; \node at (2.5,0.5) {X}; \node at (3.5,0.5) {0};
+
+      % Groups
+      % S0 \X1'
+      \draw[rounded corners=5pt, red, thick] (-0.1, 1.1) rectangle (0.9, 2.9);
+      \draw[rounded corners=5pt, red, thick] (3.1, 1.1) rectangle (4.1, 2.9);
+      % \S2' \X2' X1
+      \draw[rounded corners=5pt, blue, thick] (1.1, 2.1) rectangle (2.9, 3.9);
+    \end{scope}
+
+    \begin{scope}[xshift=7cm]
+      \drawkmapskeleton
+      \node at (2, -0.5) {\textbf{$S_2=1$}};
+      % Values S2=1
+      \node at (0.5,3.5) {0}; \node at (1.5,3.5) {0}; \node at (2.5,3.5) {X}; \node at (3.5,3.5) {0};
+      \node at (0.5,2.5) {1}; \node at (1.5,2.5) {1}; \node at (2.5,2.5) {X}; \node at (3.5,2.5) {0};
+      \node at (0.5,1.5) {1}; \node at (1.5,1.5) {1}; \node at (2.5,1.5) {X}; \node at (3.5,1.5) {1};
+      \node at (0.5,0.5) {0}; \node at (1.5,0.5) {1}; \node at (2.5,0.5) {X}; \node at (3.5,0.5) {1};
+
+      % Groups
+      \draw[rounded corners=5pt, red, thick] (0.1, 1.1) rectangle (1.9, 2.9);
+      \draw[rounded corners=5pt, green!60!black, thick] (1.1, 0.1) rectangle (2.9, 1.9);
+      \draw[rounded corners=5pt, orange, thick] (2.1, 0.1) rectangle (3.9, 1.9);
+    \end{scope}
+  \end{tikzpicture}
+
+  \vspace{1em}
+  $S_0' = \scb(\textcolor{red}{S_0\xab} + \textcolor{blue}{\sbb X_1}) + S_2(\textcolor{red}{S_0\xbb} + \textcolor{green!60!black}{S_1X_1} + \textcolor{orange}{S_1X_2})$
+\end{center}
+
+\section*{Output expression}
+Since output $z=1$ only when current state is $G$.
+Hence:
+$$z = S_2\overline{S_1}S_0$$
+\end{document}
