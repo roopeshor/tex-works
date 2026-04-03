@@ -11,6 +11,7 @@
 **/*.mtc
 **/*.mtc0
 **/*.synctex.gz
+**/*.synctex(busy)
 **/*.fdb_latexmk
 **/*.xdv
 **/*.asv
