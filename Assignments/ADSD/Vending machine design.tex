@@ -82,7 +82,7 @@
   \end{center}
 \end{minipage}
 
-\section{State transitions}
+\section{How state transition occur}
 
 A coin insertion triggers state transition as following: (from initial state)
 
@@ -123,20 +123,15 @@ A coin insertion triggers state transition as following: (from initial state)
   }
 \end{center}
 
-\vspace{2.5em}
-\noindent When coin is being inserted the system goes to a intermediate (but stable) state where the coin is `being' inserted. There after when coin is finished inserting it goes to another stable state where internal balance has been incremented
+\vspace{1.5em}
+\noindent When coin is being inserted the system goes to a intermediate but stable state (state in the middle shown in figure ). There after when coin is finished inserting it goes to another stable state where internal balance has been incremented (state in rightmost place)
 
 \noindent
 
 \begin{tcolorbox}[colbacktitle=orange, coltitle=black, fonttitle=\large\bfseries, title={Why not directly increment internal balance when coin is being inserted instead of going to a intermediate state?}]
 
-  %   \textbf{}
-  \normalsize
-
-  \vspace{1.5em}
   \noindent You might be tempted to implement this:
-
-  \vspace{1em}
+  \vspace{.5em}
   \begin{center}
     \begin{tikzpicture}[>=Stealth, auto]
       \node[circle split, draw, minimum size=1.2cm] (q0) {
@@ -150,7 +145,7 @@ A coin insertion triggers state transition as following: (from initial state)
     \end{tikzpicture}
   \end{center}
 
-  \vspace{1em}
+  \vspace{.5em}
   \noindent It looks like it will works. But in practice this leads to a problem: how long should input be held $1$? If input is held $1$ for too long, the system will quickly traverse through many state in a loop even if input is just a pulse. The below figure shows what happens if $X_1=1$ for a brief period:
 
   \begin{minipage}[t]{0.5\textwidth}
@@ -243,11 +238,11 @@ A coin insertion triggers state transition as following: (from initial state)
     \end{center}
   \end{minipage}
 
-  \vspace{3em}
+  \vspace{1em}
   \noindent The internal state quickly switches as fast the circuit allows, hence all states become unstable when input becomes 1.
 \end{tcolorbox}
 
-\section{State Diagram}
+\section{State Diagram \& Flow table}
 
 We define states as following:
 \begin{itemize}
@@ -266,11 +261,14 @@ When state $G$ has reached, the vending machine dispenses. From $G$ the state tr
 
 \end{tcolorbox}
 
-\vspace{2em}
 
-Based on this we can arrive at following state diagram:
+Based on this we can arrive at following state diagram and Flow table.
 
+\vspace{1em}
+\begin{minipage}{.6\textwidth}
 \begin{center}
+\hspace{-1cm}
+\resizebox{\linewidth}{!}{
   \begin{tikzpicture}[>=Stealth, thick,
     state/.style={circle, draw, minimum size=0.8cm, inner sep=2pt}]
     % Nodes
@@ -281,9 +279,6 @@ Based on this we can arrive at following state diagram:
     \node[state] (E) at (4, -3.6) {E};
     \node[state] (F) at (2, -5.4) {F};
     \node[state] (G) at (2, -7.2) {G};
-
-    \node[state] (M) at (10, -1.8) {M};
-    \node[state] (N) at (13, -1.8) {N};
 
     % Loops
     \path[->] (A) edge [loop above] node {00} (A);
@@ -302,21 +297,29 @@ Based on this we can arrive at following state diagram:
     \draw[->] (C) -- node[below left] {10} (F);
     \draw[->] (D) -- node[above right] {00} (E);
     \draw[->] (E) -- node[below right] {01,10} (F);
-    \draw[->] (F) -- node[left] {00} (G);
+    \draw[->] (F) -- node[right] {00} (G);
 
-    \draw[->] (M) -- node[below] {$X_2X_1$} (N);
-    \draw (9.3, -.5) rectangle (13.8, -2.8);
-    \node[right, font=\small, text width=3cm, align=left] (s_note) at (10, -1) {State transition:};
 
     % Curved lines
-    \draw[->] (G) to[out=180, in=250, looseness=1.5] node[below left] {01} (B);
-    \draw[->] (G) to[out=0, in=390, looseness=2.5] node[below right] {10} (D);
+    \draw[->] (G) to[out=180, in=250, looseness=1] node[below left] {01} (B);
+    \draw[->] (G) to[out=0, in=390, looseness=2.3] node[below right] {10} (D);
+    \begin{scope}[yshift=-7.5cm, xshift=-3.5cm]
+        \node[state] (M) at (0, -.8) {M};
+        \node[state] (N) at (3, -.8) {N};
+        \draw[->] (M) -- node[below] {$X_2X_1$} (N);
+        \node[right, font=\small, text width=3cm, align=left] (s_note) at (0, 0) {State transition:};
+        \draw (-.6, .3) rectangle (3.5, -1.5);
+    \end{scope}
   \end{tikzpicture}
+  }
+  \vspace{1em}
+  {\bfseries \large {State diagram}}
 \end{center}
-
-\section{Flow Table}
-
+\end{minipage}
+\hspace{-1cm}
+\begin{minipage}{.4\textwidth}
 \begin{center}
+\resizebox{\linewidth}{!}{
   \renewcommand{\arraystretch}{1.3}
   \begin{tabular}{|c|c|c|c|c|}
     \hline
@@ -330,8 +333,29 @@ Based on this we can arrive at following state diagram:
     F & G, \_ & F, 0 & F, 0   & \_,\_ \\ \hline
     G & G, 1 & B, \_ & D, \_   & \_,\_ \\ \hline
   \end{tabular}
+}
+
+\vspace{1em}
+{\bfseries \large {Flow table}}
+
 \end{center}
+\end{minipage}
+\vspace{1em}
+
+\subsection*{Explanation:}
+
+\begin{enumerate}
+\item Initally system is at state $A$.
+\item When a \rupee 5 is inserted the state becomes to $B$ (as it indicates "balance is going to be \rupee 5") and if \rupee 10 was inserted the state goes to $D$ (indicating "balance is going to be \rupee 10").
+\item After coin has been finished inserting ($X_2X_1=00$) the system can go from $B$ to $C$ (that is "balence \emph{is} 5" state). And it can only go to $C$ as at that time only \rupee 5 is being inserted and no other coin can be inserted simultaneously (hence transition $X_2X_1=10$ is not drawn from $B$ and is considered don't care in flow table.)
+\item From $C$, system goes to $D$ if \rupee 5 is inserted (as $D$ indicates "balance is going to be 10") and if \rupee 10 is inserted it goes to $F$ (balance is going to be $\ge$ \rupee 15).
+\item From $D$, system goes to $E$ (balance \emph{is} \rupee 10) when either of the coin has finished inserting ($X_2X_1=00$).
+\item From $E$ system goes $F$ if any of the coin is being inserted.
+\item From $F$ system goes to $G$ (balance \emph{is} $\ge$ \rupee 15) and output $z=1$. This is the only state where output becomes 1.
+\item From $G$ system goes to $B$ if \rupee 5 is being inserted and it goes to $D$ if \rupee 10 is being inserted.
+\end{enumerate}
 State reduction is not done here, as each state already have a definite meaning, reducing it implies losing the functionlity.
+
 \begin{tcolorbox}[title={If you try creating implication table you'll get this}]
 
   \begin{center}
@@ -421,7 +445,7 @@ State reduction is not done here, as each state already have a definite meaning,
     }
   \end{minipage}
   \begin{minipage}{.78\textwidth}
-    This is because for a grey code state assignemt (ie that which produces single bit transition), the states must be connected in such a way that they could be placed in the vertices of hypercube. \textbf{The maximum number of common neighbors for any pair of vertices in a hypercube is 2.} Here, states $B$ and $D$ are connected to \textbf{3} states ($A$, $C$, and $G$), making such 1-bit change binary state assignment impossible.
+    This is because for a grey code state assignemt (ie that which produces the single bit transition between states), the states must be connected in such a way that they could be placed in the vertices of hypercube. \textbf{The maximum number of common neighbors for any pair of vertices in a hypercube is 2.} Here, states $B$ and $D$ are connected to \textbf{3} states ($A$, $C$, and $G$), hence states cannot be laid out along a hypercube of any dimension, making such 1-bit change binary state assignment impossible.
   \end{minipage}
 
   \begin{minipage}{.4\textwidth}
@@ -495,7 +519,7 @@ To obtain race free assignment, state $D$ is split to $D_1$ and $D_2$ in followi
     \path[->] (A) edge [loop above] node {00} (A);
     \path[->] (B) edge [loop left] node {01} (B);
     \path[->] (D1) edge [loop above] node {01,10} (D1);
-    \path[->] (D2) edge [loop above] node {01,10} (D2);
+    \path[->] (D2) edge [loop above] node {10} (D2);
     \path[->] (C) edge [loop below] node {00} (C);
     \path[->] (E) edge [loop right] node {00} (E);
     \path[->] (F) edge [loop above] node {01,10} (F);
@@ -518,6 +542,7 @@ To obtain race free assignment, state $D$ is split to $D_1$ and $D_2$ in followi
   \end{tikzpicture}
 \end{center}
 
+The meaning of the states are not changed that much.  $D_1$ and $D_2$ now still refers to "balance is going to be 10". But in case of $D_2$ the state doesnt have to handle input sequence $X_2X_1=01$ (\rupee 5 is being inserted) as \rupee 5 can never be simultaneously inserted while \rupee 10 is being inserted.
 Hence we obtain following \textbf{modified flow table}
 \begin{center}
   \renewcommand{\arraystretch}{1.3}
@@ -529,7 +554,7 @@ Hence we obtain following \textbf{modified flow table}
     B & C, \_ & B, 0 & \_, \_ & \_,\_ \\ \hline
     C & C, 0 & $D_1$, \_ & F, \_   & \_,\_ \\ \hline
     $D_1$ & E, \_ & $D_1$, 0 & $D_1$, 0   & \_,\_ \\ \hline
-    $D_2$ & E, \_ & $D_2$, 0 & $D_2$, 0   & \_,\_ \\ \hline
+    $D_2$ & E, \_ & \_,\_ & $D_2$, 0   & \_,\_ \\ \hline
     E & E, 0 & F, \_ & F, \_   & \_,\_ \\ \hline
     F & G, \_ & F, 0 & F, 0   & \_,\_ \\ \hline
     G & G, 1 & B, \_ & $D_2$, \_   & \_,\_ \\ \hline
@@ -537,6 +562,8 @@ Hence we obtain following \textbf{modified flow table}
 \end{center}
 
 From this following following binary assignment is race free:
+
+\vspace{1em}
 
 \begin{minipage}{.4\textwidth}
   \begin{center}
@@ -598,7 +625,7 @@ The entries are rearranged to make picking the values for k-map easier
     001 & 011 & 001 & \_\_\_ & \_\_\_ \\ \hline
     011 & 011 & 010 & \_\_\_ & 111    \\ \hline
     010 & 110 & 010 & \_\_\_ & 010    \\ \hline
-    100 & 110 & 100 & \_\_\_ & 100    \\ \hline
+    100 & 110 & \_\_\_ & \_\_\_ & 100    \\ \hline
     101 & 101 & 001 & \_\_\_ & 100    \\ \hline
     111 & 101 & 111 & \_\_\_ & 111    \\ \hline
     110 & 110 & 111 & \_\_\_ & 111    \\ \hline
@@ -651,7 +678,7 @@ The entries are rearranged to make picking the values for k-map easier
       \drawkmapskeleton
       \node at (2, -0.5) {\textbf{$S_2=1$}};
       % Values S2=1
-      \node at (0.5,3.5) {1}; \node at (1.5,3.5) {1}; \node at (2.5,3.5) {X}; \node at (3.5,3.5) {1};
+      \node at (0.5,3.5) {1}; \node at (1.5,3.5) {X}; \node at (2.5,3.5) {X}; \node at (3.5,3.5) {1};
       \node at (0.5,2.5) {1}; \node at (1.5,2.5) {0}; \node at (2.5,2.5) {X}; \node at (3.5,2.5) {1};
       \node at (0.5,1.5) {1}; \node at (1.5,1.5) {1}; \node at (2.5,1.5) {X}; \node at (3.5,1.5) {1};
       \node at (0.5,0.5) {1}; \node at (1.5,0.5) {1}; \node at (2.5,0.5) {X}; \node at (3.5,0.5) {1};
@@ -698,7 +725,7 @@ The entries are rearranged to make picking the values for k-map easier
       \drawkmapskeleton
       \node at (2, -0.5) {\textbf{$S_2=1$}};
       % Values S2=1
-      \node at (0.5,3.5) {1}; \node at (1.5,3.5) {0}; \node at (2.5,3.5) {X}; \node at (3.5,3.5) {0};
+      \node at (0.5,3.5) {1}; \node at (1.5,3.5) {X}; \node at (2.5,3.5) {X}; \node at (3.5,3.5) {0};
       \node at (0.5,2.5) {0}; \node at (1.5,2.5) {0}; \node at (2.5,2.5) {X}; \node at (3.5,2.5) {0};
       \node at (0.5,1.5) {0}; \node at (1.5,1.5) {1}; \node at (2.5,1.5) {X}; \node at (3.5,1.5) {1};
       \node at (0.5,0.5) {1}; \node at (1.5,0.5) {1}; \node at (2.5,0.5) {X}; \node at (3.5,0.5) {1};
@@ -706,10 +733,9 @@ The entries are rearranged to make picking the values for k-map easier
       % Groups
       \draw[rounded corners=5pt, blue, thick] (2.1, 0.1) rectangle (3.9, 1.9);
       \draw[rounded corners=5pt, green!60!black, thick] (1.1, 0.1) rectangle (2.9, 1.9);
-      \draw[rounded corners=5pt, orange, thick] (0.1, -0.1) rectangle (0.9, 0.9);
-      \draw[rounded corners=5pt, orange, thick] (0.1, 3.1) rectangle (0.9, 4.1);
+      \draw[rounded corners=5pt, orange, thick] (0.1, -0.1) rectangle (1.9, 0.9);
+      \draw[rounded corners=5pt, orange, thick] (0.1, 3.1) rectangle (1.9, 4.1);
 
-      \draw[rounded corners=5pt, cyan, thick] (0.1, 0.1) rectangle (3.9, 0.9);
     \end{scope}
   \end{tikzpicture}
 
@@ -718,10 +744,9 @@ The entries are rearranged to make picking the values for k-map easier
   \scb(\textcolor{red}{S_0\xab}
     + \textcolor{blue}{S_1}
   + \textcolor{green!60!black}{X_2})
-  + S_2(\textcolor{orange}{\sab\xab\xbb}
+  + S_2(\textcolor{orange}{\sab\xbb}
     + \textcolor{green!60!black}{S_1X_1}
     + \textcolor{blue}{S_1X_2}
-    + \textcolor{cyan}{S_1\sab}
   )$
 \end{center}
 \vspace{1em}
@@ -752,14 +777,14 @@ The entries are rearranged to make picking the values for k-map easier
       \drawkmapskeleton
       \node at (2, -0.5) {\textbf{$S_2=1$}};
       % Values S2=1
-      \node at (0.5,3.5) {0}; \node at (1.5,3.5) {0}; \node at (2.5,3.5) {X}; \node at (3.5,3.5) {0};
+      \node at (0.5,3.5) {0}; \node at (1.5,3.5) {X}; \node at (2.5,3.5) {X}; \node at (3.5,3.5) {0};
       \node at (0.5,2.5) {1}; \node at (1.5,2.5) {1}; \node at (2.5,2.5) {X}; \node at (3.5,2.5) {0};
       \node at (0.5,1.5) {1}; \node at (1.5,1.5) {1}; \node at (2.5,1.5) {X}; \node at (3.5,1.5) {1};
       \node at (0.5,0.5) {0}; \node at (1.5,0.5) {1}; \node at (2.5,0.5) {X}; \node at (3.5,0.5) {1};
 
       % Groups
       \draw[rounded corners=5pt, red, thick] (0.1, 1.1) rectangle (1.9, 2.9);
-      \draw[rounded corners=5pt, green!60!black, thick] (1.1, 0.1) rectangle (2.9, 1.9);
+      \draw[rounded corners=5pt, green!60!black, thick] (1.1, 0.1) rectangle (2.9, 3.9);
       \draw[rounded corners=5pt, orange, thick] (2.1, 0.1) rectangle (3.9, 1.9);
     \end{scope}
   \end{tikzpicture}
@@ -770,19 +795,18 @@ The entries are rearranged to make picking the values for k-map easier
     + \textcolor{cyan}{\sbb S_0}
   )
   + S_2(\textcolor{red}{S_0\xbb}
-    + \textcolor{green!60!black}{S_1X_1}
+    + \textcolor{green!60!black}{X_1}
   + \textcolor{orange}{S_1X_2})$
 \end{center}
-\textbf{Notice that we have added extra grouping that overlaps with others (higlighted in cyan color). These are necessary to remove hazards}. Here is circuit if these groupings are not done: \href{https://www.falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWKtIA4BMaAsBOHqA2dAZlX1QgUhCS2JoFMBaMMAKAGcpx1UQcCPPtQgAXAE4BXBp25gc6foPmKRICdLYAPEMSRgESIuAR8sIdOYAa7HcXPoSIAhEeCH19GwPUEC8FjmAOyQ5mCB3Oa+bACS4P5gvBYIyknUMEgIsfGKKsnK-unQmWwAStyo6bqqkb7cRVkA7hVVicJszdSVcoUdSkI5A5B9AoN5ecPN6CkD6EG5aX1+uQTUxMTKq1B9cyvUu0M7M3kHEzvz4EGCp71xeopM3fcgLIINNNlYYIKP1F8-33qxQ+cQQiRe3TBD0B7yaFgu3zWG3AW0m8NyV10CAxbz6zzAmOWl1xdkBTAu9geBBwIA8IAAyl47KgkOTFF8IExqbSLOZ6bZaRcueZcHwuRA6fS0VCXoCZW1ts15UkiQq0f8IX8sGLuurtZrafrRnq+M9Anxjd4qM40PkQCEHDN9tw4TLfjQIu7pZ7IRFLOkln6sNRVnx-YqbWGLtNrhc0TH0Sj9nG+ojE2mzs0M-5RmcDIornw8qhuhMLC6+g6AsECEWImjC9X7bXiRHG5g+O2nZWWwmqwnhvnI7oW1WNsJdDQPkqEuDzeBwSaF+z9V6luCFTLxxH8VtnqQonjsbpUCLiIoDzvj2n1psA81589Q1jVOuLy3n9v1eeT+ZP6fth8fhMQJZRIARTFnWiICcExfFwIvY9nRKZoSxEHMIkze1QhHC0Ii-I9oUEfdX2aEiQDIYjSIo0Yf0opMI3otMcEw1FCINZ4WHrdiuPMHBwV4iMWLCLZYLvISQIwsJemaYTcOA4iWzRfjoQiBQxXCQ9ZKSQT1N0ZFlKSW8FP03Eh1YTA7USQEB3LFDwAQ1sLP2YMI2c9NHOeNFrOuY50DJTS3P8gE1IEwLB2tZ8ZSrGVkOnYdcGI49EqvdlaOPS80SilUImxdolVynKPADIcgmPGVTz4WLJ3stNTi2FJ7wY+cypXfLDSqrZWpoNiH31RqOpfQDIttAgZirMa3knaJmmfAhXKfVy0UWtZkstWbRpmYzJp3ZEduM0DduUTFTkgt95JlAgUyVcErsUOaUyA59uqrbqoPi+cBpagy+m+wRnp+jbOxbBVG28pJGwVNVUySBVc0WJ7bUq7DzGR964WfVAf3nLHqJx7H9SCQGGORtMBu8rZ5zqx7jyrSoujgCjGfRyscJetmAIbHCKEEOn9WGHR5noMqIAwJAypFCxqH5GwAB0AAcZa8IGKPmkm1Ypro1bTNGrQLD8LmRu7uBqOFuoG83FmaGLwXNxdKzW3nkv5ns+B2ibu2t49a07WnLIbUdLPp+1-b6YP5gZyO3MSXwEkcnbvMclL3PJq1qDE5xjnjp07I+GDMWTpPjXLaDrxjmgQOCiuptNkYjORPT5qaxvXIzpuJP+w39WNtFkZlDPYpGAvuno7UmtHkfczYnQxppKhxZVW1JUgGwACM0+HOSqzklmVYEEQkn3oKLS2UGlL15sLSSQg+LSXOzZbLecJ31nzGinCiS5t--BvmgZNV7+ihf660RkWSA40cJgHATXKcrpCpVUwqEJqCBEGuWfFApafR0GeWRFA66pkHIUj2p7JmUdg6-wbMiYBjMKEX0hkggBDklr31dg5CBYRoFthBpASw9pcE8K0nwsCvCiaCFodbFs9FGxoS4XwGRwDdRhzVvI5RLsJFuxLPab2miGx+2oI2COsiaK80fvbcyYAG6YRIIoHeJc87WjwDYjcaALSLjsVkGCcdeFQM0VA3hcU4Q+NcbkCxgg9LeVCUoEQLiHL+KURw1ucdMGoTVnpRx-Ara0gCu4QEKkIwakbracJv1clzlyZklu6dYZwHanpKBRS462mUj-UY9F6K91aZ09wiisxVwQJXNW-TcS9MGQM8wLB7YjPGRZLJAJJmzNlGUn4PSPTjNLOgUYa5embPWaMF+2ywlWJ-C-ICQSFwg0wCIb4E56D2U4oFYgOFBLLSeQ8j+Z0yLvOIpAocLywjmRiawJCJSwlJA1Kwc+WZAXXIWRC9qZzWAARQf8zmgYUVv1QU1Hy5yiyXJxdsIAA}{Click here}. Notice that circuit oscillates if you switch $X_1$.
+\textbf{Notice that we have added extra grouping that overlaps with other groups (higlighted in \textcolor{cyan}{cyan} color). These additional groups are necessary to remove hazards in circuit}. Here is a circuit if these groupings are not done: \href{https://www.falstad.com/circuit/circuitjs.html?ctz=CQAgjCAMB0l3BWKtIA4BMaAsBOHqA2dAZlX1QgUhCS2JoFMBaMMAKAGcpx1UQcCPPtQgAXAE4BXBp25gc6foPmKRICdLYAPEMSRgESIuAR8sIdOYAa7HcXPoSIAhEeCH19GwPUEC8FjmAOyQ5mCB3Oa+bACS4P5gvBYIyknUMEgIsfGKKsnK-unQmWwAStyo6bqqkb7cRVkA7hVVicJszdSVcoUdSkI5A5B9AoN5ecPN6CkD6EG5aX1+uQTUxMTKq1B9cyvUu0M7M3kHEzvz4EGCp71xeopM3fcgLIINNNlYYIKP1F8-33qxQ+cQQiRe3TBD0B7yaFgu3zWG3AW0m8NyV10CAxbz6zzAmOWl1xdkBTAu9geBBwIA8IAAyl47KgkOTFF8IExqbSLOZ6bZaRcueZcHwuRA6fS0VCXoCZW1ts15UkiQq0f8IX8sGLuurtZrafrRnq+M9Anxjd4qM40PkQCEHDN9tw4TLfjQIu7pZ7IRFLOkln6sNRVnx-YqbWGLtNrhc0TH0Sj9nG+ojE2mzs0M-5RmcDIornw8qhuhMLC6+g6AsECEWImjC9X7bXiRHG5g+O2nZWWwmqwnhvnI7oW1WNsJdDQPkqEuDzeBwSaF+z9V6luCFTLxxH8VtnqQonjsbpUCLiIoDzvj2n1psA81589Q1jVOuLy3n9v1eeT+ZP6fth8fhMQJZRIARTFnWiICcExfFwIvY9nRKZoSxEHMIkze1QhHC0Ii-I9oUEfdX2aEiQDIYjSIo0Yf0opMI3otMcEw1FCINZ4WHrdiuPMHBwV4iMWLCLZYLvISQIwsJemaYTcOA4iWzRfjoQiBQxXCQ9ZKSQT1N0ZFlKSW8FP03Eh1YTA7USQEB3LFDwAQ1sLP2YMI2c9NHOeNFrOuY50DJTS3P8gE1IEwLB2tZ8ZSrGVkOnYdcGI49EqvdlaOPS80SilUImxdolVynKPADIcgmPGVTz4WLJ3stNTi2FJ7wY+cypXfLDSqrZWpoNiH31RqOpfQDIttAgZirMa3knaJmmfAhXKfVy0UWtZkstWbRpmYzJp3ZEduM0DduUTFTkgt95JlAgUyVcErsUOaUyA59uqrbqoPi+cBpagy+m+wRnp+jbOxbBVG28pJGwVNVUySBVc0WJ7bUq7DzGR964WfVAf3nLHqJx7H9SCQGGORtMBu8rZ5zqx7jyrSoujgCjGfRyscJetmAIbHCKEEOn9WGHR5noMqIAwJAypFCxqH5GwAB0AAcZa8IGKPmkm1Ypro1bTNGrQLD8LmRu7uBqOFuoG83FmaGLwXNxdKzW3nkv5ns+B2ibu2t49a07WnLIbUdLPp+1-b6YP5gZyO3MSXwEkcnbvMclL3PJq1qDE5xjnjp07I+GDMWTpPjXLaDrxjmgQOCiuptNkYjORPT5qaxvXIzpuJP+w39WNtFkZlDPYpGAvuno7UmtHkfczYnQxppKhxZVW1JUgGwACM0+HOSqzklmVYEEQkn3oKLS2UGlL15sLSSQg+LSXOzZbLecJ31nzGinCiS5t--BvmgZNV7+ihf660RkWSA40cJgHATXKcrpCpVUwqEJqCBEGuWfFApafR0GeWRFA66pkHIUj2p7JmUdg6-wbMiYBjMKEX0hkggBDklr31dg5CBYRoFthBpASw9pcE8K0nwsCvCiaCFodbFs9FGxoS4XwGRwDdRhzVvI5RLsJFuxLPab2miGx+2oI2COsiaK80fvbcyYAG6YRIIoHeJc87WjwDYjcaALSLjsVkGCcdeFQM0VA3hcU4Q+NcbkCxgg9LeVCUoEQLiHL+KURw1ucdMGoTVnpRx-Ara0gCu4QEKkIwakbracJv1clzlyZklu6dYZwHanpKBRS462mUj-UY9F6K91aZ09wiisxVwQJXNW-TcS9MGQM8wLB7YjPGRZLJAJJmzNlGUn4PSPTjNLOgUYa5embPWaMF+2ywlWJ-C-ICQSFwg0wCIb4E56D2U4oFYgOFBLLSeQ8j+Z0yLvOIpAocLywjmRiawJCJSwlJA1Kwc+WZAXXIWRC9qZzWAARQf8zmgYUVv1QU1Hy5yiyXJxdsIAA}{Click here}. Notice that circuit oscillates by default. It will also oscillate if you switch $X_1$.
 \section{Output expression}
-Since output $z=1$ only when current state is $G$.
-Hence:
+Since output $z=1$ only when current state is $G$, so a separate "output transition table" is not drawn. We can directly write (from binary assignmet for $G$) that:
 $$z = S_2\overline{S_1}S_0$$
 
 \section{Circuit}
 
-\href{https://www.falstad.com/circuit/circuitjs.html?ctz=DwYwlgTgBAZgvAIgIwKgFwM6IAwDpsEECsqYIiSuAHACwDsAnEVQGzYtIENVEuogAjCqgAOQhDQDMqAG4REJKAFtMCgKYBaJCgB8AKChRgGKAA8cUJACYqUBi0s3U8BNlHDlSxGggBXNQgA9PqGxmYWSAxWdg6RVs447sioSl4IPv5BIUam4QiSRJZEhSzRSMwJEqgYYIhWNKhoaogAGijBBjl5kjRQVlaSUBx9VnywiA1QNXWTTa3xHaEAggB2ACZ5RFGWNL102L1Iu5VuUGArE1mdwACSeXGOtla8jyfVADY4uIoAFrUIJEWRju5mQ2wez1iUTeU0+rm+qD+CiuoQASnlsFAqJjMZJ4uNXKgAO4uU5KACGphkyKBwCJGKxONeBLctPpoMx2KgmLibzZeXsj0s4KcLJRRnZiEFDxl0LF-NBkKFVjoZVFpPFdM24LYUEkklibD52S1itVll1KrVVGN10lCCVEPNvPlJvtVssdAcHpdGtpIMQBWiGi5QagWjGGthX1+-0BJoDEiQDhDmJoyfDyZhGDheFjNITm2s4a5RGLEezuYRUCRAM17uduv1htOfrdeR9Xr1RDKXttoXtYaQXa2vcjiVpuVBkgzGnNPWDLAYlUm0wds2aCAAygsTVPAzxw+b00hw0uV9V-vVGput+093l6IvejRuGeUATV1eN4gt6z26CZbBhmQHMm2dpFtaUCjmBE4ARMs5crstipv2EqPjQKFIZhMRoaaEw4WGyG4a61yrBsoJsE8Lz7L0kJ4faoGptBuwlq2cEQYBrHMUQrH1OxhIKgofE0JiVF9KJDF5OJHpKlaUmKi8PqWqqCkUCpZS6r6HEDvcWnbNKcrgaEADy0Cgl6tgPFQXLaYJ8EILROx7CwVnHKRukWa5zlQJZnrjvZnGIH5VjYLYIW8GpjneUqTn0R5RhmdJYV6t5TkGjaYpnBc+SoAA9gWQUAuCxbEdo+LGehoJlaVOGoQl+EAsW1i2KBGVRUOTY9nqtAdd1ki0FAUjRANkyVY1nW4gaFoCf+RXEWG4lBlFbXeUtrlRcNPW9EtvUNeRApdsOsTYM6fb7esh0OEOp0jT2UU2TyBmsXZc2ecFBypbYDCse1DWDt1EbdiNFU6VVgb9dEVCCniD0w1D0pGv9eTQy2dgvUj40A8GoaA0cY1gxNeOsQw5b41FP2HLqDBHZjhP2jTULRJTwqg4F70ICzGV2F2f1YwKZMkzYmbufzoJRCh+N2MLzYUzL02M3qBp4UloLlZijpWBm8VixQt3+ZY1ga5JyNq0bfTOvry2mxQWvei81izuTNvIHbIu9KTwGi4TB2USloFOUBUXia+13daHfXRKHwPbcH-vC7xvQ9plusAqxycsXRJvjarwXdaBtCtdYMLnIG9Z6RrjaYrws3l2rurEXQ4eYZtOE175+d0+z4MSG3XYLfdF0UYg4mueFn1jyXOXSFABV1kJCCj-O3UsKpLuLaJMcRy7o82UrDiT+v00sC8zb+R103HRbY4rcW3OgavbNvT3AcTyltF4b7I-v91TlN0-dcCKtX7jhOgysXaN2Pu-cBqdxJ+Rar5DaLsEHwOFi1KKCCEHSnVD7S6ftbCF18p9QuccCF4iGjhKgsMIGUPIZAgKz9GrJk5DhZh0Eu6MPtGwsqGkVbmQ+r0bEnICCMlrgvP+v9Pp0D2qnJyVAMxyJbg1fcjkBgd1PFQZ4HcCZVCmFeU4cxtxIDaAAajvC0XcRVxKsCppyFgOjOEVyxPYmaWIlE534dFWwj83HeLXlGUuuVZ6FQ5v-dhmIwnJyioHYskTi4uzCdHRJ7j6Z5D8ifBwTkMnRJXnvMJqoxEOT8gU0RvlQoPRESUoRoiMHmxgpwc02TkH62jurcJn88FSi7Bkyw+smnjS-pzfu0oWn2D4fcOpR03ZEHOqnCW+9pbeOzqk8Wwt7GYkVusim3TzSEMfg9NuxZFZBxdorTCnJBTnLhg4c5WJEaFOuCok+DBoLYEKKqVqYULx6JmDeX82A2gCE1IM8S8ynIS1IejQ4wtKYYJhS9YWllxleW+sLGxiyp5l3EZ9V+ScjIrIEdBbY6LRwPRcTBdFJCh7JSsm8zJn1OCRRdonaCCcXoHAeRzFlnBN7iR5ZynufKraX1uhU4R4rnEOMAY5aalKRE2ORcFby-LJW9OWd3Rq8C6VEMOHS6JyrsD1F8iK68CSTV7FlfY-VBDBR+UetarEXJKXYjJYIp1LiqWyLWnk3JKcCWOV-qFRB4VykJO8qjYNdh4keImQrBF5DYXUvFgZZqYVvrRtwcPTm4JDW6r3pwU1qdOB709obBWOCNVcKQArLSabemFv9eilVDAc3qscaCdF8yW3Mwre2hCKYMzpgcJ7TaGZS2gozZWx8Y7Spjt7dK+Z6zFm9K+actBBBvo5tXXM4lgoI2o2uXchwEarnIOmVM8lsz-XWEvbEUYvQtCTr7a7Fxj6o5OyfdKodmZZ0phdcy7itkrCCnqkW4Df6eTgahXCwULNrAJu9hqwZxarLJisqFHkaHMW5QXmGLQv1Pr4albhwjUtJA4qvVO6cFHroMvKAAkjhx6O9PzfR0dw7hbfu0EgotdbuO2C41h5prHBrcqQDI-1YnRPsrbdKx2sQ0OOBEfxuFrDFPycNjx-1xF246co4wkFKU4Fvz9VRhQ2xShJ2LJZ2+0RxIP38ZmmldhtjgvxWZ1RGzXOfW7ZC45JN9PSpZf53VsmF5CpSlxjd7GV0CZnQxk0ABze4BpMPKtS0pgVTD72afQ2prTGqAAyABRAAIvcHL-HLAZZUwSfESg55rDUDAckvh3hoA0O8NQax+DyGSFAEAiXEgDfEGSAQ5B4TYHvEVXF0FrPbv9YtZedmwsOTPj09bNkL4Hz3mfBpCWipZPfhPJlsiJ55Ino5jzWTzTpKu8+mClmhhGYbR5+z2wdPuefZ9qOfcGFBes0a3F0SfOIu8hCsN31WIlMTbIoNLMYdfc1Co6t2hDb0Gq-0Q2RABJfl+egTcAAvZH9waBqNCoMfGLzQoBTx+uP525LGhBK+VtWkguz9EOE+EYOj6uNea619rnXuu9Y8IN4bghhtKHG18Kbmpktq255znY5odaExR2TynaiqeOFp5efHhi7yahZylo6L1ufOxcHzxATWWttY611nrA2+sfnF4SEbUuZeTem8zsrpuD5c8abzlI-O7dC8d6L-rbvTiS-d9LibeA5eTlJ2oqQzkXk0D1z8+nBP-lyfZwHxwGYrVnuL9C7Wp3r0F58jernxGHK15rzlmZ-2F7Vo50a6wgpOcwe9J3qDoHr3c5cUcZ0iHn2j7KOb1Xr25rAECOACA+ggA}{Click here to see simulation in Falstad \\
-\includegraphics[width=\textwidth]{circuit-20260403-0653.pdf}
+\href{https://www.falstad.com/circuit/circuitjs.html?ctz=DwYwlgTgBAZgvAIgIwKgFwM6IAwDpsEECsqYIiSuAHACwDsAnEVQGzYtIENVEuogAjCqgAOQhDQDMqAG4REJKAFtMCgKYBaJCgB8AKChRgGKAA8cUJACYqUBi0s3U8BNlHDlSxGggBXNQgA9PqGxmYWSAxWdg6RVs447sioSl4IPv5BIUam4QiSRJZEhSzRSMwJEqgYYIhWNKhoaogAGijBBjl5kjRQVlaSUBx9VnywiA1QNXWTTa3xHaEAggB2ACZ5RFGWNL102L1Iu5VuUGArE1mdwACSeXGOtla8jyfVADY4uIoAFrUIJEWRju5mQ2wez1iUTeU0+rm+qD+CiuoQASnlsFAqJjMZJ4uNXKgAO4uU5KACGphkyKBt26RGiGmxUAKjKQY1JHy+v3+gOydNBNHZUCZmKFDi0HMSsO5iN5KOBm2sIuZRGVkphGDheB5NP5uVBkmFGjo0R6jJYDEqk2mCHqjWaCAAygt9d0eCLTVAhUgRZbrdV-vb0I6ne03YKvRoWL0aNw-SgCTag7NQ25aasNqC2E8XvtepC3rSAPLQUF0Fi2B5UZlxIv80t5HMsytQfMtqgw86IaRQAD2euumbyDArljHnC9SAr9aH6xHY9ZlmwXtZs9CjdB2ismMhjmFhYJ6f5w+z2Fsaui7cv66Mm8QdAZUEvWJoF+sXYu+QVwFPiGbla2O2gEwgOAI-n+CDNo+V4HG2DK3r+85nrYtBAXBaGIfeCDttimJ4ViBCIQaD4DPBvpUM88GTC4yZ1KcczOkgbQANRhi0rrXNhFa2CwXpoUMpqgYOyzIYgo4OCwLyTtEUlSoSGZiQgEnevYy5enG8nHlxZYUNYmJEBOVjCoZWk-iRUFbM+2CFKaF7ngGUwpg6iBOtgbQCBBSnNlE6G9L5WG6Thra+ViMZ2E4R6kF+0iKVm-7nsueZwZwvCBXkPHLjQ+HhZw2XpVuSCSA4DC7I4eJ2McUVxSO2wMMqnA1nYH7VSeSkMOC2D1MuTWcMGnI1Vu55VuyVY7pi2iVp+PZefFUGJR1sH+dCrXXAA5vcxUTaNlhbY4RGraEAAyACiAAi9yjIcO1FWwlijZU+JKGBaxqDA5K+O8aAaO8ahrPw8jJFAIBrdKgjSkoAjkPC2DhtcFlFdo930Lt-T3UQpy0YGMwuQgABe5n3DQxneocux0N6dCObawaMS6P6nRdW6SGO-Rk16bOPSkL1vR9X0-X9AMeCDYPiGSUNfLDP4bVu9DRGzOwc2lh1dLLZHWIMRxxo48l0XaqauXDx3nZtE5lUcU5VS4T08+9n3fb9-3A4DiYi4SwNiykEsw0bRiM6bkns7JNF1NziCvXb-OO0LQNu6c4Pu5D0N4FLtII8Tgw7oUWsMH0DlJtj+u425P4QESGKEVAE2RZyOjYAANNiADcDfWFQwCBGX-JlxXzITSttcN83rdRB3XfXD3oJqW3ljgjXiQ6PY9dt03cTLzYY9Et35dT1CZTggPC9L3Eq9RMvo+d1vE873U0k2CyxWWGwbw6JC69UE3Vimu-n-f+y2BN0kMVZebBN7b02OCO6QDYjPyijoLYVgQEAOgUgsB188h7ghFOGccC34ny-og-Bf8KxoNCJPOo2CHAIPHGZV+xCWCAIZMvCsTcEHMJYKQow5CATqhMg1eehJ4HWHrpKVhwi26cOANwl8M9qFtxfpeH+bCJGX3AYKY0zJdi2FFC-cUIjm5aP0dgSR3CtEqjFG+FkCE4GGNFE3Qx9h7FvnrqyExN8eGMlVGVHRcDFF2KILsIxbjNjeK8QWfKvjAn+MCfUYxqj0GggCeEzEzZYkKJidlJuOZ66xOCShPoU47oEJftkghn9eA5NNKvNglSrB5IoEUr009D6CP-rU6pI8rBN2PhfceZD3Hti1m2Vs05aH5mXrsJuPEJk0CmZWdh9TgpPESu2Q8tdpk7g-hs3gUyDg5N4IsuRyozE+Nrso6wTiqDLwubY7Ehz+HvjNFNXx4ibBiMQcVdu8T+n0jNLQB+MDMYL1ZC42gjDCFsEAcA-+iylySH+c2eFIdBEgqRfYvEoLZnZKRYssxS5EXWNroY1kWTzwuIZPcp5vFEqfIUcIz5pKrmfMWTWfu0QVJ1jgay8+XTSo0B5d0isPLFntk+XYRczz1l7IZXylxlZBUsDlV8vpXD3FLklFiaesDa4gtEairpVAl54iboaxVMLvmqryKap+mIOXaoXqapB3TAn-wVagi1Ui1VPlFFYtkVtgVMLsbqrWsLvVDPqn65FbgdDBsmRGkRIaPXcIjSKcN99oEv3jVoONNgE05qZcVRZoVoHiocBmuBvkXHFTddAxZMkaH3R3H0CJtcZLsNXvpHJ2U636QKWUFcZpCUL23A3MpbbXFJvcdYA8LwU3ZqjQgHQ07FWQlXsZRV87unCPnYs5smlfWqVodkzS4L66aVDdEfdcLaAvxBSe1FtBd2JQZBeMqL6SlkpfawwJL7Dlvvvkk5tQLBFJPrl+0DuTJ33EabJRKrAF1LpqWOmpvAAFtLQh0xuMZGVYZoCKp8+7-59pfjBM9jjSNaMw5RtpBD8PRBfaTC8OD1lMK-aR1DlywOQsMaZXFljTKMd9bo5xplOMTpVZ6psiU+JmkfiBOB2SZNQsVUplBgFFkEIbSW+TtcCHtpQaM5T9c5JGfU1BxJyoxUvnzHSj58rFFKYc+ed59d8yUrbHBaCBxbOuYODhtz5mJj8bHGYugxVhNXNE4YsLHDAsSEsTFoYKzws2OcTF-zha4vQRGffHiH6rk8TXQVysdbcshViAI6NbdXPyuqyvY+G8stwYqqFlLtdslUGNYYzrXTouZYk9w9sMEPN7BvXA8ZMFdn8roI+uLuFhS4TfCRvZVB2RTcbm+EVcFrNPhvONvZl4pmsesCygghFMSZR0w6ggjcCAmpu6aAB0zHtHcQS90jgE5lXLMwNqdva5EDqGMrVtnaEGrwHcZg5cX62Ef+-a1pEOT0jq43E37I502P1CjGYD0bK3QO6bm7HRb77Y9LUMFtR9CeZIksZ7tcWVIydfLxISFahVKbQsZ00LL+PKhUnt2uHPDs08vEWkLzJrVvhx4umnkuTVL0lyytSkvNWApfo62XjrzVo-yXyx4wzOwKbJXyor9djfVZ4lt3o1mQotSlfyw74ywfwbA1EE1MYNsf2d6yr7jdm7TNNT7iNf6rcAfNgcKX8Cf1vNA3lVHV8fmJLD9lJLVZw-pP5bHnDsen2p9XHJms+Xl4DqMzJUzNZTv4TO5lPqCG8K3YAXX+DUzgFN5i0X+oPua8ipGTZBwgze8kfmalBh4zh91uGs1Mot0IoG9bcNU3FztDAN8j2zHd1Gqp-6sO26pvIUb-b3huL8Gsq2s6hTwRzvM+LSL3T7XiBj+hUWjPtX7vfLdLPivuL4pU0OG-xG3R7ICaDCeiQeX+woKaPktuC8IBFy2SoBd+Eg4BDUE+k0s+0BgBEa9iGBbyeiqB4ONY1yJW9OJOyeT+nA+ctcla2OBOVy5BH81+dBRa2w1qEu2ImaZ8AejqnB8udy0O66z4Rk4UpkL8y6YGLC1g7uvGfBQhIWGiEeEh9u4hV0CaNygBWgqhG6vBCBgGPq1gakpyC8oGdiehmhceaiFAVg+htYAw7K-qrSlhpha6S8ZuNhpuuwF6qaYevU5Q+IOqgaWsgCeym6kgB2LCIRGePh+BtBPh4+3h-ygGseIh8+2gYKMeSAqRLq4epWZ2qBOs10kqw640hBH8oheB1gziZRyhqBludg2wmUfKy2-Ki0UyO4puruj2bhsy0yfKOeZOCRaehuVyEk36TRLCMeWRTWqeiUf+UBgi2SdBWBZqBAH8MBdSc2nmTUl2wOC84yn2uxOy0yckNRoU9RlWi64yb+3RjWCBRUY4uU-Bayw6LMKmsyoh2GohkIdazxOwhwV0AhtCtxZqkyChMya6khJC0O3xCsJh5iIhzxOSHeJhCJrxDhQS0Ocs5OisZQdhVWcstOq8eJiaNxGJQyFs8sW+rShJwJeJbMaCHc4AEA+gQAA}{Click here to see simulation in Falstad \\
+\includegraphics[width=\textwidth]{circuit.pdf}
 }
 
 \end{document}
