@@ -5,7 +5,7 @@
 #showFooter("none")
 #include "title.typ"
 #include "certificate.typ"
-#include "acknowledgment.typ"
+#include "declaration.typ"
 #include "abstract.typ"
 
 #set page(numbering: "i")
@@ -22,9 +22,10 @@
 #include "introduction.typ"
 #include "research.typ"
 #include "components.typ"
+#include "bom.typ"
 #include "System Overview.typ"
 #include "results.typ"
 #include "scope.typ"
 
-#bibliography("bib.yaml", style: "ieee")
+#bibliography("bib.yaml", style: "ieee", title: [References])
 #include "appendix.typ"

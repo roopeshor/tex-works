@@ -9,9 +9,9 @@
 #let showFooterState = state("showFooterState", "doe-number")
 #let showFooter(type) = showFooterState.update(type)
 
-#let addToPDFBookmark(entry) = {
+#let addToPDFBookmark(entry, outlined: false) = {
   show heading: none
-  heading(numbering: none, bookmarked: true, outlined: false)[#entry]
+  heading(numbering: none, bookmarked: true, outlined: outlined)[#entry]
 }
 
 #let project(body) = {

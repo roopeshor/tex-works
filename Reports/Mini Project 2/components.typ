@@ -46,23 +46,3 @@ We considered other alternatives such as nRF24L01+PA+LNA version which has power
 FS1000A was another module taken for consideration for being inexpensive. But from our past experiences, the module is often unstable and has higher rate of failure. Moreover these modules have poor manufacturing quality.
 
 The nRF24L01 was chosen considering the drawbacks of other alternatives.
-
-== Project cost <cost-estimate>
-
-Although a breadboard was used for a single node project, it was solely ment for testing purpose, the total cost listed covers prototype board can in place of breadboard.
-#figure(
-  caption: [Project cost],
-  table(
-    columns: (1fr, .4fr, .4fr, .4fr),
-    inset: 10pt,
-    table.header([*Item*], [*Unit Cost*], [*Units*], [*Total*]),
-    [STM32F103], [90], [4], [360],
-    [nRF24L01+], [60], [4], [240],
-    [LED], [2], [4], [8],
-    [Resistors], [1], [4], [4],
-    [Prototype board], [60], [1], [60],
-    [Push button], [5], [1], [5],
-    [18650 battery], [60], [2], [120],
-    table.cell(colspan: 3)[*Total*], [*₹797*],
-  ),
-)

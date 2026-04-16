@@ -1,5 +1,5 @@
 #import "@preview/acrostiche:0.7.0": *
-= Background Study
+= Literature Review
 
 Historically, network systems have been studied for wide area communication @history and distributed computing. In earlier days sensor networks relied on centralized, _*star topology*_ architectures. In these networks, all edge devices communicate directly with a central gateway. While simple to implement, star topologies possess a single point of failure and are strictly limited by the physical transmission range of the central node . In complex environments -- such as industrial facilities with heavy RF attenuation, dense agricultural fields, or robotic swarm deployments -- maintaining direct line-of-sight to a central hub is often physically impossible or expensive. A _*common bus topology*_ was also considered but it suffers from the same problem -- need of central orchestrator.
 

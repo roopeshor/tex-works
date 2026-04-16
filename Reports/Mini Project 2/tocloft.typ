@@ -43,21 +43,21 @@
 
 #pagebreak()
 
-#addToPDFBookmark("List of Figures")
+#addToPDFBookmark("List of Figures", outlined: true)
 #outline(
   title: [List of Figures],
   target: figure.where(kind: image),
 )
 #v(1cm)
 #pagebreak()
-#addToPDFBookmark("List of Tables")
+#addToPDFBookmark("List of Tables", outlined: true)
 #outline(
   title: [List of Tables],
   target: figure.where(kind: table),
 )
 #v(1cm)
 
-#addToPDFBookmark([List of Abbreviations])
+#addToPDFBookmark("List of Abbreviations", outlined: true)
 #print-index(
   title: [List of Abbreviations],
   row-gutter: 10pt,
