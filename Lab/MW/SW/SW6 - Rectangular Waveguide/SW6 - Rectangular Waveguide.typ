@@ -34,7 +34,7 @@ Where:
 - $n$ = number of half-wave variations along narrow wall ($b$) 
 The mode with the lowest cut off frequency is 
 called the dominant mode. In rectangular waveguide: $"TE"_"10"$ is the dominant mode. For TE and TM modes: Cut-off Frequency is:
-$ f_(c"(mn)") = c/2 sqrt((m/a)^2 + (n/a)^2) $
+$ f_(c"(mn)") = c/2 sqrt((m/a)^2 + (n/b)^2) $
 Wave propagation occurs only when $f > f_c$. If $f < f_c$, the wave is attenuated and does not propagate.
 
 For Dominant Mode ($"TE"_10$):
@@ -135,10 +135,10 @@ $ f_c &= c/2a \
     stroke: none,
     row-gutter: 2pt,
     table.header([*Mode*], [*Description*]),
-    [Mode 1], [TE_10 (Dominant mode)],
-    [Mode 2], [TE_20],
-    [Mode 3], [TE_01],
-    [Mode 4], [TE_11],
+    [Mode 1], [$"TE"_10$ (Dominant mode)],
+    [Mode 2], [$"TE"_20$],
+    [Mode 3], [$"TE"_01$],
+    [Mode 4], [$"TE"_11$],
   )
   #table(
     columns: 2,
@@ -155,7 +155,7 @@ $ f_c &= c/2a \
 	#set enum(numbering: n => strong[13.#n])
   + #strong[S-Parameter Plot]
     - Go to Results → Create Modal Solution Data Report → Rectangular Plot
-      - Select: $S(2,1)$
+      - Select: $S("2:1","1:1")$
       - Format: dB
       - Click New Report
   + #strong[Electric field distribution]

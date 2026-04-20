@@ -5,7 +5,7 @@
 
 #place(top + center, float: true, scope: "parent")[
   = Experiment 4: Dipole Antenna Design Using HFSS
-	#v(20pt)
+  #v(20pt)
 ]
 
 
@@ -57,9 +57,9 @@ orientation of the dipole.
   - Draw → Cylinder
   - Material: #strong[Copper]
   - Axis: Z
-  - Radius: 1
-  - Height: 12
-  - Position: (0, 0, +5)
+  - Radius: 1mm
+  - Height: 12mm
+  - Position: (0, 0, +0.5mm)
   - No. of segments: 0
   - Fit All (Ctrl +D)
 + #strong[#strong[Duplicate for Second Arm]]
@@ -71,13 +71,13 @@ orientation of the dipole.
   - Ensure double arm dipole
   - Unite
   - Change color
-  - Set Transparency = +6
+  - Set Transparency = 0.6
 + #strong[#strong[Feed Creation]]
   - Select YZ Plane
   - Draw → Rectangle
   - Zoom in and rotate
   - Rectangle name: Rectangle1 (Feed)
-  Rectangle Properties: #list(indent: lstint, [Position: $(0, -1, -+ 5)$], [Axis: X], [Y-size: 2], [Z-size: 1])
+  Rectangle Properties: #list(indent: lstint, [Position: $(0, -1, -0.5)$], [Axis: X], [Y-size: 2mm], [Z-size: 1mm])
 
   (feed be placed at the center of the dipole)
 + #strong[Assign Excitation]
@@ -92,7 +92,7 @@ orientation of the dipole.
   - Create → Box
   - Dimensions: #list(indent: lstint, [X = 40], [Y = 40], [Z = 40])
   - Position: $(-20, -20, -20)$
-  - Set Transparency = $+8$
+  - Set Transparency = $0.8$
   - Assign Radiation Boundary
 + #strong[Analysis Setup]
   - Analysis $->$ Add Solution Setup
