@@ -37,7 +37,7 @@
 
 #addToPDFBookmark("Table of contents")
 #outline(
-  title: [Table of contents],
+  title: text(size: 18pt)[Table of contents],
   target: heading,
 )
 
@@ -45,23 +45,25 @@
 
 #addToPDFBookmark("List of Figures", outlined: true)
 #outline(
-  title: [List of Figures],
+  title: text(size: 18pt)[List of Figures],
   target: figure.where(kind: image),
 )
 #v(1cm)
 #pagebreak()
 #addToPDFBookmark("List of Tables", outlined: true)
 #outline(
-  title: [List of Tables],
+  title: text(size: 18pt)[List of Tables],
   target: figure.where(kind: table),
 )
 #v(1cm)
+#pagebreak()
 
 #addToPDFBookmark("List of Abbreviations", outlined: true)
 #print-index(
   title: [List of Abbreviations],
   row-gutter: 10pt,
-  sorted: "up"
+  sorted: "up",
+	column-ratio: .2
 )
 
 #pagebreak()

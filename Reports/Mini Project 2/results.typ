@@ -2,13 +2,13 @@
 = Results and Limitations
 
 == Results
-Initially direct connection between transmitter and receiver was tested, which was successful. Then we moved on to 3 node communication. Here the radio modules showed very poor range, hence for transmission to occur, they had to be placed very close to each other as shown in @3-node-com. Here transmitter (shown on left) could transmit only up to the nearest repeater which relays it to receiver node (shown on right). Since #acr("ACK") mechanism was implemented the signal has to travels back to transmitter again through the repeater.
+Initially direct connection between transmitter and receiver was tested, which was successful. Then we moved on to 3 node and finally to 4 node communication as shown in @4-node. Here the radio modules showed very poor range, hence for transmission to occur, they had to be placed very close to each other. Here transmitter (shown on left) could transmit only up to the nearest repeater which relays it to receiver node (shown on right). Since #acr("ACK") mechanism was implemented the signal has to travels back to transmitter again through the repeater.
+
 
 #figure(
-  image("images/3 nodes.jpg", width: 12cm),
-  caption: [Communication with 3 nodes]
-)<3-node-com>
-
+  image("images/4 nodes.jpg", width: 12cm),
+  caption: [Communication with 4 nodes]
+)<4-node>
 The output from all nodes were logged through Serial port and are displayed in the console using *_Minicom_* @minicom. 
 
 #figure(
@@ -20,10 +20,6 @@ Later on we tested with all 4 nodes and formed the network which we originally i
 
 During the testing we found there was some packet, possibly due to the way the RF module itself works. The details are mentioned in @limitations
 
-#figure(
-  image("images/4 nodes.jpg", width: 12cm),
-  caption: [Communication with 4 nodes]
-)
 
 
 == Latency Measure

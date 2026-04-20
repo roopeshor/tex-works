@@ -1,4 +1,3 @@
-#import "@preview/hydra:0.6.2": anchor, hydra
 #import "@preview/headcount:0.1.0": *
 
 /* showFooterState: Possible values:
@@ -7,7 +6,9 @@
  * none
  */
 #let showFooterState = state("showFooterState", "doe-number")
+#let showHeaderState = state("showHeaderState", true)
 #let showFooter(type) = showFooterState.update(type)
+#let showHeader(bool) = showHeaderState.update(bool)
 
 #let addToPDFBookmark(entry, outlined: false) = {
   show heading: none
@@ -16,7 +17,7 @@
 
 #let project(body) = {
   set par(justify: true, first-line-indent: 1em, leading: .75em)
-  set text(font: "STIX Two Text", size: 12.5pt)
+  set text(font: "Nimbus Roman", size: 12pt)
   set heading(numbering: "1.")
   set list(indent: 1em)
   set enum(indent: 1em)
@@ -27,7 +28,7 @@
   set page(
     footer: context {
       if showFooterState.get() == "doe-number" {
-        [
+        text(size: 11pt)[
           _Division of Electronics Engg, SOE, CUSAT_
           #h(1fr)
           #counter(page).display()
@@ -39,15 +40,15 @@
       }
     },
     header: context {
-      let current-page = here().page()
-      let has-heading = query(heading.where(level: 1)).any(it => it.location().page() == current-page)
-      if counter(heading).get().first() > 0 and not has-heading [
-        // Display header from 1st numbered heading
-        Distributed Communication Network
-        #h(1fr)
-        #emph[#hydra(1)]
-      ]
-    }
+      if showHeaderState.get() {
+        let current-page = here().page()
+        let has-heading = query(heading.where(level: 1)).any(it => it.location().page() == current-page)
+        if counter(heading).get().first() > 0 and not has-heading [
+          // Display header from 1st numbered heading
+          #text(size: 11pt)[_Distributed Communication Network_]
+        ]
+      }
+    },
   )
 
   // Show title along with section numer
@@ -59,21 +60,20 @@
       it
     }
   }
-  
-  show bibliography: set heading(numbering: "1.")
+
 
   show heading.where(level: 1): it => {
-		set align(center + top)
+    set align(center + top)
     if it.numbering == none [
-			#text(size: 24pt, weight: "bold")[#it.body]
-			#it.has("unnumbered")
+      #text(size: 20pt, weight: "bold")[#it.body]
+      #it.has("unnumbered")
     ] else [
-			#pagebreak(weak: true)
+      #pagebreak(weak: true)
       #block[
-        #text(size: 24pt, weight: "bold")[
-          Chapter #counter(heading).get().first(): #v(-15pt)
-          #it.body
-        ]
+        #text(size: 16pt, weight: "bold")[
+          Chapter #counter(heading).get().first():
+        ]\
+        #text(size: 14pt, weight: "bold")[#it.body]
         #counter(figure.where(kind: image)).update(0)
         #counter(figure.where(kind: table)).update(0)
         #v(1cm)
@@ -82,18 +82,19 @@
 
   show heading.where(level: 2): it => {
     block[
-      #text(size: 18pt, weight: "bold")[#counter(heading).display().trim(".") #it.body]
       #v(10pt)
+      #text(size: 12pt, weight: "bold")[#counter(heading).display().trim(".") #it.body]
+      #v(7pt)
     ]
   }
 
   show heading.where(level: 3): it => {
     block[
-      #text(size: 15pt, weight: "bold")[#counter(heading).display().trim(".") #it.body]
-      #v(10pt)
+      #text(size: 12pt, weight: "bold")[#counter(heading).display().trim(".") #it.body]
+      #v(5pt)
     ]
   }
-  
+
   // Set spacing for heading outline
   show outline.entry.where(level: 1): it => {
     if it.element.func() == heading {
@@ -104,7 +105,6 @@
       it
     }
   }
-
   show outline.entry: it => {
     // things that shouldnt be numbered
     let no-nums = query(label("unnumbered"))
@@ -119,7 +119,7 @@
   }
 
   show figure: set block(spacing: 25pt)
-  show figure.caption: it => {emph[#it]}
+  show figure.caption: it => { emph[#it] }
   show raw: set text(font: "DejaVu Sans Mono")
   // contents
   body
